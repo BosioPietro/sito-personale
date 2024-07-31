@@ -1,0 +1,42 @@
+:host{
+    height: 100dvh;
+    width: 100dvw;
+    display: grid;
+    place-items: center;
+    color: #FFF;
+
+    --bordo: 7.5rem;
+    --w-contenuto-pagina: 1280px;
+}
+
+main{
+    width: calc(100% - var(--bordo) * 2);
+    height: calc(100% - var(--bordo) * 2);
+    z-index: 0;
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden scroll;
+    border: 2px solid #FFF2;
+
+    animation: mostra-main 1ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    animation-timeline: scroll(y self);
+    
+    .wrapper{
+        position: absolute;
+        width: 100%;
+        top: 0;
+
+        & > *:not(paginaprincipale){
+            // background-color: #0001;
+            min-height: 100dvh;
+        }
+    }
+}
+
+@keyframes mostra-main{
+    40%, 100%{
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+}

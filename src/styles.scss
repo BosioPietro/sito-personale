@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'DM Sans';
+    font-display: swap;
+    src: url('/assets/font/DMSans.woff2');
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'DM Sans';
+    font-weight: bold;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body{
+    min-height: 100dvh;
+    min-width: 100dvw;
+    background-color: #000;
+    scroll-behavior: smooth;
+}
+
+[class*="flex-"]{
+    display: flex;
+
+    &.flex-col{
+        flex-direction: column;
+    }
+}
+
+.scrollbar-nascosta{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
