@@ -3,12 +3,12 @@ import { SwitchComponent } from './switch/switch.component';
 import { SfondoComponent } from './sfondo/sfondo.component';
 
 @Component({
-  selector: 'PaginaConoscenze',
+  selector: 'SezioneConoscenze',
   standalone: true,
   imports: [SwitchComponent, SfondoComponent],
-  templateUrl: './pagina-conoscenze.component.html',
-  styleUrl: './pagina-conoscenze.component.scss'
+  templateUrl: './sezione-conoscenze.component.html',
+  styleUrl: './sezione-conoscenze.component.scss'
 })
-export class PaginaConoscenzeComponent {
+export class SezioneConoscenzeComponent {
 
 }
