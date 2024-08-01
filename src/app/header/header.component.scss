@@ -6,10 +6,11 @@
     height: 4rem;
     width: 100%;
     transform: translateY(-100%);
-    border-bottom: 2px solid #FFF2;
+    border-bottom: 2px solid var(--colore-bordo);
+    font-weight: 600;
     
-    background-color: #000A;
-    backdrop-filter: blur(0);
+    background-color: #0003;
+    backdrop-filter: blur(1rem);
     filter: blur(2rem);
 
     animation: mostra-header 1ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
@@ -41,7 +42,7 @@
 }
 
 @keyframes mostra-header {
-    50%, 100%{
+    45%, 100%{
         transform: translateY(0);
         filter: blur(0);
     }

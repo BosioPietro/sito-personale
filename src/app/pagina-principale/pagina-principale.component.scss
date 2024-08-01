@@ -1,78 +1,24 @@
 :host{
     position: relative;
-    display: flex;
-    justify-content: center;
     height: calc(100dvh - var(--bordo) * 2);
-    
-    .sfondo{
-        background-color: #0b0b0b;
-        z-index: -1;
-        position: absolute;
-        inset: 0;
-        display: grid;
-        place-items: center;
-
-        svg{
-            position: absolute;
-            z-index: 0;
-            overflow: visible;
-            width: min(100vw, 100vh);
-        }
-        
-        .filtro{
-            backdrop-filter: blur(1.5rem);
-            background-color: #0b0b0bDA;
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            transform-origin: center;
-        }
-
-        circle{
-            animation: scompari 2s infinite;
-
-            &:nth-child(3){
-                animation-delay: 1s;
-            }
-
-            &:nth-child(2){
-                animation-delay: 2s;
-            }
-
-            &:nth-child(1){
-                animation-delay: 3s;
-            }
-        }
-
-        @keyframes scompari {
-            0%, 100%{
-                opacity: 1;
-            }
-            50%{
-                opacity: .8;
-            }
-        }
-    }
-
-    .wrapper{
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        width: var(--w-contenuto-pagina);
-        z-index: 1;
-    }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 section{
+    position: relative;
     display: grid;
     place-items: center;
-    position: relative;
+    z-index: 0;
 
-    .sfondo-trattini{
+    &::before{
+        content: '';
+        --trattino: url("data:image/svg+xml;base64,PHN2ZwogICB2aWV3Qm94PSIwIDAgNjQgNTMiCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+Cgk8Zz4KCQk8cGF0aAogICAgICAgCQkJc3R5bGU9InN0cm9rZTojMzMzO3N0cm9rZS13aWR0aDo2O3N0cm9rZS1saW5lY2FwOnJvdW5kIgogICAgICAgCQkJZD0iTSAxMCwxNCBWIDM3IgogICAgIAkJLz4KCTwvZz4KPC9zdmc+Cg==");
         position: absolute;
         inset: 0;
         z-index: -1;
         opacity: .5;
-        background-image: url("/assets/img/trattino.svg");
+        background-image: var(--trattino);
         background-size: 1.5rem;
     }
 }

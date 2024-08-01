@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-sfondo',
+  selector: 'Sfondo',
   standalone: true,
   imports: [],
   templateUrl: './sfondo.component.html',

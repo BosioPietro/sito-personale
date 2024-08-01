@@ -1,8 +1,12 @@
 :host{
     position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(1rem);
-    background-color: #000D;
+    backdrop-filter: blur(1.2rem);
+    background-color: #000E;
+    padding-block: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-bottom: 1px solid red;
 }
 
 hr{
@@ -14,7 +18,7 @@ hr{
     height: 2px;
     overflow: visible;
 
-    &::after{
+    &::before{
         content: '';
         --width: 60dvw;
         height: 2px;
@@ -25,7 +29,7 @@ hr{
         background: linear-gradient(90deg, #0000 0%, #8F8F8FAB 50%, #0000 100%);
     }
 
-    &::before{
+    &::after{
         content: '';
         --width: 60dvw;
         height: 2px;
@@ -36,7 +40,49 @@ hr{
         position: absolute;
         left: calc(50% - var(--width) / 2);
         transform: translateY(-50%);
+        clip-path: polygon(0% 50%, 100% 50%, 100% 100%, 0% 100%);
         background: conic-gradient(from 90deg at 50% 50%, #0000 50%, #000 50%),
                     radial-gradient(#C8C8C81A 0%, #0000 70%);
+    }
+}
+
+h1{
+    background: linear-gradient(to right bottom,#FFF 30%,#FFFFFF80);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    width: fit-content;
+    margin-inline: auto;
+}
+
+.griglia{
+    --bordo: 2px;
+    position: relative;
+    height: 100%;
+    flex-grow: 1;
+    border-radius: 1rem;
+    border: var(--bordo) solid #FFF2;
+
+    hr{
+        background-color: #0000;
+        top: calc(var(--bordo) * -1);
+        transform: rotate(180deg);
+    }
+
+    hr::after{
+        // display: none;
+        opacity: .5;
+        filter: brightness(.5);
+        
+    }
+    
+    hr::before{
+        --width: 30rem;
+        filter: brightness(1.5);
+    }
+
+    .sfondo{
+        z-index: -1;
+        background-color: #0b0b0b;
     }
 }

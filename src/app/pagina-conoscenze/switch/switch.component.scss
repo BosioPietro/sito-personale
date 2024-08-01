@@ -1,0 +1,59 @@
+:host{
+    --padding: .25rem;
+    display: flex;
+    position: relative;
+    margin-inline: auto;
+    width: fit-content;
+    border-radius: 100dvh;
+    border: 2px solid var(--colore-bordo);
+    padding: var(--padding);
+}
+
+.opzione{
+    position: relative;
+    padding: .75rem 1.25rem;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer;
+    z-index: 1;
+    font-weight: 500;
+    border: 0;
+    font-size: 1rem;
+    border-radius: 100dvh;
+    background-color: #0000;
+    color: #ededed;
+    transition: color .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+    ion-icon{
+        font-size: 1.2rem;
+    }
+
+    &.selezionato{
+        color: #000;
+        background-color: #ededed;
+
+        &.anima{
+            animation: seleziona .5s;
+        }
+    }
+
+    @keyframes seleziona {
+        0%, 99.9999%{
+            background-color: #0000;
+        }
+        100%{
+            background-color: #ededed;
+        }
+    }
+}
+
+.cella{
+    position: absolute;
+    inset: var(--padding) auto var(--padding) auto;
+    z-index: 0;
+    border-radius: 100dvh;
+    transition-property: left, width;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    background-color: #ededed;
+}
