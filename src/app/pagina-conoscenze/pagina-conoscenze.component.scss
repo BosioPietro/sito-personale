@@ -7,6 +7,10 @@
     flex-direction: column;
     gap: 2rem;
     border-bottom: 1px solid red;
+
+    & > *:not(hr){
+        z-index: 1;
+    }
 }
 
 hr{
@@ -15,6 +19,7 @@ hr{
     position: absolute;
     inset: 0 0 auto 0;
     border: 0;
+    z-index: 0;
     height: 2px;
     overflow: visible;
 
@@ -47,10 +52,6 @@ hr{
 }
 
 h1{
-    background: linear-gradient(to right bottom,#FFF 30%,#FFFFFF80);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
     width: fit-content;
     margin-inline: auto;
 }
@@ -70,7 +71,7 @@ h1{
     }
 
     hr::after{
-        // display: none;
+        display: none;
         opacity: .5;
         filter: brightness(.5);
         
@@ -82,6 +83,8 @@ h1{
     }
 
     .sfondo{
+        position: absolute;
+        inset: 0;
         z-index: -1;
         background-color: #0b0b0b;
     }
