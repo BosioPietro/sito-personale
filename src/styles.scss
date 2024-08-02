@@ -56,3 +56,19 @@ h1{
 .no-transizione{
     transition: none !important;
 }
+
+.sfondo-trattini{
+    position: relative;
+    background-color: #0000;
+
+    &::before{
+        content: '';
+        --trattino: url("data:image/svg+xml;base64,PHN2Zw0KICAgdmlld0JveD0iMCAwIDY0IDUzIg0KICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCgk8Zz4NCgkJPHBhdGgNCiAgICAgICAJCQlzdHlsZT0ic3Ryb2tlOiMzMzM7c3Ryb2tlLXdpZHRoOjY7c3Ryb2tlLWxpbmVjYXA6cm91bmQiDQogICAgICAgCQkJZD0iTSAzLDE0IFYgMzciDQogICAgIAkJLz4NCgk8L2c+DQo8L3N2Zz4=");
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        opacity: .5;
+        background-image: var(--trattino);
+        background-size: 1.5rem;
+    }
+}

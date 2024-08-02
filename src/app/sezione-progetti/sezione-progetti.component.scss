@@ -1,0 +1,19 @@
+:host{
+    padding-block: 6rem;
+
+    h1, h3{
+        margin-inline: auto;
+    }
+
+    h1{
+        width: fit-content;
+        margin-bottom: .5rem;
+    }
+
+    h3{
+        max-width: 40ch;
+        font-weight: 400;
+        text-align: center;
+        color: #999;
+    }
+}

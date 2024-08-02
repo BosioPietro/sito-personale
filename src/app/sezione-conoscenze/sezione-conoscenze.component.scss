@@ -11,8 +11,17 @@
     & > *:not(hr){
         z-index: 1;
     }
-}
 
+    & > [class*="flex"]{
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    
+        .gap{
+            flex: 1 0 1rem;
+        }
+    }    
+}
 hr{
     height: 2px;
     background-color: #FFF2;
@@ -52,7 +61,7 @@ hr{
 }
 
 h1{
-    width: fit-content;
+    width: fit-content; 
     margin-inline: auto;
 }
 
@@ -63,6 +72,8 @@ h1{
     flex-grow: 1;
     border-radius: 1rem;
     border: var(--bordo) solid #FFF2;
+    display: grid;
+    grid-template-columns: auto minmax(auto, max-content) auto;
 
     hr{
         background-color: #0000;
@@ -85,7 +96,23 @@ h1{
     .sfondo{
         position: absolute;
         inset: 0;
-        z-index: -1;
         background-color: #0b0b0b;
+    }
+
+    article{
+        padding-block: 2rem;
+        position: relative;
+        z-index: 0;
+
+        Switch{
+            transform: translateX(-1px);
+        }
+
+        .sfondo-trattini{
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            mask-image: linear-gradient(to bottom, #000, #0000);
+        }
     }
 }

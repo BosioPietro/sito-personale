@@ -10,16 +10,5 @@ section{
     display: grid;
     place-items: center;
     z-index: 0;
-
-    &::before{
-        content: '';
-        --trattino: url("data:image/svg+xml;base64,PHN2ZwogICB2aWV3Qm94PSIwIDAgNjQgNTMiCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+Cgk8Zz4KCQk8cGF0aAogICAgICAgCQkJc3R5bGU9InN0cm9rZTojMzMzO3N0cm9rZS13aWR0aDo2O3N0cm9rZS1saW5lY2FwOnJvdW5kIgogICAgICAgCQkJZD0iTSAxMCwxNCBWIDM3IgogICAgIAkJLz4KCTwvZz4KPC9zdmc+Cg==");
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-        opacity: .5;
-        background-image: var(--trattino);
-        background-size: 1.5rem;
-    }
 }
 
