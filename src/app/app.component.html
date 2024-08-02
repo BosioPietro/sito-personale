@@ -1,9 +1,9 @@
-<main class="scrollbar-nascosta">
+<main class="scrollbar-nascosta" (scroll)="Scrolla($event)">
   <Header></Header>
   <div class="wrapper flex-col">
     <SezionePrincipale id="principale"/>
-    <SezioneConoscenze id="conoscenze"/>
-    <SezioneProgetti id="progetti"/>
+    <SezioneConoscenze id="conoscenze" class="snap"/>
+    <SezioneProgetti id="progetti" class="snap"/>
     <FooterContatti id="contatti"/>
   </div>
 </main>

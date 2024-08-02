@@ -34,7 +34,6 @@ main{
         & > *{
             padding-inline: calc((100% - var(--w-contenuto-pagina)) / 2);
             scroll-snap-align: center;
-            outline: 1px solid red;
         }
     }
 }
