@@ -46,6 +46,11 @@ h1{
     font-size: 3.5rem;
 }
 
+a[href^="#"] {
+    text-decoration: none;
+    color: inherit;       
+}
+
 .testo-gradient{
     background: linear-gradient(to right bottom,#FFF 30%,#FFFFFF80);
     -webkit-background-clip: text;

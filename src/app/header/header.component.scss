@@ -27,9 +27,6 @@
             justify-content: center;
             align-items: center;
             gap: 1rem;
-            padding-block: .25rem;
-            padding-inline: 1rem;
-            font-size: .875rem;
             cursor: pointer;
             color: #F1F7FEB5;
             transition: color .3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
@@ -37,12 +34,21 @@
             &:hover{
                 color: #FFF;
             }
+            
+            a{
+                height: 100%;
+                display: grid;
+                place-items: center;
+                font-size: .875rem;
+                padding-block: .25rem;
+                padding-inline: 1rem;
+            }
         }
     }
 }
 
 @keyframes mostra-header {
-    45%, 100%{
+    35%, 100%{
         transform: translateY(0);
         filter: blur(0);
     }

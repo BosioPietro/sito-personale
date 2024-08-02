@@ -8,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-
+  Scrolla(s: string){
+    const el = document.getElementById(s)!;
+    el.scrollIntoView({behavior: "smooth"})
+  }
 }
