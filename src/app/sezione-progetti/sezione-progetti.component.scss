@@ -1,8 +1,7 @@
 :host{
-    padding-block: 3rem 6rem;
+    padding-top: 5rem;
     position: relative;
     overflow-y: hidden;
-    // backdrop-filter: blur(1.2rem);
     background-image: linear-gradient(#000, #0009);
 
     h1, h3{
@@ -11,7 +10,6 @@
 
     h1{
         width: fit-content;
-        margin-bottom: .5rem;
     }
 
     h3{

@@ -2,7 +2,7 @@
     position: relative;
     backdrop-filter: blur(1.2rem);
     background-color: #000E;
-    padding-block: 6rem 3rem;
+    padding-block: 5rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -26,7 +26,7 @@ hr{
     height: 2px;
     background-color: #FFF2;
     position: absolute;
-    inset: 0 0 auto 0;
+    inset: -2px 0 auto 0;
     border: 0;
     z-index: 0;
     overflow: visible;
@@ -59,9 +59,19 @@ hr{
     }
 }
 
-h1{
-    width: fit-content; 
+h1, h3{
     margin-inline: auto;
+}
+
+h1{
+    width: fit-content;
+}
+
+h3{
+    max-width: 50ch;
+    font-weight: 400;
+    text-align: center;
+    color: #999;
 }
 
 .griglia{
