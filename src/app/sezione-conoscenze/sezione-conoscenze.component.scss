@@ -2,11 +2,10 @@
     position: relative;
     backdrop-filter: blur(1.2rem);
     background-color: #000E;
-    padding-block: 6rem;
+    padding-block: 6rem 3rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    border-bottom: 1px solid red;
 
     & > *:not(hr){
         z-index: 1;
@@ -22,6 +21,7 @@
         }
     }    
 }
+
 hr{
     height: 2px;
     background-color: #FFF2;
@@ -29,7 +29,6 @@ hr{
     inset: 0 0 auto 0;
     border: 0;
     z-index: 0;
-    height: 2px;
     overflow: visible;
 
     &::before{

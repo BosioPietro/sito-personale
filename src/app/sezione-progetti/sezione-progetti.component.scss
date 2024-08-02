@@ -1,5 +1,9 @@
 :host{
-    padding-block: 6rem;
+    padding-block: 3rem 6rem;
+    position: relative;
+    overflow-y: hidden;
+    // backdrop-filter: blur(1.2rem);
+    background-image: linear-gradient(#000, #0009);
 
     h1, h3{
         margin-inline: auto;
@@ -15,5 +19,45 @@
         font-weight: 400;
         text-align: center;
         color: #999;
+    }
+}
+
+hr{
+    height: 2px;
+    background-color: #FFF2;
+    position: absolute;
+    inset: auto 0 0 0;
+    border: 0;
+    z-index: 0;
+    overflow: visible;
+    rotate: 180deg;
+
+    &::before{
+        content: '';
+        --width: 60dvw;
+        height: 2px;
+        width: var(--width);
+        margin-inline: auto;
+        position: absolute;
+        left: calc(50% - var(--width) / 2);
+        background: linear-gradient(90deg, #0000 0%, #8F8F8FAB 50%, #0000 100%);
+    }
+
+    &::after{
+        content: '';
+        --width: 80dvw;
+        // display: none;
+        opacity: .75;
+        height: 2px;
+        top: 0;
+        width: var(--width);
+        height: var(--width);
+        margin-inline: auto;
+        position: absolute;
+        left: calc(50% - var(--width) / 2);
+        transform: translateY(-50%);
+        clip-path: polygon(0% 50%, 100% 50%, 100% 100%, 0% 100%);
+        background: conic-gradient(from 90deg at 50% 50%, #0000 50%, #000 50%),
+                    radial-gradient(#C8C8C81A 0%, #0000 70%);
     }
 }
