@@ -1,14 +1,45 @@
-<div class="wrapper flex-row">
-    <div class="opzione flex-row">
+<div class="wrapper flex-row" #wrapper  >
+    <!-- <div class="opzione flex-row" [class.corrente]="sezione == 'principale'" sezione="principale">
         <a (click)='Scrolla("principale")'>Home</a>
+        <div class="wrapper-cella">
+            <div class="cella"></div>
+        </div>
+    </div> -->
+    <div class="opzione flex-row" [class.corrente]="sezione == 'conoscenze' || sezione == 'principale'" sezione="conoscenze">
+        <a (click)='Scrolla("conoscenze")' class="flex-row">
+            <ion-icon name="school"></ion-icon>
+            Competenze
+        </a>
+        <div class="wrapper-cella">
+            <div class="cella"></div>
+        </div>
     </div>
-    <div class="opzione flex-row">
-        <a (click)='Scrolla("conoscenze")'>Competenze</a>
+    <div class="opzione flex-row" [class.corrente]="sezione == 'progetti'" sezione="progetti">
+        <a (click)='Scrolla("progetti")' class="flex-row">
+            <ion-icon name="layers"></ion-icon>
+            Progetti
+        </a>
+        <div class="wrapper-cella">
+            <div class="cella"></div>
+        </div>
     </div>
-    <div class="opzione flex-row">
-        <a (click)='Scrolla("progetti")'>Progetti</a>
+    <div class="opzione flex-row" [class.corrente]="sezione == 'contatti'" sezione="contatti">
+        <a (click)='Scrolla("contatti")' class="flex-row">
+            <ion-icon name="chatbubble"></ion-icon>
+            Contatti
+        </a>
+        <div class="wrapper-cella">
+            <div class="cella"></div>
+        </div>
     </div>
-    <div class="opzione flex-row">
-        <a (click)='Scrolla("contatti")'>Contatti</a>
-    </div>
+</div>
+
+<div 
+    #cella
+    class="cella"
+    [class.animando]="animando"
+    [style]="{
+        '--sinistra': SezioneCorrente(sezione)
+    }"
+>
 </div>

@@ -6,8 +6,9 @@
     height: 4rem;
     width: 100%;
     transform: translateY(-100%);
-    border-bottom: 2px solid var(--colore-bordo);
     font-weight: 600;
+    border-bottom: 2px solid var(--colore-bordo);
+    --tempo-animazione: .3s;
     
     background-color: #0003;
     backdrop-filter: blur(1rem);
@@ -26,24 +27,77 @@
         .opzione{
             justify-content: center;
             align-items: center;
+            position: relative;
             gap: 1rem;
             cursor: pointer;
             color: #F1F7FEB5;
-            transition: color .3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+            transition: color var(--tempo-animazione) cubic-bezier(0.445, 0.05, 0.55, 0.95);
             
-            &:hover{
+            &:hover, &.corrente{
                 color: #FFF;
             }
             
             a{
                 height: 100%;
-                display: grid;
-                place-items: center;
+                align-items: center;
+                gap: .5rem;
                 font-size: .875rem;
                 padding-block: .25rem;
                 padding-inline: 1rem;
+
+                ion-icon{
+                    font-size: 1rem;
+                }
+            }
+
+            .wrapper-cella{
+                position: absolute;
+                inset: auto 0 0 0;
+                
+                .cella{
+                    position: static;
+                    margin-inline: auto;
+                    width: 2rem;
+                    background-color: var(--colore-bordo);
+                    transform: none;
+                }
+            }
+
+            &.corrente .cella{
+                animation: mostra var(--tempo-animazione);
+                opacity: 1;
+
+                @keyframes mostra {
+                    0%, 100%{
+                        opacity: 0;
+                    }
+                }
             }
         }
+    }
+
+    .cella{
+        --sinistra: 0;
+        position: absolute;
+        height: .25rem;
+        width: 2rem;
+        inset: auto auto 0 var(--sinistra);
+        border-radius: 100dvw 100dvw 0 0 ;
+        background-color: var(--colore-bordo);
+        transition: inset var(--tempo-animazione) cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        opacity: 0;
+
+        &.animando{
+            opacity: 1;
+        }
+    }
+
+    .bordo{
+        position: absolute;
+        height: 2px;
+        background-color: var(--colore-bordo);
+        inset: auto 0 0 0;
+        overflow: hidden;
     }
 }
 
