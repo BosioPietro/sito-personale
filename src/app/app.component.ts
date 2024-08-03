@@ -63,10 +63,6 @@ export class AppComponent implements AfterViewInit{
     }).sort((a, b) => a["distanza"] - b["distanza"]);
 
     this.sezioneCorrente = distanze[0].el.id;
-
-    if(this.sezioneCorrente == "principale"){
-      this.sezioneCorrente = "conoscenze"
-    }
   }
 
   NavigazioneBottoni(sezione: string){
@@ -113,30 +109,34 @@ export class AppComponent implements AfterViewInit{
     const start = element.scrollTop;
     const targetTop = target.getBoundingClientRect().top - element.getBoundingClientRect().top + start;
     const startTime = performance.now();
+    let ferma = false;
 
     function EaseInOutQuad(x: number): number {
       return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
     }
 
-    function Scroll() {
+    const Scroll = () => {
         const elapsedTime = (performance.now() - startTime) / duration;
         const easedTime = EaseInOutQuad(Math.min(elapsedTime, 1));
         const newScrollTop = start + (targetTop - start) * easedTime;
 
         element.scrollTop = newScrollTop;
 
-        if (elapsedTime < 1) {
+        if(this.disattivaSnap){
+          console.log("premuto")
+        }
+
+        if (elapsedTime < 1 && !ferma && !this.disattivaSnap) {
             requestAnimationFrame(Scroll);
         }
     }
 
     function onUserScroll() {
-        element.removeEventListener('scroll', onUserScroll);
         element.removeEventListener('wheel', onUserScroll);
         element.removeEventListener('touchmove', onUserScroll);
+        ferma = true;
     }
 
-    element.addEventListener('scroll', onUserScroll);
     element.addEventListener('wheel', onUserScroll);
     element.addEventListener('touchmove', onUserScroll);
 

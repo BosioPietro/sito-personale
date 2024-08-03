@@ -32,12 +32,19 @@ export class HeaderComponent {
 
   Scrolla(s: string){
     const el = document.getElementById(s)!;
-    el.scrollIntoView({behavior: "smooth"});
     this.onNaviga.emit(s)
+
+    // il timeout serve per gestire lo snap, viene
+    // interrotto da onNaviga ma bisogna aspettare
+    // il prossimo ciclo per iniziare a scollare
+    setTimeout(() => {
+      el.scrollIntoView({behavior: "smooth"}); 
+    }, 1);
   }
 
   SezioneCorrente(sezione: string | undefined){
     if(!sezione) return 0;
+    if(sezione == "principale") sezione = "conoscenze";
     if(this.ultimo.sezione == sezione) return this.ultimo.valore; 
 
     const cella = this.wrapper.nativeElement.querySelector(`[sezione="${sezione}"] .cella`)! as HTMLElement;
