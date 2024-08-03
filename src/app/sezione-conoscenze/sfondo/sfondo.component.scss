@@ -10,7 +10,7 @@
     border-radius: inherit;
 
     animation: mostra-cerchi 10s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-    animation-timeline: view(y);
+    animation-timeline: view();
 }
 
 @property --dim-cerchi{

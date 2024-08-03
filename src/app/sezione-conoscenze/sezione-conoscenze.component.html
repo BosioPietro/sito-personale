@@ -3,13 +3,43 @@
     <h1 class="testo-gradient">Competenze & Abilità</h1>
     <h3>Competenze che ho acquisito direttamente attraverso alla scuola, stage, o interesse personale</h3>
 </div>
-<div class="griglia">
+<div class="griglia flex-col">
     <hr>
-    <article></article>
-    <article>
-        <div class="sfondo-trattini"></div>
-        <Switch/>
-    </article>
-    <article></article>
+    <div class="flex-row controlli">
+        <div class="cella"></div>
+        <div class="cella">
+            <div class="sfondo-trattini"></div>
+            <Switch/>
+        </div>
+        <div class="cella"></div>
+    </div>
+    <div class="contenuto-griglia flex-row" (mousemove)="EffettoMouse($event)">
+        <div class="sezione grande flex-col">
+            <h4 class="testo-gradient">Front-End</h4>
+            <p>
+                Creazione di siti tradizionali con HTML, CSS e JS oppure attraverso framework, 
+                principalmente Angular, per SPA con TS e SCSS.
+            </p>
+            <div class="contenuto flex-row"></div>
+        </div>
+        <div class="sezione grande flex-col">
+            <h4 class="testo-gradient">Back-End</h4>
+            <p>
+                Creazione e gestione di server CRUD usando middleware. 
+                Gestione dell'autenticazione utente con token JWT e testing tramite Postman.
+            </p>
+            <div class="contenuto flex-row"></div>
+            
+        </div>
+        <div class="sezione">
+            <h4 class="testo-gradient">PHP</h4>
+        </div>
+        <div class="sezione">
+            <h4 class="testo-gradient">MongoDB</h4>
+        </div>
+        <div class="sezione">
+            <h4 class="testo-gradient">MySQL</h4>
+        </div>
+    </div>
     <SfondoConoscenze/>
 </div>
