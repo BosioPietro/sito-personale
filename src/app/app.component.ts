@@ -40,7 +40,7 @@ export class AppComponent implements AfterViewInit{
       this.SezionePagina();
     }
 
-    this.SnappaScroll(e);
+    // this.SnappaScroll(e);
   }
 
   SezionePagina(){

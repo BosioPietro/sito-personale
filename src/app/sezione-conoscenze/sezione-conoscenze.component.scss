@@ -101,62 +101,7 @@ h3{
 
     .contenuto-griglia{
         flex-grow: 1;
-        flex-wrap: wrap;
         z-index: 1;
-        gap: var(--gap);
-
-        .sezione{
-            gap: .5rem;
-            padding: 2rem;
-            flex-grow: 1;
-            border-radius: 1rem;
-            cursor: pointer;
-            border: 2px solid var(--colore-bordo);
-            backdrop-filter: blur(.25rem);
-            background-color: #0b0b0b33;
-            transition: background-color .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-
-            &:hover {
-                background-color: #1a1a1a33;
-            
-                &::before{
-                    opacity: 1;
-                }
-            }
-            
-            &::before{
-                content: "";
-                position: absolute;
-                inset: 0;
-                z-index: 3;
-                opacity: 0;
-                pointer-events: none;
-                transition: opacity 500ms;
-                background: radial-gradient(
-                    40rem circle at var(--mouse-x) var(--mouse-y), 
-                    #FFFFFF05,
-                    transparent 90%
-                );
-            }
-            
-            &.grande{
-                width: calc(50% - var(--gap) / 2);
-            }
-
-            h4{
-                font-size: 1.5rem;
-            }
-
-            p{
-                color: #999;
-            }
-
-            .contenuto{
-                margin-top: 1rem;
-                flex-grow: 1;
-                background-color: red;
-            }
-        }
     }
 
     .controlli{
