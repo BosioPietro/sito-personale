@@ -1,0 +1,17 @@
+:host{
+
+    & > .flex-row{
+        flex-grow: 1;
+        gap: var(--gap);
+
+        hr{
+            border-color: var(--colore-bordo);
+        }
+
+        .contenuto{
+            aspect-ratio: 1;
+            background-color: red;
+            margin: 0;
+        }
+    }
+}
