@@ -1,57 +1,13 @@
 <div class="contenuto-griglia flex-row" (mousemove)="EffettoMouse($event)">
-    <div class="sezione grande flex-col" id="front-end">
-        <h4 class="testo-gradient">Front-End</h4>
-        <p>
-            Creazione di siti tradizionali con 
-            <span class="colorato svasato" style="--colore-accento: #3d9dd7">CSS</span>, 
-            <span class="colorato svasato" style="--colore-accento: #f0dc55">JS</span> e 
-            <span class="colorato svasato" style="--colore-accento: #1389dd">jQuery</span> 
-            oppure attraverso framework, principalmente 
-            <span class="colorato" style="--colore-accento: #f5427b">Angular</span>, per SPA con 
-            <span class="colorato" style="--colore-accento: #377cc8">TypeScript</span> e 
-            <span class="colorato" style="--colore-accento: #cf6b9d">SCSS</span>.
-        </p>
-        <div class="contenuto flex-row">
-            <div class="wrapper-cerchio">
-                <div class="cerchio">
-                    <!-- Non si può usare @if perche interrompe l'animazone -->
-                    <!-- che fa "controgirare" i loghi -->
-                    <div class="logo" [style]="PosizioneLogo(3, 0)">
-                        <img src="assets/img/loghi/ts.webp" alt="A">
-                        <img src="assets/img/loghi/jquery.webp" alt="J">
-                    </div>
-                    <div class="logo" [style]="PosizioneLogo(3, 1)">
-                        <img src="assets/img/loghi/scss.webp" alt="S">
-                        <img src="assets/img/loghi/css.webp" alt="C">
-                    </div>
-                    <div class="logo" [style]="PosizioneLogo(3, 2)">
-                        <img src="assets/img/loghi/html.webp" alt="H">
-                        <img src="assets/img/loghi/js.webp" alt="J">
-                    </div>
-                    <div class="logo centro">
-                        <img src="assets/img/loghi/angular.webp" alt="A">
-                        <img src="assets/img/loghi/html.webp" alt="H">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="sezione grande flex-col">
-        <h4 class="testo-gradient">Back-End</h4>
-        <p>
-            Creazione e gestione di server CRUD usando middleware. 
-            Gestione dell'autenticazione utente con token JWT e testing tramite Postman.
-        </p>
-        <div class="contenuto flex-row"></div>
-        
-    </div>
-    <div class="sezione">
+    <CardFrontend class="card grande flex-col"/>
+    <CardBackend class="card grande flex-col" />
+    <div class="card">
         <h4 class="testo-gradient">PHP</h4>
     </div>
-    <div class="sezione">
+    <div class="card">
         <h4 class="testo-gradient">MongoDB</h4>
     </div>
-    <div class="sezione">
+    <div class="card">
         <h4 class="testo-gradient">MySQL</h4>
     </div>
 </div>

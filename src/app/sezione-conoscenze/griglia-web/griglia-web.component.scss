@@ -5,7 +5,7 @@
 }
 
 
-.sezione{
+.card{
     --colore-p: #999;
     gap: .5rem;
     padding: 2rem;
@@ -43,134 +43,41 @@
         width: calc(50% - var(--gap) / 2);
     }
 
-    h4{
-        font-size: 1.5rem;
-    }
-
-    p{
-        color: var(--colore-p);
-    }
-
-    .contenuto{
-        --dim-logo: 4rem;
-        margin-top: 1rem;
-        flex-grow: 1;
-        gap: 1rem;
-        flex-wrap: wrap;
-
-        .logo{
-            border-radius: .5rem;
-            height: var(--dim-logo);
-            aspect-ratio: 1;
-
-            img{
-                height: 100%;
-                width: 100%;
-            }
+    // Stili generali per le card
+    &::ng-deep{
+        h4{
+            font-size: 1.5rem;
         }
-    }
-
-    // Singole sezioni
-    &#front-end{
-        // ciclo doppio, deve tenere conto di quando
-        // è visibile e invisibile
-        --tempo-animazione-loghi: 20s;
-        align-items: flex-start;
-
         
-        p .colorato{
-            font-weight: bold;
-            // color: #1389dd;
-            animation: colora var(--tempo-animazione-loghi) linear infinite;
-
-            &.svasato{
-                animation-direction: reverse;
-            }
-
-            @keyframes colora {
-                0%, 50%, 100%{
-                    color: #FFF;
-                }
-                2.5%, 47.5%{
-                    color: var(--colore-accento);
-                }
+        p{
+            color: var(--colore-p);
+            
+            .testo-gradient{
+                font-weight: bold;
             }
         }
-
+        
         .contenuto{
-            margin-inline: auto;
-            aspect-ratio: 1;
-
-            .wrapper-cerchio{
-                height: calc(100% - var(--dim-logo));
-                width: calc(100% - var(--dim-logo));
-                position: relative;
-                margin: calc(var(--dim-logo) / 2);
+            --dim-logo: 4rem;
+            margin-top: 1rem;
+            flex-grow: 1;
+            gap: 1rem;
+            flex-wrap: wrap;
+            
+            .logo{
+                border-radius: .5rem;
+                height: var(--dim-logo);
+                aspect-ratio: 1;
+                background-color: #0b0b0b;
+                transition: background-color .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
                 
-                & > .cerchio{
-                    --spessore: 2px;
-                    --tempo-rotazione: 30s;
-
-                    position: relative;
-                    display: grid;
-                    place-items: center;
-                    aspect-ratio: 1;
-                    border-radius: 1000dvh;
-                    border: var(--spessore) solid var(--colore-bordo);
-                    animation: gira var(--tempo-rotazione) infinite linear;
-    
-                    .logo{
-                        position: absolute;
-                        transform: translate(-50%, -50%);
-                        display: grid;
-                        place-content: center;
-                        border-radius: 100dvh;
-                        border: var(--spessore) solid var(--colore-bordo);
-                        background-color: #0b0b0b;
-                        transition: background-color .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-                        overflow: hidden;
-
-                        img{
-                            padding: 1rem;
-                            animation: gira var(--tempo-rotazione) infinite reverse linear,
-                                       alterna var(--tempo-animazione-loghi) infinite linear;
-
-                            transform-origin: center;
-                            grid-area: 1 / 1;
-                        }
-
-                        img:nth-child(2){
-                            animation-direction: reverse;
-                        }
-
-                        &:hover{
-                            background-color: #1a1a1a;
-                        }
-
-                        &.centro{
-                            --dim-logo: 7rem;
-                            position: initial;
-                            transform: none;
-                            background-color: #0000;
-                            border-color: #0000;
-                        }
-
-                        @keyframes alterna {
-                            0%, 50%, 100%{
-                                opacity: 0;
-                                filter: blur(5px);
-                            }
-                            2.5%, 47.5%{
-                                opacity: 1;
-                                filter: blur(0);
-                            }
-                        }
-                    }
-
-                    @keyframes gira {
-                        from{ rotate: 0 }
-                        to{ rotate: 1turn }
-                    }
+                img{
+                    height: 100%;
+                    width: 100%;
+                }
+                
+                &:hover{
+                    background-color: #1a1a1a;
                 }
             }
         }
