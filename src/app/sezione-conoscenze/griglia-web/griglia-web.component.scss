@@ -7,7 +7,7 @@
 
 .card{
     --colore-p: #999;
-    gap: .5rem;
+    gap: calc(var(--gap) / 4);
     padding: 2rem;
     flex-grow: 1;
     border-radius: 1rem;
@@ -58,7 +58,8 @@
         p{
             color: var(--colore-p);
             text-wrap: pretty;
-            
+            line-height: 1.25;
+
             .testo-gradient{
                 font-weight: bold;
             }
@@ -78,9 +79,14 @@
                 background-color: #0b0b0b;
                 transition: background-color .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
                 
-                img{
+                img, ion-icon{
                     height: 100%;
                     width: 100%;
+                }
+
+                ion-icon{
+                    transform-origin: center;
+                    scale: .8;
                 }
                 
                 &:hover{

@@ -27,6 +27,7 @@
 .contenuto {
     margin-inline: auto;
     aspect-ratio: 1;
+    min-height: 17rem;
 
     .wrapper-cerchio {
         height: calc(100% - var(--dim-logo));
@@ -36,7 +37,7 @@
 
         &>.cerchio {
             --spessore: 2px;
-            --tempo-rotazione: 30s;
+            --tempo-rotazione: 90s;
 
             position: relative;
             display: grid;
