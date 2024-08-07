@@ -1,0 +1,17 @@
+.contenuto{
+    --dim-logo: 6rem;
+    background-color: red;
+    align-items: center;
+    justify-content: flex-end;
+
+    .logo{
+        border: 2px solid var(--colore-bordo);
+        padding: .5rem;
+        transition-property: border-color, background-color;
+        transition: .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+        &:hover{
+            border-color: #FFFA;
+        }
+    }
+}

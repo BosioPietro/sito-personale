@@ -10,7 +10,7 @@
 
     .contenuto{
         --tempo-animazione: 30s;
-        min-width: calc(50% - var(--gap));
+        aspect-ratio: 1;
         margin-top: 0;  
         position: relative;
 

@@ -1,12 +1,16 @@
 .contenuto-griglia{
     flex-grow: 1;
-    flex-wrap: wrap;
     gap: var(--gap);
+
+    & > .flex-row{
+        flex-grow: 1;
+        gap: var(--gap);
+    }
 }
 
 
 .card{
-    max-width: calc(34% - var(--gap) / 2);
+    flex-grow: 1;
 
     &:hover {
         background-color: #1a1a1a33;
