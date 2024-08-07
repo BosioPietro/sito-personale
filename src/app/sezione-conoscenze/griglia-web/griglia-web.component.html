@@ -1,8 +1,8 @@
 <div class="contenuto-griglia flex-row" (mousemove)="EffettoMouse($event)">
-    <CardFrontend class="card grande flex-col"/>
-    <CardBackend class="card grande flex-col" />
-    <CardPhp class="card lunga flex-col"/>
-    <div class="card">
-        <h4 class="testo-gradient">MongoDB</h4>
-    </div>
+    @if(!rimuoviCard){
+        <CardFrontend class="card grande flex-col" [@transizione-card]/>
+        <CardBackend class="card grande flex-col" [@transizione-card] />
+        <CardPhp class="card lunga flex-col" [@transizione-card]/>
+        <CardASP class="card flex-col" [@transizione-card]/>
+    }
 </div>

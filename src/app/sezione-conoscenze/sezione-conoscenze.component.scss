@@ -98,9 +98,29 @@ h3{
         background-color: #0b0b0b;
     }
 
+    .wrapper-griglia,
     .contenuto-griglia{
+        position: relative;
         flex-grow: 1;
         z-index: 1;
+    }
+
+    .contenuto-griglia::ng-deep{
+        gap: var(--gap);
+        position: absolute;
+        inset: 0;
+        
+        .card{
+            --colore-p: #999;
+            gap: calc(var(--gap) / 4);
+            padding: 2rem;
+            flex-grow: 1;
+            border-radius: 1rem;
+            border: 2px solid var(--colore-bordo);
+            backdrop-filter: blur(.25rem);
+            background-color: #0b0b0b33;
+            transition: background-color .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        }
     }
 
     .controlli{
