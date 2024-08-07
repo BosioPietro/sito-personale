@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'Switch',
@@ -16,7 +16,13 @@ export class SwitchComponent {
   @ViewChild("cella")
   cella!: ElementRef<HTMLElement>;
 
-  async Seleziona(e: Event | HTMLElement){
+  @Output()
+  onChange = new EventEmitter<Sezioni>();
+
+  sezioni = Sezioni;
+  sezioneCorrente?: Sezioni;
+
+  async Seleziona(e: Event | HTMLElement, sezione: Sezioni){
     const el = e instanceof Event ? e.currentTarget! as HTMLElement : e;
     const cella = this.cella.nativeElement;
 
@@ -35,6 +41,11 @@ export class SwitchComponent {
     })
 
     el.classList.add("selezionato", "anima");
+
+    if(this.sezioneCorrente === sezione)return;
+
+    this.sezioneCorrente = sezione;
+    this.onChange.emit(sezione)
   }
 
   ImpostaWidthCella(cella: any){
@@ -47,4 +58,10 @@ export class SwitchComponent {
     cella.style.left = `${sinistra}px`;
     cella.classList.remove("no-transizione")
   }
+}
+
+export enum Sezioni {
+  Web,
+  Certificazioni,
+  Sviluppo
 }
