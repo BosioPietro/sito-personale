@@ -39,11 +39,6 @@
         max-width: calc(50% - var(--gap) / 2);
     }
 
-
-    &.lunga{
-        max-width: calc(66% - var(--gap) / 2);
-    }
-
     // Stili generali per le card
     &::ng-deep{
         h4{

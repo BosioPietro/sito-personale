@@ -1,11 +1,6 @@
 import { trigger, transition, style, animate } from '@angular/animations';
 
-// L'export della costante e il giro col setTimeout
-// si deve fare per fixare il bug delle animazioni
-// in cui se il componente padre viene distrutto,
-// nei figli non viene triggerato il :leave
-
-export const TEMPO_ANIMAZIONE_GRIGLIA = 300;
+const TEMPO_ANIMAZIONE_GRIGLIA = 300;
 const EASING = "cubic-bezier(0.445, 0.05, 0.55, 0.95)";
 
 export const transizioneGriglie = [

@@ -15,27 +15,25 @@
         <div class="cella"></div>
     </div>
     <div class="wrapper-griglia flex-col" >
-
-        <!-- 
-            Non uso @switch perchè due sezione devono 
-            poter essere visibile contemporaneamente
-            per far funzionare l'animazione di fade 
-            tra le due
-        -->
-        @if(sezioneCorrente === Sezioni.Web || prossimaSezione === Sezioni.Web){
-            <GrigliaWeb 
-                class="flex-col contenuto-griglia" 
-                [deve-sparire]="prossimaSezione !== undefined && prossimaSezione !== Sezioni.Web"
-            />
-        }
-        @if(sezioneCorrente === Sezioni.Certificazioni || prossimaSezione === Sezioni.Certificazioni){
-            <GrigliaCertificazioni 
-                class="flex-col contenuto-griglia"  
-                [deve-sparire]="prossimaSezione !== undefined && prossimaSezione !== Sezioni.Certificazioni"
-            />
-        }
-        @if(sezioneCorrente === Sezioni.Sviluppo || prossimaSezione === Sezioni.Sviluppo){
-            <div class="contenuto-griglia"></div>
+        @switch (sezioneCorrente) {
+            @case (Sezioni.Sviluppo) {
+                <GrigliaSviluppo
+                    class="flex-col contenuto-griglia"
+                    [@transizione-card]
+                />       
+            }
+            @case (Sezioni.Web) {
+                <GrigliaWeb 
+                    class="flex-col contenuto-griglia" 
+                    [@transizione-card]
+                />
+            }
+            @case (Sezioni.Certificazioni) {
+                <GrigliaCertificazioni 
+                    class="flex-col contenuto-griglia"  
+                    [@transizione-card]
+                />
+            }
         }
     </div>
 </div>

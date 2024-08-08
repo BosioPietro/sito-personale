@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import { TEMPO_ANIMAZIONE_GRIGLIA } from './celle.animation';
+import { transizioneGriglie } from './celle.animation';
 import { GrigliaCertificazioniComponent } from './griglia-certificazioni/griglia-certificazioni.component';
 import { GrigliaWebComponent } from './griglia-web/griglia-web.component';
 import { SfondoComponent } from './sfondo/sfondo.component';
 import { Sezioni, SwitchComponent } from './switch/switch.component';
+import { GrigliaSviluppoComponent } from './griglia-sviluppo/griglia-sviluppo.component';
 
 @Component({
   selector: 'SezioneConoscenze',
   standalone: true,
-  imports: [SwitchComponent, SfondoComponent, GrigliaWebComponent, GrigliaCertificazioniComponent],
+  imports: [SwitchComponent, SfondoComponent, GrigliaWebComponent, GrigliaCertificazioniComponent, GrigliaSviluppoComponent],
+  animations: [transizioneGriglie],
   templateUrl: './sezione-conoscenze.component.html',
   styleUrl: './sezione-conoscenze.component.scss'
 })
@@ -18,15 +20,9 @@ export class SezioneConoscenzeComponent{
   Sezioni = Sezioni;
 
   sezioneCorrente: Sezioni = Sezioni.Web;
-  prossimaSezione?: Sezioni;
 
   CambiaSezione(s: Sezioni){
-    this.prossimaSezione = s;
-    
-    setTimeout(() => {
-      this.sezioneCorrente = s;
-      this.prossimaSezione = undefined;
-    }, TEMPO_ANIMAZIONE_GRIGLIA );
+    this.sezioneCorrente = s;
   }
 }
 
@@ -34,7 +30,8 @@ export class SezioneConoscenzeComponent{
 // funzione per l'effetto delle singole carte
 export const EffettoMouse = (e: MouseEvent) => {
   const cont = e.currentTarget as HTMLElement;
-  const celle = Array.from(cont.children) as HTMLElement[];
+  const celle = Array.from<HTMLElement>(cont.querySelectorAll(".card"));
+
   const { clientX, clientY } = e;
 
   for(const cella of celle) {

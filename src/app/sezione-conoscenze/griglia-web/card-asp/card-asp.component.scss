@@ -1,6 +1,6 @@
 .contenuto{
     --dim-logo: 6rem;
-    --tempo-animazione: 20s;
+    --tempo-animazione: 30s;
     align-items: center;
     justify-content: space-between;
     position: relative;
@@ -44,7 +44,7 @@
         right: calc(var(--dim-logo) / 2);
 
         &:is(ion-icon){
-            transform: translateY(50%);
+            transform: translate(-50%, 50%);
             right: auto;
             left: calc(100% - var(--dim-logo) / 2);
             animation: muovi var(--tempo-animazione) linear infinite reverse;
