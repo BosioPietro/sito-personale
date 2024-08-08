@@ -1,12 +1,12 @@
 <div class="contenuto-griglia flex-col" (mousemove)="EffettoMouse($event)">
     @if(!rimuoviCard){
-        <div class="flex-row">
-            <CardFrontend class="card grande flex-col" [@transizione-card]/>
+        <div class="flex-row" [@transizione-card]>
+            <CardFrontend class="card grande flex-col"/>
             <CardBackend class="card grande flex-col" [@transizione-card] />
         </div>
-        <div class="flex-row">
-            <CardPhp class="card lunga flex-col" [@transizione-card]/>
-            <CardASP class="card flex-col" [@transizione-card]/>
+        <div class="flex-row" [@transizione-card]>
+            <CardPhp class="card lunga flex-col" />
+            <CardASP class="card flex-col"/>
         </div>
     }
 </div>
