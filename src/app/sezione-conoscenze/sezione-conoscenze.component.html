@@ -15,25 +15,20 @@
         <div class="cella"></div>
     </div>
     <div class="wrapper-griglia flex-col" >
-        @switch (sezioneCorrente) {
-            @case (Sezioni.Sviluppo) {
-                <GrigliaSviluppo
-                    class="flex-col contenuto-griglia"
-                    [@transizione-card]
-                />       
-            }
-            @case (Sezioni.Web) {
-                <GrigliaWeb 
-                    class="flex-col contenuto-griglia" 
-                    [@transizione-card]
-                />
-            }
-            @case (Sezioni.Certificazioni) {
-                <GrigliaCertificazioni 
-                    class="flex-col contenuto-griglia"  
-                    [@transizione-card]
-                />
-            }
-        }
+        <!-- Devono essere tutti sempre renderizzati (ma non visibili) -->
+        <!-- Perchè altrimenti con @if quando fai lo switch e il contenuto è -->
+        <!-- in overflow (tipo mobile) la griglia shifterebbe -->
+        <GrigliaSviluppo
+            class="flex-col contenuto-griglia"
+            [class.visibile]="sezioneCorrente === Sezioni.Sviluppo"
+        />    
+        <GrigliaWeb 
+            class="flex-col contenuto-griglia"
+            [class.visibile]="sezioneCorrente === Sezioni.Web"
+        />
+        <GrigliaCertificazioni 
+            class="flex-col contenuto-griglia"  
+            [class.visibile]="sezioneCorrente === Sezioni.Certificazioni"
+        />
     </div>
 </div>

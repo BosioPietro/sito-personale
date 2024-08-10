@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EffettoMouse } from '../sezione-conoscenze.component';
 
 @Component({
   selector: 'GrigliaSviluppo',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './griglia-sviluppo.component.scss'
 })
 export class GrigliaSviluppoComponent {
-
+  EffettoMouse = EffettoMouse;
 }

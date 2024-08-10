@@ -1,0 +1,24 @@
+:host{
+    .contenuto-griglia{
+        gap: var(--gap);
+        flex-grow: 1;
+        
+        & > .flex-row{
+            flex-grow: 1;
+            gap: var(--gap);
+            
+        }
+    }
+}
+
+.card{
+    // min-width: calc(50% - var(--gap) / 2);
+
+    &.lunga{
+        min-width: calc(60% - var(--gap) / 2);
+    }
+
+    p:not(:first-of-type){
+        margin-top: calc(var(--gap) / 4);
+    }
+}

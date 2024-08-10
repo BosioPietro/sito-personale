@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { transizioneGriglie } from './celle.animation';
 import { GrigliaCertificazioniComponent } from './griglia-certificazioni/griglia-certificazioni.component';
 import { GrigliaWebComponent } from './griglia-web/griglia-web.component';
 import { SfondoComponent } from './sfondo/sfondo.component';
@@ -10,7 +9,6 @@ import { GrigliaSviluppoComponent } from './griglia-sviluppo/griglia-sviluppo.co
   selector: 'SezioneConoscenze',
   standalone: true,
   imports: [SwitchComponent, SfondoComponent, GrigliaWebComponent, GrigliaCertificazioniComponent, GrigliaSviluppoComponent],
-  animations: [transizioneGriglie],
   templateUrl: './sezione-conoscenze.component.html',
   styleUrl: './sezione-conoscenze.component.scss'
 })
@@ -19,7 +17,7 @@ export class SezioneConoscenzeComponent{
   // per portare l'enum nel componente
   Sezioni = Sezioni;
 
-  sezioneCorrente: Sezioni = Sezioni.Web;
+  sezioneCorrente: Sezioni = Sezioni.Sviluppo;
 
   CambiaSezione(s: Sezioni){
     this.sezioneCorrente = s;
