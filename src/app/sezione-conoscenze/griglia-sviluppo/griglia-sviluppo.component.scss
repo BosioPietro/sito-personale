@@ -6,7 +6,7 @@
         & > .flex-row{
             flex-grow: 1;
             gap: var(--gap);
-            
+            height: calc(50% - var(--gap) / 2);
         }
     }
 }
