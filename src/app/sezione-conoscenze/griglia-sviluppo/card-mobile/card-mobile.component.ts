@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'CardMobile',
@@ -7,6 +7,13 @@ import { Component } from '@angular/core';
   templateUrl: './card-mobile.component.html',
   styleUrl: './card-mobile.component.scss'
 })
-export class CardMobileComponent {
+export class CardMobileComponent implements OnInit{
+  
+  logoCordova: boolean = false;
 
+  ngOnInit(): void {
+    setInterval(() => {
+      this.logoCordova = !this.logoCordova;
+    }, 1E4)
+  }
 }
