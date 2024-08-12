@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './card-database.component.scss'
 })
 export class CardDatabaseComponent {
-
+  div = new Array(5);
 }
