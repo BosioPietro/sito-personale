@@ -10,7 +10,7 @@ import { CardDatabaseComponent } from "./card-database/card-database.component";
   standalone: true,
   imports: [CardDesktopComponent, CardMobileComponent, CardSqlComponent, CardDatabaseComponent],
   templateUrl: './griglia-sviluppo.component.html',
-  styleUrl: './griglia-sviluppo.component.scss'
+  styleUrls: ['../stile-griglie.scss', './griglia-sviluppo.component.scss']
 })
 export class GrigliaSviluppoComponent {
   EffettoMouse = EffettoMouse;

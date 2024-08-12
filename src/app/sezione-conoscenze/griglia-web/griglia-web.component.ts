@@ -10,7 +10,7 @@ import { CardPhpComponent } from "./card-php/card-php.component";
   standalone: true,
   imports: [CardFrontendComponent, CardBackendComponent, CardPhpComponent, CardASPComponent],
   templateUrl: './griglia-web.component.html',
-  styleUrl: './griglia-web.component.scss'
+  styleUrls: ['../stile-griglie.scss', './griglia-web.component.scss']
 })
 export class GrigliaWebComponent{
   EffettoMouse = EffettoMouse;
