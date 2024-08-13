@@ -1,7 +1,7 @@
 .contenuto{
     align-items: center;
     gap: calc(var(--dim-logo) / 2) !important;
-    --tempo-animazione: 10s;
+    --tempo-animazione: 5s;
 
     .logo{
         padding: .5rem;
@@ -22,7 +22,7 @@
         .logo:last-child{
             transform: translateX(50%);
             animation: pulsa var(--tempo-animazione) linear infinite;
-            animation-delay: 1s;
+            animation-delay: 1.25s;
         }
 
         &::before{
@@ -50,7 +50,7 @@
             height: calc(100% + var(--offset));
             width: calc(100% + var(--offset));
             background-size: 200% 100%;
-            animation: muovi-maschera var(--tempo-animazione) linear infinite;
+            // animation: muovi-maschera var(--tempo-animazione) linear infinite;
             
             &::before{
                 content: '';
@@ -93,12 +93,12 @@
 
     
     @keyframes pulsa {
-        0%, 10%, 100%{ border-color: var(--colore-bordo) }
-        5% { border-color: #AAA; }
+        0%, 20%, 100%{ border-color: var(--colore-bordo) }
+        10% { border-color: #AAA; }
     }
 
     @keyframes muovi-maschera {
         0%{ mask-position: 0 0 }
-        20%, 100%{ mask-position: -200% 0 }
+        40%, 100%{ mask-position: -200% 0 }
     }
 }

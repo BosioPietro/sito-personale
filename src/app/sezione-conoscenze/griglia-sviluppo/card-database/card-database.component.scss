@@ -105,8 +105,8 @@ hr{
                         width: 20%;
                         transition: background-color .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
             
-                        &:hover{
-                            background-color: #222;
+                        &:hover, &.hl{
+                            background-color: #111;
                         }
                     }
                 }
@@ -115,7 +115,7 @@ hr{
                     height: 10%;
                     
                     td{
-                        background-color: #111;
+                        background-color: #222;
                         border-top: none;
 
                         &:hover{
