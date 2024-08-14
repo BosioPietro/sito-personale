@@ -46,6 +46,26 @@ body{
         display: none;
     }
 }
+.scrollbar-stile {
+
+    &::-webkit-scrollbar {
+        width: .5rem;
+        height: .5rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--colore-bordo);
+        border-radius: 100dvh;
+
+        &:hover{
+            background-color: #FFF4;
+        }
+    }
+}
 
 h1{
     font-size: 3.5rem;

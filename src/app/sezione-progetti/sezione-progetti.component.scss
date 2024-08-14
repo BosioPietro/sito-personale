@@ -67,6 +67,7 @@ hr{
 
 .wrapper{
     flex-grow: 1;
+    gap: var(--gap);
 
     .selezione{
         overflow-x: auto;
@@ -74,29 +75,129 @@ hr{
         justify-content: center;
 
         .progetto{
-            width: 5rem;
             min-width: 0;
             gap: calc(var(--gap) / 3);
+            
+            &:hover, &.selezionato{                
+                .icona{
+                    border-color: #AAA;
+                    color: #FFF;
+                }
+                
+                p{
+                    color: #FFF;
+                }
+            }
 
+            &:hover .icona{
+                background-color: #1a1a1a;
+            }
+            
             .icona{
-                width: 100%;
+                width: 5rem;
+                display: grid;
+                place-items: center;
                 aspect-ratio: 1;
-                background-color: red;
+                padding: 1rem;
+                margin-inline: auto;
+                border-radius: .5rem;
+                border: 2px solid var(--colore-bordo);
+                transition-property: border-color, background-color, color;
+                transition: .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                cursor: pointer;
+                color: color-mix(in srgb, var(--colore-bordo) 50%, #FFF 50%);
 
+                ion-icon{
+                    height: 100%;
+                    scale: 2;
+                    color: inherit;
+                }
             }
 
             p{
-                white-space: nowrap;
-                overflow: hidden;
+                width: 10ch;
+                display: -webkit-box;
+                -webkit-box-direction: vertical;
+                -webkit-line-clamp: 2;
+                line-clamp: 2;
                 text-overflow: ellipsis;
+                overflow: hidden;
                 text-align: center;
                 font-size: .875rem;
                 color: #AAA;
+                transition: color .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
             }
         }
     }
 
     .progetti{
         flex-grow: 1;
+        border: 2px solid var(--colore-bordo);
+        border-radius: 1rem;
+        position: relative;
+
+        .wrapper-tecnologie{
+            position: relative;
+            z-index: 1;
+            padding-inline: 1rem;
+            padding-bottom: .5rem;
+            border-bottom: 2px solid var(--colore-bordo);
+            
+            .tecnologie{
+                margin-bottom: auto;
+                gap: calc(var(--gap) / 2);
+                padding-block: 1rem .5rem;
+                overflow-x: auto;
+
+                .img{
+                    background-image: var(--bg);
+                    height: 100%;
+                    aspect-ratio: 1;
+                    background-size: cover;
+                }
+                
+                .tecnologia{
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    gap: .5rem;
+                    padding: .5rem;
+                    border: 2px solid var(--colore-bordo);
+                    border-radius: .5rem;
+                    transition-property: border-color, background-color;
+                    transition: .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                    cursor: pointer;
+
+                    &:hover{
+                        border-color: #AAA;
+                        background-color: #1a1a1a;
+                    }
+                }
+            }
+        }
+
+        .wrapper-progetto{
+            position: relative;
+            z-index: 1;
+            flex-grow: 1;
+
+            .progetto{
+                position: absolute;
+                inset: 1rem;
+                overflow-y: auto;
+
+                .a{
+                    height: 5rem;
+                    aspect-ratio: 1;
+                }
+            }
+
+        }
+
+        .sfondo-trattini{
+            position: absolute;
+            inset: 0 calc(100% / 3) 0 calc(100% / 3);
+            // z-index: 0 !important;
+            // pointer-events: none;
+        }
     }
 }
