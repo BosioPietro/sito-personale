@@ -51,8 +51,8 @@ hr.linea-luce{
         .progetto{
             min-width: 0;
             gap: calc(var(--gap) / 3);
-            animation: entra-progetto 1ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-            animation-timeline: view(block 50% 10%);
+            // animation: entra-progetto 1ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+            // animation-timeline: view(block 50% 10%);
 
             @keyframes entra-progetto {
                 0%, 99.9999%{ opacity: 0; }

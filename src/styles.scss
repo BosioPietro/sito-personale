@@ -46,6 +46,7 @@ body{
         display: none;
     }
 }
+
 .scrollbar-stile {
 
     &::-webkit-scrollbar {
@@ -100,5 +101,42 @@ a[href^="#"] {
         opacity: .5;
         background-image: var(--trattino);
         background-size: 1.5rem;
+    }
+}
+
+hr.linea-luce{
+    height: 2px;
+    background-color: #FFF2;
+    position: absolute;
+    inset: -2px 0 auto 0;
+    border: 0;
+    z-index: 0;
+    overflow: visible;
+
+    &::before {
+        content: '';
+        --width: 60dvw;
+        height: 2px;
+        width: var(--width);
+        margin-inline: auto;
+        position: absolute;
+        left: calc(50% - var(--width) / 2);
+        background: linear-gradient(90deg, #0000 0%, #8F8F8FAB 50%, #0000 100%);
+    }
+
+    &::after {
+        content: '';
+        --width: 60dvw;
+        height: 2px;
+        top: 0;
+        width: var(--width);
+        height: var(--width);
+        margin-inline: auto;
+        position: absolute;
+        left: calc(50% - var(--width) / 2);
+        transform: translateY(-50%);
+        clip-path: polygon(0% 50%, 100% 50%, 100% 100%, 0% 100%);
+        background: conic-gradient(from 90deg at 50% 50%, #0000 50%, #000 50%),
+            radial-gradient(#C8C8C81A 0%, #0000 70%);
     }
 }
