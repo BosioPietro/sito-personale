@@ -2,34 +2,49 @@
     <h1 class="testo-gradient">Progetti Sviluppati</h1>
     <h3>Progetti che ho sviluppato negli corso degli anni usando le conoscenze che ho appreso</h3>
 </div>
-<hr>
+<hr class="linea-luce">
 <div class="wrapper flex-col">
     <div class="selezione flex-row">
         @for (p of progetti; track $index) {
-            <div 
-                class="progetto flex-col"
-                [class.selezionato]="this.progettoSelezionato === p" 
-                (click)="this.progettoSelezionato = p"
-            >
-                <div class="icona">
-                    <ion-icon [name]="p.icona" />
-                </div>
-                <p>{{ p.nome }}</p>
+        <div class="progetto flex-col" 
+            [class.selezionato]="this.progettoSelezionato === p"
+            [style]="{'--offset-animazione' : OffsetProgetto(p)}"
+            (click)="SelezionaProgetto(p)"
+        >
+            <div class="icona">
+                <ion-icon [name]="p.icona" />
             </div>
+            <p>{{ p.nome }}</p>
+        </div>
         }
     </div>
     <div class="progetti flex-col">
         <div class="wrapper-tecnologie">
-            <div class="tecnologie flex-row scrollbar-stile">
-                @for (t of progettoSelezionato.tecnologie; track $index) {
-                    <div class="tecnologia" (click)="ApriLink(t.link)">
-                        <div class="img" [style]="{
-                                '--bg' : 'url(' + t.immagine +')'
-                            }"
-                        ></div>
-                        <div>{{ t.nome }}</div>
-                    </div>
-                }
+                <div class="tecnologie flex-row scrollbar-stile">
+                    <div class="tecnologia controllo">&nbsp;</div>
+                    @if(resettaForTecnologie){
+                        @for (t of progettoSelezionato.tecnologie; track $index) {
+                            <div class="tecnologia" (click)="ApriLink(t.link)" 
+                                [style]="{'animation-delay' : $index * .025 + 's'}" 
+                            >
+                                <div class="img" [style]="{'--bg' : 'url(' + t.immagine +')'}"></div>
+                                <div>{{ t.nome }}</div>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="tecnologie flex-row scrollbar-stile transizione">
+                    <div class="tecnologia controllo">&nbsp;</div>
+                    @if(progettoPrecedente){
+                        @for (t of progettoPrecedente.tecnologie; track $index) {
+                            <div class="tecnologia esci" (click)="ApriLink(t.link)" 
+                                [style]="{'animation-delay' : $index * .025 + 's'}" 
+                                >
+                                <div class="img" [style]="{'--bg' : 'url(' + t.immagine +')'}"></div>
+                                <div>{{ t.nome }}</div>
+                            </div>
+                        }  
+                    } 
             </div>
         </div>
         <div class="wrapper-progetto">
@@ -37,6 +52,6 @@
                 
             </div>
         </div>
-        <div class="sfondo-trattini"></div>
     </div>
+    <div class="sfondo-trattini"></div>
 </div>

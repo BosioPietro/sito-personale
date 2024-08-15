@@ -1,10 +1,12 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AnimazioneTecnologie } from './tecnlogie.animation';
 
 @Component({
   selector: 'SezioneProgetti',
   standalone: true,
   imports: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  animations: [AnimazioneTecnologie],
   templateUrl: './sezione-progetti.component.html',
   styleUrl: './sezione-progetti.component.scss'
 })
@@ -166,9 +168,38 @@ export class SezioneProgettiComponent {
   ]
 
   progettoSelezionato = this.progetti[0];
+  progettoPrecedente?: Progetto; 
 
   ApriLink(link: string){
     window.open(link, "_blank");
+  }
+
+
+  // Quando si cambia progetto il @for non
+  // re-renderizza i div che erano già presenti
+  // anche se il loro contenuto cambia
+  // uso quindi questa variable per forzarlo
+  resettaForTecnologie = true;
+  puoCambiare = true;
+  SelezionaProgetto(p: Progetto){
+    if(!this.puoCambiare) return;
+
+    this.progettoPrecedente = this.progettoSelezionato;
+    this.resettaForTecnologie = false;
+    this.progettoSelezionato = p
+    this.puoCambiare = false;
+
+    setTimeout(() => {
+      this.progettoPrecedente = undefined
+      this.puoCambiare = true;
+    }, 500);
+    setTimeout(() => this.resettaForTecnologie = true, 1);
+  }
+
+  OffsetProgetto(p: Progetto){
+    const mezzo = Math.floor(this.progetti.length / 2);
+
+    return mezzo - this.progetti.indexOf(p) - 1;
   }
 }
 
