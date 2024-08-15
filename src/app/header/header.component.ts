@@ -8,7 +8,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, EventEmitter, Input, Out
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent{
   @Input("sezione-corrente")
   sezione?: string;
 
@@ -33,23 +33,20 @@ export class HeaderComponent {
   Scrolla(s: string){
     const el = document.getElementById(s)!;
     this.onNaviga.emit(s)
-
-    // il timeout serve per gestire lo snap, viene
-    // interrotto da onNaviga ma bisogna aspettare
-    // il prossimo ciclo per iniziare a scollare
-    setTimeout(() => {
-      el.scrollIntoView({behavior: "smooth"}); 
-    }, 1);
+    el.scrollIntoView({behavior: "smooth"}); 
   }
 
   SezioneCorrente(sezione: string | undefined){
+    // console.log(this.sezione)
     if(!sezione) return 0;
-    if(sezione == "principale") sezione = "conoscenze";
     if(this.ultimo.sezione == sezione) return this.ultimo.valore; 
 
-    const cella = this.wrapper.nativeElement.querySelector(`[sezione="${sezione}"] .cella`)! as HTMLElement;
 
-    const header = this.wrapper.nativeElement.parentElement! as HTMLElement;
+
+    const wrapper = this.wrapper.nativeElement;
+    const cella = wrapper.querySelector(`[sezione="${sezione}"] .cella`)! as HTMLElement;
+
+    const header = wrapper.parentElement! as HTMLElement;
     const offset = header.getBoundingClientRect().left;
     let valore = `${cella.getBoundingClientRect().left - offset}px`;
 

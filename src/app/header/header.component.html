@@ -1,11 +1,14 @@
 <div class="wrapper flex-row" #wrapper  >
-    <!-- <div class="opzione flex-row" [class.corrente]="sezione == 'principale'" sezione="principale">
-        <a (click)='Scrolla("principale")'>Home</a>
+    <div class="opzione flex-row" [class.corrente]="sezione == 'principale'" sezione="principale"  sezione="principale">
+        <a (click)='Scrolla("principale")' class="flex-row">
+            <ion-icon name="Home"></ion-icon>
+            Home
+        </a>
         <div class="wrapper-cella">
             <div class="cella"></div>
         </div>
-    </div> -->
-    <div class="opzione flex-row" [class.corrente]="sezione == 'conoscenze' || sezione == 'principale'" sezione="conoscenze">
+    </div>
+    <div class="opzione flex-row" [class.corrente]="sezione == 'conoscenze'" sezione="conoscenze">
         <a (click)='Scrolla("conoscenze")' class="flex-row">
             <ion-icon name="school"></ion-icon>
             Competenze
