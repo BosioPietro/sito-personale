@@ -2,27 +2,35 @@
     --gap: 2rem;
 
     position: relative;
-    overflow-y: hidden;
-    min-height: calc(100dvh - 5rem) !important;
+    overflow-y: clip;
+    height: calc(100dvh - 5rem);
     gap: 2rem;
     padding-bottom: 5rem;
     background-image: linear-gradient(#000, #0009);
 
-    h1, h3{
-        margin-inline: auto;
+    & > div {
+        & > h1, & > h3{
+            margin-inline: auto;
+        }
+    
+        & > h3{
+            max-width: 40ch;
+            font-weight: 400;
+            text-align: center;
+            color: #999;
+            font-size: 1.125rem;
+        }
     }
 
     h1{
         width: fit-content;
     }
+}
 
-    h3{
-        max-width: 40ch;
-        font-weight: 400;
-        text-align: center;
-        color: #999;
-        font-size: 1.125rem;
-    }
+@property --progresso-progetti{
+    syntax: '<integer>';
+    inherits: true;
+    initial-value: 100;
 }
 
 hr.linea-luce{
@@ -40,24 +48,28 @@ hr.linea-luce{
 
 .wrapper{
     flex-grow: 1;
-    gap: var(--gap);
+        
+    animation: entra-progetto 1ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    animation-timeline: scroll(y root);
+    @keyframes entra-progetto {
+        0%, 55%{ --progresso-progetti: 0 }
+        80%, 100% { --progresso-progetti: 100}
+    }
 
     .selezione{
         overflow-x: auto;
-        overflow-y: hidden;
-        gap: var(--gap);
+        overflow-y: clip;
         justify-content: center;
+        padding-bottom: calc(var(--progresso-progetti) / 100 * var(--gap));
+        height: calc(var(--progresso-progetti) / 100 * 10rem);
 
         .progetto{
             min-width: 0;
             gap: calc(var(--gap) / 3);
-            // animation: entra-progetto 1ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-            // animation-timeline: view(block 50% 10%);
+            margin-inline: calc(var(--gap) / 10 * var(--progresso-progetti) / 100 + .8rem);
+            filter: blur(calc((1 - var(--progresso-progetti) / 100) * 1rem));
+            opacity: calc(var(--progresso-progetti) / 100);
 
-            @keyframes entra-progetto {
-                0%, 99.9999%{ opacity: 0; }
-                100% { opacity: 1;}
-            }
             
             &:hover, &.selezionato{                
                 .icona{
@@ -78,7 +90,8 @@ hr.linea-luce{
                 width: 5rem;
                 display: grid;
                 place-items: center;
-                aspect-ratio: 1;
+                height: 5rem;
+                min-height: 5rem;
                 padding: 1rem;
                 margin-inline: auto;
                 border-radius: .5rem;
@@ -102,7 +115,7 @@ hr.linea-luce{
                 -webkit-line-clamp: 2;
                 line-clamp: 2;
                 text-overflow: ellipsis;
-                overflow: hidden;
+                overflow: clip;
                 text-align: center;
                 font-size: .875rem;
                 color: #AAA;
@@ -125,11 +138,12 @@ hr.linea-luce{
             border-bottom: 2px solid var(--colore-bordo);
             
             .tecnologie{
+                opacity: calc(var(--progresso-progetti) / 100);
                 margin-bottom: auto;
                 gap: calc(var(--gap) / 2);
                 padding-block: 1rem .5rem;
                 overflow-x: auto;
-                overflow-y: hidden;
+                overflow-y: clip;
 
                 .img{
                     background-image: var(--bg);
@@ -200,20 +214,74 @@ hr.linea-luce{
             }
         }
 
-        .wrapper-progetto{
-            position: relative;
+        .progetto{
             z-index: 1;
             flex-grow: 1;
 
-            .progetto{
-                position: absolute;
-                inset: 1rem;
-                overflow-y: auto;
+            .descrizione{
+                width: calc(100% / 3);
+                border-right: 2px solid var(--colore-bordo);
+                gap: calc(var(--gap) / 2);
+                padding-block: calc(var(--gap) / 2);
+                padding-inline: calc(var(--gap) / 4);
 
-                .a{
-                    height: 5rem;
-                    aspect-ratio: 1;
+                .wrapper-testo{
+                    position: relative;
+                    flex-grow: 1;
+                    overflow-y: auto;
+                    scrollbar-gutter: stable both-edges;
+                    animation: mostra-ombra 1ms linear;
+                    animation-timeline: scroll(y self);
+                    mask-size: 100% 200%;
+                    mask-repeat: no-repeat;
+
+                    @keyframes mostra-ombra {
+                        0%, 90%{ 
+                            mask-position: 0% 100%;
+                            mask-image: linear-gradient(#000 92.5%, #0000 100%); 
+                        }
+
+                        100%{ 
+                            mask-image: linear-gradient(#000 92.5%, #0000 100%);
+                            mask-position: 0% 85%;
+                        }
+                    }
+                    
+                    .testo{
+                        position: absolute;
+                        margin-inline: calc(var(--gap) / 8);
+                        gap: calc(var(--gap) / 2);
+
+                        h3{
+                            font-size: 2rem;
+                        }
+        
+                        h4{
+                            font-size: 1.25rem;
+                        }
+        
+                        p{
+                            color: #999;
+                            font-size: 1rem;
+                        }
+                    }
                 }
+
+                .link{
+                    text-align: center;
+                    gap: calc(var(--gap) / 4);
+                    margin-inline: calc(var(--gap) / 4);
+
+                    ion-icon{
+                        font-size: 1.5rem;
+                    }
+                    
+                }
+            }
+
+            .immagini{
+                width: calc(100% / 3 * 2);
+                // background-color: cadetblue;
             }
 
         }
