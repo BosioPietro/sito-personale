@@ -7,3 +7,4 @@
 - [] Vedi se filtro su immagine non selezionata è decente
 - [] Vite nelle tecnologie del registro
 - [] Fare l'ombra interna dello scroll con bg local
+- [] Fare il colore di selezione più chiaro

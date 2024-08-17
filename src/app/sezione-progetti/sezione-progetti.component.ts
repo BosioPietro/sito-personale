@@ -14,7 +14,7 @@ import { progetti, Progetto } from './dati';
 export class SezioneProgettiComponent {
 
   progetti = progetti;
-  progettoSelezionato = this.progetti[1];
+  progettoSelezionato = this.progetti[0];
   progettoPrecedente?: Progetto; 
 
   ApriLink(link: string){
@@ -55,5 +55,20 @@ export class SezioneProgettiComponent {
     })
 
     this.immagineCorrente = img.src;
+  }
+
+  // | testo-gradient
+  // # codice
+  // § link
+  TraduciHtml(s: string){
+    const gradient = new RegExp("\\|(.+?)\\|", "g")
+    const codice = new RegExp("#(.+?)#", "g");
+    const link = new RegExp("§(.+?)§", "g");
+
+    s = s.replace(gradient, (_, m) => `<span class="testo-gradient">${m}</span>`);
+    s = s.replace(codice, (_, m) => `<code>${m}</code>`);
+    s = s.replace(link, (_, m) => `<a href="${m}">${m.replace("https://", "")}</a>`)
+
+    return s;
   }
 }

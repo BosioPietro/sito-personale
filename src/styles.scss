@@ -171,3 +171,23 @@ hr.linea-luce{
             radial-gradient(#C8C8C81A 0%, #0000 70%);
     }
 }
+
+#progetto{
+
+    span.testo-gradient{
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    a{
+        color: #FFF;
+    }
+
+    code{
+        font-family: monospace;
+        color: #CCC;
+        background-color: #222;
+        padding: .1rem .33rem;
+        border-radius: .25rem;
+    }
+}

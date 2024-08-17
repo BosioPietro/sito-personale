@@ -46,14 +46,14 @@
                     } 
             </div>
         </div>
-        <div class="progetto flex-row">
+        <div class="progetto flex-row" id="progetto">
             <div class="descrizione flex-col">
                 <div class="wrapper-testo scrollbar-stile">
                     <div class="testo flex-col">
                         <article>
                             <h3 class="testo-gradient">Descrizione</h3>
                             @for (p of progettoSelezionato.introduzione; track $index) {
-                                <p>{{ p }}</p>
+                                <p [innerHTML]="TraduciHtml(p)"></p>
                             }
                         </article>
                         <article>
@@ -61,7 +61,7 @@
                             @for (f of progettoSelezionato.funzionalita; track $index) {
                                 <h4 class="testo-gradient">{{ f.titolo }}</h4>
                                 @for (p of f.testo; track $index) {
-                                    <p>{{ p }}</p>
+                                    <p [innerHTML]="TraduciHtml(p)"></p>
                                 }
                             }
                         </article>

@@ -127,6 +127,9 @@ const tecnologie: Tecnologia[] = [
 // non uso filter in tecnologie perchè
 // non mantiene l'ordine dell'array
 export const progetti: Progetto[] = [
+    // | testo-gradient
+    // # codice
+    // § link
     {
         nome: 'Rilievi & Perizie',
         tecnologie: ["Angular", "Ionic", "BunJS", "Express", "MongoDB", "SCSS", "TypeScript", "Capacitor"].map((c) => {
@@ -137,23 +140,23 @@ export const progetti: Progetto[] = [
         funzionalita: [
             {
                 titolo: "Applicazione",
-                testo: ["Il progetto si basa su due app: una web, realizzata con Angular, a cui gli admin possono accedere per aggiornare le informazioni, e una mobile, sviluppata con Ionic e Capacitor, destinata ai dipendenti per eseguire i compiti assegnati."]
+                testo: ["Il progetto si basa su due app: una web, realizzata con |Angular|, a cui gli admin possono accedere per aggiornare le informazioni, e una mobile, sviluppata con |Ionic| e |Capacitor|, destinata ai dipendenti per eseguire i compiti assegnati."]
             },
             {
                 titolo: "BunJS",
-                testo: ["Ho deciso di utilizzare BunJS al posto di Node, una runtime alternativa per JavaScript. L'ho scelto perché è generalmente più performante, richiede meno tempo per installare ed eseguire il codice e consuma meno RAM durante l'esecuzione. Inoltre, BunJS mantiene la compatibilità con i moduli core di Node, nel caso fossero necessari."]
+                testo: ["Ho deciso di utilizzare |BunJS| al posto di Node, una |runtime| alternativa per JavaScript. L'ho scelto perché è generalmente più performante, richiede meno tempo per installare ed eseguire il codice e consuma meno RAM durante l'esecuzione. Inoltre, BunJS mantiene la compatibilità con i moduli core di Node, nel caso fossero necessari."]
             },
             {
                 titolo: "Server",
-                testo: ["Il backend è creato con ExpressJS insieme a diversi altri strumenti. Questi includono JWT per l'accesso degli utenti, Google oAuth2 per l'invio di mail agli utenti e cloudinary per il caricamento delle immagini"],
+                testo: ["Il backend è creato con |ExpressJS| insieme a diversi altri strumenti. Questi includono |JWT| per l'accesso degli utenti, |Google oAuth2| per l'invio di mail agli utenti e |Cloudinary| per il caricamento delle immagini"],
             },
             {
                 titolo: "Single Sign-On",
-                testo: ["Il sito admin prevede l'accesso sia tramite credenziali che per SSO. Questo sia attraverso l'account Google o Microsoft. Quest'ultimo può essere configurato per far accedere solo gli utenti che appartengono ad un dominio autorizzato."]
+                testo: ["Il sito admin prevede l'accesso sia tramite credenziali che per |SSO|. Questo sia attraverso l'account |Google| o |Microsoft|. Quest'ultimo può essere configurato per far accedere solo gli utenti che appartengono ad un dominio autorizzato."]
             },
             {
                 titolo: "Geolocation",
-                testo: ["Il progetto si basa sulle API di Google per la geolocalizzazione. Queste API vengono utilizzate sia per la creazione e l'inserimento di mappe, sia per il geocoding, cioè la conversione di un indirizzo testuale in coordinate geografiche e viceversa."]
+                testo: ["Il progetto si basa sulle |API| di Google per la geolocalizzazione. Queste API vengono utilizzate sia per la creazione e l'inserimento di mappe, sia per il |geocoding|, cioè la conversione di un indirizzo testuale in coordinate geografiche e viceversa."]
             }
         ],
         link: "https://github.com/BosioPietro/Assicurazioni"
@@ -164,19 +167,19 @@ export const progetti: Progetto[] = [
         return tecnologie.find(t => t.nome === c)!;
       }),
       icona: "analytics",
-      introduzione: ["Progetto fatto in quarta superiore come introduzione alle API. Si basa su l'API gratuita di alphavantage.co che permette l'acceso a informazioni riguardanti gli stock e l'economia. Queste informazioni vengono mostrate come tabella e come grafico. "],
+      introduzione: ["Progetto fatto in quarta superiore come introduzione alle |API|. Si basa su l'API gratuita di §https://alphavantage.co§ che permette l'acceso a informazioni riguardanti gli stock e l'economia. Queste informazioni vengono mostrate come tabella e come |grafico|."],
       funzionalita: [
         {
             titolo: "Caching",
-            testo: ["Dato che l'API gratuita presenta diverse limitazioni, principalmente quella di un basso numero di richieste al minuto, sono stati implementati due livelli di caching.", "Il primo è quello del LocalStorage, per informazioni che cambiano più rapidamente e che quindi scadono dopo un breve tempo. Il secondo metodo è attraverso un database MariaDB al quale il sito si interfaccia tramite PHP."]
+            testo: ["Dato che l'API gratuita presenta diverse limitazioni, principalmente quella di un basso numero di richieste al minuto, sono stati implementati due livelli di |caching|.", "Il primo è quello del |LocalStorage|, per informazioni che cambiano più rapidamente e che quindi scadono dopo un breve tempo. Il secondo metodo è attraverso un database |MariaDB| al quale il sito si interfaccia tramite |PHP|."]
         },
         {
             titolo: "Grafici",
-            testo: ["Le informazioni vengono anche stampate sottoforma di grafico grazie all'apposita libreria ChartJs. C'è la possibilità di scegliere tra due tipi di grafico e di ricavare dal canvas su è renderizzato in un'immagine che si può scaricare."]
+            testo: ["Le informazioni vengono anche stampate sottoforma di grafico grazie all'apposita libreria |ChartJs|. C'è la possibilità di scegliere tra due tipi di grafico e di ricavare dal |canvas| su è renderizzato in un'immagine che si può scaricare."]
         },
         {
             titolo: "Mappe",
-            testo: ["Il progetto usa la Google Maps API per JavaScript per mostrare le sedi delle aziende quotate pubblicamente che si possono ricercare."]
+            testo: ["Il progetto usa la |Google Maps API| per JavaScript per mostrare le sedi delle aziende quotate pubblicamente che si possono ricercare."]
         }
       ],
       link: "https://github.com/vallauri-ict/alpha-vantage-BosioPietro"
@@ -187,15 +190,15 @@ export const progetti: Progetto[] = [
         return tecnologie.find(t => t.nome === c)!;
       }),
       icona: "file-tray-full",
-      introduzione: ["Progetto di fine quarta superiore per consolidare tutte le conoscenze riguardo a PHP, SSR e MySQL (o MariaDB in questo caso specifico). Questo è anche il primo progetto che ho creato con un framework, React, cosa che mi ha permesso di capire il meccanismo con cui funzionano aiutandomi poi l'anno successivo con Angular."],
+      introduzione: ["Progetto di fine quarta superiore per consolidare tutte le conoscenze riguardo a |PHP|, |SSR| e |MySQL| (o MariaDB in questo caso specifico). Questo è anche il primo progetto che ho creato con un framework, |React|, cosa che mi ha permesso di capire il meccanismo con cui funzionano aiutandomi poi l'anno successivo con |Angular|."],
       funzionalita: [
         {
             titolo: "Sessione",
-            testo: ["Il mantimento delle informazioni è gestito su due livelli. Alcune informazioni, come preferenze, sono salvate localmente nei cookie mentre altre, legate prevalentemente al login, nella sessione PHP gestita dal server."]
+            testo: ["Il mantimento delle informazioni è gestito su due livelli. Alcune informazioni, come preferenze, sono salvate localmente nei |cookie| mentre altre, legate prevalentemente al login, nella |sessione PHP| gestita dal server."]
         },
         {
             titolo: "Layout",
-            testo: ["Questo è stato il primo progetto in cui ho iniziato a capire come creare layout che si adattano meglio con i diversi dispositivi grazie a proprietà come display:flex e grid. Oltre a quello ho anche usato vari breakpoint nelle @media query per garantire che il layout si adatti correttamente"]
+            testo: ["Questo è stato il primo progetto in cui ho iniziato a capire come creare layout che si adattano meglio con i diversi dispositivi grazie a proprietà come display |flex| e |grid|. Oltre a quello ho anche usato vari breakpoint nelle |@media query| per garantire che il layout si adattasse correttamente"]
         }
       ],
       link: "https://github.com/BosioPietro/Registro-Elettronico"
@@ -206,7 +209,7 @@ export const progetti: Progetto[] = [
         return tecnologie.find(t => t.nome === c)!;
       }),
       icona: "storefront",
-      introduzione: ["Progetto creato in quarta superiore come esercizio per capire meglio il meccanismo di SSR e PHP in generale.", "Ho anche usato questa come un'oppurtunità per lavorare sul mio CSS e da ciò ne deriva l'aspetto quasi eccessivo ed esagerato dell'intero sito."],
+      introduzione: ["Progetto creato in quarta superiore come esercizio per capire meglio il meccanismo di |SSR| e |PHP| in generale.", "Ho anche usato questa come un'oppurtunità per lavorare sul mio |CSS| e da ciò ne deriva l'aspetto quasi eccessivo ed esagerato dell'intero sito."],
       funzionalita: [
         {
             titolo: "Integrazione PHP",
@@ -221,20 +224,29 @@ export const progetti: Progetto[] = [
         return tecnologie.find(t => t.nome === c)!;
       }),
       icona: "people",
-      introduzione: ["Questo progetto è stata l'introduzione alle richieste alle API Web, inizialmente tramite Ajax di jQuery e poi con Axios e fetch(). È una ricreazione il più fedele possibile al sito randomuser.me con alcune funzionalità aggiuntive."],
+      introduzione: ["Questo progetto è stata l'introduzione alle richieste alle |API|, inizialmente tramite |Ajax| di jQuery e poi con |Axios| e #fetch()#. È una ricreazione il più fedele possibile al sito §https://www.randomuser.me§ con alcune funzionalità aggiuntive."],
       funzionalita: [
         {
             titolo: "Filtri & Griglia",
-            testo: ["Queste funzionalità sono la possibilità di poter generare più di un utente alla volta, avendo la possibilità di filtrare per sesso e nazionalità.", "Gli utenti possono essere visualizzati in una griglia e riordinati attraverso drag-and-drop usando i sortable di jQuery UI."]
+            testo: ["Queste funzionalità sono la possibilità di poter generare più di un utente alla volta, avendo la possibilità di filtrare per sesso e nazionalità.", "Gli utenti possono essere visualizzati in una griglia e riordinati attraverso |drag-and-drop| usando i sortable di |jQuery UI|."]
         }
       ],
       link: "https://github.com/BosioPietro/Random-User"
     },
-    // {
-    //   nome: 'MongoDriver',
-    //   tecnologie: ["TypeScript", "NodeJS", "JS Doc"].map((c) => {
-    //     return this.tecnologie.find(t => t.nome === c)!;
-    //   }),
-    //   icona: "server"
-    // },
+    {
+      nome: 'MongoDriver',
+      tecnologie: ["TypeScript", "NodeJS", "JS Doc"].map((c) => {
+        return tecnologie.find(t => t.nome === c)!;
+      }),
+      icona: "server",
+      introduzione: ["|Pacchetto NPM| che ho creato durante lo sviluppo del progetto Assicurazione. Presenta alcuni vantaggi e processi automatizzati che mi hanno reso la vita più facile."],
+      funzionalita: [
+        {
+            titolo: "Tipizzazione",
+            testo: ["Uno degli svantaggi di usare il pacchetto base di Mongo era il fatto che i record restiuiti fossero di tipo #any#, obbligando quindi a fare un cast. Ciò viene risolto in con 3 processi per determinare il tipo del record.", "Nel caso l'utente volesse, si può specificare il tipo direttamente ritornato (es. #PrendiMolti<{nome : string}[]>()#).", 
+                    "Se ciò non viene fatto, il codice guarderà la |proiezione| e la userà per definire le chiavi del record.", "Se infine non viene nemmeno fornita una proiezione, il tipo di default sarà #Record&lt;string, unknown&gt;#. Ciò presenta diversi vantaggi come il fatto di potere usare i metodi di JavaScript funzionale introdotti con |ES6| (es. #filter#, #map#, #find#, etc.)."]
+        }
+      ],
+      link: "https://github.com/BosioPietro/MongoDriver"
+    },
 ]
