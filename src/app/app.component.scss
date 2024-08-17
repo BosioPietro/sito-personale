@@ -16,7 +16,7 @@
     min-width: var(--w-contenuto-pagina);
 
     & > .espandi{
-        min-height: 100dvh;
+        min-height: calc(100dvh - 4rem);
         padding-inline: calc((100% - var(--w-contenuto-pagina)) / 2);
     }
 }

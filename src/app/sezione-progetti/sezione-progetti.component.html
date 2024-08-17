@@ -8,7 +8,6 @@
         @for (p of progetti; track $index) {
         <div class="progetto flex-col" 
             [class.selezionato]="this.progettoSelezionato === p"
-            [style]="{'--offset-animazione' : OffsetProgetto(p)}"
             (click)="SelezionaProgetto(p)"
         >
             <div class="icona">
@@ -52,30 +51,42 @@
                 <div class="wrapper-testo scrollbar-stile">
                     <div class="testo flex-col">
                         <article>
-                            <h3 class="testo-gradient">Introduzione</h3>
-                            <p>
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                                Ad nostrum mollitia sit nesciunt ex sapiente libero harum distinctio, 
-                                quasi veniam? Molestias voluptas quam commodi cumque totam minima saepe eius dignissimos.
-                            </p>
+                            <h3 class="testo-gradient">Descrizione</h3>
+                            @for (p of progettoSelezionato.introduzione; track $index) {
+                                <p>{{ p }}</p>
+                            }
                         </article>
-        
                         <article>
                             <h3 class="testo-gradient">Funzionalità</h3>
-                            <h4 class="testo-gradient">Test</h4>
-                            <p>
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi aspernatur optio veritatis esse sunt, possimus perspiciatis corrupti cumque suscipit expedita porro laborum dignissimos quisquam maiores eligendi earum similique numquam hic!
-                                Suscipit, veritatis. Recusandae voluptas ab provident officiis rerum? Recusandae eveniet explicabo molestias asperiores voluptatem repellat! Accusamus, non eligendi unde vero eius earum dolor cum ea deserunt! Laudantium maxime voluptatum alias.
-                                Excepturi necessitatibus laboriosam maiores dolores ullam placeat sunt quasi reprehenderit, sapie
+                            @for (f of progettoSelezionato.funzionalita; track $index) {
+                                <h4 class="testo-gradient">{{ f.titolo }}</h4>
+                                @for (p of f.testo; track $index) {
+                                    <p>{{ p }}</p>
+                                }
+                            }
                         </article>
                     </div>
                 </div>
-                <button class="link" (click)="ApriLink('https://www.github.com')">
+                <button class="link" (click)="ApriLink(progettoSelezionato.link)">
                     <ion-icon name="logo-github"></ion-icon>
                     <span>Github</span>
                 </button>
             </div>
-            <div class="immagini"></div>
+            <div class="immagini flex-col">
+                <div class="img"
+                    [style]="{'background-image': 'url(' + immagineCorrente + ')'}"
+                ></div>
+                <div class="wrapper-selettore">
+                    <div class="selettore flex-row" (click)="SelezionaImmagine($event)">
+                        <img src="https://picsum.photos/600/600?random=1" alt="" class="selezionata">
+                        <img src="https://picsum.photos/600/600?random=2" alt="">
+                        <img src="https://picsum.photos/600/600?random=3" alt="">
+                        <img src="https://picsum.photos/600/600?random=4" alt="">
+                        <img src="https://picsum.photos/600/600?random=5" alt="">
+                        <div class="sfondo-trattini"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="sfondo-trattini"></div>
