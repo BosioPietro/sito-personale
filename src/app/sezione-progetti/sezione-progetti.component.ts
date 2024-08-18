@@ -19,7 +19,7 @@ export class SezioneProgettiComponent {
   constructor(private img: ImmaginiService) {}
 
   progetti = progetti;
-  progettoSelezionato = this.progetti[1];
+  progettoSelezionato = this.progetti[0];
   progettoPrecedente?: Progetto; 
 
   ApriLink(link: string){
