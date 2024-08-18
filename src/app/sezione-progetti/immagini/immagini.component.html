@@ -1,0 +1,42 @@
+@if(resettaFor){
+    <div class="wrapper-img" [style]="{'--img': 'url(' + immaginiCorrenti[img.immagineSelezionata] + ')'}">
+        <img [src]="immaginiCorrenti[img.immagineSelezionata]">
+    </div>
+    <div class="wrapper-selettore">
+        <div class="selettore flex-row" (click)="SelezionaImmagine($event)">
+            
+            @for (i of immaginiCorrenti; track $index) {
+                <img
+                     [src]="i" 
+                     [class.selezionata]="$index === img.immagineSelezionata"
+                     [style]="{'--delay': ($index + 1) / 20}"     
+                />
+            }
+    
+            <div class="sfondo-trattini"></div>
+        </div>
+    </div>
+}
+
+@if( immaginiPrecendenti && img.immaginePrecedente !== undefined) {
+    
+    <div class="transizione flex-col">
+        <div class="wrapper-img" [style]="{'--img': 'url(' + immaginiPrecendenti[img.immaginePrecedente] + ')'}">
+            <img [src]="immaginiPrecendenti[img.immaginePrecedente]">
+        </div>
+        <div class="wrapper-selettore">
+            <div class="selettore flex-row">
+                
+                @for (i of immaginiPrecendenti; track $index) {
+                    <img 
+                        [src]="i" 
+                        [class.selezionata]="$index === img.immaginePrecedente"
+                        [style]="{'--delay': ($index + 1) / 50}"
+                    />
+                }
+        
+                <div class="sfondo-trattini"></div>
+            </div>
+        </div>
+    </div>
+}

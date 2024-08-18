@@ -4,89 +4,38 @@
 </div>
 <hr class="linea-luce">
 <div class="wrapper flex-col">
-    <div class="selezione flex-row">
-        @for (p of progetti; track $index) {
-        <div class="progetto flex-col" 
-            [class.selezionato]="this.progettoSelezionato === p"
-            (click)="SelezionaProgetto(p)"
-        >
-            <div class="icona">
-                <ion-icon [name]="p.icona" />
-            </div>
-            <p>{{ p.nome }}</p>
-        </div>
-        }
-    </div>
+    <SelettoreProgetti
+        [progetti]="progetti"
+        [progetto-selezionato]="progettoSelezionato"
+        [puo-cambiare]="puoCambiare"
+        (onSelect)="SelezionaProgetto($event)"
+        class="flex-row"
+    />
     <div class="progetti flex-col">
-        <div class="wrapper-tecnologie">
-                <div class="tecnologie flex-row scrollbar-stile">
-                    <div class="tecnologia controllo">&nbsp;</div>
-                    @if(resettaForTecnologie){
-                        @for (t of progettoSelezionato.tecnologie; track $index) {
-                            <div class="tecnologia" (click)="ApriLink(t.link)" 
-                                [style]="{'animation-delay' : $index * .025 + 's'}" 
-                            >
-                                <div class="img" [style]="{'--bg' : 'url(' + t.immagine +')'}"></div>
-                                <div>{{ t.nome }}</div>
-                            </div>
-                        }
-                    }
-                </div>
-                <div class="tecnologie flex-row scrollbar-stile transizione">
-                    <div class="tecnologia controllo">&nbsp;</div>
-                    @if(progettoPrecedente){
-                        @for (t of progettoPrecedente.tecnologie; track $index) {
-                            <div class="tecnologia esci" (click)="ApriLink(t.link)" 
-                                [style]="{'animation-delay' : $index * .025 + 's'}" 
-                                >
-                                <div class="img" [style]="{'--bg' : 'url(' + t.immagine +')'}"></div>
-                                <div>{{ t.nome }}</div>
-                            </div>
-                        }  
-                    } 
-            </div>
-        </div>
+        <Tecnologie
+            [progetto-selezionato]="progettoSelezionato"
+            [progetto-precedente]="progettoPrecedente"
+            [resetta-for]="resettaFor"
+        />
         <div class="progetto flex-row" id="progetto">
             <div class="descrizione flex-col">
-                <div class="wrapper-testo scrollbar-stile">
-                    <div class="testo flex-col">
-                        <article>
-                            <h3 class="testo-gradient">Descrizione</h3>
-                            @for (p of progettoSelezionato.introduzione; track $index) {
-                                <p [innerHTML]="TraduciHtml(p)"></p>
-                            }
-                        </article>
-                        <article>
-                            <h3 class="testo-gradient">Funzionalità</h3>
-                            @for (f of progettoSelezionato.funzionalita; track $index) {
-                                <h4 class="testo-gradient">{{ f.titolo }}</h4>
-                                @for (p of f.testo; track $index) {
-                                    <p [innerHTML]="TraduciHtml(p)"></p>
-                                }
-                            }
-                        </article>
-                    </div>
-                </div>
+                <Descrizione 
+                    [progetto-selezionato]="progettoSelezionato"
+                    [progetto-precedente]="progettoPrecedente"
+                    [resetta-for]="resettaFor"
+                    class="scrollbar-stile"
+                />
                 <button class="link" (click)="ApriLink(progettoSelezionato.link)">
                     <ion-icon name="logo-github"></ion-icon>
                     <span>Github</span>
                 </button>
             </div>
-            <div class="immagini flex-col">
-                <div class="img"
-                    [style]="{'background-image': 'url(' + immagineCorrente + ')'}"
-                ></div>
-                <div class="wrapper-selettore">
-                    <div class="selettore flex-row" (click)="SelezionaImmagine($event)">
-                        <img src="https://picsum.photos/600/600?random=1" alt="" class="selezionata">
-                        <img src="https://picsum.photos/600/600?random=2" alt="">
-                        <img src="https://picsum.photos/600/600?random=3" alt="">
-                        <img src="https://picsum.photos/600/600?random=4" alt="">
-                        <img src="https://picsum.photos/600/600?random=5" alt="">
-                        <div class="sfondo-trattini"></div>
-                    </div>
-                </div>
-            </div>
+            <Immagini 
+                [immagini-correnti]="progettoSelezionato.immagini"
+                [immagini-precedenti]="progettoPrecedente?.immagini"
+                [resetta-for]="resettaFor"
+                class="flex-col"
+            />
         </div>
     </div>
     <div class="sfondo-trattini"></div>

@@ -1,0 +1,83 @@
+:host{
+    position: relative;
+    z-index: 1;
+    padding-inline: 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid var(--colore-bordo);
+}
+
+.tecnologie{
+    opacity: calc(var(--progresso-progetti) / 100);
+    margin-bottom: auto;
+    gap: calc(var(--gap) / 2);
+    padding-block: 1rem .5rem;
+    overflow-x: auto;
+    overflow-y: clip;
+
+    .img{
+        background-image: var(--bg);
+        height: 100%;
+        aspect-ratio: 1;
+        background-size: cover;
+    }
+    
+    .tecnologia{
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: .5rem;
+        padding: .5rem;
+        border: 2px solid var(--colore-bordo);
+        border-radius: .5rem;
+        transition-property: border-color, background-color;
+        transition: .5s cubic-bezier(0.33, 1, 0.68, 1);
+        cursor: pointer;
+        
+        &:not(.controllo, .esci){
+            opacity: 0;
+            transform: translateY(100%);
+            filter: blur(.05rem);
+            animation: entra .5s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+            
+            @keyframes entra {
+                to{
+                    opacity: 1;
+                    transform: translateY(0);
+                    filter: blur(0);
+                }
+            }
+        }
+
+        &:hover{
+            border-color: #AAA;
+            background-color: #1a1a1a;
+        }
+
+        &.controllo{
+            width: 0;
+            padding-inline: 0;
+            transform: scaleX(0);
+            order: 9999;
+        }
+    }
+
+    &.transizione{
+        position: absolute;
+        top: 0;                                
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+
+        .esci{
+            animation: esci .5s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+            
+            @keyframes esci {
+                to{
+                    opacity: 0;
+                    transform: translateY(-100%);
+                    filter: blur(.05rem);
+                }
+            }
+        }
+
+    }
+}

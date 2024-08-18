@@ -1,0 +1,8 @@
+@for (p of progetti; track $index) {
+    <div class="progetto flex-col" [class.selezionato]="this.progettoSelezionato === p" (click)="Seleziona(p)">
+        <div class="icona">
+            <ion-icon [name]="p.icona" />
+        </div>
+        <p>{{ p.nome }}</p>
+    </div>
+}

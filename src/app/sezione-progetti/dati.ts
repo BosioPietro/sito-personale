@@ -13,7 +13,8 @@ export type Progetto = {
         titolo: string,
         testo: string[]
     }[],
-    link: string
+    link: string,
+    immagini: string[]
 }
 
 const tecnologie: Tecnologia[] = [
@@ -159,7 +160,9 @@ export const progetti: Progetto[] = [
                 testo: ["Il progetto si basa sulle |API| di Google per la geolocalizzazione. Queste API vengono utilizzate sia per la creazione e l'inserimento di mappe, sia per il |geocoding|, cioè la conversione di un indirizzo testuale in coordinate geografiche e viceversa."]
             }
         ],
-        link: "https://github.com/BosioPietro/Assicurazioni"
+        link: "https://github.com/BosioPietro/Assicurazioni",
+        immagini: new Array(0).fill("").map((_, i) => `/assets/img/assicurazioni/${i}.webp`)
+
     },
     {
       nome: 'AlphaVantage',
@@ -182,7 +185,9 @@ export const progetti: Progetto[] = [
             testo: ["Il progetto usa la |Google Maps API| per JavaScript per mostrare le sedi delle aziende quotate pubblicamente che si possono ricercare."]
         }
       ],
-      link: "https://github.com/vallauri-ict/alpha-vantage-BosioPietro"
+      link: "https://github.com/vallauri-ict/alpha-vantage-BosioPietro",
+      immagini: new Array(5).fill("").map((_, i) => `/assets/img/alpha_vantage/${i}.webp`)
+
     },
     {
       nome: 'Registro Elettronico',
@@ -201,7 +206,9 @@ export const progetti: Progetto[] = [
             testo: ["Questo è stato il primo progetto in cui ho iniziato a capire come creare layout che si adattano meglio con i diversi dispositivi grazie a proprietà come display |flex| e |grid|. Oltre a quello ho anche usato vari breakpoint nelle |@media query| per garantire che il layout si adattasse correttamente"]
         }
       ],
-      link: "https://github.com/BosioPietro/Registro-Elettronico"
+      link: "https://github.com/BosioPietro/Registro-Elettronico",
+      immagini: new Array(4).fill("").map((_, i) => `/assets/img/registro/${i}.webp`)
+
     },
     {
       nome: 'E-Commerce',
@@ -216,7 +223,9 @@ export const progetti: Progetto[] = [
             testo: ["Questo progetto è scritto quasi totalmente in PHP dal backend al frontend con il quale sono renderizzate pagine relativamente complesse. L'esempio principale è quella dei prodotti nella quale tramite SSR restituisco la pagina al client mostrando solo i prodotti rilevanti."]
         }
       ],
-      link: "https://github.com/BosioPietro/E-Shop"
+      link: "https://github.com/BosioPietro/E-Shop",
+      immagini: new Array(7).fill("").map((_, i) => `/assets/img/eshop/${i}.webp`)
+
     },
     {
       nome: 'Random User',
@@ -231,7 +240,9 @@ export const progetti: Progetto[] = [
             testo: ["Queste funzionalità sono la possibilità di poter generare più di un utente alla volta, avendo la possibilità di filtrare per sesso e nazionalità.", "Gli utenti possono essere visualizzati in una griglia e riordinati attraverso |drag-and-drop| usando i sortable di |jQuery UI|."]
         }
       ],
-      link: "https://github.com/BosioPietro/Random-User"
+      link: "https://github.com/BosioPietro/Random-User",
+      immagini: new Array(3).fill("").map((_, i) => `/assets/img/randomuser/${i}.webp`)
+
     },
     {
       nome: 'MongoDriver',
@@ -247,6 +258,7 @@ export const progetti: Progetto[] = [
                     "Se ciò non viene fatto, il codice guarderà la |proiezione| e la userà per definire le chiavi del record.", "Se infine non viene nemmeno fornita una proiezione, il tipo di default sarà #Record&lt;string, unknown&gt;#. Ciò presenta diversi vantaggi come il fatto di potere usare i metodi di JavaScript funzionale introdotti con |ES6| (es. #filter#, #map#, #find#, etc.)."]
         }
       ],
-      link: "https://github.com/BosioPietro/MongoDriver"
+      link: "https://github.com/BosioPietro/MongoDriver",
+      immagini: new Array(0).fill("").map((_, i) => `/assets/img/mongodriver/${i}.webp`)
     },
 ]
