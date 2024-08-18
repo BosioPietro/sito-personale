@@ -1,12 +1,13 @@
 <Header 
     [sezione-corrente]="sezioneCorrente"
     (onNaviga)="sezioneCorrente = $event"
+    class="flex-col"
 ></Header>
 
 <SezionePrincipale id="principale" class="espandi"/>
 <SezioneConoscenze id="conoscenze"class="espandi"/>
 <SezioneProgetti id="progetti" class="flex-col espandi"/>
-<FooterContatti id="contatti"/>
+<FooterContatti id="contatti" class="flex-row"/>
 
 <svg xmlns="http://www.w3.org/2000/svg">
     <mask id="maschera-cornice">

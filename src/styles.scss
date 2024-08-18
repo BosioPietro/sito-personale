@@ -26,8 +26,8 @@ body{
 }
 
 ::selection{
-    background-color: #8882;
-    color: #888;
+    background-color: #8883;
+    color: #999;
 }
 
 [class*="flex-"]{
@@ -184,6 +184,7 @@ hr.linea-luce{
     }
 
     code{
+        display: inline-flex;
         font-family: monospace;
         color: #CCC;
         background-color: #222;

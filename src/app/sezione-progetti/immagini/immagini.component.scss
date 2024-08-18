@@ -5,13 +5,17 @@
     padding: var(--padding);
     gap: calc(var(--gap) / 2);
     contain: paint;
+    
+    opacity: calc(var(--progresso-progetti) / 100);
+    filter: blur(calc((1 - var(--progresso-progetti) / 100) * 1rem));
+    // translate: 0 calc((1 - var(--progresso-progetti) / 100) * 5rem);
 }
 
 .wrapper-img {
     flex-grow: 1;
     position: relative;
     border-radius: .5rem;
-    border: 2px solid var(--colore-bordo);
+    border: 2px solid #333;
     contain: paint;
 
     img{
@@ -59,9 +63,10 @@
             aspect-ratio: 1;
             border-radius: .5rem;
             height: 75%;
+            object-fit: cover;
             margin-inline: calc(var(--gap) / 4);
             border: 2px solid var(--colore-bordo);
-            transition-property: height, border-color;
+            transition-property: height, border-color, filter;
             transition: .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
             cursor: pointer;
 

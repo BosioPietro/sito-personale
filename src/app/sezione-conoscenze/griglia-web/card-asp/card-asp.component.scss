@@ -27,7 +27,8 @@
 
     [avanti]{
         position: absolute;
-        top: calc(var(--dim-logo) / 4);
+        top: calc(50% - var(--dim-logo) / 4);
+        // 
         left: calc(var(--dim-logo) / 2);
         
         &:is(ion-icon){
@@ -38,7 +39,7 @@
 
     [indietro]{
         position: absolute;
-        bottom: calc(var(--dim-logo) / 4);
+        bottom: calc(50% - var(--dim-logo) / 4);
         right: calc(var(--dim-logo) / 2);
 
         &:is(ion-icon){

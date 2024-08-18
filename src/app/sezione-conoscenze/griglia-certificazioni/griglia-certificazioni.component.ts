@@ -31,6 +31,6 @@ export class GrigliaCertificazioniComponent {
     descrizione: 'Validate your skills in installing, configuring, and troubleshooting Cisco networks. Earn the globally recognized Cisco CCNA certification.',
     link: 'https://www.cisco.com/site/us/en/learn/training-certifications/certifications/enterprise/ccna/index.html',
     url_img: 'https://www.netacad.com/sites/default/files/home-hero-25th-800.png',
-    favicon: 'https://www.cisco.com/favicon.ico'
+    favicon: 'https://translatorswithoutborders.org/wp-content/uploads/2021/12/Cisco-logo.png'
   }
 }

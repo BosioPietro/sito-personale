@@ -122,6 +122,11 @@ const tecnologie: Tecnologia[] = [
         nome: "NodeJS",
         immagine: "/assets/img/loghi/node.webp",
         link: "https://nodejs.org/"
+    },
+    {
+        nome: "Vite",
+        immagine: "/assets/img/loghi/vite.webp",
+        link: "https://vitejs.dev/"
     }
 ]
 
@@ -191,7 +196,7 @@ export const progetti: Progetto[] = [
     },
     {
       nome: 'Registro Elettronico',
-      tecnologie: ["React", "JSX", "CSS", "ChartJS", "XAMPP", "PHP", "MariaDB"].map((c) => {
+      tecnologie: ["React", "Vite", "JSX", "CSS", "ChartJS", "XAMPP", "PHP", "MariaDB"].map((c) => {
         return tecnologie.find(t => t.nome === c)!;
       }),
       icona: "file-tray-full",

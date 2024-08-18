@@ -1,11 +1,11 @@
 # TODO
 
-- [] Il trattino dell'header non parte subito
-- [] Prova altro header
+- [x] Il trattino dell'header non parte subito (inteso)
+- [x] Prova altro header
 - [] Lightmode con invert
-- [] Aggiungi alle celle con hover il dropshadow del bottone di github
-- [] Vedi se filtro su immagine non selezionata è decente
-- [] Vite nelle tecnologie del registro
+- [x] Vedi se filtro su immagine non selezionata è decente
+- [x] Vite nelle tecnologie del registro
 - [] Fare l'ombra interna dello scroll con bg local
-- [] Fare il colore di selezione più chiaro
+- [x] Fare il colore di selezione più chiaro
 - [] Bottone per ingrandire l'immagine
+- [x] Fixare carta asp e guardare se ci sono altri bug

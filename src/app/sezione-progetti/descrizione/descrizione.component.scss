@@ -3,6 +3,9 @@
     flex-grow: 1;
     overflow-y: auto;
     scrollbar-gutter: stable both-edges;
+    opacity: calc(var(--progresso-progetti) / 100);
+    filter: blur(calc((1 - var(--progresso-progetti) / 100) * 1rem));
+    // translate: 0 calc((1 - var(--progresso-progetti) / 100) * 5rem);
 }
 
 .testo{

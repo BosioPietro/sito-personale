@@ -41,8 +41,7 @@ export class HeaderComponent{
     if(!sezione) return 0;
     if(this.ultimo.sezione == sezione) return this.ultimo.valore; 
 
-
-
+    console.log(sezione)
     const wrapper = this.wrapper.nativeElement;
     const cella = wrapper.querySelector(`[sezione="${sezione}"] .cella`)! as HTMLElement;
 

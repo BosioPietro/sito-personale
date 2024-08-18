@@ -61,7 +61,7 @@ hr{
     
             &::after{
                 --offset-sopra: calc(33.33% - 1px);
-                --offset-sotto: calc((33.33% - var(--h-entita)) * 1.5);
+                --offset-sotto: calc((33.33% - var(--h-entita)) / 2);
     
                 content: '';
                 display: block;
