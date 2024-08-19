@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, Input, ViewChild } from '@angular/core';
 import { ImmaginiService } from './immagini.service';
 
 @Component({
   selector: 'Immagini',
   standalone: true,
   imports: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './immagini.component.html',
   styleUrl: './immagini.component.scss'
 })
@@ -21,6 +22,11 @@ export class ImmaginiComponent {
   @Input("resetta-for")
   resettaFor!: boolean;
 
+  @ViewChild("modale")
+  modaleImmagine!: ElementRef<HTMLDialogElement>;
+
+  immagineVisualizzata?: string;
+
   SelezionaImmagine(e: Event){
     if(e.target === e.currentTarget) return;
 
@@ -32,5 +38,18 @@ export class ImmaginiComponent {
     })
 
     this.img.immagineSelezionata = parseInt(img.src.split("/").at(-1)!);
+  }
+
+  ApriModaleImmagine(img: number){
+    this.immagineVisualizzata = this.immaginiCorrenti[img];
+
+    const modale = this.modaleImmagine.nativeElement;
+    modale.showModal();
+  }
+
+  ChiudiModale(){
+    
+    const modale = this.modaleImmagine.nativeElement;
+    modale.close();
   }
 }

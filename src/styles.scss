@@ -48,6 +48,7 @@ body{
 }
 
 .scrollbar-stile {
+    overscroll-behavior: contain;
 
     &::-webkit-scrollbar {
         width: .5rem;
@@ -169,6 +170,18 @@ hr.linea-luce{
         clip-path: polygon(0% 50%, 100% 50%, 100% 100%, 0% 100%);
         background: conic-gradient(from 90deg at 50% 50%, #0000 50%, #000 50%),
             radial-gradient(#C8C8C81A 0%, #0000 70%);
+    }
+}
+
+.brilla{
+    transition-property: color, filter;
+    transition: .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    filter: drop-shadow(0 0 1rem #7770);
+    cursor: pointer;
+    
+    &:hover{
+        filter: drop-shadow(0 0 1rem #777F);
+        color: #FFF;
     }
 }
 

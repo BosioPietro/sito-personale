@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild } from '@angular/core';
 import { progetti, Progetto } from './dati';
 import { TecnologieComponent } from "./tecnologie/tecnologie.component";
 import { DescrizioneComponent } from "./descrizione/descrizione.component";
@@ -17,6 +17,9 @@ import { ImmaginiService } from './immagini/immagini.service';
 export class SezioneProgettiComponent {
 
   constructor(private img: ImmaginiService) {}
+
+  @ViewChild("descrizione")
+  descrizione!: ElementRef<HTMLElement>;
 
   progetti = progetti;
   progettoSelezionato = this.progetti[0];
@@ -37,8 +40,17 @@ export class SezioneProgettiComponent {
     this.resettaFor = false;
     this.progettoSelezionato = p
     this.puoCambiare = false;
+
     this.img.immaginePrecedente = this.img.immagineSelezionata;
     this.img.immagineSelezionata = 0
+
+    const desc = this.descrizione.nativeElement.querySelector("descrizione")!;
+    desc.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
+    
+    // this.descrizione.nativeElement.scrollTop = 0;
 
     setTimeout(() => {
       this.progettoPrecedente = undefined;

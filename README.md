@@ -7,5 +7,5 @@
 - [x] Vite nelle tecnologie del registro
 - [] Fare l'ombra interna dello scroll con bg local
 - [x] Fare il colore di selezione più chiaro
-- [] Bottone per ingrandire l'immagine
+- [x] Bottone per ingrandire l'immagine
 - [x] Fixare carta asp e guardare se ci sono altri bug

@@ -1,5 +1,4 @@
 :host{
-    min-height: unset !important;
     position: relative;
     padding-inline: calc((100% - var(--w-contenuto-pagina)) / 2 + 3rem);
     padding-block: 2rem;
@@ -129,17 +128,5 @@ a{
         font-size: 1.7rem;
         margin-left: .5ch;
 
-    }
-}
-
-.brilla{
-    transition-property: color, filter;
-    transition: .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-    filter: drop-shadow(0 0 1rem #7770);
-    cursor: pointer;
-    
-    &:hover{
-        filter: drop-shadow(0 0 1rem #777F);
-        color: #FFF;
     }
 }

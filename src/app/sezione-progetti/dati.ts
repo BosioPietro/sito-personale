@@ -166,7 +166,7 @@ export const progetti: Progetto[] = [
             }
         ],
         link: "https://github.com/BosioPietro/Assicurazioni",
-        immagini: new Array(0).fill("").map((_, i) => `/assets/img/assicurazioni/${i}.webp`)
+        immagini: new Array(8).fill("").map((_, i) => `/assets/img/assicurazioni/${i}.webp`)
 
     },
     {

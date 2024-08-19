@@ -1,6 +1,9 @@
 @if(resettaFor){
     <div class="wrapper-img" [style]="{'--img': 'url(' + immaginiCorrenti[img.immagineSelezionata] + ')'}">
         <img [src]="immaginiCorrenti[img.immagineSelezionata]">
+        <button class="icona" (click)="ApriModaleImmagine(img.immagineSelezionata)">
+            <ion-icon name="scan"></ion-icon>
+        </button>
     </div>
     <div class="wrapper-selettore">
         <div class="selettore flex-row" (click)="SelezionaImmagine($event)">
@@ -12,14 +15,12 @@
                      [style]="{'--delay': ($index + 1) / 20}"     
                 />
             }
-    
             <div class="sfondo-trattini"></div>
         </div>
     </div>
 }
 
 @if( immaginiPrecendenti && img.immaginePrecedente !== undefined) {
-    
     <div class="transizione flex-col">
         <div class="wrapper-img" [style]="{'--img': 'url(' + immaginiPrecendenti[img.immaginePrecedente] + ')'}">
             <img [src]="immaginiPrecendenti[img.immaginePrecedente]">
@@ -40,3 +41,13 @@
         </div>
     </div>
 }
+
+<dialog #modale>
+    @if(immagineVisualizzata){
+        <img [src]="immagineVisualizzata"/>
+    }
+
+    <button class="brilla" (click)="ChiudiModale()">
+        <ion-icon name="close"></ion-icon>
+    </button>
+</dialog>
