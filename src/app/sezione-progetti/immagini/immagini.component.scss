@@ -15,7 +15,7 @@
     flex-grow: 1;
     position: relative;
     border-radius: .5rem;
-    border: 2px solid #333;
+    border: 2px solid color-mix(in srgb, var(--bianco-inverti) 30%, var(--nero-inverti) 70%);
     contain: paint;
 
     .icona{
@@ -29,15 +29,15 @@
         border-radius: .5rem;
         padding: .5rem;
         cursor: pointer;
-        transition: opacity .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        transition: opacity .5s var(--easing);
 
         @starting-style{
             opacity: 0;
         }
         
         ion-icon{
-            color: #0b0b0b;
-            transition: scale .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+            color: var(--nero-h1);
+            transition: scale .5s var(--easing);
         }
 
         &:hover ion-icon{
@@ -75,8 +75,8 @@ dialog{
     padding: 2rem;
     border: none;
     background-color: #0000;
+    transition: .33s var(--easing) allow-discrete;
     transition-property: opacity, filter;
-    transition: .33s cubic-bezier(0.445, 0.05, 0.55, 0.95) allow-discrete;
 
     &::backdrop{
         background-color: #0005;
@@ -154,9 +154,9 @@ dialog{
             height: 75%;
             object-fit: cover;
             margin-inline: calc(var(--gap) / 4);
-            border: 2px solid var(--colore-bordo);
-            transition-property: height, border-color, filter;
-            transition: .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+            border: 2px solid color-mix(in srgb, var(--bianco-inverti) 30%, var(--nero-inverti) 70%);
+            transition: .5s var(--easing);
+            transition-property: height, border-color;
             cursor: pointer;
 
             &:first-of-type {
@@ -173,7 +173,7 @@ dialog{
 
             &.selezionata,
             &:hover {
-                border-color: #FFFA;
+                border-color: color-mix(in srgb, var(--bianco-inverti) 60%, var(--nero-inverti) 40%);
             }
 
             &.selezionata+img {
@@ -212,7 +212,7 @@ dialog{
     pointer-events: none;
 
     .wrapper-img img, .wrapper-img::before{
-        animation: abbassa-img .5s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+        animation: abbassa-img .5s var(--easing) forwards;
         opacity: 1;
 
         @keyframes abbassa-img {
@@ -223,7 +223,7 @@ dialog{
     }
 
     .selettore img{
-        animation: abbassa-img-selettore .3s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+        animation: abbassa-img-selettore .3s var(--easing) forwards;
         animation-delay: calc(var(--delay) * 1s);
         transform: translateY(0);
         opacity: 1;
@@ -239,7 +239,7 @@ dialog{
 
 :host{
     & > .wrapper-img img, & > .wrapper-img::before{
-        animation: alza-img .5s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+        animation: alza-img .5s var(--easing) forwards;
         // transform: translateY(5rem);
         opacity: 0;
         
@@ -252,7 +252,7 @@ dialog{
     }
 
     & > .wrapper-selettore img{
-        animation: alza-img-selettore .4s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+        animation: alza-img-selettore .4s var(--easing) forwards;
         animation-delay: calc(var(--delay) * 1s);
         transform: translateY(3rem);
         opacity: 0;

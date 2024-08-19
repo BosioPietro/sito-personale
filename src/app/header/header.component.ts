@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'Header',
@@ -21,6 +21,20 @@ export class HeaderComponent{
   @Output()
   onNaviga = new EventEmitter<string>();
 
+  modalitaVisualizzazione: "chiaro" | "scuro";
+  html = document.firstElementChild! as HTMLElement;
+
+  constructor(){
+    const modalita = localStorage.getItem("modalita-visualizzazione");
+
+    if(modalita === "chiaro" || modalita === "scuro"){
+      this.modalitaVisualizzazione = modalita;
+    }
+    else this.modalitaVisualizzazione = "scuro";
+    
+    this.html.classList.add(this.modalitaVisualizzazione)
+  }
+
   ultimo: {
     sezione?: string,
     valore?: string
@@ -28,7 +42,6 @@ export class HeaderComponent{
   
   timeoutTransizione: any;
   animando: boolean = false;
-
 
   Scrolla(s: string){
     const el = document.getElementById(s)!;
@@ -56,5 +69,12 @@ export class HeaderComponent{
     }, 300);
 
     return valore;
+  }
+
+  CambiaModalitaVisualizzazione(){
+    this.modalitaVisualizzazione = this.modalitaVisualizzazione === "scuro" ? "chiaro" : "scuro";
+
+    this.html.classList.toggle("scuro", this.modalitaVisualizzazione === "scuro");
+    this.html.classList.toggle("chiaro", this.modalitaVisualizzazione === "chiaro");
   }
 }

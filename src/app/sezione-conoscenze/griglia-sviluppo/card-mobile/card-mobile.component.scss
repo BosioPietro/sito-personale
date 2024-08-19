@@ -60,8 +60,8 @@
                             filter: blur(0);
                             opacity: 1;
                             z-index: 1;
+                            transition: 1s var(--easing);
                             transition-property: filter, opacity;
-                            transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
                             grid-area: 1 / 1 / 2 / 2;
     
                             &.nascosto{
@@ -73,12 +73,12 @@
 
                         @keyframes pulsa {
                             0%, 33.333%{
-                                background-color: #0b0b0b;
+                                background-color: var(--nero-h1);
                                 border-color: var(--colore-bordo);
                             }
                             16.666%{
                                 background-color: #1a1a1a;
-                                border-color: #AAA;
+                                border-color: var(--grigio-a);
                             }
                         }
                     }
@@ -112,15 +112,15 @@
                             left: calc(var(--dim-logo-telefono) * 1.5);
                             transform: translate(-50%, calc(-50% + 1.5px));
                             border-radius: 100vh;
-                            background-color: #444;
+                            background-color: var(--grigio-4);
                             animation: pulsa-1 var(--tempo-animazione) linear infinite;
 
                             @keyframes pulsa-1 {
                                 10%, 66.66%, 100%{
-                                    background-color: #444;
+                                    background-color: var(--grigio-4);
                                 }
                                 50%{
-                                    background-color: #AAA;
+                                    background-color: var(--grigio-a);
                                 }
                             }
                         }
@@ -157,7 +157,7 @@
                 position: relative;
                 border: .25rem solid var(--colore-bordo);
                 border-radius: 1.25rem;
-                background-color: #0b0b0b;
+                background-color: var(--nero-h1);
 
                 img{
                     position: absolute;

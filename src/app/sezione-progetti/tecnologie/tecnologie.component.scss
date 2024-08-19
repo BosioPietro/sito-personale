@@ -28,8 +28,8 @@
         padding: .5rem;
         border: 2px solid var(--colore-bordo);
         border-radius: .5rem;
-        transition-property: border-color, background-color;
         transition: .5s cubic-bezier(0.33, 1, 0.68, 1);
+        transition-property: border-color, background-color;
         cursor: pointer;
         
         &:not(.controllo, .esci){
@@ -48,7 +48,7 @@
         }
 
         &:hover{
-            border-color: #AAA;
+            border-color: var(--grigio-a);
             background-color: #1a1a1a;
         }
 

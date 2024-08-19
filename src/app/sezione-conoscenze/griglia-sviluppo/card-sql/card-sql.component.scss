@@ -94,7 +94,7 @@
     
     @keyframes pulsa {
         0%, 20%, 100%{ border-color: var(--colore-bordo) }
-        10% { border-color: #AAA; }
+        10% { border-color: var(--grigio-a); }
     }
 
     @keyframes muovi-maschera {

@@ -1,5 +1,5 @@
 @if(resettaFor){
-    <div class="wrapper-img" [style]="{'--img': 'url(' + immaginiCorrenti[img.immagineSelezionata] + ')'}">
+    <div class="wrapper-img immagine" [style]="{'--img': 'url(' + immaginiCorrenti[img.immagineSelezionata] + ')'}">
         <img [src]="immaginiCorrenti[img.immagineSelezionata]">
         <button class="icona" (click)="ApriModaleImmagine(img.immagineSelezionata)">
             <ion-icon name="scan"></ion-icon>
@@ -13,6 +13,7 @@
                      [src]="i" 
                      [class.selezionata]="$index === img.immagineSelezionata"
                      [style]="{'--delay': ($index + 1) / 20}"     
+                     class="immagine"
                 />
             }
             <div class="sfondo-trattini"></div>
@@ -22,7 +23,7 @@
 
 @if( immaginiPrecendenti && img.immaginePrecedente !== undefined) {
     <div class="transizione flex-col">
-        <div class="wrapper-img" [style]="{'--img': 'url(' + immaginiPrecendenti[img.immaginePrecedente] + ')'}">
+        <div class="wrapper-img immagine" [style]="{'--img': 'url(' + immaginiPrecendenti[img.immaginePrecedente] + ')'}">
             <img [src]="immaginiPrecendenti[img.immaginePrecedente]">
         </div>
         <div class="wrapper-selettore">
@@ -33,6 +34,7 @@
                         [src]="i" 
                         [class.selezionata]="$index === img.immaginePrecedente"
                         [style]="{'--delay': ($index + 1) / 50}"
+                        class="immagine"
                     />
                 }
         

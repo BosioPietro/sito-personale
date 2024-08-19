@@ -14,7 +14,7 @@
     gap: calc(var(--gap) / 2);
 
     article > *{
-        animation: alza-testo .5s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+        animation: alza-testo .5s var(--easing) forwards;
         animation-delay: calc(var(--delay) * 1s);
         transform: translateY(3rem);
         opacity: 0;
@@ -29,7 +29,7 @@
 
 
     &.transizione article > *{
-        animation: abbassa-testo .25s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+        animation: abbassa-testo .25s var(--easing) forwards;
         opacity: 1;
         transform: translateY(0);
 
@@ -54,7 +54,7 @@
     }
 
     p{
-        color: #999;
+        color: var(--grigio-9);
         font-size: 1rem;
         text-wrap: balance;
         line-height: 1.25;

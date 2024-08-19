@@ -7,7 +7,7 @@
     opacity: .8;
 
     &:hover{
-        --colore-bordo: #888;
+        --colore-bordo: var(--grigio-8);
 
         .barra-app{
             color: #FFF;
@@ -30,8 +30,8 @@
         gap: 2rem;
         align-self: stretch;
         color: color-mix(in srgb, var(--colore-bordo) 50%, #FFF 50%);
+        transition: .5s var(--easing);
         transition-property: color, background-color, border;
-        transition: .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
         & > span, .controlli{
             align-items: center;
@@ -58,10 +58,10 @@
         border-radius: 0 0 .5rem .5rem;
         align-self: stretch;
         position: relative;
-        background-color: #0b0b0b;
+        background-color: var(--nero-h1);
         color: var(--colore-bordo);
+        transition: .5s var(--easing);
         transition-property: color, border;
-        transition: .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
         ion-icon{
             --dim: 5rem;
@@ -71,7 +71,7 @@
             left: calc(50% - var(--dim) / 2);
             animation: gira 20s linear infinite;
             transform-origin: center;
-            color: #888;
+            color: var(--grigio-8);
 
             @keyframes gira {
                 0%{ rotate: 0deg }

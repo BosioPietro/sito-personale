@@ -37,7 +37,7 @@
             --step-animazione: calc(var(--tempo-animazione) / 6);
             position: absolute;
             font-size: 1.75rem;
-            color: #999;
+            color: var(--grigio-9);
             
             &[icona-1], &[icona-6]{
                 transform: translateY(-50%);

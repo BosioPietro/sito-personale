@@ -6,7 +6,7 @@
     grid-area: 1 / 1 / 2 / 2;
 
     .card {
-        --colore-p: #999;
+        --colore-p: var(--grigio-9);
         gap: calc(var(--gap) / 4);
         padding: 2rem;
         flex-grow: 1;
@@ -14,7 +14,7 @@
         border: 2px solid var(--colore-bordo);
         backdrop-filter: blur(.25rem);
         background-color: #0b0b0bBB;
-        transition: background-color .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        transition: background-color .5s var(--easing);
         flex-grow: 1;
 
         &:hover {
@@ -69,9 +69,9 @@
                     border-radius: .5rem;
                     height: var(--dim-logo);
                     aspect-ratio: 1;
-                    background-color: #0b0b0b;
+                    background-color: var(--nero-h1);
+                    transition: .5s var(--easing);
                     transition-property: border-color, background-color;
-                    transition: .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
                     img,
                     ion-icon {

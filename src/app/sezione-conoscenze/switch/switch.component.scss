@@ -56,8 +56,8 @@
     inset: var(--padding) auto var(--padding) auto;
     z-index: 0;
     border-radius: 100dvh;
+    transition-duration: .5s var(--easing);
     transition-property: left, width;
-    transition-duration: .5s;
     transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
     background-color: #ededed;
 }

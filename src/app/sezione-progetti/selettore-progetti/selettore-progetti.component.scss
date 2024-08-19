@@ -17,7 +17,7 @@
     &:hover,
     &.selezionato {
         .icona {
-            border-color: #AAA;
+            border-color: var(--grigio-a);
             color: #FFF;
         }
 
@@ -40,8 +40,8 @@
         margin-inline: auto;
         border-radius: .5rem;
         border: 2px solid var(--colore-bordo);
+        transition: .5s var(--easing);
         transition-property: border-color, background-color, color;
-        transition: .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
         cursor: pointer;
         color: color-mix(in srgb, var(--colore-bordo) 50%, #FFF 50%);
 
@@ -62,7 +62,7 @@
         overflow: clip;
         text-align: center;
         font-size: .875rem;
-        color: #AAA;
-        transition: color .5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        color: var(--grigio-a);
+        transition: color .5s var(--easing);
     }
 }
