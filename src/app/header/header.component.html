@@ -1,51 +1,100 @@
-<div class="wrapper flex-row" #wrapper  >
-    <div class="opzione flex-row" [class.corrente]="sezione == 'principale'" sezione="principale"  sezione="principale">
-        <a (click)='Scrolla("principale")' class="flex-row">
-            <ion-icon name="Home"></ion-icon>
-            Home
-        </a>
-        <div class="wrapper-cella">
-            <div class="cella"></div>
+<div class="flex-row">
+    <img src="assets/img/logo.webp" alt="B">
+    <div class="wrapper flex-row" #wrapper  >
+        <div class="opzione flex-row" [class.corrente]="sezione == 'principale'" sezione="principale"  sezione="principale">
+            <a (click)='Scrolla("principale")' class="flex-row">
+                <ion-icon name="Home"/>
+                Home
+            </a>
+            <div class="wrapper-cella">
+                <div class="cella"></div>
+            </div>
+        </div>
+        <div class="opzione flex-row competenze" espandi [class.corrente]="sezione == 'conoscenze'" sezione="conoscenze">
+            <a (click)='Scrolla("conoscenze")' class="flex-row">
+                <ion-icon name="school"/>
+                Competenze
+                <ion-icon name="chevron-down"></ion-icon>
+            </a>
+            <div class="wrapper-cella">
+                <div class="cella"></div>
+            </div>
+        </div>
+        <div class="opzione flex-row progetti" espandi [class.corrente]="sezione == 'progetti'" sezione="progetti">
+            <a (click)='Scrolla("progetti")' class="flex-row">
+                <ion-icon name="layers"/>
+                Progetti
+                <ion-icon name="chevron-down"></ion-icon>
+            </a>
+            <div class="wrapper-cella">
+                <div class="cella"></div>
+            </div>
+        </div>
+        <div class="opzione flex-row" [class.corrente]="sezione == 'contatti'" sezione="contatti">
+            <a (click)='Scrolla("contatti")' class="flex-row">
+                <ion-icon name="chatbubble"/>
+                Contatti
+            </a>
+            <div class="wrapper-cella">
+                <div class="cella"></div>
+            </div>
         </div>
     </div>
-    <div class="opzione flex-row" [class.corrente]="sezione == 'conoscenze'" sezione="conoscenze">
-        <a (click)='Scrolla("conoscenze")' class="flex-row">
-            <ion-icon name="school"></ion-icon>
-            Competenze
-        </a>
-        <div class="wrapper-cella">
-            <div class="cella"></div>
-        </div>
-    </div>
-    <div class="opzione flex-row" [class.corrente]="sezione == 'progetti'" sezione="progetti">
-        <a (click)='Scrolla("progetti")' class="flex-row">
-            <ion-icon name="layers"></ion-icon>
-            Progetti
-        </a>
-        <div class="wrapper-cella">
-            <div class="cella"></div>
-        </div>
-    </div>
-    <div class="opzione flex-row" [class.corrente]="sezione == 'contatti'" sezione="contatti">
-        <a (click)='Scrolla("contatti")' class="flex-row">
-            <ion-icon name="chatbubble"></ion-icon>
-            Contatti
-        </a>
-        <div class="wrapper-cella">
-            <div class="cella"></div>
-        </div>
+    <button class="brilla" (click)="CambiaModalitaVisualizzazione()" toggle>
+        <ion-icon [name]="modalitaVisualizzazione === 'scuro' ? 'sunny' : 'moon'"/>
+    </button>
+
+    <div 
+        #cella
+        class="cella"
+        [class.animando]="animando"
+        [style]="{
+            '--sinistra': SezioneCorrente(sezione)
+        }"
+    >
     </div>
 </div>
-<button class="brilla" (click)="CambiaModalitaVisualizzazione()">
-    <ion-icon [name]="modalitaVisualizzazione === 'scuro' ? 'sunny' : 'moon'"/>
-</button>
 
-<div 
-    #cella
-    class="cella"
-    [class.animando]="animando"
-    [style]="{
-        '--sinistra': SezioneCorrente(sezione)
-    }"
->
+<div class="flex-row sotto-sezioni">
+    <div class="competenze flex-row">
+        <button (click)="SelezionaCompetenza(sezioni.Sviluppo)">
+            <ion-icon name="hardware-chip-outline"/>
+            <span>Sviluppo</span>
+        </button>
+        <button (click)="SelezionaCompetenza(sezioni.Web)">
+            <ion-icon name="globe-outline"/>
+            <span>Web</span>
+        </button>
+        <button (click)="SelezionaCompetenza(sezioni.Certificazioni)">
+            <ion-icon name="ribbon-outline"/>
+            <span>Certificazioni</span>
+        </button>
+    </div>
+
+    <div class="progetti flex-row">
+        <button (click)="SelezionaProgetto('Rilievi & Perizie')">
+            <ion-icon name="globe"/>
+            <span>Rilievi & Perizie</span>
+        </button>
+        <button (click)="SelezionaProgetto('AlphaVantage')">
+            <ion-icon name="analytics"/>
+            <span>AlphaVantage</span>
+        </button>
+        <button (click)="SelezionaProgetto('Registro Elettronico')">
+            <ion-icon name="file-tray-full"/>
+            <span>Registro Elettronico</span>
+        </button>
+        <button (click)="SelezionaProgetto('E-Commerce')">
+            <ion-icon name="storefront"/>
+            <span>E-Commerce</span>
+        </button>
+        <button (click)="SelezionaProgetto('Random User')">
+            <ion-icon name="people"/>
+            <span>Random User</span>
+        </button>
+        <button (click)="SelezionaProgetto('MongoDriver')">
+            <ion-icon name="server"/>
+            <span>MongoDriver</span>
+        </button>
+    </div>
 </div>

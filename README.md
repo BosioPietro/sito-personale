@@ -8,3 +8,4 @@
 - [x] Fare il colore di selezione più chiaro
 - [x] Bottone per ingrandire l'immagine
 - [x] Fixare carta asp e guardare se ci sono altri bug
+- [] Fixa switch

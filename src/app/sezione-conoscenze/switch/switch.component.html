@@ -1,4 +1,4 @@
-<button class="opzione flex-row" (click)="Seleziona($event, sezioni.Sviluppo)">
+<button class="opzione flex-row" (click)="Seleziona($event, sezioni.Sviluppo)" #sviluppo>
     <ion-icon name="hardware-chip-outline"></ion-icon>
     <span>Sviluppo</span>
 </button>
@@ -6,7 +6,7 @@
     <ion-icon name="globe-outline"></ion-icon>
     <span>Web</span>
 </button>
-<button class="opzione flex-row" (click)="Seleziona($event, sezioni.Certificazioni)">
+<button class="opzione flex-row" (click)="Seleziona($event, sezioni.Certificazioni)" #certificazioni>
     <ion-icon name="ribbon-outline"></ion-icon>
     <span>Certificazioni</span>
 </button>

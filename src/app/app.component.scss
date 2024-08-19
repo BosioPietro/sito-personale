@@ -1,6 +1,7 @@
 :host{
     display: grid;
     grid-template-rows: repeat(5, auto);
+    align-items: flex-start;
     color: #FFF;
 
     --w-contenuto-pagina: 1280px;

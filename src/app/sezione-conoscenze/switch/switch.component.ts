@@ -1,4 +1,5 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { SwitchService } from './switch.service';
 
 @Component({
   selector: 'Switch',
@@ -8,16 +9,24 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, EventEmitter, Output, Vi
   styleUrl: './switch.component.scss', 
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class SwitchComponent {
+export class SwitchComponent implements AfterViewInit{
 
   @ViewChild("web")
   opzione_web!: ElementRef<HTMLElement>;
+
+  @ViewChild("sviluppo")
+  opzione_sviluppo!: ElementRef<HTMLElement>;
+
+  @ViewChild("certificazioni")
+  opzione_certificazioni!: ElementRef<HTMLElement>;
 
   @ViewChild("cella")
   cella!: ElementRef<HTMLElement>;
 
   @Output()
   onChange = new EventEmitter<Sezioni>();
+
+  constructor(private valore_switch: SwitchService){}
 
   sezioni = Sezioni;
   sezioneCorrente?: Sezioni;
@@ -57,6 +66,14 @@ export class SwitchComponent {
     cella.style.width = w;
     cella.style.left = `${sinistra}px`;
     cella.classList.remove("no-transizione")
+  }
+
+  ngAfterViewInit(): void {
+    this.valore_switch.bottoni = {
+      [Sezioni.Web]: this.opzione_web.nativeElement,
+      [Sezioni.Sviluppo]: this.opzione_sviluppo.nativeElement,
+      [Sezioni.Certificazioni]: this.opzione_certificazioni.nativeElement,
+    }
   }
 }
 

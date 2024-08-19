@@ -1,4 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Sezioni } from '../sezione-conoscenze/switch/switch.component';
+import { SwitchService } from '../sezione-conoscenze/switch/switch.service';
+import { ProgettiService } from '../sezione-progetti/selettore-progetti/progetti.service';
 
 @Component({
   selector: 'Header',
@@ -24,7 +27,10 @@ export class HeaderComponent{
   modalitaVisualizzazione: "chiaro" | "scuro";
   html = document.firstElementChild! as HTMLElement;
 
-  constructor(){
+  constructor(
+    private valore_switch: SwitchService,
+    private valore_progetto: ProgettiService
+  ){
     const modalita = localStorage.getItem("modalita-visualizzazione");
 
     if(modalita === "chiaro" || modalita === "scuro"){
@@ -35,6 +41,7 @@ export class HeaderComponent{
     this.html.classList.add(this.modalitaVisualizzazione)
   }
 
+  sezioni = Sezioni;
   ultimo: {
     sezione?: string,
     valore?: string
@@ -76,5 +83,16 @@ export class HeaderComponent{
 
     this.html.classList.toggle("scuro", this.modalitaVisualizzazione === "scuro");
     this.html.classList.toggle("chiaro", this.modalitaVisualizzazione === "chiaro");
+  }
+
+  SelezionaCompetenza(competenza: Sezioni){
+    this.valore_switch.bottoni[competenza]?.click();
+    this.Scrolla("conoscenze");
+  }
+
+  SelezionaProgetto(progetto: string){
+    console.log(this.valore_progetto.bottoni)
+    this.valore_progetto.bottoni[progetto]?.click()
+    this.Scrolla("progetti");
   }
 }

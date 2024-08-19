@@ -8,7 +8,6 @@
     
     opacity: calc(var(--progresso-progetti) / 100);
     filter: blur(calc((1 - var(--progresso-progetti) / 100) * 1rem));
-    // translate: 0 calc((1 - var(--progresso-progetti) / 100) * 5rem);
 }
 
 .wrapper-img {
@@ -134,7 +133,6 @@ dialog{
 
     .selettore {
         justify-content: center;
-        // gap: calc(var(--gap) / 2);
         align-items: center;
         height: 4rem;
         width: 23rem;
