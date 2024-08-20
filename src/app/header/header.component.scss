@@ -35,6 +35,10 @@ button[toggle]{
     color: var(--grigio-a);
     background-color: #0000;
     padding: 1rem;
+
+    ion-icon{
+        font-size: inherit;
+    }
 }
 
 .wrapper{

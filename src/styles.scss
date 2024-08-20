@@ -55,6 +55,12 @@ body{
     color: var(--grigio-9);
 }
 
+::view-transition-old(root),
+::view-transition-new(root){
+    animation: none;
+    mix-blend-mode: normal;  
+}
+
 [class*="flex-"]{
     display: flex;
 

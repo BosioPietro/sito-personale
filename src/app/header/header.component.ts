@@ -3,6 +3,12 @@ import { Sezioni } from '../sezione-conoscenze/switch/switch.component';
 import { SwitchService } from '../sezione-conoscenze/switch/switch.service';
 import { ProgettiService } from '../sezione-progetti/selettore-progetti/progetti.service';
 
+declare global {
+  interface Document {
+    startViewTransition: (f: Function) => ({ready: Promise<void>})
+  }
+}
+
 @Component({
   selector: 'Header',
   standalone: true,
@@ -20,6 +26,9 @@ export class HeaderComponent{
 
   @ViewChild("cella")
   cella!: ElementRef<HTMLElement>;
+
+  @ViewChild("toggle")
+  bottoneToggle!: ElementRef<HTMLElement>;
 
   @Output()
   onNaviga = new EventEmitter<string>();
@@ -78,11 +87,39 @@ export class HeaderComponent{
     return valore;
   }
 
-  CambiaModalitaVisualizzazione(){
+  async CambiaModalitaVisualizzazione(){
     this.modalitaVisualizzazione = this.modalitaVisualizzazione === "scuro" ? "chiaro" : "scuro";
+    localStorage.setItem("modalita-visualizzazione", this.modalitaVisualizzazione);
+    
+    const Imposta = () => {
+      this.html.classList.toggle("scuro", this.modalitaVisualizzazione === "scuro");
+      this.html.classList.toggle("chiaro", this.modalitaVisualizzazione === "chiaro");
+    }
 
-    this.html.classList.toggle("scuro", this.modalitaVisualizzazione === "scuro");
-    this.html.classList.toggle("chiaro", this.modalitaVisualizzazione === "chiaro");
+    if(document.startViewTransition){
+      await document.startViewTransition(() => Imposta()).ready
+      const { top, left, width, height } =  this.bottoneToggle.nativeElement.getBoundingClientRect();
+
+      const destra = window.innerWidth - left;
+      const sotto = window.innerHeight - top;
+      const raggio = Math.hypot(
+        Math.max(left, destra),
+        Math.max(top, sotto)
+      );
+
+      document.documentElement.animate({
+        clipPath: [
+          `circle(0 at ${left + width / 2}px ${top + height / 2}px)`,
+          `circle(${raggio}px at ${left + width / 2}px ${top + height / 2}px)`
+        ]
+      }, {
+        duration: 500,
+        easing: "ease-in-out",
+        pseudoElement: "::view-transition-new(root)"
+      })
+    }
+    else Imposta();
+
   }
 
   SelezionaCompetenza(competenza: Sezioni){
