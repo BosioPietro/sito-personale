@@ -36,6 +36,9 @@ export class HeaderComponent{
   modalitaVisualizzazione: "chiaro" | "scuro";
   html = document.firstElementChild! as HTMLElement;
 
+  headerAperto: boolean = false;
+  sezioneMenu?: "progetti" | "conoscenze" = undefined;
+
   constructor(
     private valore_switch: SwitchService,
     private valore_progetto: ProgettiService
@@ -125,11 +128,21 @@ export class HeaderComponent{
   SelezionaCompetenza(competenza: Sezioni){
     this.valore_switch.bottoni[competenza]?.click();
     this.Scrolla("conoscenze");
+    this.headerAperto = false;
+    this.sezioneMenu = undefined;
   }
 
   SelezionaProgetto(progetto: string){
-    console.log(this.valore_progetto.bottoni)
     this.valore_progetto.bottoni[progetto]?.click()
     this.Scrolla("progetti");
+    this.headerAperto = false;
+    this.sezioneMenu = undefined;
+  }
+
+  CambiaSezione(s: 'conoscenze' | 'progetti'){
+    if(this.sezioneMenu === s){
+      this.sezioneMenu = undefined;
+    }
+    else this.sezioneMenu = s;
   }
 }

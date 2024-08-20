@@ -44,10 +44,13 @@ html.chiaro{
 }
 
 body{
-    min-height: 100dvh;
-    min-width: 100dvw;
     background-color: #000;
     scroll-behavior: smooth;
+
+
+    &:has(.menu-header.aperto){
+        overflow: hidden;
+    }
 }
 
 ::selection{
@@ -157,6 +160,7 @@ button{
         content: '';
         --trattino: url("data:image/svg+xml;base64,PHN2Zw0KICAgdmlld0JveD0iMCAwIDY0IDUzIg0KICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCgk8Zz4NCgkJPHBhdGgNCiAgICAgICAJCQlzdHlsZT0ic3Ryb2tlOiMzMzM7c3Ryb2tlLXdpZHRoOjY7c3Ryb2tlLWxpbmVjYXA6cm91bmQiDQogICAgICAgCQkJZD0iTSAzLDE0IFYgMzciDQogICAgIAkJLz4NCgk8L2c+DQo8L3N2Zz4=");
         position: absolute;
+        pointer-events: none;
         inset: 0;
         z-index: -1;
         opacity: .5;
@@ -183,6 +187,7 @@ hr.linea-luce{
         position: absolute;
         left: calc(50% - var(--width) / 2);
         background: linear-gradient(90deg, #0000 0%, #8F8F8FAB 50%, #0000 100%);
+        pointer-events: none;
     }
 
     &::after {
@@ -199,7 +204,9 @@ hr.linea-luce{
         clip-path: polygon(0% 50%, 100% 50%, 100% 100%, 0% 100%);
         background: conic-gradient(from 90deg at 50% 50%, #0000 50%, #000 50%),
             radial-gradient(#C8C8C81A 0%, #0000 70%);
+        pointer-events: none;
     }
+
 }
 
 .brilla{

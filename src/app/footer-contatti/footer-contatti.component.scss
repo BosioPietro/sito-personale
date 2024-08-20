@@ -1,19 +1,24 @@
 :host{
-    position: relative;
-    padding-inline: calc((100% - var(--w-contenuto-pagina)) / 2 + 3rem);
-    padding-block: 2rem;
-    contain: paint;
-    
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr 1fr auto;
-    gap: 2rem;
-    font-size: 2rem;
-
     background-color: rgba(0, 0, 0, 0.3);
 
-    & > *{
+    .wrapper{
+        position: relative;
         width: 100%;
+        max-width: var(--w-contenuto-pagina);
+        padding: 2rem;
+        margin-inline: auto;
+
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr 1fr auto;
+        row-gap: 2rem;
+        font-size: 2rem;
+    }
+
+    .wrapper > *{
+        &:not([contatti], [mail]){
+            width: 100%;
+        }
 
         &.animato, .animato{
             opacity: 0;
@@ -143,5 +148,29 @@ a{
         height: 1.5rem;
         font-size: 1.7rem;
         margin-left: .5ch;
+    }
+}
+
+@media screen and (width < 650px) {
+
+    .wrapper, .sfondo{
+        grid-template-columns: 1fr 2rem 1fr !important;
+    }
+
+    .flex-row.appari{
+        padding: 0;
+    }
+
+    .flex-col{
+        padding: 0;
+        margin-inline: 0;
+
+        &:nth-child(1){
+            margin-right: auto;
+        }
+
+        &:nth-child(2){
+            margin-left: auto;
+        }
     }
 }

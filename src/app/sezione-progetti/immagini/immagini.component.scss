@@ -2,7 +2,7 @@
     --padding: calc(var(--gap) / 2);
     position: relative;
     width: calc(100% / 3 * 2);
-    padding: var(--padding);
+    padding: var(--padding) var(--padding) calc(var(--padding) / 2) var(--padding);
     gap: calc(var(--gap) / 2);
     contain: paint;
     
@@ -135,16 +135,11 @@ dialog{
         justify-content: center;
         align-items: center;
         height: 4rem;
-        width: 23rem;
         position: relative;
-
-        .sfondo-trattini {
-            position: absolute;
-            inset: auto .75rem auto .75rem;
-            height: 200dvh;
-            z-index: -1;
-            pointer-events: none;
-        }
+        max-width: 100%;
+        overflow-y: clip;
+        overflow-x: scroll;
+        margin-bottom: .5rem;
 
         img {
             aspect-ratio: 1;
@@ -206,7 +201,7 @@ dialog{
 .transizione{
     position: absolute;
     inset: var(--padding);
-    gap: calc(var(--gap) / 2);
+    gap: calc(var(--gap) / 4);
     pointer-events: none;
 
     .wrapper-img img, .wrapper-img::before{

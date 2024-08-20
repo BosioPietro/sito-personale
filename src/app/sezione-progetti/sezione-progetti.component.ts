@@ -25,6 +25,8 @@ export class SezioneProgettiComponent {
   progettoSelezionato = this.progetti[0];
   progettoPrecedente?: Progetto; 
 
+  espandiMenu: boolean = false;
+
   ApriLink(link: string){
     window.open(link, "_blank");
   }
@@ -49,8 +51,6 @@ export class SezioneProgettiComponent {
       top: 0,
       behavior: "smooth"
     })
-    
-    // this.descrizione.nativeElement.scrollTop = 0;
 
     setTimeout(() => {
       this.progettoPrecedente = undefined;

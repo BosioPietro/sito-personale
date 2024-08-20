@@ -3,7 +3,7 @@
     overflow-y: clip;
     justify-content: center;
     padding-bottom: calc(var(--progresso-progetti) / 100 * var(--gap));
-    height: calc(var(--progresso-progetti) / 100 * 10rem);
+    flex-wrap: wrap;
 }
 
 .progetto {

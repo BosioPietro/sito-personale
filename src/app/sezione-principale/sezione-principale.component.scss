@@ -1,15 +1,29 @@
 :host{
-    position: relative;
-    height: calc(100dvh - var(--bordo) * 2);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
     grid-area: 1 / 1 / 1 / 2;
+    position: relative;
+    max-width: none !important;
+}
+
+.wrapper{
+    width: calc(100% - var(--bordo) * 2);
+    max-width: var(--w-contenuto-pagina);
+    flex-grow: 1;
+    margin-inline: auto;
+    justify-content: space-between;
 }
 
 section{
+    min-width: 0;
+    width: calc(100% / 3);
     position: relative;
     display: grid;
     place-items: center;
     z-index: 0;
-}
+    padding-block: var(--bordo) calc(var(--bordo) / 2);
 
+    p{
+        color: var(--colore-p);
+        text-wrap: pretty;
+        line-height: 1.5;
+    }
+}

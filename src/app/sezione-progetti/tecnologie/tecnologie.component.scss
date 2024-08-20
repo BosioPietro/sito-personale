@@ -4,15 +4,28 @@
     padding-inline: 1rem;
     padding-bottom: .5rem;
     border-bottom: 2px solid var(--colore-bordo);
+    height: 4.5rem;
 }
 
 .tecnologie{
+    position: absolute;
+    top: 0;    
     opacity: calc(var(--progresso-progetti) / 100);
     margin-bottom: auto;
-    gap: calc(var(--gap) / 2);
-    padding-block: 1rem .5rem;
-    overflow-x: auto;
+    margin-block: 1rem .25rem;
+    padding-bottom: .25rem;
+    overflow-x: scroll; 
+    z-index: 1;
+    flex-shrink: 1;
     overflow-y: clip;
+    min-width: 0;
+    width: calc(100% - var(--gap));
+    scrollbar-gutter: stable both-edges;
+
+    &::-webkit-scrollbar {
+        width: .4rem;
+        height: .4rem;
+    }
 
     .img{
         background-image: var(--bg);
@@ -22,15 +35,26 @@
     }
     
     .tecnologia{
+        flex-shrink: 0;
         display: grid;
         grid-template-columns: auto auto;
         gap: .5rem;
         padding: .5rem;
+        margin-right: calc(var(--gap) / 2);
         border: 2px solid var(--colore-bordo);
         border-radius: .5rem;
         transition: .5s cubic-bezier(0.33, 1, 0.68, 1);
         transition-property: border-color, background-color;
         cursor: pointer;
+
+        &:nth-last-child(-n+2) {
+            margin: 0;
+
+            &:nth-last-child(2){
+                margin-right: .1rem;
+            }
+        }
+          
         
         &:not(.controllo, .esci){
             opacity: 0;
@@ -60,12 +84,11 @@
         }
     }
 
-    &.transizione{
-        position: absolute;
-        top: 0;                                
+    &.transizione{                            
         opacity: 1;
         transform: translateY(0);
         filter: blur(0);
+        z-index: 0;
 
         .esci{
             animation: esci .5s cubic-bezier(0.33, 1, 0.68, 1) forwards;

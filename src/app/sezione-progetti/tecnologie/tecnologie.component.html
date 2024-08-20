@@ -1,5 +1,4 @@
 <div class="tecnologie flex-row scrollbar-stile">
-    <div class="tecnologia controllo">&nbsp;</div>
     @if(resettaFor){
         @for (t of progettoSelezionato.tecnologie; track $index) {
             <div class="tecnologia" (click)="ApriLink(t.link)" 
@@ -9,18 +8,19 @@
                 <div>{{ t.nome }}</div>
             </div>
         }
+        <div class="tecnologia controllo">&nbsp;</div>
     }
 </div>
 <div class="tecnologie flex-row scrollbar-stile transizione">
-    <div class="tecnologia controllo">&nbsp;</div>
     @if(progettoPrecedente){
         @for (t of progettoPrecedente.tecnologie; track $index) {
             <div class="tecnologia esci" 
-                [style]="{'animation-delay' : $index * .025 + 's'}" 
-                >
-                <div class="img" [style]="{'--bg' : 'url(' + t.immagine +')'}"></div>
-                <div>{{ t.nome }}</div>
-            </div>
-        }  
-    } 
+            [style]="{'animation-delay' : $index * .025 + 's'}" 
+            >
+            <div class="img" [style]="{'--bg' : 'url(' + t.immagine +')'}"></div>
+            <div>{{ t.nome }}</div>
+        </div>
+        } 
+        <div class="tecnologia controllo">&nbsp;</div>
+    }  
 </div>

@@ -21,3 +21,9 @@
         transform: translateX(.25ch);
     }
 }
+
+@media screen and (width < 950px){
+    .card:not(:last-child){
+        max-width: none ;
+    }
+}

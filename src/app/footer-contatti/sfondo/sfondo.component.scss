@@ -12,6 +12,7 @@
     overflow: hidden;
     border-radius: inherit;
     animation: entra 1ms var(--easing);
+    pointer-events: none;
 }
 
 .filtro{

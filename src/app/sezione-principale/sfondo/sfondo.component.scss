@@ -17,6 +17,7 @@
 }
 
 svg{
+    pointer-events: none;
     position: absolute;
     z-index: 0;
     overflow: visible;

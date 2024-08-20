@@ -1,6 +1,7 @@
 :host{
     display: grid;
     grid-template-rows: repeat(5, auto);
+    // justify-content: center;
     align-items: flex-start;
     color: #FFF;
 
@@ -12,11 +13,9 @@
     z-index: 0;
     border-radius: 1rem;
     position: relative;
-    min-width: var(--w-contenuto-pagina);
 
     & > .espandi{
         min-height: calc(100dvh - 4rem);
-        padding-inline: calc((100% - var(--w-contenuto-pagina)) / 2);
     }
 }
 
@@ -73,5 +72,15 @@ svg{
                 border-radius: 0;
             }
         }
+    }
+}
+
+@media (max-aspect-ratio: 1/1) {
+    svg, .overlay-iniziale{
+        display: none;
+    }   
+    
+    .espandi{
+        min-height: 100dvh !important;
     }
 }

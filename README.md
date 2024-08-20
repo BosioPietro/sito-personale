@@ -10,3 +10,4 @@
 - [x] Fixare carta asp e guardare se ci sono altri bug
 - [x] Fixa switch
 - [-] Mobile
+- [] In mobile il cerchio della dark mode non parte dal bottone

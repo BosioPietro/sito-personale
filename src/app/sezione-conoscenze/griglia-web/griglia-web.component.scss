@@ -1,9 +1,47 @@
 .contenuto-griglia{
     flex-grow: 1;
     gap: var(--gap);
+    flex-wrap: wrap;
+}
 
-    & > .flex-row{
-        flex-grow: 1;
-        gap: var(--gap);
+CardPhp{
+    max-width: calc(55% - var(--gap) / 2);
+}
+
+CardAsp{
+    max-width: calc(45% - var(--gap) / 2);
+}
+
+@media screen and (width < 1050px){
+    CardFrontend{
+        max-width: none !important;
+    }
+
+    CardBackend{
+        max-width: calc(60% - var(--gap)) !important;
+    }
+
+    CardPhp::ng-deep {
+        max-width: 40%;
+
+        .flex-row{            
+            flex-direction: column;
+            
+            .contenuto{
+                max-height: 13rem;
+                margin-top: 0 !important;
+            }
+        }
+    }
+
+    CardAsp{
+        max-width: none;
+    }
+}
+
+
+@media screen and (width < 950px){
+    .card{
+        max-width: none !important;
     }
 }

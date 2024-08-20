@@ -1,18 +1,21 @@
 :host{
+
     .contenuto-griglia{
-        gap: var(--gap);
         flex-grow: 1;
-        
-        & > .flex-row{
-            flex-grow: 1;
-            gap: var(--gap);
-            height: calc(50% - var(--gap) / 2);
-        }
+        flex-wrap: wrap;
+        gap: var(--gap);
     }
 }
 
+CardDesktop, CardSQL{
+    max-width: calc(40% - var(--gap) / 2);
+}
+
+CardMobile, CardDatabase{
+    max-width: calc(60% - var(--gap) / 2);
+}
+
 .card{
-    // min-width: calc(50% - var(--gap) / 2);
 
     &.lunga{
         min-width: calc(60% - var(--gap) / 2);
@@ -20,5 +23,34 @@
 
     p:not(:first-of-type){
         margin-top: calc(var(--gap) / 4);
+    }
+}
+
+@media screen and (width < 1150px){
+    CardSQL, CardDesktop{
+        order: -1;
+        max-width: calc(50% - var(--gap) / 2);
+    }
+
+    CardMobile, CardDatabase{
+        max-width: none;
+    }
+}
+
+@media screen and (width < 1000px){
+    CardSQL, CardDesktop{
+        order: 0;
+        max-width: none;
+    }
+}
+
+@media screen and (width < 850px){
+    CardMobile::ng-deep > .flex-row{
+        flex-direction: column;
+        gap: calc(var(--gap) / 2);
+
+        p{
+            width: unset !important;
+        }
     }
 }

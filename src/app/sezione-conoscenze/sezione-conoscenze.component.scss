@@ -5,11 +5,16 @@
     padding-block: 5rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
 
     &>*:not(hr) {
         z-index: 1;
     }
+}
+
+.wrapper{
+    width: clamp(0px, 100%, var(--w-contenuto-pagina));
+    margin-inline: auto;
+    gap: 2rem;
 }
 
 h1,
@@ -19,6 +24,7 @@ h3 {
 
 h1 {
     width: fit-content;
+    text-align: center;
 }
 
 h3 {
@@ -27,12 +33,14 @@ h3 {
     text-align: center;
     color: var(--grigio-9);
     font-size: 1.125rem;
+    padding-inline: calc(var(--gap) / 2);
 }
 
 .griglia {
     --bordo: 2px;
     --gap: 2rem;
     position: relative;
+    margin-inline: var(--gap);
     flex-grow: 1;
     gap: var(--gap);
     padding: 0 var(--gap) var(--gap) var(--gap);
@@ -74,11 +82,24 @@ h3 {
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
+        align-items: flex-start;
     }
 
     .contenuto-griglia{
         transition: .5s var(--easing);
         transition-property: opacity, filter;
+        position: relative;
+
+        &:not(.visibile){
+            min-height: 0;
+            inset: 0;
+            position: absolute;
+
+            animation: absolute .5s var(--easing);
+            @keyframes absolute {
+                0%, 100% { position: static; }
+            }
+        }
 
         &.visibile{
             opacity: 1;

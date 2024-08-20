@@ -6,7 +6,7 @@
         </button>
     </div>
     <div class="wrapper-selettore">
-        <div class="selettore flex-row" (click)="SelezionaImmagine($event)">
+        <div class="selettore flex-row scrollbar-stile" (click)="SelezionaImmagine($event)">
             
             @for (i of immaginiCorrenti; track $index) {
                 <img
@@ -16,18 +16,17 @@
                      class="immagine"
                 />
             }
-            <div class="sfondo-trattini"></div>
         </div>
     </div>
 }
 
-@if( immaginiPrecendenti && img.immaginePrecedente !== undefined) {
+@if(immaginiPrecendenti && img.immaginePrecedente !== undefined) {
     <div class="transizione flex-col">
         <div class="wrapper-img immagine" [style]="{'--img': 'url(' + immaginiPrecendenti[img.immaginePrecedente] + ')'}">
             <img [src]="immaginiPrecendenti[img.immaginePrecedente]">
         </div>
         <div class="wrapper-selettore">
-            <div class="selettore flex-row">
+            <div class="selettore flex-row scrollbar-stile">
                 
                 @for (i of immaginiPrecendenti; track $index) {
                     <img 
@@ -37,8 +36,6 @@
                         class="immagine"
                     />
                 }
-        
-                <div class="sfondo-trattini"></div>
             </div>
         </div>
     </div>
