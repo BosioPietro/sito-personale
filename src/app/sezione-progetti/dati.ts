@@ -264,6 +264,6 @@ export const progetti: Progetto[] = [
         }
       ],
       link: "https://github.com/BosioPietro/MongoDriver",
-      immagini: new Array(0).fill("").map((_, i) => `/assets/img/mongodriver/${i}.webp`)
+      immagini: new Array(1).fill("").map((_, i) => `/assets/img/mongodriver/${i}.webp`)
     },
 ]
