@@ -2,7 +2,7 @@
     position: relative;
     backdrop-filter: blur(1.2rem);
     background-color: #000E;
-    padding-block: 5rem;
+    padding-block: 5rem 2.5rem;
     display: flex;
     flex-direction: column;
 
@@ -15,6 +15,7 @@
     width: clamp(0px, 100%, var(--w-contenuto-pagina));
     margin-inline: auto;
     gap: 2rem;
+    flex-grow: 1;
 }
 
 h1,

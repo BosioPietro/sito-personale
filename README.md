@@ -12,3 +12,4 @@
 - [x] Fixa switch
 - [x] Mobile
 - [x] In mobile il cerchio della dark mode non parte dal bottone
+- [x] Fixare header (dinuovo dinuovo)

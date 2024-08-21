@@ -17,7 +17,7 @@ export class SezioneConoscenzeComponent{
   // per portare l'enum nel componente
   Sezioni = Sezioni;
 
-  sezioneCorrente: Sezioni = Sezioni.Certificazioni;
+  sezioneCorrente: Sezioni = Sezioni.Web;
 
   CambiaSezione(s: Sezioni){
     this.sezioneCorrente = s;

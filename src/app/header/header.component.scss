@@ -2,7 +2,6 @@
     display: flex;
     max-width: calc(var(--w-contenuto-pagina) + 2rem);
     width: calc(100% - 2rem);
-    height: 4rem;
 
     grid-area: 1 / 1;
     position: fixed;
@@ -180,6 +179,11 @@ button[menu]{
             padding-inline: 1rem;
             border: 0 solid #0000;
             background-color: transparent;
+
+            
+            ion-icon{
+             min-width: 1rem;   
+            }
         }
     }
 }
@@ -298,6 +302,13 @@ button[menu]{
 }
 
 @media screen and (width < 775px){
+
+    :host{
+        animation: mostra-header-mobile 1ms var(--easing);
+        animation-timeline: scroll(block nearest);
+        height: 4rem;
+    }
+
     button[menu], .menu-header{
         display: flex;
     }
@@ -308,5 +319,12 @@ button[menu]{
 
     :host:has(.menu-header.aperto){
         height: calc(100dvh - 2rem);
+    }
+
+    @keyframes mostra-header-mobile {
+        20%, 100%{
+            transform: translateY(0);
+            filter: blur(0);
+        }
     }
 }
