@@ -27,3 +27,9 @@ section{
         line-height: 1.5;
     }
 }
+
+@media screen and (width < 700px) {
+        .wrapper{
+            width: 100%;
+        }
+}

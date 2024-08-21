@@ -66,16 +66,26 @@
 }
 
 dialog{
-    place-items: center;
-    max-width: 100dvw;
-    max-height: 100dvh;
-    width: 100dvw;
-    height: 100dvh;
-    padding: 2rem;
+    overflow: visible;
     border: none;
     background-color: #0000;
-    transition: .33s var(--easing) allow-discrete;
-    transition-property: opacity, filter;
+
+    &, &::backdrop{
+        transition: .33s var(--easing) allow-discrete;
+        transition-property: opacity, filter, overlay, display;
+    }
+
+    .wrapper{
+        place-items: center;
+        overflow: clip;
+        min-width: 100dvw;
+        width: 100dvw;
+        height: 100dvh;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
 
     &::backdrop{
         background-color: #0005;
@@ -90,7 +100,7 @@ dialog{
 
     button{
         position: fixed;
-        right: 2rem;
+        right: 0;
         top: 2rem;
         padding: 1rem;
         border: none;
@@ -105,8 +115,20 @@ dialog{
         }
     }
 
+    .info{
+        color: #FFF;
+        align-items: center;
+        gap: .5rem;
+        transform: translateY(1rem);
+        font-size: 1.2rem;
+
+        ion-icon{
+            font-size: 1.75rem;
+        }
+    }
+
     &[open], &[open]::backdrop{
-        display: grid;
+        display: flex;
         opacity: 1;
         filter: blur(0);
     
@@ -256,5 +278,44 @@ dialog{
                 opacity: 1;
             }
         }
+    }
+}
+
+.cont-img {
+    position: relative;
+    cursor: zoom-in;
+
+    ::ng-deep .lente{
+        position: absolute;
+        width: 20rem;
+        aspect-ratio: 1;
+        translate: -50% -50%;
+        filter: blur(.5rem);
+        transform: scale(0);
+        transform-origin: center;
+        transition: .33s var(--easing);
+        transition-property: filter, transform;
+
+        border: 2px solid color-mix(in srgb, var(--nero-inverti) 50%, var(--bianco-inverti) 50%);
+        border-radius: 1rem;
+        background-repeat: no-repeat;
+        
+        cursor: none;
+        pointer-events: none;
+
+        &.visibile{
+            transform: scale(1);
+            filter: blur(0);
+        }
+    }
+
+    &:has(.visibile){
+        cursor: none;
+    }
+}
+
+@media (pointer: coarse){
+    .info{
+        display: none;
     }
 }

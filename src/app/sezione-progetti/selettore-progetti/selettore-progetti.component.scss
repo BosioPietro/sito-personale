@@ -10,6 +10,7 @@
     min-width: 0;
     gap: calc(var(--gap) / 3);
     margin-inline: calc(var(--gap) / 10 * var(--progresso-progetti) / 100 + .8rem);
+    margin-top: 1rem;
     filter: blur(calc((1 - var(--progresso-progetti) / 100) * 1rem));
     opacity: calc(var(--progresso-progetti) / 100);
 
@@ -64,5 +65,18 @@
         font-size: .875rem;
         color: var(--grigio-a);
         transition: color .5s var(--easing);
+    }
+}
+
+@media screen and (width < 700px) {
+    .progetto{
+        margin-inline: .5rem;
+
+        .icona{
+            height: 3rem;
+            min-height: 3rem;
+            width: 3rem;
+            padding: .25rem;
+        }
     }
 }

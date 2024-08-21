@@ -13,6 +13,10 @@
     margin-inline: calc(var(--gap) / 8);
     gap: calc(var(--gap) / 2);
 
+    article:last-child{
+        margin-bottom: 1rem;
+    }
+
     article > *{
         animation: alza-testo .5s var(--easing) forwards;
         animation-delay: calc(var(--delay) * 1s);
@@ -62,5 +66,15 @@
         & + p{
             margin-top: .5rem;
         }
+    }
+}
+
+@media screen and (width < 500px){
+    h3{
+        font-size: 1.5rem !important;
+    }
+
+    p{
+        font-size: .875rem !important;
     }
 }

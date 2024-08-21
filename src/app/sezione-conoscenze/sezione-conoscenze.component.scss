@@ -33,7 +33,7 @@ h3 {
     text-align: center;
     color: var(--grigio-9);
     font-size: 1.125rem;
-    padding-inline: calc(var(--gap) / 2);
+    padding-inline: 1rem;
 }
 
 .griglia {
@@ -61,7 +61,7 @@ h3 {
     }
 
     hr::before {
-        --width: 30rem;
+        --width: min(30rem, 100%);
         filter: brightness(1.5);
     }
 
@@ -139,5 +139,27 @@ h3 {
                     opacity: 1;}
             }
         }
+    }
+}
+
+@media screen and (width < 700px) {
+    :host{
+        padding-block: 3rem; 
+    }
+}
+
+@media screen and (width < 550px) {
+    .griglia{
+        margin-inline: calc(var(--gap) / 2);
+        padding: calc(var(--gap) / 2);
+        gap: calc(var(--gap) / 2);
+    }
+
+    .controlli{
+        .cella:not(:has(Switch)){
+            display: none !important;
+        }
+
+        grid-template-columns: 1fr !important;
     }
 }

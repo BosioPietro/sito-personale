@@ -42,11 +42,18 @@
 }
 
 <dialog #modale>
-    @if(immagineVisualizzata){
-        <img [src]="immagineVisualizzata"/>
-    }
-
-    <button class="brilla" (click)="ChiudiModale()">
-        <ion-icon name="close"></ion-icon>
-    </button>
+    <div class="wrapper flex-col">
+        <div class="cont-img">
+            <img [src]="immagineVisualizzata"/>
+            <div class="lente"></div>
+        </div>
+        <div class="info flex-row">
+            <ion-icon name="information-circle" />
+            Tieni premuto e usa la rotella per ingrandire
+        </div>
+    
+        <button class="brilla" (click)="ChiudiModale()">
+            <ion-icon name="close"></ion-icon>
+        </button>
+    </div>
 </dialog>

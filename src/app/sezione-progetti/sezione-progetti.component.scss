@@ -11,12 +11,13 @@
     h1,
     h3 {
         margin-inline: auto;
+        text-align: center;
+        padding-inline: 1rem;
     }
 
     h3 {
         max-width: 40ch;
         font-weight: 400;
-        text-align: center;
         color: var(--grigio-9);
         font-size: 1.125rem;
     }
@@ -31,7 +32,7 @@
     max-width: var(--w-contenuto-pagina);
     width: 100%;
     margin-inline: auto;
-    gap: 2rem;
+    gap: 1rem;
     flex-grow: 1;
 }
 
@@ -158,7 +159,7 @@ hr.linea-luce {
                 transform: translateX(calc(var(--gap) * -1));
                 border-radius: 1rem;
                 border-color: var(--colore-bordo);
-                background-color: #0000;
+                background-color: #000;
 
                 &:hover{
                     border-color: rgba(255, 255, 255, 0.4);
@@ -171,5 +172,30 @@ hr.linea-luce {
 
     immagini{
         width: 100%;
+    }
+}
+
+@media screen and (width < 700px) {
+    :host{
+        padding-bottom: 3rem; 
+    }
+}
+
+
+@media screen and (width < 500px){
+    .wrapper{
+        padding-inline: 1rem !important;
+        
+        .descrizione{
+            --w-bottone: 3rem !important;
+
+            #info-progetto ion-icon{
+                scale: 2;
+            }
+        }
+    }
+
+    .progetti{
+        height: 40rem;
     }
 }

@@ -81,3 +81,8 @@
     }
 }
 
+@media screen and (width < 500px){
+    .contenuto{
+        min-width: 5rem;
+    }
+}

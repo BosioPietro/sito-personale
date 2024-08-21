@@ -45,3 +45,9 @@ CardAsp{
         max-width: none !important;
     }
 }
+
+@media screen and (width < 500px){
+    .card{
+        padding: 1rem !important;
+    }
+}

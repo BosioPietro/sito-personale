@@ -7,7 +7,8 @@
 - [x] Vite nelle tecnologie del registro
 - [x] Fare il colore di selezione più chiaro
 - [x] Bottone per ingrandire l'immagine
+- [x] Lente per ingrandire l'immagine
 - [x] Fixare carta asp e guardare se ci sono altri bug
 - [x] Fixa switch
-- [-] Mobile
-- [] In mobile il cerchio della dark mode non parte dal bottone
+- [x] Mobile
+- [x] In mobile il cerchio della dark mode non parte dal bottone

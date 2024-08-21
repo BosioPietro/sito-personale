@@ -140,3 +140,15 @@
         }
     }
 }
+
+@media screen and (width < 500px){
+    .contenuto{
+        --dim-logo: 3rem !important;
+        aspect-ratio: initial !important;
+        min-height: 10rem;
+    
+        ion-icon[animazione][icona-2]{
+            top: calc(var(--dim-logo) / 8);
+        }
+    }
+}

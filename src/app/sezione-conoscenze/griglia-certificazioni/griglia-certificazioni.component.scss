@@ -27,3 +27,10 @@
         max-width: none ;
     }
 }
+
+
+@media screen and (width < 500px){
+    .card{
+        padding: 1rem !important;
+    }
+}

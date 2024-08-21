@@ -27,9 +27,6 @@ export class HeaderComponent{
   @ViewChild("cella")
   cella!: ElementRef<HTMLElement>;
 
-  @ViewChild("toggle")
-  bottoneToggle!: ElementRef<HTMLElement>;
-
   @Output()
   onNaviga = new EventEmitter<string>();
 
@@ -90,7 +87,7 @@ export class HeaderComponent{
     return valore;
   }
 
-  async CambiaModalitaVisualizzazione(){
+  async CambiaModalitaVisualizzazione(e: Event){
     this.modalitaVisualizzazione = this.modalitaVisualizzazione === "scuro" ? "chiaro" : "scuro";
     localStorage.setItem("modalita-visualizzazione", this.modalitaVisualizzazione);
     
@@ -100,8 +97,10 @@ export class HeaderComponent{
     }
 
     if(document.startViewTransition){
+      const bottone = e.currentTarget as HTMLElement;
+
       await document.startViewTransition(() => Imposta()).ready
-      const { top, left, width, height } =  this.bottoneToggle.nativeElement.getBoundingClientRect();
+      const { top, left, width, height } =  bottone.getBoundingClientRect();
 
       const destra = window.innerWidth - left;
       const sotto = window.innerHeight - top;
@@ -116,13 +115,13 @@ export class HeaderComponent{
           `circle(${raggio}px at ${left + width / 2}px ${top + height / 2}px)`
         ]
       }, {
-        duration: 500,
+        duration: 750,
         easing: "ease-in-out",
         pseudoElement: "::view-transition-new(root)"
       })
     }
     else Imposta();
-
+    
   }
 
   SelezionaCompetenza(competenza: Sezioni){

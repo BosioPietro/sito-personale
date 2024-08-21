@@ -102,3 +102,32 @@
         40%, 100%{ mask-position: -200% 0 }
     }
 }
+
+@media screen and (width < 500px){
+    .contenuto{
+        --dim-logo: 3rem !important;
+        justify-content: center;
+
+        [destra]{
+            grid-template-columns: var(--dim-logo) var(--dim-logo);
+            flex-grow: 0;
+        }
+    }
+}
+
+@media screen and (width < 450px){
+    .contenuto{
+        [destra]{
+            display: none;
+        }
+
+        [sinistra]{
+            width: unset !important;
+            flex-grow: 1;
+
+            .logo:last-child{
+                transform: none !important;
+            }
+        }
+    }
+}

@@ -46,9 +46,10 @@ html.chiaro{
 body{
     background-color: #000;
     scroll-behavior: smooth;
+    min-height: 200vh;
 
 
-    &:has(.menu-header.aperto){
+    &:has(.menu-header.aperto, dialog[open]){
         overflow: hidden;
     }
 }

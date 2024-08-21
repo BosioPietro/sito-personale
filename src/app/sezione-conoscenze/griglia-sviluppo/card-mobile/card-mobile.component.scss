@@ -205,3 +205,18 @@
         }
     }
 }
+
+@media screen and (width < 500px){
+    :host > div{
+        gap: calc(var(--gap) / 2) !important;
+    }
+    
+    .contenuto{
+        min-height: 15rem;
+
+        .telefono{
+            min-width: unset !important;
+            height: 100%;
+        }
+    }
+}

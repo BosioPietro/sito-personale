@@ -43,8 +43,8 @@
             </div>
         </div>
     </div>
-    <button class="brilla" (click)="CambiaModalitaVisualizzazione()" toggle>
-        <ion-icon [name]="modalitaVisualizzazione === 'scuro' ? 'sunny' : 'moon'" #toggle/>
+    <button class="brilla" (click)="CambiaModalitaVisualizzazione($event)" toggle>
+        <ion-icon [name]="modalitaVisualizzazione === 'scuro' ? 'sunny' : 'moon'"/>
     </button>
 
     <div 
@@ -127,8 +127,8 @@
             <h2>Contatti</h2>
         </button>
     </div>
-    <button class="brilla" (click)="CambiaModalitaVisualizzazione()" toggle>
-        <ion-icon [name]="modalitaVisualizzazione === 'scuro' ? 'sunny' : 'moon'" #toggle/>
+    <button class="brilla" (click)="CambiaModalitaVisualizzazione($event)" toggle>
+        <ion-icon [name]="modalitaVisualizzazione === 'scuro' ? 'sunny' : 'moon'"/>
     </button>
 </div>
 

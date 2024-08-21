@@ -60,3 +60,28 @@
     transition-property: left, width;
     background-color: #ededed;
 }
+
+
+@media screen and (width < 500px){
+    :host{
+        width: 100%;
+        margin-top: 0 !important;
+    }
+
+    button{
+        padding: .75rem !important;
+        font-size: .875rem !important;
+
+        &:first-child{
+            padding-right: .375rem !important;
+        }
+
+        &:nth-child(2){
+            padding-inline: .375rem !important;
+        }
+
+        &:last-child{
+            padding-left: .375rem !important;
+        }
+    }
+}
