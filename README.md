@@ -21,23 +21,6 @@ Il sito è stato sviluppato utilizzando le seguenti tecnologie:
 - **TypeScript**: Per l'interattività e le funzionalità dinamiche.
 - **Angular**: Per facilitare lo sviluppo e la gestione del sito.
 
-## Installazione
-
-Per eseguire il progetto in locale, segui questi passaggi:
-
-1. Clona il repository:
-    ```bash
-    git clone https://github.com/BosioPietro/Sito-Personale.git
-    ```
-
-2. Naviga nella directory del progetto:
-    ```bash
-    cd portfolio-personale
-    ```
-
-3. Apri il file `index.html` in un server http.
-
-
 ## Licenza
 
-Questo progetto è distribuito sotto la licenza MIT. Vedi il file [LICENSE](https://github.com/BosioPietro/Sito-Personale/blob/master/LICENSE) per ulteriori dettagli.
+Questo progetto è distribuito sotto la licenza MIT. Vedi il file [LICENSE](https://github.com/BosioPietro/sito-personale/blob/master/LICENSE) per ulteriori dettagli.
