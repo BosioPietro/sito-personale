@@ -85,3 +85,12 @@ svg{
         min-height: 100lvh !important;
     }
 }
+
+// Compatibilità per i browser che non supportano ancora
+// animation-timeline
+@supports not (animation-timeline: scroll(y nearest)){
+    
+    svg{
+        display: none !important;
+    }
+}

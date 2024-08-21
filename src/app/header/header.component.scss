@@ -328,3 +328,13 @@ button[menu]{
         }
     }
 }
+
+
+// Compatibilità per i browser che non supportano ancora
+// animation-timeline
+@supports not (animation-timeline: scroll(y nearest)){
+    :host{
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
