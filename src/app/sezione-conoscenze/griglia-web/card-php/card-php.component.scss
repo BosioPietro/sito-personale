@@ -37,7 +37,7 @@
         ion-icon[animazione]{
             --step-animazione: calc(var(--tempo-animazione) / 6);
             position: absolute;
-            font-size: 1.75rem;
+            font-size: var(--testo-l);
             color: var(--grigio-9);
             
             &[icona-1], &[icona-6]{

@@ -111,7 +111,7 @@ dialog{
         }
 
         ion-icon{
-            font-size: 3rem;
+            font-size: var(--testo-xxl);
         }
     }
 
@@ -120,10 +120,10 @@ dialog{
         align-items: center;
         gap: .5rem;
         transform: translateY(1rem);
-        font-size: 1.2rem;
+        font-size: var(--testo-m);
 
         ion-icon{
-            font-size: 1.75rem;
+            font-size: var(--testo-l);
         }
     }
 
@@ -154,7 +154,6 @@ dialog{
     place-items: center;
 
     .selettore {
-        justify-content: center;
         align-items: center;
         height: 4rem;
         position: relative;

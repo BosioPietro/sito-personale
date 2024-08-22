@@ -62,7 +62,7 @@
         text-overflow: ellipsis;
         overflow: clip;
         text-align: center;
-        font-size: .875rem;
+        font-size: var(--testo-xs);
         color: var(--grigio-a);
         transition: color .5s var(--easing);
     }
@@ -71,6 +71,10 @@
 @media screen and (width < 700px) {
     .progetto{
         margin-inline: .5rem;
+
+        p{
+            font-size: var(--testo-xs);
+        }
 
         .icona{
             height: 3rem;

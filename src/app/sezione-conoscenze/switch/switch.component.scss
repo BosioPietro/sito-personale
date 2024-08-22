@@ -22,14 +22,13 @@
     z-index: 1;
     font-weight: 500;
     border: 0;
-    font-size: 1rem;
     border-radius: 100dvh;
     background-color: #0000;
     color: #ededed;
     transition: color .5s cubic-bezier(0.075, 0.82, 0.165, 1);
 
     ion-icon{
-        font-size: 1.2rem;
+        font-size: var(--testo-m);
     }
 
     &.selezionato{
@@ -70,7 +69,7 @@
 
     button{
         padding: .75rem !important;
-        font-size: .875rem !important;
+        font-size: .875rem !important; // media
 
         &:first-child{
             padding-right: .375rem !important;
@@ -81,7 +80,7 @@
         }
 
         &:last-child{
-            padding-left: .375rem !important;
+            padding-left: .375rem !important; // media
         }
     }
 }

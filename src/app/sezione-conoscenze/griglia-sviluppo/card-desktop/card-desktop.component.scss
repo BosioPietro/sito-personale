@@ -39,7 +39,7 @@
         }
 
         ion-icon{
-            font-size: 1.25rem;
+            font-size: var(--testo-m);
 
             &[name="copy-outline"]{
                 transform: rotateY(180deg);

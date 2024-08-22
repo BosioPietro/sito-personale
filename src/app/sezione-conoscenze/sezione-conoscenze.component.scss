@@ -19,7 +19,7 @@
 }
 
 h1,
-h3 {
+.sottotitolo {
     margin-inline: auto;
 }
 
@@ -28,12 +28,9 @@ h1 {
     text-align: center;
 }
 
-h3 {
+.sottotitolo{
     max-width: 50ch;
-    font-weight: 400;
     text-align: center;
-    color: var(--grigio-9);
-    font-size: 1.125rem;
     padding-inline: 1rem;
 }
 
@@ -83,7 +80,7 @@ h3 {
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
-        align-items: flex-start;
+        align-items: stretch;
     }
 
     .contenuto-griglia{
@@ -140,6 +137,12 @@ h3 {
                     opacity: 1;}
             }
         }
+    }
+}
+
+@media screen and (width < 1150px){
+    .wrapper-griglia{
+        align-items: flex-start !important;
     }
 }
 

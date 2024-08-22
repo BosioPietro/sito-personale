@@ -33,13 +33,12 @@
         }
     
         h5{
-            font-size: 1rem;
             margin-bottom: .5rem;
         }
     
         .link{
             margin-top: .5rem;
-            font-size: .875rem;
+            font-size: var(--testo-xs);
             gap: .5rem;
             align-items: center;
         
@@ -51,7 +50,7 @@
     
         p{
             color: var(--grigio-a);
-            font-size: .875rem;
+            font-size: var(--testo-xs);
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2;

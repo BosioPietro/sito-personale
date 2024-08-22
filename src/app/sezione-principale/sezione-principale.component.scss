@@ -10,6 +10,7 @@
     flex-grow: 1;
     margin-inline: auto;
     justify-content: space-between;
+    gap: 2rem;
 
     &::before{
         display: none;
@@ -28,9 +29,7 @@ section{
     padding-inline: 2rem;
     color: var(--grigio-a);
 
-    h1{
-        font-weight: 900;
-        font-size: 5.5rem;
+    h1.xl{
         width: min-content;
         line-height: 90%;
     }
@@ -41,14 +40,13 @@ section{
         margin-bottom: .5rem;
     }
 
-    h2{
-        font-size: 3rem;
-    }
-
     p{
         text-wrap: pretty;
         line-height: 1.5;
-        font-size: 1.125rem;
+
+        &.display{
+            font-size: var(--testo-s);
+        }
 
         &:not(:last-child){
             margin-bottom: .5rem;
@@ -81,7 +79,7 @@ section{
         padding: 1rem;
 
         ion-icon{
-            font-size: 1.5rem;
+            font-size: var(--testo-l);
             color: #FFF;
         }
     }
@@ -115,12 +113,8 @@ section{
     .wrapper{
         width: 100%;
 
-        h1{
-            font-size: 6rem;
-        }
-
         section{
-            width: clamp(30rem ,calc(100% / 3),40rem);
+            width: clamp(30rem, calc(100% / 3), 40rem);
 
             p{
                 text-wrap: balance;

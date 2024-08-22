@@ -60,7 +60,7 @@
 
 <div class="menu-header flex-col" [class.aperto]="headerAperto">
     <div class="opzione-menu" [class.corrente]="sezione == 'principale'">
-        <button>
+        <button (click)='Scrolla("principale")' >
             <ion-icon name="Home"/>
             <h2>Home</h2>
         </button>
@@ -122,7 +122,7 @@
         </div>
     </div>
     <div class="opzione-menu" [class.corrente]="sezione == 'contatti'">
-        <button>
+        <button (click)='Scrolla("contatti")' >
             <ion-icon name="chatbubble"/>
             <h2>Contatti</h2>
         </button>

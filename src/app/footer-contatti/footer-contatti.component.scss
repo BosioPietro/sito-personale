@@ -12,7 +12,10 @@
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: 1fr 1fr auto;
         row-gap: 2rem;
-        font-size: 2rem;
+
+        ion-icon{
+            font-size: var(--testo-xl);
+        }
     }
 
     .wrapper > *{
@@ -41,9 +44,7 @@
     }
 }
 
-h4{
-    font-size: 2rem;
-    font-weight: 500;
+h2{
     padding-bottom: 1rem;
 }
 
@@ -63,14 +64,14 @@ ul{
         color: var(--grigio-a);
 
         span{
-            font-size: 1.25rem;
+            font-size: var(--testo-m);
             font-weight: 500;
         }
 
         ion-icon[name="arrow-up"]{
-            font-size: 1rem;
             rotate: 45deg;
-            transform: translate(-.5ch, .5ch);
+            transform: translate(-.66ch, .66ch);
+            scale: .66;
         }
     }
 }
@@ -131,7 +132,6 @@ a{
     gap: 1rem;
     align-items: center;
     grid-area: 3 / 1 / 3 / -1;
-    font-size: 1rem;
     padding-inline: calc(100% / 3 / 4);
     translate: -.5rem;
 
@@ -146,7 +146,7 @@ a{
 
     .logo, ion-icon{
         height: 1.5rem;
-        font-size: 1.7rem;
+        font-size: var(--testo-l);
         margin-left: .5ch;
     }
 }
@@ -177,7 +177,7 @@ a{
 
 @media screen and (width < 450px){
     h4{
-        font-size: 1.5rem;
+        font-size: 1.5rem; // media
     }
 
     a{
@@ -189,6 +189,6 @@ a{
     }
     
     span{
-        font-size: 1rem !important;
+        font-size: 1rem !important; // media
     }
 }

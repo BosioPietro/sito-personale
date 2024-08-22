@@ -41,7 +41,7 @@ img{
 
 button[toggle], button[menu]{
     border: none;
-    font-size: 1.5rem;
+    font-size: var(--testo-l);
     color: var(--grigio-a);
     background-color: #0000;
     padding: 1rem;
@@ -80,17 +80,16 @@ button[menu]{
         a{
             height: 100%;
             align-items: center;
-            font-size: 1rem;
             padding-block: .25rem;
             padding-inline: 1rem;
 
             ion-icon{
-                font-size: 1.25rem;
+                font-size: var(--testo-m);
                 margin-right: .5rem;
 
                 &[name="chevron-down"]{
                     margin-left: .25rem;
-                    font-size: .875rem;
+                    scale: .66;
                     translate: 0 .1rem;
                     transition: rotate .5s var(--easing);
                 }
@@ -259,14 +258,14 @@ button[menu]{
             padding-inline: 0;
     
             ion-icon{
-                font-size: 1.75rem;
+                font-size: var(--testo-l);
                 margin-right: 1rem;
 
                 &[name="chevron-down"]{
                     margin: 0;
-                    font-size: 1rem;
                     transform: translateY(.1rem);
                     margin-left: .5rem;
+                    scale: .66;
                 }
             }
         }
