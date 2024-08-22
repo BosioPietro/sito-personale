@@ -77,11 +77,13 @@ button[menu]{
             rotate: 180deg;
         }
         
-        a{
+        button{
             height: 100%;
             align-items: center;
             padding-block: .25rem;
             padding-inline: 1rem;
+            border: none;
+            background-color: #0000;
 
             ion-icon{
                 font-size: var(--testo-m);

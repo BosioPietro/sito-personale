@@ -1,12 +1,13 @@
-<button class="opzione flex-row" (click)="Seleziona($event, sezioni.Sviluppo)" #sviluppo>
+<button class="opzione flex-row" (click)="Seleziona($event, sezioni.Sviluppo)" #sviluppo aria-label="Sviluppo">
     <ion-icon name="hardware-chip-outline"></ion-icon>
     <span>Sviluppo</span>
 </button>
-<button class="opzione flex-row selezionato" (click)="Seleziona($event, sezioni.Web)" #web>
+<button class="opzione flex-row selezionato" (click)="Seleziona($event, sezioni.Web)" #web aria-label="Web">
     <ion-icon name="globe-outline"></ion-icon>
     <span>Web</span>
 </button>
-<button class="opzione flex-row" (click)="Seleziona($event, sezioni.Certificazioni)" #certificazioni>
+<button class="opzione flex-row" (click)="Seleziona($event, sezioni.Certificazioni)" #certificazioni
+    aria-label="Certificazioni">
     <ion-icon name="ribbon-outline"></ion-icon>
     <span>Certificazioni</span>
 </button>

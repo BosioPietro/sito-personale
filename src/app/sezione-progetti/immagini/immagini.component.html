@@ -1,7 +1,7 @@
 @if(resettaFor){
     <div class="wrapper-img immagine" [style]="{'--img': 'url(' + immaginiCorrenti[img.immagineSelezionata] + ')'}">
-        <img [src]="immaginiCorrenti[img.immagineSelezionata]">
-        <button class="icona" (click)="ApriModaleImmagine(img.immagineSelezionata)">
+        <img [src]="immaginiCorrenti[img.immagineSelezionata]" [attr.alt]="img.immagineSelezionata">
+        <button class="icona" (click)="ApriModaleImmagine(img.immagineSelezionata)" aria-label="Visualizza immagine">
             <ion-icon name="scan"></ion-icon>
         </button>
     </div>
@@ -14,6 +14,7 @@
                      [class.selezionata]="$index === img.immagineSelezionata"
                      [style]="{'--delay': ($index + 1) / 20}"     
                      class="immagine"
+                     [attr.alt]="i"
                 />
             }
         </div>
@@ -23,7 +24,7 @@
 @if(immaginiPrecendenti && img.immaginePrecedente !== undefined) {
     <div class="transizione flex-col">
         <div class="wrapper-img immagine" [style]="{'--img': 'url(' + immaginiPrecendenti[img.immaginePrecedente] + ')'}">
-            <img [src]="immaginiPrecendenti[img.immaginePrecedente]">
+            <img [src]="immaginiPrecendenti[img.immaginePrecedente]" [attr.alt]="img.immaginePrecedente">
         </div>
         <div class="wrapper-selettore">
             <div class="selettore flex-row scrollbar-stile">
@@ -34,6 +35,7 @@
                         [class.selezionata]="$index === img.immaginePrecedente"
                         [style]="{'--delay': ($index + 1) / 50}"
                         class="immagine"
+                        [attr.alt]="i"
                     />
                 }
             </div>
@@ -52,7 +54,7 @@
             Tieni premuto e usa la rotella per ingrandire
         </div>
     
-        <button class="brilla" (click)="ChiudiModale()">
+        <button class="brilla" (click)="ChiudiModale()" aria-label="Chiudi">
             <ion-icon name="close"></ion-icon>
         </button>
     </div>

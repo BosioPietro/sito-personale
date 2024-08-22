@@ -20,7 +20,7 @@
             <div class="progetto flex-row" id="progetto">
                 <div class="descrizione flex-col" #descrizione [class.espanso]="espandiMenu">
                     <div class="wrapper-descrizione flex-col">
-                        <button id="info-progetto" class="info" (click)="espandiMenu = !espandiMenu">
+                        <button id="info-progetto" class="info" (click)="espandiMenu = !espandiMenu" aria-label="Informazioni progetto">
                             <ion-icon [name]="espandiMenu ? 'close-circle' : 'information-circle'"></ion-icon>
                         </button>
                         <Descrizione 
@@ -29,7 +29,7 @@
                             [resetta-for]="resettaFor"
                             class="scrollbar-stile"
                         />
-                        <button class="link" (click)="ApriLink(progettoSelezionato.link)">
+                        <button class="link" (click)="ApriLink(progettoSelezionato.link)" aria-label="Link Github progetto">
                             <ion-icon name="logo-github"></ion-icon>
                             <span>Github</span>
                         </button>
