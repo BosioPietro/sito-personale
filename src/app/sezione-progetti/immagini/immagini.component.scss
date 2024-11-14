@@ -254,12 +254,10 @@ dialog{
 :host{
     & > .wrapper-img img, & > .wrapper-img::before{
         animation: alza-img .5s var(--easing) forwards;
-        // transform: translateY(5rem);
         opacity: 0;
         
         @keyframes alza-img {
             to{
-                // transform: translateY(0);
                 opacity: 1;
             }
         }

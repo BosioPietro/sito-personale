@@ -17,6 +17,7 @@
     --tempo-animazione: .3s;
     
     transform: translateY(calc(-100% - 1rem));
+    will-change: filter, transform;
     background-color: #0003;
     backdrop-filter: blur(1rem);
     filter: blur(2rem);

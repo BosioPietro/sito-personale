@@ -22,6 +22,7 @@
         animation-delay: calc(var(--delay) * 1s);
         transform: translateY(3rem);
         opacity: 0;
+        will-change: opacity, transform;
 
         @keyframes alza-testo {
             to{
@@ -36,6 +37,7 @@
         animation: abbassa-testo .25s var(--easing) forwards;
         opacity: 1;
         transform: translateY(0);
+        will-change: opacity, transform;
 
         @keyframes abbassa-testo {
             to{

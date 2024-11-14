@@ -13,8 +13,9 @@
                      [src]="i" 
                      [class.selezionata]="$index === img.immagineSelezionata"
                      [style]="{'--delay': ($index + 1) / 20}"     
-                     class="immagine"
                      [attr.alt]="i"
+                     class="immagine"
+                     loading="lazy"
                 />
             }
         </div>
@@ -34,8 +35,9 @@
                         [src]="i" 
                         [class.selezionata]="$index === img.immaginePrecedente"
                         [style]="{'--delay': ($index + 1) / 50}"
-                        class="immagine"
                         [attr.alt]="i"
+                        class="immagine"
+                        loading="lazy"
                     />
                 }
             </div>

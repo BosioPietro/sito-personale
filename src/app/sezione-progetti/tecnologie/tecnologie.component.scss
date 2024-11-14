@@ -46,6 +46,7 @@
         transition: .5s cubic-bezier(0.33, 1, 0.68, 1);
         transition-property: border-color, background-color;
         cursor: pointer;
+        will-change: opacity, transform, filter;
 
         &:nth-last-child(-n+2) {
             margin: 0;

@@ -26,6 +26,7 @@
         &.animato, .animato{
             opacity: 0;
             transform: translateY(1rem);
+            will-change: opacity, filter, transform;
             filter: blur(.25rem);
         }
 

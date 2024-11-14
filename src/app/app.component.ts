@@ -1,24 +1,26 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { SezionePrincipaleComponent } from "./sezione-principale/sezione-principale.component";
 import { SezioneConoscenzeComponent } from './sezione-conoscenze/sezione-conoscenze.component';
 import { SezioneProgettiComponent } from "./sezione-progetti/sezione-progetti.component";
 import { FooterContattiComponent } from "./footer-contatti/footer-contatti.component";
+import { debounceTime, fromEvent, Subscription } from 'rxjs';
 
 @Component({
   selector: 'body',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, SezionePrincipaleComponent, SezioneConoscenzeComponent, SezioneProgettiComponent, FooterContattiComponent],
+  imports: [HeaderComponent, SezionePrincipaleComponent, SezioneConoscenzeComponent, SezioneProgettiComponent, FooterContattiComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements AfterViewInit{
+export class AppComponent implements AfterViewInit, OnInit, OnDestroy{
   
   title = 'Progetto';
 
   sezioni?: HTMLElement[];
   sezioneCorrente?: string;
+
+  eventoScroll!: Subscription;
 
   @ViewChild("interno")
   rettangoloInterno!: ElementRef<HTMLElement>;
@@ -34,10 +36,18 @@ export class AppComponent implements AfterViewInit{
 
       setTimeout(() => r.style.width = "");
     })
+  }
 
-    // gestione sezione corrente
-    document.addEventListener("scroll", () => this.SezionePagina());
-    setTimeout(() => this.SezionePagina());
+  
+  // gestione sezione corrente
+  ngOnInit(): void {
+    this.eventoScroll = fromEvent(document, "scroll")
+    .pipe(debounceTime(100))
+    .subscribe(() => this.SezionePagina());
+  }
+
+  ngOnDestroy(): void {
+    this.eventoScroll?.unsubscribe();
   }
 
   SezionePagina(){

@@ -1,7 +1,6 @@
 :host{
     display: grid;
     grid-template-rows: repeat(5, auto);
-    // justify-content: center;
     align-items: flex-start;
     color: #FFF;
 
@@ -66,6 +65,7 @@ svg{
         background-color: var(--colore-bordo);
         animation: scala 1ms var(--easing);
         animation-timeline: scroll(block nearest);
+        will-change: inset, border-radius;
 
         @keyframes scala {
             38%, 100%{
