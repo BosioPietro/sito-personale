@@ -1,24 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 381 381">
-    <defs>
-        <radialGradient id="grad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-            <stop offset="65%" style="stop-color: var(--nero-h1)" />
-            <stop offset="100%" style="stop-color: #FFFA" />
-        </radialGradient>
-    </defs>
-    <g>
-        @for (larg of [0, 7, 4, 2, 1]; track $index) {
-            <circle 
-                cx="190.5" 
-                cy="186" 
-                [attr.r]="80 + 60 * $index" 
-                [style]="{
-                    'fill': !$index ? 'url(#grad)' : null,
-                    'stroke-width': larg,
-                    'animation-delay': $index + 1 + 's',
-                    '--opacita': $index ? .85 - $index * .1 : .75
-                }" 
-            />
-        }
-    </g>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 381 381"
+  class="absolute z-0 overflow-visible pointer-events-none"
+>
+  <defs>
+    <radialGradient id="grad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="65%" style="stop-color: var(--nero-h1)" />
+      <stop offset="100%" style="stop-color: #fffa" />
+    </radialGradient>
+  </defs>
+  <g>
+    @for (larg of [0, 7, 4, 2, 1]; track $index) {
+    <circle
+      cx="190.5"
+      cy="186"
+      class="fill-transparent stroke-white"
+      [attr.r]="80 + 60 * $index"
+      [style]="{
+        fill: !$index ? 'url(#grad)' : null,
+        'stroke-width': larg,
+        'animation-delay': $index + 1 + 's',
+        '--opacita': $index ? 0.85 - $index * 0.1 : 0.75
+      }"
+    />
+    }
+  </g>
 </svg>
-<div class="filtro"></div>
+<div class="filtro absolute inset-0 z-1 origin-center backdrop-blur-xl"></div>

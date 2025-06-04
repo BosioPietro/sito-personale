@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './sfondo.component.html',
-  styleUrl: './sfondo.component.scss'
+  styleUrl: './sfondo.component.scss',
 })
-export class SfondoComponent {
-
-}
+export class SfondoComponent {}

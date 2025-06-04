@@ -1,36 +1,70 @@
+<div class="wrapper flex gap-8 grow-1 ml-auto mr-auto justify-between min-w-0">
+  <section
+    class="sfondo-trattini w-1/3 px-8 flex flex-col relative justify-center z-3"
+  >
+    <div>
+      <h3 style="--delay: 0.1s" class="ml-1 mb-2 font-normal" anima>
+        Ciao, sono
+      </h3>
+      <h1
+        class="testo-gradient xl leading-[0.9] w-min"
+        style="--delay: 0.2s"
+        anima
+      >
+        Pietro Bosio
+      </h1>
+    </div>
+  </section>
+  <section
+    class="sfondo-trattini w-1/3 px-8 flex-col relative justify-center z-3 min-w-0"
+  >
+    <h1 class="testo-gradient" style="--delay: 0.1s" anima>About Me</h1>
+    <p
+      class="display mb-2 text-pretty leading-[1.5]"
+      style="--delay: 0.2s"
+      anima
+    >
+      Sono un sviluppatore neodiplomato presso l'istituto
+      <a
+        class="testo-gradient relative no-underline font-extrabold"
+        href="http://www.vallauri.edu/"
+        target="_blank"
+        >Vallauri</a
+      >, con una grande passione per la programmazione e la tecnologia.
+    </p>
+    <p
+      style="--delay: 0.3s"
+      class="display mb-2 text-pretty leading-[1.5]"
+      anima
+    >
+      Sono competente nello sviluppo di applicazioni
+      <span class="testo-gradient font-extrabold">full-stack</span>, con
+      esperienza in linguaggi di programmazione
+      <span class="testo-gradient font-extrabold">back-end</span>
+      come <span class="testo-gradient font-extrabold">C</span> e
+      <span class="testo-gradient font-extrabold">C#</span>, così come in
+      tecnologie web
+      <span class="testo-gradient font-extrabold">front-end</span>
+      come <span class="testo-gradient font-extrabold">HTML</span>,
+      <span class="testo-gradient font-extrabold">CSS</span> e
+      <span class="testo-gradient font-extrabold">JavaScript</span> (e
+      <span class="testo-gradient font-extrabold">TypeScript</span>).
+    </p>
 
-<div class="wrapper flex-row sfondo-trattini">
-    <section class="sfondo-trattini flex-col">
-        <div>
-            <h3 style="--delay: .1s" anima>Ciao, sono</h3>
-            <h1 class="testo-gradient xl" style="--delay: .2s" anima>Pietro Bosio</h1>    
-        </div>  
-    </section>
-    <section class="sfondo-trattini flex-col">
-        <h1 class="testo-gradient" style="--delay: .1s" anima>About Me</h1>
-        <p class="display" style="--delay: .2s" anima>
-            Sono un sviluppatore neodiplomato presso l'istituto 
-            <a class="testo-gradient" href="http://www.vallauri.edu/" target="_blank">Vallauri</a>, 
-            con una grande passione per la programmazione e la tecnologia.
-        </p>
-        <p style="--delay: .3s" class="display" anima>
-            Sono competente nello sviluppo di applicazioni 
-            <span class="testo-gradient">full-stack</span>, 
-            con esperienza in linguaggi di programmazione 
-            <span class="testo-gradient">back-end</span> 
-            come <span class="testo-gradient">C</span> e 
-            <span class="testo-gradient">C#</span>, 
-            così come in tecnologie web 
-            <span class="testo-gradient">front-end</span> 
-            come <span class="testo-gradient">HTML</span>, 
-            <span class="testo-gradient">CSS</span> e 
-            <span class="testo-gradient">JavaScript</span> (e 
-            <span class="testo-gradient">TypeScript</span>).
-        <p>
-        <button (click)="Scrolla()" style="--delay: .4s" anima aria-label="Maggiori informazioni">
-            <ion-icon name="arrow-down"></ion-icon>
-            <span class="testo-gradient">Più Informazioni</span>
-        </button>  
-    </section>
+    <p>
+      <button
+        (click)="Scrolla()"
+        style="--delay: 0.4s"
+        class="flex border-2 rounded-lg border-neutral-800 gap-2 p-4 font-bold mt-4 backdrop-blur-xs"
+        anima
+        aria-label="Maggiori informazioni"
+      >
+        <ion-icon class="text-white" name="arrow-down"></ion-icon>
+        <span class="testo-gradient font-extrabold backdrop-blur-xs"
+          >Più Informazioni</span
+        >
+      </button>
+    </p>
+  </section>
 </div>
-<SfondoPrincipale/>
+<SfondoPrincipale class="-z-1 absolute inset-0 grid place-items-center" />

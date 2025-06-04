@@ -1,15 +1,29 @@
-<button class="opzione flex-row" (click)="Seleziona($event, sezioni.Sviluppo)" #sviluppo aria-label="Sviluppo">
-    <ion-icon name="hardware-chip-outline"></ion-icon>
-    <span>Sviluppo</span>
+<button
+  class="opzione flex relative py-3 px-5 items-center gap-2 cursor-pointer grow z-1 font-medium border-0 rounded-full"
+  (click)="Seleziona($event, sezioni.Sviluppo)"
+  #sviluppo
+  aria-label="Sviluppo"
+>
+  <ion-icon name="hardware-chip-outline"></ion-icon>
+  <span>Sviluppo</span>
 </button>
-<button class="opzione flex-row selezionato" (click)="Seleziona($event, sezioni.Web)" #web aria-label="Web">
-    <ion-icon name="globe-outline"></ion-icon>
-    <span>Web</span>
+<button
+  class="opzione selezionato flex relative py-3 px-5 items-center gap-2 cursor-pointer grow z-1 font-medium border-0 rounded-full"
+  (click)="Seleziona($event, sezioni.Web)"
+  #web
+  aria-label="Web"
+>
+  <ion-icon name="globe-outline"></ion-icon>
+  <span>Web</span>
 </button>
-<button class="opzione flex-row" (click)="Seleziona($event, sezioni.Certificazioni)" #certificazioni
-    aria-label="Certificazioni">
-    <ion-icon name="ribbon-outline"></ion-icon>
-    <span>Certificazioni</span>
+<button
+  class="opzione flex relative py-3 px-5 items-center gap-2 cursor-pointer grow z-1 font-medium border-0 rounded-full"
+  (click)="Seleziona($event, sezioni.Certificazioni)"
+  #certificazioni
+  aria-label="Certificazioni"
+>
+  <ion-icon name="ribbon-outline"></ion-icon>
+  <span>Certificazioni</span>
 </button>
 
-<div class="cella" #cella></div>
+<div class="cella absolute top-1 bottom-1 z-0 rounded-full" #cella></div>
