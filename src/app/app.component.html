@@ -1,13 +1,13 @@
 <Header
   [sezione-corrente]="sezioneCorrente"
   (onNaviga)="sezioneCorrente = $event"
-  class="flex-col"
+  class="top-[1rem] z-11 fixed flex flex-col justify-self-center mx-auto border-2 border-neutral-800 rounded-lg font-semibold contain-paint"
 ></Header>
 
-<SezionePrincipale id="principale" class="espandi relative flex flex-col" />
+<SezionePrincipale id="principale" class="relative flex flex-col espandi" />
 <SezioneConoscenze
   id="conoscenze"
-  class="espandi relative flex flex-col backdrop-blur-md pt-20 pb-10"
+  class="relative flex flex-col backdrop-blur-md pt-20 pb-10 espandi"
 />
 <SezioneProgetti id="progetti" class="flex-col espandi" />
 <FooterContatti id="contatti" />

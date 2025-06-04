@@ -1,63 +1,50 @@
-.contenuto{
-    --dim-logo: 6rem;
-    --tempo-animazione: 30s;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
+.contenuto {
+  --dim-logo: 6rem;
+  --tempo-animazione: 30s;
+  .logo:hover {
+    border-color: #fffa;
+  }
 
-    .logo{
-        border: 2px solid var(--colore-bordo);
-        padding: .5rem;
-        z-index: 2;
+  .linea {
+    width: calc(100% - var(--dim-logo));
+  }
 
-        &:hover{
-            border-color: #FFFA;
-        }
+  ion-icon {
+    font-size: var(--testo-l);
+    color: var(--grigio-9);
+  }
+
+  [avanti] {
+    top: calc(50% - var(--dim-logo) / 4);
+    left: calc(var(--dim-logo) / 2);
+
+    &:is(ion-icon) {
+      animation: muovi var(--tempo-animazione) linear infinite;
     }
+  }
 
-    .linea{
-        width: calc(100% - var(--dim-logo));
-        border-top: 2px dashed var(--colore-bordo);
+  [indietro] {
+    bottom: calc(50% - var(--dim-logo) / 4);
+    right: calc(var(--dim-logo) / 2);
+
+    &:is(ion-icon) {
+      left: calc(100% - var(--dim-logo) / 2);
+      animation: muovi var(--tempo-animazione) linear infinite reverse;
     }
+  }
 
-    ion-icon{
-        font-size: var(--testo-l);
-        color: var(--grigio-9);
+  @keyframes muovi {
+    0% {
+      left: calc(var(--dim-logo) / 2);
     }
-
-    [avanti]{
-        position: absolute;
-        top: calc(50% - var(--dim-logo) / 4);
-        // 
-        left: calc(var(--dim-logo) / 2);
-        
-        &:is(ion-icon){
-            transform: translate(-50%, -50%);
-            animation: muovi var(--tempo-animazione) linear infinite;
-        }
+    100% {
+      left: calc(100% - var(--dim-logo) / 2);
     }
-
-    [indietro]{
-        position: absolute;
-        bottom: calc(50% - var(--dim-logo) / 4);
-        right: calc(var(--dim-logo) / 2);
-
-        &:is(ion-icon){
-            transform: translate(-50%, 50%);
-            right: auto;
-            left: calc(100% - var(--dim-logo) / 2);
-            animation: muovi var(--tempo-animazione) linear infinite reverse;
-        }
-    }
-
-    @keyframes muovi {
-        0% { left: calc(var(--dim-logo) / 2); }
-        100% { left: calc(100% - var(--dim-logo) / 2); }
-    }
+  }
 }
 
-@media screen and (width < 500px){
-    .contenuto{
-        --dim-logo: 3rem !important;
-    }
+@media screen and (width < 500px) {
+  .contenuto {
+    --dim-logo: 3rem !important;
+  }
 }

@@ -1,70 +1,156 @@
 <h3 class="testo-gradient">Back-End</h3>
 <p>
-    Creazione e gestione di server
-    <span class="testo-gradient">Node</span>
-    usando
-    <span class="testo-gradient">ExpressJS</span>.
-    Gestione dell'autenticazione utente con token
-    <span class="testo-gradient">JWT</span>
-    e testing tramite
-    <span class="testo-gradient">Postman</span>.
+  Creazione e gestione di server
+  <span class="testo-gradient">Node</span>
+  usando
+  <span class="testo-gradient">ExpressJS</span>. Gestione dell'autenticazione
+  utente con token
+  <span class="testo-gradient">JWT</span>
+  e testing tramite
+  <span class="testo-gradient">Postman</span>.
 </p>
-<div class="contenuto flex-row">
-    <div class="cella"></div>
-    <div class="cella"></div>
-    <div class="cella">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <!-- Cella sinistra -->
-                <linearGradient id="gradient-angolo-sx"  x1="110%" y1="100%" x2="20%" y2="50%">
-                    <stop offset="0%" stop-color="var(--colore-bordo)" />
-                    <stop offset="35%" stop-color="var(--colore-bordo)" />
-                    <stop offset="50%" stop-color="#FFF" />
-                    <stop offset="65%" stop-color="var(--colore-bordo)" />
-                    <stop offset="100%" stop-color="var(--colore-bordo)" />
-                </linearGradient>
-                <mask id="maschera-angolo-sx">
-                    <g id="rect-angolo-sx" >
-                        <rect x="0" y="0" width="100%" height="50%" fill="url(#gradient-angolo-sx)" />
-                        <rect x="0" y="50%" width="100%" height="50%" fill="var(--colore-bordo)" />
-                    </g>
-                </mask>
+<div
+  class="relative grid grid-cols-2 grid-rows-2 mx-auto min-h-80 aspect-square contenuto"
+>
+  <div class="relative cella"></div>
+  <div class="relative cella"></div>
+  <div class="relative cella">
+    <svg
+      class="absolute w-full h-full"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <!-- cella relative sinistra -->
+        <linearGradient
+          id="gradient-angolo-sx"
+          x1="110%"
+          y1="100%"
+          x2="20%"
+          y2="50%"
+        >
+          <stop offset="0%" stop-color="var(--colore-bordo)" />
+          <stop offset="35%" stop-color="var(--colore-bordo)" />
+          <stop offset="50%" stop-color="#FFF" />
+          <stop offset="65%" stop-color="var(--colore-bordo)" />
+          <stop offset="100%" stop-color="var(--colore-bordo)" />
+        </linearGradient>
+        <mask id="maschera-angolo-sx">
+          <g id="rect-angolo-sx" class="rotate-90 origin-center">
+            <rect
+              x="0"
+              y="0"
+              width="100%"
+              height="50%"
+              fill="url(#gradient-angolo-sx)"
+            />
+            <rect
+              x="0"
+              y="50%"
+              width="100%"
+              height="50%"
+              fill="var(--colore-bordo)"
+            />
+          </g>
+        </mask>
 
-                <!-- Cella destra -->
-                <linearGradient id="gradient-angolo-dx" x1="-10%" y1="100%" x2="90%" y2="50%">
-                    <stop offset="0%" stop-color="var(--colore-bordo)" />
-                    <stop offset="35%" stop-color="var(--colore-bordo)" />
-                    <stop offset="50%" stop-color="#FFF" />
-                    <stop offset="65%" stop-color="var(--colore-bordo)" />
-                    <stop offset="100%" stop-color="var(--colore-bordo)" />
-                </linearGradient>
-                
-                <mask id="maschera-angolo-dx">
-                    <g id="rect-angolo-dx" >
-                        <rect x="0" y="0" width="100%" height="50%" fill="url(#gradient-angolo-dx)" />
-                        <rect x="0" y="50%" width="100%" height="50%" fill="var(--colore-bordo)" />
-                    </g>
-                </mask>
-            </defs>
-        </svg>
-    </div>
-    <div class="cella"></div>
-    <div class="logo" node title="NodeJS">
-        <img src="https://www.bosio.zip/assets/img/loghi/node.webp" alt="N" loading="lazy">
-    </div>
-    <div class="logo" express title="ExpressJS">
-        <img src="https://www.bosio.zip/assets/img/loghi/express.webp" alt="E" loading="lazy">
-    </div>
-    <div class="logo" jwt title="JWT">
-        <img src="https://www.bosio.zip/assets/img/loghi/jwt.webp" alt="J" loading="lazy">
-    </div>
-    <div class="logo" postman title="Postman">
-        <img src="https://www.bosio.zip/assets/img/loghi/postman.webp" alt="P" loading="lazy">
-    </div>
-    <div class="logo" mysql title="MySql">
-        <img src="https://www.bosio.zip/assets/img/loghi/mysql.webp" alt="M" loading="lazy">
-    </div>
-    <div class="logo" mongo title="MongoDB">
-        <img src="https://www.bosio.zip/assets/img/loghi/mongo.webp" alt="M" loading="lazy">
-    </div>
+        <!-- cella relative destra -->
+        <linearGradient
+          id="gradient-angolo-dx"
+          x1="-10%"
+          y1="100%"
+          x2="90%"
+          y2="50%"
+        >
+          <stop offset="0%" stop-color="var(--colore-bordo)" />
+          <stop offset="35%" stop-color="var(--colore-bordo)" />
+          <stop offset="50%" stop-color="#FFF" />
+          <stop offset="65%" stop-color="var(--colore-bordo)" />
+          <stop offset="100%" stop-color="var(--colore-bordo)" />
+        </linearGradient>
+
+        <mask id="maschera-angolo-dx">
+          <g id="rect-angolo-dx" class="rotate-90 origin-center">
+            <rect
+              x="0"
+              y="0"
+              width="100%"
+              height="50%"
+              fill="url(#gradient-angolo-dx)"
+            />
+            <rect
+              x="0"
+              y="50%"
+              width="100%"
+              height="50%"
+              fill="var(--colore-bordo)"
+            />
+          </g>
+        </mask>
+      </defs>
+    </svg>
+  </div>
+  <div class="relative cella"></div>
+  <div class="absolute bg-neutral-950 p-2 rounded-lg logo" node title="NodeJS">
+    <img
+      src="https://www.bosio.zip/assets/img/loghi/node.webp"
+      alt="N"
+      loading="lazy"
+    />
+  </div>
+  <div
+    class="absolute bg-neutral-950 p-2 rounded-lg logo"
+    express
+    title="ExpressJS"
+  >
+    <img
+      src="https://www.bosio.zip/assets/img/loghi/express.webp"
+      alt="E"
+      loading="lazy"
+    />
+  </div>
+  <div
+    class="bottom-0 absolute bg-neutral-950 p-2 rounded-lg logo"
+    jwt
+    title="JWT"
+  >
+    <img
+      src="https://www.bosio.zip/assets/img/loghi/jwt.webp"
+      alt="J"
+      loading="lazy"
+    />
+  </div>
+  <div
+    class="right-0 absolute bg-neutral-950 p-2 rounded-lg logo"
+    postman
+    title="Postman"
+  >
+    <img
+      src="https://www.bosio.zip/assets/img/loghi/postman.webp"
+      alt="P"
+      loading="lazy"
+    />
+  </div>
+  <div
+    class="right-0 bottom-0 absolute bg-neutral-950 p-2 rounded-lg logo"
+    mysql
+    title="MySql"
+  >
+    <img
+      src="https://www.bosio.zip/assets/img/loghi/mysql.webp"
+      alt="M"
+      loading="lazy"
+    />
+  </div>
+  <div
+    class="bottom-0 left-0 absolute bg-neutral-950 p-2 rounded-lg logo"
+    mongo
+    title="MongoDB"
+  >
+    <img
+      src="https://www.bosio.zip/assets/img/loghi/mongo.webp"
+      alt="M"
+      loading="lazy"
+    />
+  </div>
 </div>
