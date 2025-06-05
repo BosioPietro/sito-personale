@@ -1,21 +1,31 @@
-<div class="wrapper flex-row" (click)="ApriLink(info.link)">
-    <div class="testo">
-        <h5>
-            {{ info.titolo }}
-        </h5>
-        <p>
-            {{ info.descrizione }}
-        </p>
-        <div class="link flex-row">
-            <img [src]="info.favicon" [alt]="info.titolo[0]">
-            <h6>
-                {{ info.link }}
-            </h6>
-        </div>
-    </div>
-    <div 
-        class="immagine"
-        [style]="{ '--img': 'url(' + info.url_img + ')' }"    
+<div
+  class="flex w-[calc(100%+px)] overflow-hidden -translate-x-[2px] wrapper"
+  (click)="ApriLink(info.link)"
+>
+  <div class="p-4 testo">
+    <h5
+      class="mb-2 min-w-0 overflow-ellipsis overflow-hidden font-medium text-white whitespace-nowrap"
     >
+      {{ info.titolo }}
+    </h5>
+    <p class="text-ellipsis line-clamp-2">
+      {{ info.descrizione }}
+    </p>
+    <div class="flex-row items-center gap-2 mt-2 link">
+      <img
+        class="h-4 aspect-square"
+        [src]="info.favicon"
+        [alt]="info.titolo[0]"
+      />
+      <h6
+        class="min-w-0 overflow-ellipsis overflow-hidden font-medium text-white whitespace-nowrap"
+      >
+        {{ info.link }}
+      </h6>
     </div>
+  </div>
+  <div
+    class="bg-cover bg-no-repeat bg-center rounded-t-sm immagine"
+    [style]="{ '--img': 'url(' + info.url_img + ')' }"
+  ></div>
 </div>
