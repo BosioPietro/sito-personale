@@ -1,100 +1,158 @@
-<SfondoFooter />
-<div class="wrapper">
-  <div class="flex-col" contatti>
-    <h2 class="testo-gradient animato">Contatti</h2>
-    <ul class="flex-col">
-      <li class="animato" style="--delay: 0.1">
-        <a class="brilla" href="mailto:pietro.bosio13@outlook.it">
-          <ion-icon name="mail"></ion-icon>
-          <span>E-Mail</span>
-          <ion-icon name="arrow-up"></ion-icon>
-        </a>
-      </li>
-      <li class="animato" style="--delay: 0.2">
-        <a class="brilla" href="https://github.com/BosioPietro" target="_blank">
-          <ion-icon name="logo-github" class="brilla"></ion-icon>
-          <span>Github</span>
-          <ion-icon name="arrow-up"></ion-icon>
-        </a>
-      </li>
-      <li class="animato" style="--delay: 0.3">
+<SfondoFooter
+  class="right-0 bottom-0 left-0 -z-2 absolute place-items-center grid aspect-square overflow-hidden pointer-events-none"
+/>
+<div class="relative gap-y-8 grid grid-cols-3 mx-auto p-8 w-full wrapper">
+  <div class="flex flex-col mx-auto pr-2 w-fit" contatti>
+    <h2 class="pb-2 testo-gradient animato">Contatti</h2>
+    <ul class="flex flex-col gap-8 list-none grow">
+      <li class="flex items-center gap-2 animato" style="--delay: 0.1">
         <a
-          class="brilla"
+          class="flex items-center gap-4 filter-none no-underline cursor-pointer brilla"
+          href="mailto:pietro.bosio13@outlook.it"
+        >
+          <ion-icon name="mail"></ion-icon>
+          <span class="font-normal">E-Mail</span>
+          <ion-icon
+            class="transform-gpu rotate-45 scale-[.66] -translate-[.66ch]"
+            name="arrow-up"
+          ></ion-icon>
+        </a>
+      </li>
+      <li class="flex items-center gap-2 animato" style="--delay: 0.2">
+        <a
+          class="flex items-center gap-4 filter-none no-underline cursor-pointer brilla"
+          href="https://github.com/BosioPietro"
+          target="_blank"
+        >
+          <ion-icon name="logo-github" class="brilla"></ion-icon>
+          <span class="font-normal">Github</span>
+          <ion-icon
+            class="transform-gpu rotate-45 scale-[.66] -translate-[.66ch]"
+            name="arrow-up"
+          ></ion-icon>
+        </a>
+      </li>
+      <li class="flex items-center gap-2 animato" style="--delay: 0.3">
+        <a
+          class="flex items-center gap-4 filter-none no-underline cursor-pointer brilla"
           href="https://www.linkedin.com/in/pietro-bosio-08348a31a/"
           target="_blank"
         >
           <ion-icon name="logo-linkedin" class="brilla"></ion-icon>
-          <span>Linkedin</span>
-          <ion-icon name="arrow-up"></ion-icon>
+          <span class="font-normal">Linkedin</span>
+          <ion-icon
+            class="transform-gpu rotate-45 scale-[.66] -translate-[.66ch]"
+            name="arrow-up"
+          ></ion-icon>
         </a>
       </li>
     </ul>
   </div>
 
-  <div class="flex-col" mail>
-    <h2 class="testo-gradient animato">Ispirato Da</h2>
-    <ul class="flex-col">
-      <li class="animato" style="--delay: 0.1">
-        <a class="brilla" href="https://linear.app/" target="_blank">
+  <div class="flex flex-col mx-auto p-8 w-fit" mail>
+    <h2 class="inline-block pb-2 -translate-y-1 testo-gradient animato">
+      Ispirato Da
+    </h2>
+    <ul class="flex flex-col gap-8 list-none grow">
+      <li class="flex items-center gap-2 animato" style="--delay: 0.1">
+        <a
+          class="flex items-center gap-4 filter-none no-underline cursor-pointer brilla"
+          href="https://linear.app/"
+          target="_blank"
+        >
           <img
-            class="logo"
+            class="opacity-60 h-8 aspect-square logo"
             src="https://www.bosio.zip/assets/img/loghi/linear.webp"
             alt="L"
           />
-          <span>Linear</span>
-          <ion-icon name="arrow-up"></ion-icon>
+          <span class="font-normal">Linear</span>
+          <ion-icon
+            class="transform-gpu rotate-45 scale-[.66] -translate-[.66ch]"
+            name="arrow-up"
+          ></ion-icon>
         </a>
       </li>
-      <li class="animato" style="--delay: 0.2">
-        <a class="brilla" href="https://vercel.com/" target="_blank">
+      <li class="flex items-center gap-2 animato" style="--delay: 0.2">
+        <a
+          class="flex items-center gap-4 filter-none no-underline cursor-pointer brilla"
+          href="https://vercel.com/"
+          target="_blank"
+        >
           <img
-            class="logo"
+            class="opacity-60 h-8 aspect-square logo"
             src="https://www.bosio.zip/assets/img/loghi/vercel.webp"
             alt="V"
           />
-          <span>Vercel</span>
-          <ion-icon name="arrow-up"></ion-icon>
+          <span class="font-normal">Vercel</span>
+          <ion-icon
+            class="transform-gpu rotate-45 scale-[.66] -translate-[.66ch]"
+            name="arrow-up"
+          ></ion-icon>
         </a>
       </li>
-      <li class="animato" style="--delay: 0.3">
-        <a class="brilla" href="https://loops.so/" target="_blank">
+      <li class="flex items-center gap-2 animato" style="--delay: 0.3">
+        <a
+          class="flex items-center gap-4 filter-none no-underline cursor-pointer brilla"
+          href="https://loops.so/"
+          target="_blank"
+        >
           <img
-            class="logo"
+            class="opacity-60 h-8 aspect-square logo"
             src="https://www.bosio.zip/assets/img/loghi/loops.webp"
             alt="L"
           />
-          <span>Loops</span>
-          <ion-icon name="arrow-up"></ion-icon>
+          <span class="font-normal">Loops</span>
+          <ion-icon
+            class="transform-gpu rotate-45 scale-[.66] -translate-[.66ch]"
+            name="arrow-up"
+          ></ion-icon>
         </a>
       </li>
     </ul>
   </div>
 
-  <div class="flex-row animato" crediti style="--delay: 0.4">
-    <div class="flex-row">
+  <div
+    class="flex justify-center items-center gap-4 px-[calc(100%/3/4)] w-full -translate-2 animato"
+    crediti
+    style="--delay: 0.4"
+  >
+    <div class="flex">
       Creato con
-      <a href="https://angular.dev/" target="_blank" class="brilla">
+      <a
+        class="flex items-center gap-4 no-underline cursor-pointer"
+        href="https://angular.dev/"
+        target="_blank"
+        class="brilla"
+      >
         <img
-          class="logo"
+          class="opacity-60 ml-[.5ch] h-6 aspect-square logo"
           src="https://www.bosio.zip/assets/img/loghi/angular.webp"
           angular
           alt="A"
         />
       </a>
     </div>
-    <hr />
-    <div class="flex-row">
+    <hr class="opacity-55 border-0 rounded-full h-[2px] grow" />
+    <div class="flex">
       Hostato su
-      <a href="https://www.cloudflare.com/" target="_blank" class="brilla">
+      <a
+        class="flex items-center gap-4 no-underline cursor-pointer"
+        href="https://www.cloudflare.com/"
+        target="_blank"
+        class="brilla"
+      >
         <img
-          class="logo"
+          class="opacity-60 ml-[.5ch] h-6 aspect-square logo"
           src="https://www.bosio.zip/assets/img/loghi/cloudflare.webp"
           alt="C"
         />
       </a>
     </div>
   </div>
-  <div class="sfondo" #sfondo>
+  <div
+    class="absolute inset-0 grid grid-cols-3 w-full pointer-events-none sfondo"
+    #sfondo
+  >
     <div class="sfondo-trattini"></div>
     <br />
     <div class="sfondo-trattini"></div>
