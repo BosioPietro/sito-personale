@@ -7,6 +7,7 @@
       background-color: var(--grigio-2);
       transition: 0.5s var(--easing);
       transition-property: border-color, background-color;
+      border-color: var(--colore-bordo);
 
       &:hover {
         border-color: var(--grigio-4);
@@ -37,20 +38,16 @@
     }
 
     .collegamento {
-      &::after {
-        --offset-sopra: calc(33.33% - 1px);
-        --offset-sotto: calc((33.33% - var(--h-entita)) / 2);
-
-        content: "";
-        display: block;
-        width: 50%;
-        height: calc(100% - var(--offset-sopra) - var(--offset-sotto));
-        margin-top: var(--offset-sopra);
-        margin-bottom: var(--offset-sotto);
-        border-right: 2px dashed var(--colore-bordo);
-        border-top: 2px dashed var(--colore-bordo);
-        border-radius: 0 0.5rem 0 0;
-      }
+      --offset-y: calc(33.33% - 1px);
+      padding-block: var(--offset-y);
+    }
+    .collegamento::after {
+      content: "";
+      flex-grow: 1;
+      width: calc(50% + 0.25rem);
+      border-right: 2px dashed var(--colore-bordo);
+      border-top: 2px dashed var(--colore-bordo);
+      border-radius: 0 0.5rem 0 0;
     }
   }
 

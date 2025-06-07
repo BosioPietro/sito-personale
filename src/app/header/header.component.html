@@ -5,22 +5,22 @@
     alt="B"
   />
   <button
-    class="bg-transparent p-1"
+    class="bg-transparent p-1 cursor-pointer"
     menu
     (click)="headerAperto = !headerAperto"
     aria-label="Menu"
   >
     <ion-icon name="menu"></ion-icon>
   </button>
-  <div class="flex-row wrapper" #wrapper>
+  <div class="flex wrapper" #wrapper>
     <div
-      class="flex-row opzione"
+      class="flex opzione"
       [class.corrente]="sezione == 'principale'"
       sezione="principale"
     >
       <button
         (click)="Scrolla('principale')"
-        class="flex-row"
+        class="flex cursor-pointer"
         aria-label="Sezione home"
       >
         <ion-icon name="Home" />
@@ -31,14 +31,14 @@
       </div>
     </div>
     <div
-      class="flex-row opzione competenze"
+      class="flex opzione competenze"
       espandi
       [class.corrente]="sezione == 'conoscenze'"
       sezione="conoscenze"
     >
       <button
         (click)="Scrolla('conoscenze')"
-        class="flex-row"
+        class="flex cursor-pointer"
         aria-label="Sezione competenze"
       >
         <ion-icon name="school" />
@@ -50,14 +50,14 @@
       </div>
     </div>
     <div
-      class="flex-row opzione progetti"
+      class="flex opzione progetti"
       espandi
       [class.corrente]="sezione == 'progetti'"
       sezione="progetti"
     >
       <button
         (click)="Scrolla('progetti')"
-        class="flex-row"
+        class="flex cursor-pointer"
         aria-label="Sezione progetti"
       >
         <ion-icon name="layers" />
@@ -75,7 +75,7 @@
     >
       <button
         (click)="Scrolla('contatti')"
-        class="flex-row"
+        class="flex cursor-pointer"
         aria-label="Sezione contatti"
       >
         <ion-icon name="chatbubble" />
@@ -133,6 +133,7 @@
       style="--max-height: 11rem"
     >
       <button
+        class="cursor-pointer"
         (click)="SelezionaCompetenza(sezioni.Sviluppo)"
         aria-label="Competenze sviluppo"
       >
@@ -140,6 +141,7 @@
         <span>Sviluppo</span>
       </button>
       <button
+        class="cursor-pointer"
         (click)="SelezionaCompetenza(sezioni.Web)"
         aria-label="Competenze web"
       >
@@ -147,6 +149,7 @@
         <span>Web</span>
       </button>
       <button
+        class="cursor-pointer"
         (click)="SelezionaCompetenza(sezioni.Certificazioni)"
         aria-label="Certificazioni"
       >
@@ -242,7 +245,7 @@
     <button
       (click)="SelezionaCompetenza(sezioni.Web)"
       aria-label="Competenze web"
-      class="flex justify-center items-center gap-1 rounded-md"
+      class="flex justify-center items-center gap-1 rounded-md cursor-pointer"
     >
       <ion-icon name="globe-outline" />
       <span>Web</span>
@@ -250,7 +253,7 @@
     <button
       (click)="SelezionaCompetenza(sezioni.Certificazioni)"
       aria-label="Competenze certificazioni"
-      class="flex justify-center items-center gap-1 rounded-md"
+      class="flex justify-center items-center gap-1 rounded-md cursor-pointer"
     >
       <ion-icon name="ribbon-outline" />
       <span>Certificazioni</span>
@@ -261,7 +264,7 @@
     <button
       (click)="SelezionaProgetto('Rilievi & Perizie')"
       aria-label="Progetto Rilievi & Perizie"
-      class="flex justify-center items-center gap-1 rounded-md"
+      class="flex justify-center items-center gap-1 rounded-md cursor-pointer"
     >
       <ion-icon name="globe" />
       <span>Rilievi & Perizie</span>
@@ -269,7 +272,7 @@
     <button
       (click)="SelezionaProgetto('AlphaVantage')"
       aria-label="Progetto AlphaVantage"
-      class="flex justify-center items-center gap-1 rounded-md"
+      class="flex justify-center items-center gap-1 rounded-md cursor-pointer"
     >
       <ion-icon name="analytics" />
       <span>AlphaVantage</span>
@@ -277,7 +280,7 @@
     <button
       (click)="SelezionaProgetto('Registro Elettronico')"
       aria-label="Progetto registro elettronico"
-      class="flex justify-center items-center gap-1 rounded-md"
+      class="flex justify-center items-center gap-1 rounded-md cursor-pointer"
     >
       <ion-icon name="file-tray-full" />
       <span>Registro Elettronico</span>
@@ -285,7 +288,7 @@
     <button
       (click)="SelezionaProgetto('E-Commerce')"
       aria-label="Progetto e-commerce"
-      class="flex justify-center items-center gap-1 rounded-md"
+      class="flex justify-center items-center gap-1 rounded-md cursor-pointer"
     >
       <ion-icon name="storefront" />
       <span>E-Commerce</span>
@@ -293,7 +296,7 @@
     <button
       (click)="SelezionaProgetto('Random User')"
       aria-label="Progetto Random User"
-      class="flex justify-center items-center gap-1 rounded-md"
+      class="flex justify-center items-center gap-1 rounded-md cursor-pointer"
     >
       <ion-icon name="people" />
       <span>Random User</span>
@@ -301,7 +304,7 @@
     <button
       (click)="SelezionaProgetto('MongoDriver')"
       aria-label="Progetto MongoDriver"
-      class="flex justify-center items-center gap-1 rounded-md"
+      class="flex justify-center items-center gap-1 rounded-md cursor-pointer"
     >
       <ion-icon name="server" />
       <span>MongoDriver</span>

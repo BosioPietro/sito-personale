@@ -1,5 +1,5 @@
 :host {
-  & > .flex-row {
+  & > .flex {
     .contenuto {
       --dim-logo-telefono: 3rem;
       --tempo-animazione: 5s;
@@ -11,6 +11,7 @@
           .logo {
             height: var(--dim-logo);
             animation: pulsa var(--tempo-animazione) linear infinite;
+            border-color: var(--colore-bordo);
 
             img {
               filter: blur(0);
@@ -122,20 +123,12 @@
       }
 
       .telefono {
-        min-width: 8.5rem;
-        aspect-ratio: 9/19.5;
-        position: relative;
-        border: 0.25rem solid var(--colore-bordo);
-        border-radius: 1.25rem;
         background-color: var(--nero-h1);
 
         img {
-          position: absolute;
           height: var(--dim-logo-telefono);
-          aspect-ratio: 1;
           top: calc(50% - var(--dim-logo-telefono) / 2);
           left: calc(50% - var(--dim-logo-telefono) / 2);
-          opacity: 0.3;
 
           animation: pulsa-2 var(--tempo-animazione) linear infinite;
 

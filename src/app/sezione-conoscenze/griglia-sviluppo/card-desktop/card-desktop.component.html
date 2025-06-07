@@ -9,23 +9,26 @@
   per una maggiore compatibilità.
 </p>
 <div
-  class="flex flex-col items-ecnter opacity-80 min-w-80 min-h-40 contenuto grow"
+  class="flex flex-col flex-wrap opacity-80 mt-4 min-w-80 min-h-40 contenuto grow"
 >
   <div
-    class="flex justify-between items-center self-stretch gap-8 mb-auto p-1 border-2 border-neutral-800 rounded-l-2 barra-app"
+    class="flex justify-between items-center self-stretch gap-8 bg-neutral-900 mb-auto p-1 px-2 border-2 border-neutral-800 border-b-0 rounded-t-lg text-neutral-300"
   >
     <span class="flex items-center gap-1">
-      <ion-icon name="code"></ion-icon>
+      <ion-icon name="code" class="text-xl"></ion-icon>
       <span>&nbsp;app.exe</span>
     </span>
     <div class="flex items-center gap-1 controlli">
-      <ion-icon class="translate-y-[calc(50%-.25rem)]" name="remove"></ion-icon>
-      <ion-icon class="rotate-y-180" name="copy-outline"></ion-icon>
-      <ion-icon name="close"></ion-icon>
+      <ion-icon
+        class="text-xl translate-y-[calc(50%-.25rem)]"
+        name="remove"
+      ></ion-icon>
+      <ion-icon class="text-xl rotate-y-180" name="copy-outline"></ion-icon>
+      <ion-icon name="close" class="text-2xl"></ion-icon>
     </div>
   </div>
   <div
-    class="relative self-stretch border-2 border-neutral-800 rounded-r-lg finestra grow"
+    class="relative self-stretch border-2 border-neutral-800 rounded-b-lg finestra grow"
   >
     <ion-icon class="absolute origin-center" name="cog"></ion-icon>
   </div>

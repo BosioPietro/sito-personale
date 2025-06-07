@@ -157,12 +157,12 @@ a[href^="#"] {
   }
 } */
 
-[class*="flex-"] {
+.flex-row {
   display: flex;
-
-  &.flex-col {
-    flex-direction: column;
-  }
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
 }
 
 .scrollbar-nascosta {

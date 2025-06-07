@@ -2,6 +2,11 @@
   background-color: #000e;
 }
 
+.wrapper-griglia {
+  interpolate-size: allow-keywords;
+  transition: height 0.5s var(--easing);
+}
+
 .wrapper {
   width: clamp(0px, 100%, var(--w-contenuto-pagina));
 }
@@ -26,20 +31,13 @@
     transition-property: opacity, filter;
 
     &:not(.visibile) {
-      min-height: 0;
-      inset: 0;
-      position: absolute;
-
-      animation: absolute 0.5s var(--easing);
-      @keyframes absolute {
-        0%,
-        100% {
-          position: static;
-        }
-      }
+      opacity: 0;
+      filter: blur(0.5rem);
+      height: 0;
     }
 
     &.visibile {
+      height: auto;
       opacity: 1;
       z-index: 2;
       filter: blur(0rem);

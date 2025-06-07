@@ -1,8 +1,5 @@
 :host.contenuto-griglia {
   gap: var(--gap);
-  inset: 0;
-  opacity: 0;
-  filter: blur(0.5rem);
   grid-area: 1 / 1 / 2 / 2;
 
   .card {
@@ -54,9 +51,6 @@
 
       .contenuto {
         --dim-logo: 4rem;
-        flex-grow: 1;
-        gap: 1rem;
-        flex-wrap: wrap;
 
         .logo {
           height: var(--dim-logo);
