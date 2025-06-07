@@ -1,99 +1,35 @@
 <h3 class="testo-gradient">Front-End</h3>
 <p>
-  Creazione di siti tradizionali con
-  <span class="svasato testo-gradient" style="--colore-accento: #3d9dd7"
-    >CSS</span
-  >,
-  <span class="svasato testo-gradient" style="--colore-accento: #f0dc55"
-    >JS</span
-  >
-  e
-  <span class="svasato testo-gradient" style="--colore-accento: #1389dd"
-    >jQuery</span
-  >
-  oppure attraverso framework, principalmente
-  <span class="testo-gradient" style="--colore-accento: #f5427b">Angular</span>,
-  per SPA con
-  <span class="testo-gradient" style="--colore-accento: #377cc8"
-    >TypeScript</span
-  >
-  e <span class="testo-gradient" style="--colore-accento: #cf6b9d">SCSS</span>.
+    Creazione di siti tradizionali con 
+    <span class="svasato testo-gradient" style="--colore-accento: #3d9dd7">CSS</span>, 
+    <span class="svasato testo-gradient" style="--colore-accento: #f0dc55">JS</span> e 
+    <span class="svasato testo-gradient" style="--colore-accento: #1389dd">jQuery</span> 
+    oppure attraverso framework, principalmente 
+    <span class="testo-gradient" style="--colore-accento: #f5427b">Angular</span>, per SPA con 
+    <span class="testo-gradient" style="--colore-accento: #377cc8">TypeScript</span> e 
+    <span class="testo-gradient" style="--colore-accento: #cf6b9d">SCSS</span>.
 </p>
-<div class="contenuto flex mx-auto aspect-square min-h-80">
-  <div class="wrapper-cerchio">
-    <div
-      class="cerchio relative grid place-items-center aspect-square rounded-full"
-    >
-      <!-- Non si può usare @if perche interrompe l'animazone -->
-      <!-- che fa "controgirare" i loghi -->
-      <div
-        class="logo absolute -translate-1/2 grid rounded-full overflow-hidden"
-        [style]="PosizioneLogo(3, 0)"
-      >
-        <img
-          src="https://www.bosio.zip/assets/img/loghi/ts.webp"
-          alt="A"
-          title="TypeScript"
-          loading="lazy"
-        />
-        <img
-          src="https://www.bosio.zip/assets/img/loghi/jquery.webp"
-          alt="J"
-          title="jQuery"
-          loading="lazy"
-        />
-      </div>
-      <div
-        class="logo absolute -translate-1/2 grid rounded-full overflow-hidden"
-        [style]="PosizioneLogo(3, 1)"
-      >
-        <img
-          src="https://www.bosio.zip/assets/img/loghi/scss.webp"
-          alt="S"
-          title="SCSS"
-          loading="lazy"
-        />
-        <img
-          offset
-          src="https://www.bosio.zip/assets/img/loghi/css.webp"
-          alt="C"
-          title="CSS"
-          loading="lazy"
-        />
-      </div>
-      <div
-        class="logo absolute -translate-1/2 grid rounded-full overflow-hidden"
-        [style]="PosizioneLogo(3, 2)"
-      >
-        <img
-          offset
-          src="https://www.bosio.zip/assets/img/loghi/html.webp"
-          alt="H"
-          title="HTML"
-          loading="lazy"
-        />
-        <img
-          src="https://www.bosio.zip/assets/img/loghi/js.webp"
-          alt="J"
-          title="JavaScript"
-          loading="lazy"
-        />
-      </div>
-      <div
-        class="logo absolute -translate-1/2 grid rounded-full overflow-hidden centro"
-      >
-        <img
-          src="https://www.bosio.zip/assets/img/loghi/angular.webp"
-          alt="A"
-          loading="lazy"
-        />
-        <img
-          offset
-          src="https://www.bosio.zip/assets/img/loghi/html.webp"
-          alt="H"
-          loading="lazy"
-        />
-      </div>
+<div class="contenuto flex-row">
+    <div class="wrapper-cerchio">
+        <div class="cerchio">
+            <!-- Non si può usare @if perche interrompe l'animazone -->
+            <!-- che fa "controgirare" i loghi -->
+            <div class="logo" [style]="PosizioneLogo(3, 0)">
+                <img src="https://www.bosio.zip/assets/img/loghi/ts.webp" alt="A" title="TypeScript" loading="lazy">
+                <img src="https://www.bosio.zip/assets/img/loghi/jquery.webp" alt="J" title="jQuery" loading="lazy">
+            </div>
+            <div class="logo" [style]="PosizioneLogo(3, 1)">
+                <img src="https://www.bosio.zip/assets/img/loghi/scss.webp" alt="S" title="SCSS" loading="lazy">
+                <img offset src="https://www.bosio.zip/assets/img/loghi/css.webp" alt="C" title="CSS" loading="lazy">
+            </div>
+            <div class="logo" [style]="PosizioneLogo(3, 2)">
+                <img offset src="https://www.bosio.zip/assets/img/loghi/html.webp" alt="H" title="HTML" loading="lazy">
+                <img src="https://www.bosio.zip/assets/img/loghi/js.webp" alt="J" title="JavaScript" loading="lazy">
+            </div>
+            <div class="logo centro">
+                <img src="https://www.bosio.zip/assets/img/loghi/angular.webp" alt="A" loading="lazy">
+                <img offset src="https://www.bosio.zip/assets/img/loghi/html.webp" alt="H" loading="lazy">
+            </div>
+        </div>
     </div>
-  </div>
 </div>

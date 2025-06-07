@@ -1,51 +1,37 @@
-<hr class="linea-luce" />
-<div class="wrapper flex flex-col mx-auto gap-8 grow z-1">
-  <div class="flex-col">
-    <h1 class="testo-gradient mx-auto w-fit text-center">
-      Competenze & Abilità
-    </h1>
-    <p class="sottotitolo max-w-[50ch] mx-auto text-center px-4">
-      Competenze che ho acquisito direttamente attraverso alla scuola, stage, o
-      interesse personale
-    </p>
-  </div>
-  <div
-    class="griglia flex flex-col relative grow mx-8 gap-8 p-8 pt-0 rounded-2xl border-2 border-neutral-800"
-  >
-    <hr class="linea-luce mx-3 bg-neutral-800 rotate-180 -top-[2px]" />
-    <SfondoConoscenze
-      class="-z-2 absolute inset-0 grid place-items-center overflow-hidden"
-    />
-    <div class="controlli grid">
-      <div class="cella"></div>
-      <div class="cella">
-        <div class="sfondo-trattini absolute inset-0 -z-1"></div>
-        <Switch
-          class="mt-8 -translate-[1px] flex relative w-fit h-fit rounded-full p-1 backdrop-blur-xs"
-          (onChange)="CambiaSezione($event)"
-        />
-      </div>
-      <div class="cella"></div>
+<hr class="linea-luce">
+<div class="wrapper flex-col">
+    <div class="flex-col">
+        <h1 class="testo-gradient">Competenze & Abilità</h1>
+        <p class="sottotitolo">Competenze che ho acquisito direttamente attraverso alla scuola, stage, o interesse personale</p>
     </div>
-    <div
-      class="wrapper-griglia grid-rows-[1fr] grid-cols-[1fr] relative grow grid items-stretch z-1"
-    >
-      <!-- Devono essere tutti sempre renderizzati (ma non visibili) -->
-      <!-- Perchè altrimenti con @if quando fai lo switch e il contenuto è -->
-      <!-- in overflow (tipo mobile) il wrapper shifterebbe -->
-      <GrigliaSviluppo
-        class="contenuto-griglia flex flex-col relative z-1"
-        [class.visibile]="sezioneCorrente === Sezioni.Sviluppo"
-      />
-      <GrigliaWeb
-        class="flex flex-col contenuto-griglia relative z-1"
-        [class.visibile]="sezioneCorrente === Sezioni.Web"
-      />
-      <GrigliaCertificazioni
-        class="flex flex-row contenuto-griglia relative z-1"
-        [class.visibile]="sezioneCorrente === Sezioni.Certificazioni"
-        (mousemove)="EffettoMouse($event)"
-      />
-    </div>
-  </div>
+    <div class="griglia flex-col">
+        <hr class="linea-luce">
+        <SfondoConoscenze/>
+        <div class="flex-row controlli">
+            <div class="cella"></div>
+            <div class="cella">
+                <div class="sfondo-trattini"></div>
+                <Switch (onChange)="CambiaSezione($event)"/>
+            </div>
+            <div class="cella"></div>
+        </div>
+        <div class="wrapper-griglia flex-col" >
+            <!-- Devono essere tutti sempre renderizzati (ma non visibili) -->
+            <!-- Perchè altrimenti con @if quando fai lo switch e il contenuto è -->
+            <!-- in overflow (tipo mobile) il wrapper shifterebbe -->
+            <GrigliaSviluppo
+                class="flex-col contenuto-griglia"
+                [class.visibile]="sezioneCorrente === Sezioni.Sviluppo"
+            />
+            <GrigliaWeb 
+                class="flex-col contenuto-griglia"
+                [class.visibile]="sezioneCorrente === Sezioni.Web"
+            />
+            <GrigliaCertificazioni 
+                class="flex-row contenuto-griglia"  
+                [class.visibile]="sezioneCorrente === Sezioni.Certificazioni"
+                (mousemove)="EffettoMouse($event)"
+            />
+        </div>
+    </div>    
 </div>

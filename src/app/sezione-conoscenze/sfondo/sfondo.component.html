@@ -1,31 +1,26 @@
-<svg
-  class="absolute inset-0 z-0 overflow-visible"
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 381 381"
->
-  <g>
-    @for (larg of [9, 7, 5, 3, 2]; track $index) {
-    <circle
-      cx="0"
-      cy="0"
-      [attr.r]="$index * 50"
-      [style]="{ 'stroke-width': larg }"
-    />
-    }
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 381 381">
+    <g>
+        @for (larg of [9, 7, 5, 3, 2]; track $index) {
+            <circle 
+                cx="0" 
+                cy="0" 
+                [attr.r]="$index * 50" 
+                [style]="{'stroke-width': larg}" 
+            />
+        }
+    </g>
 </svg>
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 381 381">
-  <g>
-    @for (larg of [9, 7, 5, 3, 2]; track $index) {
-    <circle
-      class="fill-transparent stroke-white"
-      cx="100%"
-      cy="300"
-      [attr.r]="$index * 50"
-      [style]="{ 'stroke-width': larg }"
-    />
-    }
-  </g>
+    <g>
+        @for (larg of [9, 7, 5, 3, 2]; track $index) {
+            <circle 
+                cx="100%" 
+                cy="300" 
+                [attr.r]="$index * 50" 
+                [style]="{'stroke-width': larg}" 
+            />
+        }
+    </g>
 </svg>
-<div class="filtro absolute inset-0 z-1 origin-center backdrop-blur-sm"></div>
+<div class="filtro"></div>

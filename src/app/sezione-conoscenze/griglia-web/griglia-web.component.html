@@ -1,9 +1,6 @@
-<div
-  class="contenuto-griglia flex grow gap-8 flex-wrap"
-  (mousemove)="EffettoMouse($event)"
->
-  <CardFrontend class="card grande flex flex-col items-start" />
-  <CardBackend class="card grande flex flex-col" />
-  <CardPhp class="card flex flex-col" />
-  <CardASP class="card flex flex-col" />
+<div class="contenuto-griglia flex-row" (mousemove)="EffettoMouse($event)">
+    <CardFrontend class="card grande flex-col"/>
+    <CardBackend class="card grande flex-col"/>
+    <CardPhp class="card flex-col" />
+    <CardASP class="card flex-col"/>
 </div>
