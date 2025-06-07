@@ -8,6 +8,7 @@
 
     hr {
       &[orizzontale] {
+        border-top: 2px dashed var(--colore-bordo);
         inset: calc(var(--dim-logo) / 2) var(--dim-logo) auto var(--dim-logo);
 
         &:nth-of-type(2) {
@@ -16,6 +17,7 @@
       }
 
       &[verticale] {
+        border-left: 2px dashed var(--colore-bordo);
         inset: var(--dim-logo) auto var(--dim-logo) calc(var(--dim-logo) / 2);
       }
     }
@@ -27,6 +29,7 @@
 
       &[icona-1],
       &[icona-6] {
+        transform: translateY(-50%);
         top: calc(var(--dim-logo) / 2);
         animation: muovi-orizzontale var(--tempo-animazione) linear 0s infinite;
       }
@@ -35,12 +38,14 @@
       &[icona-5] {
         left: calc(var(--dim-logo) / 2);
         top: calc(var(--dim-logo) / 2);
+        transform: translateX(-50%);
         animation: muovi-verticale var(--tempo-animazione) linear
           var(--step-animazione) infinite;
       }
 
       &[icona-3],
       &[icona-4] {
+        transform: translateY(50%);
         bottom: calc(var(--dim-logo) / 2);
         animation: muovi-orizzontale var(--tempo-animazione) linear
           calc(var(--step-animazione) * -3) infinite reverse;
@@ -60,6 +65,13 @@
       &[icona-6] {
         animation: muovi-orizzontale var(--tempo-animazione) linear
           calc(var(--step-animazione) * -6) infinite reverse;
+      }
+
+      &[icona-4],
+      &[icona-5],
+      &[icona-6] {
+        transform-origin: center;
+        scale: 0.85;
       }
 
       @keyframes muovi-orizzontale {
@@ -85,12 +97,12 @@
 
     .logo {
       --colore-trattino: #fff7;
+      border: 2px solid var(--colore-bordo);
 
       &[utente] {
         animation: colora-bordi-utente var(--tempo-animazione) linear infinite;
 
         @keyframes colora-bordi-utente {
-          0%,
           16.6%,
           100% {
             border-color: var(--colore-bordo);
@@ -104,7 +116,6 @@
       &[xampp] {
         animation: colora-bordi-xammp var(--tempo-animazione) linear infinite;
         @keyframes colora-bordi-xammp {
-          0%,
           16.6%,
           33.3%,
           83.3% {
@@ -120,7 +131,6 @@
       &[php] {
         animation: colora-bordi-php var(--tempo-animazione) linear infinite;
         @keyframes colora-bordi-php {
-          0%,
           33.3%,
           49.9%,
           66.6% {
@@ -136,7 +146,6 @@
       &[mariadb] {
         animation: colora-bordi-mariadb var(--tempo-animazione) linear infinite;
         @keyframes colora-bordi-mariadb {
-          0%,
           49.9%,
           66.6% {
             border-color: var(--colore-bordo);

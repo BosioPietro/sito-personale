@@ -19,26 +19,24 @@
   >
   e <span class="testo-gradient" style="--colore-accento: #cf6b9d">SCSS</span>.
 </p>
-<div class="flex mx-auto min-h-80 aspect-square contenuto">
+<div class="contenuto flex mx-auto aspect-square min-h-80">
   <div class="wrapper-cerchio">
     <div
-      class="relative place-items-center grid border-2 border-neutral-800 rounded-full aspect-square cerchio"
+      class="cerchio relative grid place-items-center aspect-square rounded-full"
     >
       <!-- Non si può usare @if perche interrompe l'animazone -->
       <!-- che fa "controgirare" i loghi -->
       <div
-        class="absolute grid bg-neutral-950 border-2 border-neutral-800 rounded-full aspect-square overflow-hidden -translate-1/2 logo"
+        class="logo absolute -translate-1/2 grid rounded-full overflow-hidden"
         [style]="PosizioneLogo(3, 0)"
       >
         <img
-          class="p-4 origin-center"
           src="https://www.bosio.zip/assets/img/loghi/ts.webp"
           alt="A"
           title="TypeScript"
           loading="lazy"
         />
         <img
-          class="p-4 origin-center"
           src="https://www.bosio.zip/assets/img/loghi/jquery.webp"
           alt="J"
           title="jQuery"
@@ -46,18 +44,17 @@
         />
       </div>
       <div
-        class="absolute grid bg-neutral-950 border-2 border-neutral-800 rounded-full aspect-square overflow-hidden -translate-1/2 logo"
+        class="logo absolute -translate-1/2 grid rounded-full overflow-hidden"
         [style]="PosizioneLogo(3, 1)"
       >
         <img
-          class="p-4 origin-center"
           src="https://www.bosio.zip/assets/img/loghi/scss.webp"
           alt="S"
           title="SCSS"
           loading="lazy"
         />
         <img
-          class="p-4 origin-center translate-y-[0.1rem]"
+          offset
           src="https://www.bosio.zip/assets/img/loghi/css.webp"
           alt="C"
           title="CSS"
@@ -65,33 +62,33 @@
         />
       </div>
       <div
-        class="absolute grid bg-neutral-950 border-2 border-neutral-800 rounded-full aspect-square overflow-hidden -translate-1/2 logo"
+        class="logo absolute -translate-1/2 grid rounded-full overflow-hidden"
         [style]="PosizioneLogo(3, 2)"
       >
         <img
-          class="p-4 origin-center translate-y-[0.1rem]"
+          offset
           src="https://www.bosio.zip/assets/img/loghi/html.webp"
           alt="H"
           title="HTML"
           loading="lazy"
         />
         <img
-          class="p-4 origin-center"
           src="https://www.bosio.zip/assets/img/loghi/js.webp"
           alt="J"
           title="JavaScript"
           loading="lazy"
         />
       </div>
-      <div class="grid rounded-full aspect-square overflow-hidden logo centro">
+      <div
+        class="logo absolute -translate-1/2 grid rounded-full overflow-hidden centro"
+      >
         <img
-          class="p-4 origin-center"
           src="https://www.bosio.zip/assets/img/loghi/angular.webp"
           alt="A"
           loading="lazy"
         />
         <img
-          class="p-4 origin-center translate-y-[0.1rem]"
+          offset
           src="https://www.bosio.zip/assets/img/loghi/html.webp"
           alt="H"
           loading="lazy"

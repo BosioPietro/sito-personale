@@ -13,6 +13,8 @@
     & > .cerchio {
       --spessore: 2px;
       --tempo-rotazione: 90s;
+
+      border: var(--spessore) solid var(--colore-bordo);
       animation: gira var(--tempo-rotazione) infinite linear;
 
       &:has(.logo:not(.centro):hover) {
@@ -24,10 +26,19 @@
       }
 
       .logo {
+        border: var(--spessore) solid var(--colore-bordo);
+
         img {
+          padding: 1rem;
           animation: gira var(--tempo-rotazione) infinite reverse linear,
             alterna var(--tempo-animazione-loghi) infinite linear;
+
+          transform-origin: center;
           grid-area: 1 / 1;
+
+          &[offset] {
+            transform: translateY(0.1rem);
+          }
         }
 
         img:nth-child(2) {
@@ -36,6 +47,10 @@
 
         &.centro {
           --dim-logo: 7rem;
+          position: initial;
+          transform: none;
+          background-color: #0000;
+          border-color: #0000;
         }
 
         @keyframes alterna {

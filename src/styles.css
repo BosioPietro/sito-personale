@@ -229,10 +229,9 @@ hr.linea-luce {
     --width: 60dvw;
     height: 2px;
     width: var(--width);
-    max-width: calc(100% - 2rem);
     margin-inline: auto;
     position: absolute;
-    left: calc(50% - min(calc(100% - 2rem, var(--width))) / 2);
+    left: calc(50% - var(--width) / 2);
     background: linear-gradient(90deg, #0000 0%, #8f8f8fab 50%, #0000 100%);
     pointer-events: none;
   }

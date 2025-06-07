@@ -1,12 +1,11 @@
 <svg
-  class="z-0 absolute inset-0 overflow-visible"
+  class="absolute inset-0 z-0 overflow-visible"
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 381 381"
 >
   <g>
     @for (larg of [9, 7, 5, 3, 2]; track $index) {
     <circle
-      class="fill-transparent stroke-white"
       cx="0"
       cy="0"
       [attr.r]="$index * 50"
@@ -29,4 +28,4 @@
     }
   </g>
 </svg>
-<div class="z-1 absolute inset-0 backdrop-blur-lg origin-center filtro"></div>
+<div class="filtro absolute inset-0 z-1 origin-center backdrop-blur-sm"></div>

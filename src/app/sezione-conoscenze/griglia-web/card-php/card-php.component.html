@@ -1,5 +1,5 @@
 <h3 class="testo-gradient">Sviluppo PHP</h3>
-<div class="flex gap-8 grow">
+<div class="flex grow gap-8">
   <span>
     <p>
       Usato con
@@ -11,15 +11,15 @@
       <span class="testo-gradient">API</span>
       con servizi PHP.
     </p>
-    <p class="mt-2">
+    <p style="margin-top: calc(var(--gap) / 4)">
       Usando quest'ultimi per potersi interfacciare ad un database gestito da
       <span class="testo-gradient">MariaDB</span>, un fork di
       <span class="testo-gradient">MySQL</span>.
     </p>
   </span>
-  <hr class="border-neutral-800 border-l-2 h-auto" />
-  <div class="relative flex flex-col mt-0 min-w-40 aspect-square contenuto">
-    <div class="z-2 absolute bg-neutral-950 p-3 border-2 rounded-xl logo" xampp>
+  <hr />
+  <div class="contenuto flex flex-col aspect-square mt-0 relative min-w-40">
+    <div class="logo p-3 absolute z-2" xampp>
       <img
         src="https://www.bosio.zip/assets/img/loghi/xampp.webp"
         alt="X"
@@ -27,16 +27,10 @@
         loading="lazy"
       />
     </div>
-    <div
-      class="right-0 z-2 absolute flex bg-neutral-950 p-2 border-2 rounded-xl aspect-square logo"
-      utente
-    >
-      <ion-icon name="person" class="m-auto text-[2.5rem]" />
+    <div class="logo p-2 absolute z-2 right-0" utente>
+      <ion-icon name="person" />
     </div>
-    <div
-      class="bottom-0 z-2 absolute bg-neutral-950 p-2 border-2 rounded-xl logo"
-      php
-    >
+    <div class="logo p-2 absolute z-2 bottom-0" php>
       <img
         src="https://www.bosio.zip/assets/img/loghi/php.webp"
         alt="P"
@@ -44,10 +38,7 @@
         loading="lazy"
       />
     </div>
-    <div
-      class="right-0 bottom-0 z-2 absolute bg-neutral-950 p-2 border-2 rounded-xl logo"
-      mariadb
-    >
+    <div class="logo p-2 absolute z-2 right-0 bottom-0" mariadb>
       <img
         src="https://www.bosio.zip/assets/img/loghi/mariadb.webp"
         alt="M"
@@ -56,43 +47,28 @@
       />
     </div>
 
-    <hr orizzontale class="absolute border-t-2 border-dashed" />
-    <hr orizzontale class="absolute border-t-2 border-dashed" />
-    <hr verticale class="absolute border-l-2 border-dashed h-auto" />
+    <hr orizzontale class="absolute border-0" />
+    <hr orizzontale class="absolute border-0" />
+    <hr verticale class="absolute border-0" />
 
-    <ion-icon
-      name="help-circle"
-      class="absolute -translate-y-1/2"
-      animazione
-      icona-1
-    ></ion-icon>
+    <ion-icon name="help-circle" class="absolute" animazione icona-1></ion-icon>
     <ion-icon
       name="information-circle"
-      class="absolute -translate-x-1/2"
+      class="absolute"
       animazione
       icona-2
     ></ion-icon>
-    <ion-icon
-      name="help-circle"
-      class="absolute translate-y-1/2"
-      animazione
-      icona-3
-    ></ion-icon>
-    <ion-icon
-      name="server"
-      class="absolute scale-[0.85] origin-center translate-y-1/2"
-      animazione
-      icona-4
-    ></ion-icon>
+    <ion-icon name="help-circle" class="absolute" animazione icona-3></ion-icon>
+    <ion-icon name="server" class="absolute" animazione icona-4></ion-icon>
     <ion-icon
       name="document-text"
-      class="absolute scale-[0.85] origin-center -translate-x-1/2"
+      class="absolute"
       animazione
       icona-5
     ></ion-icon>
     <ion-icon
       name="document-text"
-      class="absolute scale-[0.85] origin-center -translate-y-1/2"
+      class="absolute"
       animazione
       icona-6
     ></ion-icon>

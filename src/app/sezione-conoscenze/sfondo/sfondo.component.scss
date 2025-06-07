@@ -1,7 +1,5 @@
 :host {
-  background-color: var(--nero-h1);
   border-radius: inherit;
-
   animation: mostra-cerchi 10s var(--easing);
   animation-timeline: view();
 }

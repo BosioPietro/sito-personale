@@ -1,310 +1,175 @@
 <div class="flex-row">
-  <img
-    class="opacity-55 my-auto p-4"
-    src="https://www.bosio.zip/assets/img/logo.webp"
-    alt="B"
-  />
-  <button
-    class="bg-transparent p-1"
-    menu
-    (click)="headerAperto = !headerAperto"
-    aria-label="Menu"
-  >
-    <ion-icon name="menu"></ion-icon>
-  </button>
-  <div class="flex-row wrapper" #wrapper>
-    <div
-      class="flex-row opzione"
-      [class.corrente]="sezione == 'principale'"
-      sezione="principale"
-    >
-      <button
-        (click)="Scrolla('principale')"
-        class="flex-row"
-        aria-label="Sezione home"
-      >
-        <ion-icon name="Home" />
-        Home
-      </button>
-      <div class="wrapper-cella">
-        <div class="cella"></div>
-      </div>
+    <img src="https://www.bosio.zip/assets/img/logo.webp" alt="B">
+    <button menu (click)="headerAperto = !headerAperto" aria-label="Menu">
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <div class="wrapper flex-row" #wrapper>
+        <div class="opzione flex-row" [class.corrente]="sezione == 'principale'" sezione="principale">
+            <button (click)='Scrolla("principale")' class="flex-row" aria-label="Sezione home">
+                <ion-icon name="Home" />
+                Home
+            </button>
+            <div class="wrapper-cella">
+                <div class="cella"></div>
+            </div>
+        </div>
+        <div class="opzione flex-row competenze" espandi [class.corrente]="sezione == 'conoscenze'"
+            sezione="conoscenze">
+            <button (click)='Scrolla("conoscenze")' class="flex-row" aria-label="Sezione competenze">
+                <ion-icon name="school" />
+                Competenze
+                <ion-icon name="chevron-down"></ion-icon>
+            </button>
+            <div class="wrapper-cella">
+                <div class="cella"></div>
+            </div>
+        </div>
+        <div class="opzione flex-row progetti" espandi [class.corrente]="sezione == 'progetti'" sezione="progetti">
+            <button (click)='Scrolla("progetti")' class="flex-row" aria-label="Sezione progetti">
+                <ion-icon name="layers" />
+                Progetti
+                <ion-icon name="chevron-down"></ion-icon>
+            </button>
+            <div class="wrapper-cella">
+                <div class="cella"></div>
+            </div>
+        </div>
+        <div class="opzione flex-row" [class.corrente]="sezione == 'contatti'" sezione="contatti">
+            <button (click)='Scrolla("contatti")' class="flex-row" aria-label="Sezione contatti">
+                <ion-icon name="chatbubble" />
+                Contatti
+            </button>
+            <div class="wrapper-cella">
+                <div class="cella"></div>
+            </div>
+        </div>
     </div>
-    <div
-      class="flex-row opzione competenze"
-      espandi
-      [class.corrente]="sezione == 'conoscenze'"
-      sezione="conoscenze"
-    >
-      <button
-        (click)="Scrolla('conoscenze')"
-        class="flex-row"
-        aria-label="Sezione competenze"
-      >
-        <ion-icon name="school" />
-        Competenze
-        <ion-icon name="chevron-down"></ion-icon>
-      </button>
-      <div class="wrapper-cella">
-        <div class="cella"></div>
-      </div>
-    </div>
-    <div
-      class="flex-row opzione progetti"
-      espandi
-      [class.corrente]="sezione == 'progetti'"
-      sezione="progetti"
-    >
-      <button
-        (click)="Scrolla('progetti')"
-        class="flex-row"
-        aria-label="Sezione progetti"
-      >
-        <ion-icon name="layers" />
-        Progetti
-        <ion-icon name="chevron-down"></ion-icon>
-      </button>
-      <div class="wrapper-cella">
-        <div class="cella"></div>
-      </div>
-    </div>
-    <div
-      class="flex-row opzione"
-      [class.corrente]="sezione == 'contatti'"
-      sezione="contatti"
-    >
-      <button
-        (click)="Scrolla('contatti')"
-        class="flex-row"
-        aria-label="Sezione contatti"
-      >
-        <ion-icon name="chatbubble" />
-        Contatti
-      </button>
-      <div class="wrapper-cella">
-        <div class="cella"></div>
-      </div>
-    </div>
-  </div>
-  <button
-    class="flex bg-transparent p-4 brilla"
-    (click)="CambiaModalitaVisualizzazione($event)"
-    toggle
-    [attr.aria-label]="
-      modalitaVisualizzazione === 'scuro' ? 'Modalità scura' : 'Modalità chiara'
-    "
-  >
-    <ion-icon
-      class="my-auto"
-      [name]="modalitaVisualizzazione === 'scuro' ? 'sunny' : 'moon'"
-    />
-  </button>
+    <button class="brilla" (click)="CambiaModalitaVisualizzazione($event)" toggle
+        [attr.aria-label]="modalitaVisualizzazione === 'scuro' ? 'Modalità scura' : 'Modalità chiara'">
+        <ion-icon [name]="modalitaVisualizzazione === 'scuro' ? 'sunny' : 'moon'" />
+    </button>
 
-  <div
-    #cella
-    class="cella"
-    [class.animando]="animando"
-    [style]="{
-      '--sinistra': SezioneCorrente(sezione)
-    }"
-  ></div>
+    <div #cella class="cella" [class.animando]="animando" [style]="{
+            '--sinistra': SezioneCorrente(sezione)
+        }">
+    </div>
 </div>
 
-<div class="flex flex-col menu-header" [class.aperto]="headerAperto">
-  <div class="opzione-menu" [class.corrente]="sezione == 'principale'">
-    <button (click)="Scrolla('principale')" aria-label="Sezione principale">
-      <ion-icon name="Home" />
-      <h2>Home</h2>
-    </button>
-  </div>
-
-  <div class="opzione-menu" [class.corrente]="sezione == 'conoscenze'">
-    <button
-      (click)="CambiaSezione('conoscenze')"
-      aria-label="Sezione conoscenze"
-    >
-      <ion-icon name="school" />
-      <h2>Competenze</h2>
-      <ion-icon name="chevron-down"></ion-icon>
-    </button>
-    <div
-      class="sotto-menu"
-      [class.aperto]="sezioneMenu === 'conoscenze'"
-      style="--max-height: 11rem"
-    >
-      <button
-        (click)="SelezionaCompetenza(sezioni.Sviluppo)"
-        aria-label="Competenze sviluppo"
-      >
-        <ion-icon name="hardware-chip-outline" />
-        <span>Sviluppo</span>
-      </button>
-      <button
-        (click)="SelezionaCompetenza(sezioni.Web)"
-        aria-label="Competenze web"
-      >
-        <ion-icon name="globe-outline" />
-        <span>Web</span>
-      </button>
-      <button
-        (click)="SelezionaCompetenza(sezioni.Certificazioni)"
-        aria-label="Certificazioni"
-      >
-        <ion-icon name="ribbon-outline" />
-        <span>Certificazioni</span>
-      </button>
+<div class="menu-header flex-col" [class.aperto]="headerAperto">
+    <div class="opzione-menu" [class.corrente]="sezione == 'principale'">
+        <button (click)='Scrolla("principale")' aria-label="Sezione principale">
+            <ion-icon name="Home" />
+            <h2>Home</h2>
+        </button>
     </div>
-  </div>
 
-  <div class="opzione-menu" [class.corrente]="sezione == 'progetti'">
-    <button (click)="CambiaSezione('progetti')" aria-label="Sezione progetti">
-      <ion-icon name="layers" />
-      <h2>Progetti</h2>
-      <ion-icon name="chevron-down"></ion-icon>
-    </button>
-    <div
-      class="sotto-menu"
-      [class.aperto]="sezioneMenu === 'progetti'"
-      style="--max-height: 25rem"
-    >
-      <button
-        (click)="SelezionaProgetto('Rilievi & Perizie')"
-        aria-label="Progetto Rilievi & Perizie"
-      >
-        <ion-icon name="globe" />
-        <span>Rilievi & Perizie</span>
-      </button>
-      <button
-        (click)="SelezionaProgetto('AlphaVantage')"
-        aria-label="Progetto AlphaVantage"
-      >
-        <ion-icon name="analytics" />
-        <span>AlphaVantage</span>
-      </button>
-      <button
-        (click)="SelezionaProgetto('Registro Elettronico')"
-        aria-label="Progetto registro elettronico"
-      >
-        <ion-icon name="file-tray-full" />
-        <span>Registro Elettronico</span>
-      </button>
-      <button
-        (click)="SelezionaProgetto('E-Commerce')"
-        aria-label="Progetto e-commerce"
-      >
-        <ion-icon name="storefront" />
-        <span>E-Commerce</span>
-      </button>
-      <button
-        (click)="SelezionaProgetto('Random User')"
-        aria-label="Progetto Random User"
-      >
-        <ion-icon name="people" />
-        <span>Random User</span>
-      </button>
-      <button
-        (click)="SelezionaProgetto('MongoDriver')"
-        aria-label="Progetto MongoDriver"
-      >
-        <ion-icon name="server" />
-        <span>MongoDriver</span>
-      </button>
+    <div class="opzione-menu" [class.corrente]="sezione == 'conoscenze'">
+        <button (click)="CambiaSezione('conoscenze')" aria-label="Sezione conoscenze">
+            <ion-icon name="school" />
+            <h2>Competenze</h2>
+            <ion-icon name="chevron-down"></ion-icon>
+        </button>
+        <div class="sotto-menu" [class.aperto]="sezioneMenu === 'conoscenze'" style="--max-height: 11rem">
+            <button (click)="SelezionaCompetenza(sezioni.Sviluppo)" aria-label="Competenze sviluppo">
+                <ion-icon name="hardware-chip-outline" />
+                <span>Sviluppo</span>
+            </button>
+            <button (click)="SelezionaCompetenza(sezioni.Web)" aria-label="Competenze web">
+                <ion-icon name="globe-outline" />
+                <span>Web</span>
+            </button>
+            <button (click)="SelezionaCompetenza(sezioni.Certificazioni)" aria-label="Certificazioni">
+                <ion-icon name="ribbon-outline" />
+                <span>Certificazioni</span>
+            </button>
+        </div>
     </div>
-  </div>
-  <div class="opzione-menu" [class.corrente]="sezione == 'contatti'">
-    <button (click)="Scrolla('contatti')" aria-label="Sezione contatti">
-      <ion-icon name="chatbubble" />
-      <h2>Contatti</h2>
+
+    <div class="opzione-menu" [class.corrente]="sezione == 'progetti'">
+        <button (click)="CambiaSezione('progetti')" aria-label="Sezione progetti">
+            <ion-icon name="layers" />
+            <h2>Progetti</h2>
+            <ion-icon name="chevron-down"></ion-icon>
+        </button>
+        <div class="sotto-menu" [class.aperto]="sezioneMenu === 'progetti'" style="--max-height: 25rem">
+            <button (click)="SelezionaProgetto('Rilievi & Perizie')" aria-label="Progetto Rilievi & Perizie">
+                <ion-icon name="globe" />
+                <span>Rilievi & Perizie</span>
+            </button>
+            <button (click)="SelezionaProgetto('AlphaVantage')" aria-label="Progetto AlphaVantage">
+                <ion-icon name="analytics" />
+                <span>AlphaVantage</span>
+            </button>
+            <button (click)="SelezionaProgetto('Registro Elettronico')" aria-label="Progetto registro elettronico">
+                <ion-icon name="file-tray-full" />
+                <span>Registro Elettronico</span>
+            </button>
+            <button (click)="SelezionaProgetto('E-Commerce')" aria-label="Progetto e-commerce">
+                <ion-icon name="storefront" />
+                <span>E-Commerce</span>
+            </button>
+            <button (click)="SelezionaProgetto('Random User')" aria-label="Progetto Random User">
+                <ion-icon name="people" />
+                <span>Random User</span>
+            </button>
+            <button (click)="SelezionaProgetto('MongoDriver')" aria-label="Progetto MongoDriver">
+                <ion-icon name="server" />
+                <span>MongoDriver</span>
+            </button>
+        </div>
+    </div>
+    <div class="opzione-menu" [class.corrente]="sezione == 'contatti'">
+        <button (click)='Scrolla("contatti")' aria-label="Sezione contatti">
+            <ion-icon name="chatbubble" />
+            <h2>Contatti</h2>
+        </button>
+    </div>
+    <button class="brilla" (click)="CambiaModalitaVisualizzazione($event)" toggle
+        [attr.aria-label]="modalitaVisualizzazione === 'scuro' ? 'Modalità scura' : 'Modalità chiara'">
+        <ion-icon [name]="modalitaVisualizzazione === 'scuro' ? 'sunny' : 'moon'" />
     </button>
-  </div>
-  <button
-    class="brilla"
-    (click)="CambiaModalitaVisualizzazione($event)"
-    toggle
-    [attr.aria-label]="
-      modalitaVisualizzazione === 'scuro' ? 'Modalità scura' : 'Modalità chiara'
-    "
-  >
-    <ion-icon [name]="modalitaVisualizzazione === 'scuro' ? 'sunny' : 'moon'" />
-  </button>
 </div>
 
 <div class="flex-row sotto-sezioni">
-  <div class="competenze">
-    <button
-      (click)="SelezionaCompetenza(sezioni.Sviluppo)"
-      aria-label="Competenze sviluppo"
-      class="flex justify-center items-center gap-1 rounded-md"
-    >
-      <ion-icon name="hardware-chip-outline" />
-      <span>Sviluppo</span>
-    </button>
-    <button
-      (click)="SelezionaCompetenza(sezioni.Web)"
-      aria-label="Competenze web"
-      class="flex justify-center items-center gap-1 rounded-md"
-    >
-      <ion-icon name="globe-outline" />
-      <span>Web</span>
-    </button>
-    <button
-      (click)="SelezionaCompetenza(sezioni.Certificazioni)"
-      aria-label="Competenze certificazioni"
-      class="flex justify-center items-center gap-1 rounded-md"
-    >
-      <ion-icon name="ribbon-outline" />
-      <span>Certificazioni</span>
-    </button>
-  </div>
+    <div class="competenze">
+        <button (click)="SelezionaCompetenza(sezioni.Sviluppo)" aria-label="Competenze sviluppo">
+            <ion-icon name="hardware-chip-outline" />
+            <span>Sviluppo</span>
+        </button>
+        <button (click)="SelezionaCompetenza(sezioni.Web)" aria-label="Competenze web">
+            <ion-icon name="globe-outline" />
+            <span>Web</span>
+        </button>
+        <button (click)="SelezionaCompetenza(sezioni.Certificazioni)" aria-label="Competenze certificazioni">
+            <ion-icon name="ribbon-outline" />
+            <span>Certificazioni</span>
+        </button>
+    </div>
 
-  <div class="progetti">
-    <button
-      (click)="SelezionaProgetto('Rilievi & Perizie')"
-      aria-label="Progetto Rilievi & Perizie"
-      class="flex justify-center items-center gap-1 rounded-md"
-    >
-      <ion-icon name="globe" />
-      <span>Rilievi & Perizie</span>
-    </button>
-    <button
-      (click)="SelezionaProgetto('AlphaVantage')"
-      aria-label="Progetto AlphaVantage"
-      class="flex justify-center items-center gap-1 rounded-md"
-    >
-      <ion-icon name="analytics" />
-      <span>AlphaVantage</span>
-    </button>
-    <button
-      (click)="SelezionaProgetto('Registro Elettronico')"
-      aria-label="Progetto registro elettronico"
-      class="flex justify-center items-center gap-1 rounded-md"
-    >
-      <ion-icon name="file-tray-full" />
-      <span>Registro Elettronico</span>
-    </button>
-    <button
-      (click)="SelezionaProgetto('E-Commerce')"
-      aria-label="Progetto e-commerce"
-      class="flex justify-center items-center gap-1 rounded-md"
-    >
-      <ion-icon name="storefront" />
-      <span>E-Commerce</span>
-    </button>
-    <button
-      (click)="SelezionaProgetto('Random User')"
-      aria-label="Progetto Random User"
-      class="flex justify-center items-center gap-1 rounded-md"
-    >
-      <ion-icon name="people" />
-      <span>Random User</span>
-    </button>
-    <button
-      (click)="SelezionaProgetto('MongoDriver')"
-      aria-label="Progetto MongoDriver"
-      class="flex justify-center items-center gap-1 rounded-md"
-    >
-      <ion-icon name="server" />
-      <span>MongoDriver</span>
-    </button>
-  </div>
+    <div class="progetti">
+        <button (click)="SelezionaProgetto('Rilievi & Perizie')" aria-label="Progetto Rilievi & Perizie">
+            <ion-icon name="globe" />
+            <span>Rilievi & Perizie</span>
+        </button>
+        <button (click)="SelezionaProgetto('AlphaVantage')" aria-label="Progetto AlphaVantage">
+            <ion-icon name="analytics" />
+            <span>AlphaVantage</span>
+        </button>
+        <button (click)="SelezionaProgetto('Registro Elettronico')" aria-label="Progetto registro elettronico">
+            <ion-icon name="file-tray-full" />
+            <span>Registro Elettronico</span>
+        </button>
+        <button (click)="SelezionaProgetto('E-Commerce')" aria-label="Progetto e-commerce">
+            <ion-icon name="storefront" />
+            <span>E-Commerce</span>
+        </button>
+        <button (click)="SelezionaProgetto('Random User')" aria-label="Progetto Random User">
+            <ion-icon name="people" />
+            <span>Random User</span>
+        </button>
+        <button (click)="SelezionaProgetto('MongoDriver')" aria-label="Progetto MongoDriver">
+            <ion-icon name="server" />
+            <span>MongoDriver</span>
+        </button>
+    </div>
 </div>
