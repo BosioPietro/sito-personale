@@ -1,17 +1,35 @@
-.card {
-  &:not(:last-child) {
-    max-width: calc(50% - var(--gap) / 2);
-  }
+:host{
+    flex-wrap: wrap;
+    min-width: 0;
 }
 
-@media screen and (width < 950px) {
-  .card:not(:last-child) {
-    max-width: none;
-  }
+.card{
+    justify-content: flex-start;
+    overflow: hidden;
+
+    &:not(:last-child){
+        max-width: calc(50% - var(--gap) / 2);
+    }
+
+    p:not(:first-of-type){
+        margin-top: .5rem;
+    }
+
+    h5{
+        margin-top: auto;
+        transform: translateX(.25ch);
+    }
 }
 
-@media screen and (width < 500px) {
-  .card {
-    padding: 1rem !important;
-  }
+@media screen and (width < 950px){
+    .card:not(:last-child){
+        max-width: none ;
+    }
+}
+
+
+@media screen and (width < 500px){
+    .card{
+        padding: 1rem !important;
+    }
 }

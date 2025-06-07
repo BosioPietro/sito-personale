@@ -1,48 +1,48 @@
 <hr class="linea-luce" />
-<div class="z-1 flex flex-col gap-8 mx-auto wrapper grow">
+<div class="wrapper flex flex-col mx-auto gap-8 grow z-1">
   <div class="flex-col">
-    <h1 class="mx-auto w-fit text-center testo-gradient">
+    <h1 class="testo-gradient mx-auto w-fit text-center">
       Competenze & Abilità
     </h1>
-    <p class="mx-auto px-4 max-w-[50ch] text-center sottotitolo">
+    <p class="sottotitolo max-w-[50ch] mx-auto text-center px-4">
       Competenze che ho acquisito direttamente attraverso alla scuola, stage, o
       interesse personale
     </p>
   </div>
   <div
-    class="relative flex flex-col gap-8 mx-8 p-8 pt-0 border-2 border-neutral-800 rounded-2xl griglia grow"
+    class="griglia flex flex-col relative grow mx-8 gap-8 p-8 pt-0 rounded-2xl border-2 border-neutral-800"
   >
-    <hr class="-top-[2px] bg-neutral-800 mx-3 rotate-180 linea-luce" />
+    <hr class="linea-luce mx-3 bg-neutral-800 rotate-180 -top-[2px]" />
     <SfondoConoscenze
-      class="-z-2 absolute inset-0 place-items-center grid overflow-hidden"
+      class="-z-2 absolute inset-0 grid place-items-center overflow-hidden"
     />
-    <div class="grid controlli">
+    <div class="controlli grid">
       <div class="cella"></div>
       <div class="cella">
-        <div class="-z-1 absolute inset-0 sfondo-trattini"></div>
+        <div class="sfondo-trattini absolute inset-0 -z-1"></div>
         <Switch
-          class="relative flex backdrop-blur-xs mt-8 p-1 rounded-full w-fit h-fit -translate-[1px]"
+          class="mt-8 -translate-[1px] flex relative w-fit h-fit rounded-full p-1 backdrop-blur-xs"
           (onChange)="CambiaSezione($event)"
         />
       </div>
       <div class="cella"></div>
     </div>
     <div
-      class="z-1 relative items-stretch grid grid-cols-[1fr] grid-rows-[1fr] wrapper-griglia grow"
+      class="wrapper-griglia grid-rows-[1fr] grid-cols-[1fr] relative grow grid items-stretch z-1"
     >
       <!-- Devono essere tutti sempre renderizzati (ma non visibili) -->
       <!-- Perchè altrimenti con @if quando fai lo switch e il contenuto è -->
       <!-- in overflow (tipo mobile) il wrapper shifterebbe -->
       <GrigliaSviluppo
-        class="z-1 relative flex flex-col contenuto-griglia"
+        class="contenuto-griglia flex flex-col relative z-1"
         [class.visibile]="sezioneCorrente === Sezioni.Sviluppo"
       />
       <GrigliaWeb
-        class="z-1 relative flex flex-col contenuto-griglia"
+        class="flex flex-col contenuto-griglia relative z-1"
         [class.visibile]="sezioneCorrente === Sezioni.Web"
       />
       <GrigliaCertificazioni
-        class="z-1 relative flex flex-row flex-wrap m-w-0 contenuto-griglia"
+        class="flex flex-row contenuto-griglia relative z-1"
         [class.visibile]="sezioneCorrente === Sezioni.Certificazioni"
         (mousemove)="EffettoMouse($event)"
       />
