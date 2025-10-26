@@ -1,4 +1,6 @@
 :host {
+    content-visibility: auto;
+    contain-intrinsic-size: 1100px;
     position: relative;
     backdrop-filter: blur(1.2rem);
     background-color: #000E;

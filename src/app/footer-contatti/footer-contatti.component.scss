@@ -1,4 +1,6 @@
 :host{
+    content-visibility: auto;
+    contain-intrinsic-size: 700px;
     background-color: rgba(0, 0, 0, 0.3);
 
     .wrapper{
@@ -30,7 +32,7 @@
             filter: blur(.25rem);
         }
 
-        &.animato.appari, .animato.appari{
+        :host.visibile &.animato, :host.visibile .animato{
             animation: mostra-footer .5s var(--easing) forwards;
             animation-delay: calc(var(--delay) * 1s);
 

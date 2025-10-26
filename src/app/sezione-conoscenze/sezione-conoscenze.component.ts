@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { GrigliaCertificazioniComponent } from './griglia-certificazioni/griglia-certificazioni.component';
 import { GrigliaWebComponent } from './griglia-web/griglia-web.component';
 import { SfondoComponent } from './sfondo/sfondo.component';
@@ -10,7 +10,8 @@ import { GrigliaSviluppoComponent } from './griglia-sviluppo/griglia-sviluppo.co
   standalone: true,
   imports: [SwitchComponent, SfondoComponent, GrigliaWebComponent, GrigliaCertificazioniComponent, GrigliaSviluppoComponent],
   templateUrl: './sezione-conoscenze.component.html',
-  styleUrl: './sezione-conoscenze.component.scss'
+  styleUrl: './sezione-conoscenze.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SezioneConoscenzeComponent{
   EffettoMouse = EffettoMouse;

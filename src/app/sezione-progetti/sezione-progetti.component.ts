@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { progetti, Progetto } from './dati';
 import { TecnologieComponent } from "./tecnologie/tecnologie.component";
 import { DescrizioneComponent } from "./descrizione/descrizione.component";
@@ -12,7 +12,8 @@ import { ImmaginiService } from './immagini/immagini.service';
   imports: [TecnologieComponent, DescrizioneComponent, SelettoreProgettiComponent, ImmaginiComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './sezione-progetti.component.html',
-  styleUrl: './sezione-progetti.component.scss'
+  styleUrl: './sezione-progetti.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SezioneProgettiComponent {
 

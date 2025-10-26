@@ -1,4 +1,6 @@
 :host{
+    content-visibility: auto;
+    contain-intrinsic-size: 1000px;
     grid-area: 1 / 1 / 1 / 2;
     position: relative;
     max-width: none !important;

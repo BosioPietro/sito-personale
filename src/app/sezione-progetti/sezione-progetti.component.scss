@@ -1,4 +1,6 @@
 :host {
+    content-visibility: auto;
+    contain-intrinsic-size: 1200px;
     --gap: 2rem;
 
     position: relative;
