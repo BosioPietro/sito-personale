@@ -1,20 +1,19 @@
 import {
   Component,
-  CUSTOM_ELEMENTS_SCHEMA,
   ChangeDetectionStrategy,
   ElementRef,
   AfterViewInit,
   OnDestroy,
 } from '@angular/core';
 import { SfondoComponent } from './sfondo/sfondo.component';
+import { IconaComponent } from '../common/icona/icona.component';
 
 @Component({
-    selector: 'FooterContatti',
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    imports: [SfondoComponent],
-    templateUrl: './footer-contatti.component.html',
-    styleUrl: './footer-contatti.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'FooterContatti',
+  imports: [SfondoComponent, IconaComponent],
+  templateUrl: './footer-contatti.component.html',
+  styleUrl: './footer-contatti.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterContattiComponent implements AfterViewInit, OnDestroy {
   private observer?: IntersectionObserver;

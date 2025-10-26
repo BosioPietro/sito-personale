@@ -1,5 +1,5 @@
-:root{
-    --colore-bordo: #FFF2; 
+:root {
+    --colore-bordo: #FFF2;
     --nero-h1: #0b0b0b;
 
     // per i bordi delle immagini che 
@@ -27,7 +27,7 @@
     --easing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -39,105 +39,110 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-html{
+@font-face {
+    font-family: 'DM Sans';
+    src: url('/assets/font/DMSans.woff2') format('woff2');
+}
+
+html {
     // offsetta il sito per essere ottimizzato per il ~1080p
     font-size: 80%;
 
-    &.chiaro{
+    &.chiaro {
         --bianco-inverti: #000;
         --nero-inverti: #FFF;
-        --colore-bordo: #FFF3; 
-        
+        --colore-bordo: #FFF3;
+
         filter: invert(1);
-        
-        .immagine{
+
+        .immagine {
             filter: invert(1);
-        }   
+        }
     }
 }
 
-@media (orientation: landscape) and (width >= 2500px) {
-    html{
+@media (orientation: landscape) and (width >=2500px) {
+    html {
         font-size: 100%;
     }
 }
 
-body{
+body {
     background-color: #000;
     scroll-behavior: smooth;
     min-height: 200vh;
 
 
-    &:has(.menu-header.aperto, dialog[open]){
+    &:has(.menu-header.aperto, dialog[open]) {
         overflow: hidden;
     }
 }
 
-::selection{
+::selection {
     background-color: #8883;
     color: var(--grigio-9);
 }
 
 ::view-transition-old(root),
-::view-transition-new(root){
+::view-transition-new(root) {
     animation: none;
-    mix-blend-mode: normal;  
+    mix-blend-mode: normal;
 }
 
 //! TESTO
 
-h1{
+h1 {
     font-size: var(--testo-xxl);
 
-    &.xl{
+    &.xl {
         font-size: var(--testo-xxxl);
         font-weight: 900;
     }
 }
 
-h2{
+h2 {
     font-size: var(--testo-xl);
     font-weight: 600;
 }
 
-.sottotitolo{
+.sottotitolo {
     font-weight: 400;
     font-size: var(--testo-s);
     color: var(--grigio-9);
 }
 
-h3{
+h3 {
     font-size: var(--testo-l);
 }
 
-h4{
+h4 {
     font-size: var(--testo-m);
 }
 
-h5{
+h5 {
     font-size: var(--testo-s);
 }
 
-p{
+p {
     text-wrap: pretty;
     font-size: var(--testo);
 }
 
-.testo-gradient{
-    background: linear-gradient(to right bottom,#FFF 30%,#FFFFFF80);
+.testo-gradient {
+    background: linear-gradient(to right bottom, #FFF 30%, #FFFFFF80);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;  
+    background-clip: text;
 }
 
 //! CLASSI ED ELEMENTI VARI
 
 a[href^="#"] {
     text-decoration: none;
-    color: inherit;       
+    color: inherit;
 }
 
-button{
+button {
     border: 2px solid var(--colore-bordo);
     border-radius: .5rem;
     padding: 1rem 2rem;
@@ -154,25 +159,25 @@ button{
     filter: drop-shadow(0 0 .5rem #FFF1);
 
 
-    &:hover{
+    &:hover {
         border-color: #FFF6;
         color: #FFF;
         filter: drop-shadow(0 0 1rem #FFFFFF27);
     }
 }
 
-[class*="flex-"]{
+[class*="flex-"] {
     display: flex;
 
-    &.flex-col{
+    &.flex-col {
         flex-direction: column;
     }
 }
 
-.scrollbar-nascosta{
+.scrollbar-nascosta {
     -ms-overflow-style: none;
     scrollbar-width: none;
-    
+
     &::-webkit-scrollbar {
         display: none;
     }
@@ -194,21 +199,21 @@ button{
         background-color: var(--colore-bordo);
         border-radius: 100dvh;
 
-        &:hover{
+        &:hover {
             background-color: #FFF4;
         }
     }
 }
 
-.no-transizione{
+.no-transizione {
     transition: none !important;
 }
 
-.sfondo-trattini{
+.sfondo-trattini {
     position: relative;
     background-color: #0000;
 
-    &::before{
+    &::before {
         content: '';
         --trattino: url("data:image/svg+xml;base64,PHN2Zw0KICAgdmlld0JveD0iMCAwIDY0IDUzIg0KICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCgk8Zz4NCgkJPHBhdGgNCiAgICAgICAJCQlzdHlsZT0ic3Ryb2tlOiMzMzM7c3Ryb2tlLXdpZHRoOjY7c3Ryb2tlLWxpbmVjYXA6cm91bmQiDQogICAgICAgCQkJZD0iTSAzLDE0IFYgMzciDQogICAgIAkJLz4NCgk8L2c+DQo8L3N2Zz4=");
         position: absolute;
@@ -221,7 +226,7 @@ button{
     }
 }
 
-hr.linea-luce{
+hr.linea-luce {
     height: 2px;
     background-color: #FFF2;
     position: absolute;
@@ -261,30 +266,30 @@ hr.linea-luce{
 
 }
 
-.brilla{
+.brilla {
     transition: .5s var(--easing);
     transition-property: color, filter;
     filter: drop-shadow(0 0 1rem #7770);
     cursor: pointer;
-    
-    &:hover{
+
+    &:hover {
         filter: drop-shadow(0 0 1rem #777F);
         color: #FFF;
     }
 }
 
-#progetto{
+#progetto {
 
-    span.testo-gradient{
+    span.testo-gradient {
         font-weight: bold;
         white-space: nowrap;
     }
 
-    a{
+    a {
         color: #FFF;
     }
 
-    code{
+    code {
         display: inline-flex;
         font-family: monospace;
         color: #CCC;
