@@ -16,6 +16,7 @@
     border-radius: .5rem;
     border: 2px solid color-mix(in srgb, var(--bianco-inverti) 30%, var(--nero-inverti) 70%);
     contain: paint;
+    z-index: 1;
 
     .icona {
         border: none;
@@ -51,6 +52,9 @@
         height: 100%;
         width: 100%;
         z-index: 0;
+        backface-visibility: hidden;
+        will-change: opacity, transform;
+        transform: translateZ(0);
     }
 
     &::before {
@@ -63,6 +67,9 @@
         z-index: -1;
         opacity: .5;
         filter: blur(var(--filtro));
+        backface-visibility: hidden;
+        will-change: opacity, transform;
+        transform: translateZ(0);
     }
 }
 
@@ -156,6 +163,8 @@ dialog {
 .wrapper-selettore {
     display: grid;
     place-items: center;
+    position: relative;
+    z-index: 1;
 
     .selettore {
         align-items: center;
@@ -228,10 +237,12 @@ dialog {
     inset: var(--padding);
     gap: calc(var(--gap) / 4);
     pointer-events: none;
+    z-index: 0;
 
     .wrapper-img img,
     .wrapper-img::before {
         animation: abbassa-img .5s var(--easing) forwards;
+        animation-delay: .1s;
         opacity: 1;
 
         @keyframes abbassa-img {
