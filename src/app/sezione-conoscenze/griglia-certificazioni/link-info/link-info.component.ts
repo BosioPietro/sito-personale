@@ -1,12 +1,11 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
 
 @Component({
-  selector: 'LinkInfo',
-  standalone: true,
-  imports: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './link-info.component.html',
-  styleUrl: './link-info.component.scss'
+    selector: 'LinkInfo',
+    imports: [],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './link-info.component.html',
+    styleUrl: './link-info.component.scss'
 })
 export class LinkInfoComponent {
 

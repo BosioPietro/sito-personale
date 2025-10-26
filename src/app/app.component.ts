@@ -14,17 +14,16 @@ import { FooterContattiComponent } from './footer-contatti/footer-contatti.compo
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'body',
-  standalone: true,
-  imports: [
-    HeaderComponent,
-    SezionePrincipaleComponent,
-    SezioneConoscenzeComponent,
-    SezioneProgettiComponent,
-    FooterContattiComponent,
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+    selector: 'body',
+    imports: [
+        HeaderComponent,
+        SezionePrincipaleComponent,
+        SezioneConoscenzeComponent,
+        SezioneProgettiComponent,
+        FooterContattiComponent,
+    ],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
   title = 'Progetto';

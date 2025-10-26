@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'CardFrontend',
-  standalone: true,
-  imports: [],
-  templateUrl: './card-frontend.component.html',
-  styleUrl: './card-frontend.component.scss'
+    selector: 'CardFrontend',
+    imports: [],
+    templateUrl: './card-frontend.component.html',
+    styleUrl: './card-frontend.component.scss'
 })
 export class CardFrontendComponent {
   

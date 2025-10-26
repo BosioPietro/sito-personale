@@ -3,12 +3,11 @@ import { Progetto } from '../dati';
 import { ProgettiService } from './progetti.service';
 
 @Component({
-  selector: 'SelettoreProgetti',
-  standalone: true,
-  imports: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './selettore-progetti.component.html',
-  styleUrl: './selettore-progetti.component.scss'
+    selector: 'SelettoreProgetti',
+    imports: [],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './selettore-progetti.component.html',
+    styleUrl: './selettore-progetti.component.scss'
 })
 export class SelettoreProgettiComponent implements AfterViewInit{
 

@@ -6,11 +6,10 @@ import { CardSqlComponent } from "./card-sql/card-sql.component";
 import { CardDatabaseComponent } from "./card-database/card-database.component";
 
 @Component({
-  selector: 'GrigliaSviluppo',
-  standalone: true,
-  imports: [CardDesktopComponent, CardMobileComponent, CardSqlComponent, CardDatabaseComponent],
-  templateUrl: './griglia-sviluppo.component.html',
-  styleUrls: ['../stile-griglie.scss', './griglia-sviluppo.component.scss']
+    selector: 'GrigliaSviluppo',
+    imports: [CardDesktopComponent, CardMobileComponent, CardSqlComponent, CardDatabaseComponent],
+    templateUrl: './griglia-sviluppo.component.html',
+    styleUrls: ['../stile-griglie.scss', './griglia-sviluppo.component.scss']
 })
 export class GrigliaSviluppoComponent {
   EffettoMouse = EffettoMouse;

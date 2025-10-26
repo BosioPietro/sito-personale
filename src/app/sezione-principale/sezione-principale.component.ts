@@ -2,13 +2,12 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy } from '@ang
 import { SfondoComponent } from './sfondo/sfondo.component';
 
 @Component({
-  selector: 'SezionePrincipale',
-  standalone: true,
-  imports: [SfondoComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './sezione-principale.component.html',
-  styleUrl: './sezione-principale.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'SezionePrincipale',
+    imports: [SfondoComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './sezione-principale.component.html',
+    styleUrl: './sezione-principale.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SezionePrincipaleComponent {
   Scrolla(){

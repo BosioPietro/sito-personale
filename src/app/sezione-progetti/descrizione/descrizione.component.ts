@@ -2,11 +2,10 @@ import { Component, Input } from '@angular/core';
 import { Progetto } from '../dati';
 
 @Component({
-  selector: 'Descrizione',
-  standalone: true,
-  imports: [],
-  templateUrl: './descrizione.component.html',
-  styleUrl: './descrizione.component.scss'
+    selector: 'Descrizione',
+    imports: [],
+    templateUrl: './descrizione.component.html',
+    styleUrl: './descrizione.component.scss'
 })
 export class DescrizioneComponent {
 

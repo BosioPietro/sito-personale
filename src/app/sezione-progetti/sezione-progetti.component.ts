@@ -14,18 +14,17 @@ import { ImmaginiComponent } from './immagini/immagini.component';
 import { ImmaginiService } from './immagini/immagini.service';
 
 @Component({
-  selector: 'SezioneProgetti',
-  standalone: true,
-  imports: [
-    TecnologieComponent,
-    DescrizioneComponent,
-    SelettoreProgettiComponent,
-    ImmaginiComponent,
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './sezione-progetti.component.html',
-  styleUrl: './sezione-progetti.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'SezioneProgetti',
+    imports: [
+        TecnologieComponent,
+        DescrizioneComponent,
+        SelettoreProgettiComponent,
+        ImmaginiComponent,
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './sezione-progetti.component.html',
+    styleUrl: './sezione-progetti.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SezioneProgettiComponent {
   constructor(private img: ImmaginiService, private cdr: ChangeDetectorRef) {}

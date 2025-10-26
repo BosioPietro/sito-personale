@@ -2,12 +2,11 @@ import { AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, EventEmit
 import { SwitchService } from './switch.service';
 
 @Component({
-  selector: 'Switch',
-  standalone: true,
-  imports: [],
-  templateUrl: './switch.component.html',
-  styleUrl: './switch.component.scss', 
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'Switch',
+    imports: [],
+    templateUrl: './switch.component.html',
+    styleUrl: './switch.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SwitchComponent implements AfterViewInit{
 

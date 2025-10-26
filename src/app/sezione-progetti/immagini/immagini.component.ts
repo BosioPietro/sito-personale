@@ -9,12 +9,11 @@ import {
 import { ImmaginiService } from './immagini.service';
 
 @Component({
-  selector: 'Immagini',
-  standalone: true,
-  imports: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './immagini.component.html',
-  styleUrl: './immagini.component.scss',
+    selector: 'Immagini',
+    imports: [],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './immagini.component.html',
+    styleUrl: './immagini.component.scss'
 })
 export class ImmaginiComponent implements AfterViewInit {
   constructor(protected img: ImmaginiService) {}

@@ -6,12 +6,11 @@ import { Sezioni, SwitchComponent } from './switch/switch.component';
 import { GrigliaSviluppoComponent } from './griglia-sviluppo/griglia-sviluppo.component';
 
 @Component({
-  selector: 'SezioneConoscenze',
-  standalone: true,
-  imports: [SwitchComponent, SfondoComponent, GrigliaWebComponent, GrigliaCertificazioniComponent, GrigliaSviluppoComponent],
-  templateUrl: './sezione-conoscenze.component.html',
-  styleUrl: './sezione-conoscenze.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'SezioneConoscenze',
+    imports: [SwitchComponent, SfondoComponent, GrigliaWebComponent, GrigliaCertificazioniComponent, GrigliaSviluppoComponent],
+    templateUrl: './sezione-conoscenze.component.html',
+    styleUrl: './sezione-conoscenze.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SezioneConoscenzeComponent{
   EffettoMouse = EffettoMouse;

@@ -37,13 +37,12 @@ declare global {
 }
 
 @Component({
-  selector: 'Header',
-  standalone: true,
-  imports: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'Header',
+    imports: [],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {
   @Input('sezione-corrente')

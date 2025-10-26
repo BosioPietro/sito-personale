@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { InfoLink, LinkInfoComponent } from './link-info/link-info.component';
 
 @Component({
-  selector: 'GrigliaCertificazioni',
-  standalone: true,
-  imports: [LinkInfoComponent],
-  templateUrl: './griglia-certificazioni.component.html',
-  styleUrls: ['../stile-griglie.scss', './griglia-certificazioni.component.scss']
+    selector: 'GrigliaCertificazioni',
+    imports: [LinkInfoComponent],
+    templateUrl: './griglia-certificazioni.component.html',
+    styleUrls: ['../stile-griglie.scss', './griglia-certificazioni.component.scss']
 })
 export class GrigliaCertificazioniComponent {
 

@@ -6,11 +6,10 @@ import { CardFrontendComponent } from "./card-frontend/card-frontend.component";
 import { CardPhpComponent } from "./card-php/card-php.component";
 
 @Component({
-  selector: 'GrigliaWeb',
-  standalone: true,
-  imports: [CardFrontendComponent, CardBackendComponent, CardPhpComponent, CardASPComponent],
-  templateUrl: './griglia-web.component.html',
-  styleUrls: ['../stile-griglie.scss', './griglia-web.component.scss']
+    selector: 'GrigliaWeb',
+    imports: [CardFrontendComponent, CardBackendComponent, CardPhpComponent, CardASPComponent],
+    templateUrl: './griglia-web.component.html',
+    styleUrls: ['../stile-griglie.scss', './griglia-web.component.scss']
 })
 export class GrigliaWebComponent{
   EffettoMouse = EffettoMouse;

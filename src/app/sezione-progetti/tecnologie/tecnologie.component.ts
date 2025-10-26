@@ -2,11 +2,10 @@ import { Component, Input } from '@angular/core';
 import { Progetto } from '../dati';
 
 @Component({
-  selector: 'Tecnologie',
-  standalone: true,
-  imports: [],
-  templateUrl: './tecnologie.component.html',
-  styleUrl: './tecnologie.component.scss'
+    selector: 'Tecnologie',
+    imports: [],
+    templateUrl: './tecnologie.component.html',
+    styleUrl: './tecnologie.component.scss'
 })
 export class TecnologieComponent {
 
