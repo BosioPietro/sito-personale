@@ -292,6 +292,7 @@ dialog{
         transform-origin: center;
         transition: .33s var(--easing);
         transition-property: filter, transform;
+        will-change: transform, background-position;
 
         border: 2px solid color-mix(in srgb, var(--nero-inverti) 50%, var(--bianco-inverti) 50%);
         border-radius: 1rem;
