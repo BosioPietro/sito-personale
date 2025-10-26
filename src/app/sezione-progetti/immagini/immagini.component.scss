@@ -37,6 +37,7 @@
         ion-icon{
             color: var(--nero-h1);
             transition: scale .5s var(--easing);
+            will-change: transform;
         }
 
         &:hover ion-icon{
@@ -241,6 +242,7 @@ dialog{
         animation-delay: calc(var(--delay) * 1s);
         transform: translateY(0);
         opacity: 1;
+        will-change: transform, opacity;
 
         @keyframes abbassa-img-selettore {
             to{
@@ -268,7 +270,8 @@ dialog{
         animation-delay: calc(var(--delay) * 1s);
         transform: translateY(3rem);
         opacity: 0;
-        
+        will-change: transform, opacity;
+
         @keyframes alza-img-selettore {
             to{
                 transform: translateY(0);

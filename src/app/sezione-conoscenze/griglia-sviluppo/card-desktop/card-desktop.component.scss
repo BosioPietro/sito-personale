@@ -72,6 +72,7 @@
             animation: gira 20s linear infinite;
             transform-origin: center;
             color: var(--grigio-8);
+            will-change: transform;
 
             @keyframes gira {
                 0%{ rotate: 0deg }
