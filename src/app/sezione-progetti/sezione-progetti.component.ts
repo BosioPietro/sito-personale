@@ -1,35 +1,46 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ElementRef,
+  ViewChild,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { progetti, Progetto } from './dati';
-import { TecnologieComponent } from "./tecnologie/tecnologie.component";
-import { DescrizioneComponent } from "./descrizione/descrizione.component";
-import { SelettoreProgettiComponent } from "./selettore-progetti/selettore-progetti.component";
-import { ImmaginiComponent } from "./immagini/immagini.component";
+import { TecnologieComponent } from './tecnologie/tecnologie.component';
+import { DescrizioneComponent } from './descrizione/descrizione.component';
+import { SelettoreProgettiComponent } from './selettore-progetti/selettore-progetti.component';
+import { ImmaginiComponent } from './immagini/immagini.component';
 import { ImmaginiService } from './immagini/immagini.service';
 
 @Component({
   selector: 'SezioneProgetti',
   standalone: true,
-  imports: [TecnologieComponent, DescrizioneComponent, SelettoreProgettiComponent, ImmaginiComponent],
+  imports: [
+    TecnologieComponent,
+    DescrizioneComponent,
+    SelettoreProgettiComponent,
+    ImmaginiComponent,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './sezione-progetti.component.html',
   styleUrl: './sezione-progetti.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SezioneProgettiComponent {
+  constructor(private img: ImmaginiService, private cdr: ChangeDetectorRef) {}
 
-  constructor(private img: ImmaginiService) {}
-
-  @ViewChild("descrizione")
+  @ViewChild('descrizione')
   descrizione!: ElementRef<HTMLElement>;
 
   progetti = progetti;
   progettoSelezionato = this.progetti[0];
-  progettoPrecedente?: Progetto; 
+  progettoPrecedente?: Progetto;
 
   espandiMenu: boolean = false;
 
-  ApriLink(link: string){
-    window.open(link, "_blank");
+  ApriLink(link: string) {
+    window.open(link, '_blank');
   }
 
   // Quando si cambia progetto il @for non
@@ -38,26 +49,31 @@ export class SezioneProgettiComponent {
   // uso quindi questa variable per forzarlo
   resettaFor = true;
   puoCambiare = true;
-  SelezionaProgetto(p: Progetto){
+  SelezionaProgetto(p: Progetto) {
     this.progettoPrecedente = this.progettoSelezionato;
     this.resettaFor = false;
-    this.progettoSelezionato = p
+    this.progettoSelezionato = p;
     this.puoCambiare = false;
 
     this.img.immaginePrecedente = this.img.immagineSelezionata;
-    this.img.immagineSelezionata = 0
+    this.img.immagineSelezionata = 0;
 
-    const desc = this.descrizione.nativeElement.querySelector("descrizione")!;
+    const desc = this.descrizione.nativeElement.querySelector('descrizione')!;
     desc.scrollTo({
       top: 0,
-      behavior: "smooth"
-    })
+      behavior: 'smooth',
+    });
+
+    setTimeout(() => {
+      this.resettaFor = true;
+      this.cdr.markForCheck();
+    }, 1);
 
     setTimeout(() => {
       this.progettoPrecedente = undefined;
       this.img.immaginePrecedente = undefined;
       this.puoCambiare = true;
+      this.cdr.markForCheck();
     }, 500);
-    setTimeout(() => this.resettaFor = true, 1);
   }
 }

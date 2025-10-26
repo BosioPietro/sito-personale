@@ -90,21 +90,38 @@ export class ImmaginiComponent implements AfterViewInit {
       }
     };
 
-    lente.addEventListener('pointermove', IniziaMovimento, { passive: true });
+    // Rimuovo listener su lente (ha pointer-events: none) e uso solo img
     img.addEventListener('pointermove', IniziaMovimento, { passive: true });
 
-    img.addEventListener('mousedown', (e) => {
+    img.addEventListener('pointerdown', (e) => {
       e.preventDefault();
-      MuoviLente(e, w, h, bw);
+      img.setPointerCapture(e.pointerId);
       lente.classList.add('visibile');
+      MuoviLente(e, w, h, bw);
       img.addEventListener('wheel', Zoom, { passive: true });
 
       const Rimuovi = () => {
         lente.classList.remove('visibile');
         img.removeEventListener('wheel', Zoom);
+        try {
+          img.releasePointerCapture(e.pointerId);
+        } catch {}
       };
 
-      document.addEventListener('mouseup', Rimuovi, {
+      // Chiusura robusta in ogni scenario
+      img.addEventListener('pointerup', Rimuovi, { passive: true, once: true });
+      img.addEventListener('pointercancel', Rimuovi, {
+        passive: true,
+        once: true,
+      });
+      img.addEventListener('lostpointercapture', Rimuovi, {
+        passive: true,
+        once: true,
+      });
+      window.addEventListener('blur', Rimuovi, { passive: true, once: true });
+
+      // Fallback
+      document.addEventListener('pointerup', Rimuovi, {
         passive: true,
         once: true,
       });
@@ -115,34 +132,45 @@ export class ImmaginiComponent implements AfterViewInit {
     });
 
     function MuoviLente(e: MouseEvent, w: number, h: number, bw: number) {
-      let { x, y } = getCursorPos(e);
+      const imgRect = img.getBoundingClientRect();
+      const contRect = (
+        img.parentElement as HTMLElement
+      ).getBoundingClientRect();
+      // Posizione del cursore relativa all'immagine
+      let { x, y } = PosizioneCursore(e);
 
-      x = Math.min(x, img.width - w / zoom + widthCella / 2);
-      x = Math.max(x, w / zoom + widthCella / 2);
+      // Clamp dentro i limiti dell'immagine (coordinate relative all'immagine)
+      x = Math.max(w / zoom, Math.min(x, imgRect.width - w / zoom));
+      y = Math.max(h / zoom, Math.min(y, imgRect.height - h / zoom));
 
-      y = Math.min(y, img.height - h / zoom + heightCella / 2);
-      y = Math.max(y, h / zoom + heightCella / 2);
+      // Offset dell'immagine dentro il contenitore .cont-img
+      const offsetX = imgRect.left - contRect.left;
+      const offsetY = imgRect.top - contRect.top;
 
-      const scale = lente.classList.contains('visibile') ? 1 : 0;
-      lente.style.transform = `translate3d(${x - w}px, ${y - h}px, 0) scale(${scale})`;
-      lente.style.backgroundPosition = `-${
-        x * zoom - w + bw - widthCella / 2
-      }px -${y * zoom - h + bw - heightCella / 2}px`;
+      // Posizionamento: metto left/top sul cursore (centro via CSS translate)
+      lente.style.left = `${offsetX + x}px`;
+      lente.style.top = `${offsetY + y}px`;
+      // Non impostare transform inline: lo gestisce la classe CSS .visibile
+
+      // Background calcolato nel sistema di coordinate dell'immagine
+      // Centro lo sfondo sul punto (x, y) della foto
+
+      lente.style.backgroundPosition = `-${x * zoom - w}px -${y * zoom - h}px`;
     }
 
-    function getCursorPos(e: MouseEvent) {
-      const { pageX, pageY } = e;
-      const { top, left, width, height } = img.getBoundingClientRect();
+    function PosizioneCursore(e: MouseEvent) {
+      const rect = img.getBoundingClientRect();
 
-      const x = pageX - left - window.scrollX;
-      const y = pageY - top - window.scrollY;
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-      return { x, y, width, height };
+      return { x, y, width: rect.width, height: rect.height };
     }
 
     function CaricaImmagine() {
-      lente.style.backgroundSize = `${img.width * zoom}px ${
-        img.height * zoom
+      const rect = img.getBoundingClientRect();
+      lente.style.backgroundSize = `${rect.width * zoom}px ${
+        rect.height * zoom
       }px`;
       lente.style.backgroundImage = `url(${img.src})`;
     }
