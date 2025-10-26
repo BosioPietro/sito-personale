@@ -123,8 +123,8 @@ export class ImmaginiComponent implements AfterViewInit {
       y = Math.min(y, img.height - h / zoom + heightCella / 2);
       y = Math.max(y, h / zoom + heightCella / 2);
 
-      lente.style.left = `${x - w}px`;
-      lente.style.top = `${y - h}px`;
+      const scale = lente.classList.contains('visibile') ? 1 : 0;
+      lente.style.transform = `translate3d(${x - w}px, ${y - h}px, 0) scale(${scale})`;
       lente.style.backgroundPosition = `-${
         x * zoom - w + bw - widthCella / 2
       }px -${y * zoom - h + bw - heightCella / 2}px`;

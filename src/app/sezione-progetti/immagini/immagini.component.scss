@@ -286,9 +286,9 @@ dialog{
         position: absolute;
         width: 20rem;
         aspect-ratio: 1;
-        translate: -50% -50%;
+        /* removed translate centering to avoid double-offset with JS transform */
         filter: blur(.5rem);
-        transform: scale(0);
+        transform: translate3d(0,0,0) scale(0);
         transform-origin: center;
         transition: .33s var(--easing);
         transition-property: filter, transform;
@@ -302,7 +302,7 @@ dialog{
         pointer-events: none;
 
         &.visibile{
-            transform: scale(1);
+            transform: translate3d(0,0,0) scale(1);
             filter: blur(0);
         }
     }
