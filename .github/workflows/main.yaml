@@ -5,25 +5,35 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
+          check-latest: true
+
+      - name: Workaround npm optional dependencies bug
+        run: |
+          rm -f package-lock.json
+          npm i -g npm@latest
+          npm install
 
       - name: Build Angular app to prod
-        working-directory: .
-        run: npm install && npm run build:prod
+        run: npm run build:prod
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist/browser
-          branch: prod  
-          token: ${{ secrets.GH_TOKEN }}
+          branch: prod
+          token: ${{ secrets.GITHUB_TOKEN }}
+          cname: bosio.zip
