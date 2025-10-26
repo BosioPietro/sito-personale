@@ -20,112 +20,112 @@ export type Progetto = {
 const tecnologie: Tecnologia[] = [
     {
         nome: "Angular",
-        immagine: "https://www.bosio.zip/assets/img/loghi/angular.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/angular.webp",
         link: "https://angular.dev/",
     },
     {
         nome: "Ionic",
-        immagine: "https://www.bosio.zip/assets/img/loghi/ionic.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/ionic.webp",
         link: "https://ionic.io/"
     },
     {
         nome: "Capacitor",
-        immagine: "https://www.bosio.zip/assets/img/loghi/capacitor.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/capacitor.webp",
         link: "https://capacitorjs.com/"
     },
     {
         nome: "BunJS",
-        immagine: "https://www.bosio.zip/assets/img/loghi/bun.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/bun.webp",
         link: "https://bun.sh/"
     },
     {
         nome: "Express",
-        immagine: "https://www.bosio.zip/assets/img/loghi/express.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/express.webp",
         link: "https://expressjs.com/"
     },
     {
         nome: "MongoDB",
-        immagine: "https://www.bosio.zip/assets/img/loghi/mongo.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/mongo.webp",
         link: "https://www.mongodb.com/"
     },
     {
         nome: "SCSS",
-        immagine: "https://www.bosio.zip/assets/img/loghi/scss.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/scss.webp",
         link: "https://sass-lang.com/guide/"
     },
     {
         nome: "TypeScript",
-        immagine: "https://www.bosio.zip/assets/img/loghi/ts.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/ts.webp",
         link: "https://www.typescriptlang.org/"
     },
     {
         nome: "JavaScript",
-        immagine: "https://www.bosio.zip/assets/img/loghi/js.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/js.webp",
         link: "https://it.wikipedia.org/wiki/JavaScript"
     },
     {
         nome: "CSS",
-        immagine: "https://www.bosio.zip/assets/img/loghi/css.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/css.webp",
         link: "https://www.w3.org/Style/CSS/Overview.en.html"
     },
     {
         nome: "HTML",
-        immagine: "https://www.bosio.zip/assets/img/loghi/html.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/html.webp",
         link: "https://www.w3.org/html/"
     },
     {
         nome: "jQuery",
-        immagine: "https://www.bosio.zip/assets/img/loghi/jquery.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/jquery.webp",
         link: "https://jquery.com/"
     },
     {
         nome: "PHP",
-        immagine: "https://www.bosio.zip/assets/img/loghi/php.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/php.webp",
         link: "https://www.php.net/"
     },
     {
         nome: "MariaDB",
-        immagine: "https://www.bosio.zip/assets/img/loghi/mariadb.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/mariadb.webp",
         link: "https://mariadb.org/"
     },
     {
         nome: "XAMPP",
-        immagine: "https://www.bosio.zip/assets/img/loghi/xampp.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/xampp.webp",
         link: "https://www.apachefriends.org/"
     },
     {
         nome: "ChartJS",
-        immagine: "https://www.bosio.zip/assets/img/loghi/chartjs.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/chartjs.webp",
         link: "https://www.chartjs.org/"
     },
     {
         nome: "React",
-        immagine: "https://www.bosio.zip/assets/img/loghi/react.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/react.webp",
         link: "https://react.dev/"
     },
     {
         nome: "JSX",
-        immagine: "https://www.bosio.zip/assets/img/loghi/jsx.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/jsx.webp",
         link: "https://react.dev/learn/writing-markup-with-jsx"
     },
     {
         nome: "jQuery UI",
-        immagine: "https://www.bosio.zip/assets/img/loghi/jquery_ui.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/jquery_ui.webp",
         link: "https://jqueryui.com/"
     },
     {
         nome: "JS Doc",
-        immagine: "https://www.bosio.zip/assets/img/loghi/js.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/js.webp",
         link: "https://jsdoc.app/"
     },
     {
         nome: "NodeJS",
-        immagine: "https://www.bosio.zip/assets/img/loghi/node.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/node.webp",
         link: "https://nodejs.org/"
     },
     {
         nome: "Vite",
-        immagine: "https://www.bosio.zip/assets/img/loghi/vite.webp",
+        immagine: "https://bosio.zip/assets/img/loghi/vite.webp",
         link: "https://vitejs.dev/"
     }
 ]
@@ -166,7 +166,7 @@ export const progetti: Progetto[] = [
             }
         ],
         link: "https://github.com/BosioPietro/Assicurazioni",
-        immagini: new Array(8).fill("").map((_, i) => `https://www.bosio.zip/assets/img/assicurazioni/${i}.webp`)
+        immagini: new Array(8).fill("").map((_, i) => `https://bosio.zip/assets/img/assicurazioni/${i}.webp`)
 
     },
     {
@@ -191,7 +191,7 @@ export const progetti: Progetto[] = [
         }
       ],
       link: "https://github.com/vallauri-ict/alpha-vantage-BosioPietro",
-      immagini: new Array(5).fill("").map((_, i) => `https://www.bosio.zip/assets/img/alpha_vantage/${i}.webp`)
+      immagini: new Array(5).fill("").map((_, i) => `https://bosio.zip/assets/img/alpha_vantage/${i}.webp`)
 
     },
     {
@@ -212,7 +212,7 @@ export const progetti: Progetto[] = [
         }
       ],
       link: "https://github.com/BosioPietro/Registro-Elettronico",
-      immagini: new Array(4).fill("").map((_, i) => `https://www.bosio.zip/assets/img/registro/${i}.webp`)
+      immagini: new Array(4).fill("").map((_, i) => `https://bosio.zip/assets/img/registro/${i}.webp`)
 
     },
     {
@@ -229,7 +229,7 @@ export const progetti: Progetto[] = [
         }
       ],
       link: "https://github.com/BosioPietro/E-Shop",
-      immagini: new Array(7).fill("").map((_, i) => `https://www.bosio.zip/assets/img/eshop/${i}.webp`)
+      immagini: new Array(7).fill("").map((_, i) => `https://bosio.zip/assets/img/eshop/${i}.webp`)
 
     },
     {
@@ -246,7 +246,7 @@ export const progetti: Progetto[] = [
         }
       ],
       link: "https://github.com/BosioPietro/Random-User",
-      immagini: new Array(3).fill("").map((_, i) => `https://www.bosio.zip/assets/img/randomuser/${i}.webp`)
+      immagini: new Array(3).fill("").map((_, i) => `https://bosio.zip/assets/img/randomuser/${i}.webp`)
 
     },
     {
@@ -264,6 +264,6 @@ export const progetti: Progetto[] = [
         }
       ],
       link: "https://github.com/BosioPietro/MongoDriver",
-      immagini: new Array(1).fill("").map((_, i) => `https://www.bosio.zip/assets/img/mongodriver/${i}.webp`)
+      immagini: new Array(1).fill("").map((_, i) => `https://bosio.zip/assets/img/mongodriver/${i}.webp`)
     },
 ]
