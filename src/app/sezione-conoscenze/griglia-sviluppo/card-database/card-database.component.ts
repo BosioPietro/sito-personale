@@ -31,13 +31,22 @@ export class CardDatabaseComponent implements AfterViewInit, OnDestroy {
 
     this.zone.runOutsideAngular(() => {
       this.intervalId = window.setInterval(() => {
-        const numero = Math.floor(Math.random() * celle.length);
-        const td = celle[numero];
+        const numeri = new Array(Math.floor(Math.random() * (celle.length / 4)))
+          .fill(0)
+          .map(() => Math.floor(Math.random() * celle.length));
 
-        if (td.classList.contains(NOME_CLASSE)) return;
+        numeri.forEach((numero, i) => {
+          const td = celle[numero];
+          if (td.classList.contains(NOME_CLASSE)) return;
 
-        td.classList.add(NOME_CLASSE);
-        window.setTimeout(() => td.classList.remove(NOME_CLASSE), 500);
+          const delay = i * 200;
+          td.classList.add(NOME_CLASSE);
+          window.setTimeout(() => td.classList.add(NOME_CLASSE), delay);
+          window.setTimeout(
+            () => td.classList.remove(NOME_CLASSE),
+            500 + delay
+          );
+        });
       }, 750);
     });
   }

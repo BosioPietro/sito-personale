@@ -1,17 +1,17 @@
-hr{
+hr {
     border-color: var(--colore-bordo);
 }
 
-.schema{
+.schema {
     flex-grow: 1;
 
-    &[er]{
+    &[er] {
         --h-entita: 3rem;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(3, 1fr);
 
-        .entita{
+        .entita {
             margin-block: auto;
             height: var(--h-entita);
             border: 2px solid var(--colore-bordo);
@@ -22,24 +22,24 @@ hr{
             transition: .5s var(--easing);
             transition-property: border-color, background-color;
 
-            &:hover{
+            &:hover {
                 border-color: var(--grigio-4);
                 background-color: var(--grigio-2);
             }
         }
-    
-        .relazione{
+
+        .relazione {
             height: 75%;
             width: 50%;
             margin-inline: auto;
             transform: scale(150%, 50%) translate(-2px, -33%);
 
-            &:hover::after{
+            &:hover::after {
                 border-color: var(--grigio-4);
                 background-color: var(--grigio-2);
             }
 
-            &::after{
+            &::after {
                 content: '';
                 width: 100%;
                 display: block;
@@ -48,106 +48,109 @@ hr{
                 rotate: 45deg;
                 translate: 0 calc((sqrt(2) - 1) * 50%);
                 border-radius: .5rem;
-                border: 3px solid  var(--colore-bordo);
+                border: 3px solid var(--colore-bordo);
                 background-color: var(--grigio-2);
                 transition: .5s var(--easing);
                 transition-property: border-color, background-color;
             }
         }
-    
-        .collegamento{
+
+        .collegamento {
             justify-content: flex-start;
             align-items: flex-start;
-    
-            &::after{
-                --offset-sopra: calc(33.33% - 1px);
-                --offset-sotto: calc((33.33% - var(--h-entita)) / 2);
-    
+
+            &::after {
+                --offset-sopra: 3.33cqh;
+                --offset-sotto: calc((33.33%) / 2);
+
                 content: '';
                 display: block;
                 width: 50%;
                 height: calc(100% - var(--offset-sopra) - var(--offset-sotto));
-                margin-top: var(--offset-sopra);
+                margin-top: 3.33cqh;
                 margin-bottom: var(--offset-sotto);
                 border-right: 2px dashed var(--colore-bordo);
                 border-top: 2px dashed var(--colore-bordo);
                 border-radius: 0 .5rem 0 0;
             }
-    
-            &[inverti]{
+
+            &[inverti] {
                 transform-origin: center;
                 transform: rotateY(180deg);
             }
         }
     }
 
-    &[logico]{
+    &[logico] {
         position: relative;
         justify-content: flex-end;
 
-        .tabella{
-            height: 90%;
-            width: 90%;
+        .tabella {
+            --offset-ombre: 5%;
+            height: calc(100% - 2 * var(--offset-ombre));
+            width: calc(100% - 2 * var(--offset-ombre));
             border-radius: .5rem;
             display: table;
             border-collapse: collapse;
-            border-style: hidden; 
+            border-style: hidden;
             box-shadow: 0 0 0 2px var(--colore-bordo);
             background-color: var(--nero-h1);
 
-            tbody{
+            tbody {
                 height: 100%;
 
-                tr{
+                tr {
                     height: calc(90% / 4);
 
-                    td{
+                    td {
                         width: 20%;
                         transition: background-color .5s var(--easing);
-            
-                        &:hover, &.hl{
+
+                        &:hover,
+                        &.hl {
                             background-color: var(--grigio-2);
                         }
                     }
                 }
 
-                tr:first-child{
+                tr:first-child {
                     height: 10%;
-                    
-                    td{
+
+                    td {
                         background-color: var(--grigio-2);
                         border-top: none;
 
-                        &:hover{
+                        &:hover {
                             background-color: var(--grigio-3);
                         }
-                    
-                        &:first-child{
+
+                        &:first-child {
                             border-radius: .5rem 0 0 0;
                         }
 
-                        &:last-child{
+                        &:last-child {
                             border-radius: 0 .5rem 0 0;
                         }
                     }
                 }
 
-                tr:last-child td{
+                tr:last-child td {
                     border-bottom: none;
                 }
             }
 
-            td{
+            td {
                 border: 2px solid var(--colore-bordo);
             }
 
-            &::after, &::before{
-                content: '';    
+            &::after,
+            &::before {
+                content: '';
                 position: absolute;
-                height: 90%;
-                width: 90%;
-                left: 5%;
-                bottom: 5%;
+                height: calc(100% - 2 * var(--offset-ombre));
+                width: calc(100% - 2 * var(--offset-ombre));
+                left: var(--offset-ombre);
+                bottom: var(--offset-ombre);
                 z-index: -1;
                 border-radius: inherit;
                 border: 2px solid var(--colore-bordo);
@@ -155,21 +158,29 @@ hr{
                 opacity: .75;
             }
 
-            &::before{
-                left: 10%;
-                bottom: 10%;
+            &::before {
+                left: calc(var(--offset-ombre) * 2);
+                bottom: calc(var(--offset-ombre) * 2);
                 opacity: .5;
             }
         }
     }
 }
 
-@media screen and (width < 500px){
-    .contenuto{
+@media screen and (width < 500px) {
+    .contenuto {
         flex-direction: column;
 
-        .schema[logico]{
-            min-height: 10rem;
+        .schema[er] {
+            display: none;
+        }
+
+        .schema[logico] {
+            min-height: 16rem;
+
+            .tabella {
+                --offset-ombre: 2.5%;
+            }
         }
     }
 }
