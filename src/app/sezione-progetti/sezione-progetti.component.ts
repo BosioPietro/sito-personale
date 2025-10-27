@@ -1,6 +1,5 @@
 import {
   Component,
-  CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
   ViewChild,
   ChangeDetectionStrategy,
@@ -12,19 +11,20 @@ import { DescrizioneComponent } from './descrizione/descrizione.component';
 import { SelettoreProgettiComponent } from './selettore-progetti/selettore-progetti.component';
 import { ImmaginiComponent } from './immagini/immagini.component';
 import { ImmaginiService } from './immagini/immagini.service';
+import { IconaComponent } from '../common/icona/icona.component';
 
 @Component({
-    selector: 'SezioneProgetti',
-    imports: [
-        TecnologieComponent,
-        DescrizioneComponent,
-        SelettoreProgettiComponent,
-        ImmaginiComponent,
-    ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    templateUrl: './sezione-progetti.component.html',
-    styleUrl: './sezione-progetti.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'SezioneProgetti',
+  imports: [
+    TecnologieComponent,
+    DescrizioneComponent,
+    SelettoreProgettiComponent,
+    ImmaginiComponent,
+    IconaComponent,
+  ],
+  templateUrl: './sezione-progetti.component.html',
+  styleUrl: './sezione-progetti.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SezioneProgettiComponent {
   constructor(private img: ImmaginiService, private cdr: ChangeDetectorRef) {}

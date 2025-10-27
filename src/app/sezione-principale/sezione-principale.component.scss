@@ -1,4 +1,4 @@
-:host{
+:host {
     content-visibility: auto;
     contain-intrinsic-size: 1000px;
     grid-area: 1 / 1 / 1 / 2;
@@ -6,7 +6,7 @@
     max-width: none !important;
 }
 
-.wrapper{
+.wrapper {
     width: calc(100% - var(--bordo) * 2);
     max-width: var(--w-contenuto-pagina);
     flex-grow: 1;
@@ -14,14 +14,14 @@
     justify-content: space-between;
     gap: 2rem;
 
-    &::before{
+    &::before {
         display: none;
         z-index: 1;
         mask-image: linear-gradient(#FFF 0%, #0002 35%, #0002 65%, #FFF 100%);
     }
 }
 
-section{
+section {
     position: relative;
     justify-content: center;
     min-width: 0;
@@ -31,78 +31,79 @@ section{
     padding-inline: 2rem;
     color: var(--grigio-a);
 
-    h1.xl{
+    h1.xl {
         width: min-content;
         line-height: 90%;
     }
 
-    h3{
+    h3 {
         font-weight: normal;
         margin-left: .25rem;
         margin-bottom: .5rem;
     }
 
-    p{
+    p {
         text-wrap: pretty;
         line-height: 1.5;
 
-        &.display{
+        &.display {
             font-size: var(--testo-s);
         }
 
-        &:not(:last-child){
+        &:not(:last-child) {
             margin-bottom: .5rem;
         }
 
-        .testo-gradient{
+        .testo-gradient {
             font-weight: 800;
         }
 
-        a{
+        a {
             position: relative;
             text-decoration: none;
 
-            &::before{
+            &::before {
                 content: '';
                 position: absolute;
                 inset: auto 0 0 0;
                 height: 2px;
                 border-radius: 100vh;
-                background-image: linear-gradient(to right bottom,#FFF 30%,#FFFFFF80);
+                background-image: linear-gradient(to right bottom, #FFF 30%, #FFFFFF80);
             }
         }
     }
 
-    button{
+    button {
         backdrop-filter: blur(.25rem);
-        color: var;
         gap: .5rem;
         font-weight: bold;
         padding: 1rem;
 
-        ion-icon{
+        ion-icon {
             font-size: var(--testo-l);
             color: #FFF;
         }
     }
 
-    button, h2{
+    button,
+    h2 {
         margin-block: 1rem;
     }
 
-    [anima]{
+    [anima] {
         animation: alza-elemento .5s var(--easing) var(--delay) forwards;
         transform: translateY(-2rem);
         opacity: 0;
         filter: blur(.5rem);
 
         @keyframes alza-elemento {
-            0%{
+            0% {
                 transform: translateY(2rem);
                 opacity: 0;
                 filter: blur(.5rem);
             }
-            100%{
+
+            100% {
                 transform: translateY(0);
                 opacity: 1;
                 filter: blur(0);
@@ -111,50 +112,50 @@ section{
     }
 }
 
-@media (max-aspect-ratio: 1/1){
-    .wrapper{
+@media (max-aspect-ratio: 1/1) {
+    .wrapper {
         width: 100%;
 
-        section{
+        section {
             width: clamp(30rem, calc(100% / 3), 40rem);
 
-            p{
+            p {
                 text-wrap: balance;
             }
 
-            &:first-child{
+            &:first-child {
                 padding-left: 4rem;
             }
         }
     }
 }
 
-@media screen and (width < 1000px){
-    .wrapper{
+@media screen and (width < 1000px) {
+    .wrapper {
         flex-direction: column;
         justify-content: center;
 
-        &::before{
+        &::before {
             display: block;
         }
 
-        section{
+        section {
             padding-block: 0;
             width: 100%;
 
-            h1{
+            h1 {
                 width: fit-content;
             }
 
-            h2{
+            h2 {
                 margin-block: 1rem .25rem;
             }
 
-            &:first-child{
+            &:first-child {
                 padding-left: 2rem;
             }
 
-            &::before{
+            &::before {
                 display: none;
             }
         }

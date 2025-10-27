@@ -1,12 +1,10 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
+import { IconaComponent } from '../../../common/icona/icona.component';
 
 @Component({
-    selector: 'CardDesktop',
-    imports: [],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    templateUrl: './card-desktop.component.html',
-    styleUrl: './card-desktop.component.scss'
+  selector: 'CardDesktop',
+  imports: [IconaComponent],
+  templateUrl: './card-desktop.component.html',
+  styleUrl: './card-desktop.component.scss',
 })
-export class CardDesktopComponent {
-
-}
+export class CardDesktopComponent {}

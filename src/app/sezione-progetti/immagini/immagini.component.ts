@@ -1,19 +1,18 @@
 import {
   AfterViewInit,
   Component,
-  CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
   Input,
   ViewChild,
 } from '@angular/core';
 import { ImmaginiService } from './immagini.service';
+import { IconaComponent } from '../../common/icona/icona.component';
 
 @Component({
-    selector: 'Immagini',
-    imports: [],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    templateUrl: './immagini.component.html',
-    styleUrl: './immagini.component.scss'
+  selector: 'Immagini',
+  imports: [IconaComponent],
+  templateUrl: './immagini.component.html',
+  styleUrl: './immagini.component.scss',
 })
 export class ImmaginiComponent implements AfterViewInit {
   constructor(protected img: ImmaginiService) {}

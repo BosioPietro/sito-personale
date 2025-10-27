@@ -1,6 +1,5 @@
 import {
   Component,
-  CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
   EventEmitter,
   Input,
@@ -12,6 +11,7 @@ import {
 import { Sezioni } from '../sezione-conoscenze/switch/switch.component';
 import { SwitchService } from '../sezione-conoscenze/switch/switch.service';
 import { ProgettiService } from '../sezione-progetti/selettore-progetti/progetti.service';
+import { IconaComponent } from '../common/icona/icona.component';
 
 declare global {
   interface ViewTransitionUpdateCallback {
@@ -37,12 +37,11 @@ declare global {
 }
 
 @Component({
-    selector: 'Header',
-    imports: [],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    templateUrl: './header.component.html',
-    styleUrl: './header.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'Header',
+  imports: [IconaComponent],
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   @Input('sezione-corrente')
@@ -117,7 +116,9 @@ export class HeaderComponent {
 
       const wrapper = this.wrapper?.nativeElement;
       const header = wrapper?.parentElement as HTMLElement | null;
-      const opzione = wrapper?.querySelector(`[sezione="${sezione}"]`) as HTMLElement | null;
+      const opzione = wrapper?.querySelector(
+        `[sezione="${sezione}"]`
+      ) as HTMLElement | null;
       const bottone = opzione?.querySelector('button') as HTMLElement | null;
       const cellaGlobale = this.cella?.nativeElement as HTMLElement | undefined;
 
@@ -133,7 +134,8 @@ export class HeaderComponent {
       const targetLeft = left - headerLeft + (width - larghezzaCella) / 2;
       const valore = `${Math.max(0, Math.round(targetLeft))}px`;
 
-      if (this.ultimo.sezione === sezione && this.ultimo.valore === valore) return;
+      if (this.ultimo.sezione === sezione && this.ultimo.valore === valore)
+        return;
 
       this.offsetX = valore;
       this.ultimo = { sezione, valore };

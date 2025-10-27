@@ -1,0 +1,9 @@
+@if(svg()){
+<span
+  class="icona"
+  [innerHTML]="svg()"
+  [attr.filled]="isOutline ? null : true"
+></span>
+} @else if(svg() === null){
+<span>X</span>
+}
