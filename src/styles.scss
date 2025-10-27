@@ -41,11 +41,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-@font-face {
-  font-family: "DM Sans";
-  src: url("/assets/font/DMSans.woff2") format("woff2");
-}
-
 html {
   // offsetta il sito per essere ottimizzato per il ~1080p
   font-size: 80%;
