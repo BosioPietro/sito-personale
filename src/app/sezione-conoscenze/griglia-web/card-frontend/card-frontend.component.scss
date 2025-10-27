@@ -1,250 +1,232 @@
 :host {
-    // ciclo doppio, deve tenere conto di quando
-    // è visibile e invisibile
-    --tempo-animazione-loghi: 20s;
-    align-items: flex-start;
-
-
-    // p .colorato{
-    //     animation: colora var(--tempo-animazione-loghi) linear infinite;
-
-    //     &.svasato{
-    //         animation-direction: reverse;
-    //     }
-
-    //     @keyframes colora {
-    //         0%, 50%, 100%{
-    //             color: #FFF;
-    //         }
-    //         2.5%, 47.5%{
-    //             color: var(--colore-accento);
-    //         }
-    //     }
-    // }
-
+  // ciclo doppio, deve tenere conto di quando
+  // è visibile e invisibile
+  --tempo-animazione-loghi: 20s;
+  align-items: flex-start;
 }
 
 .contenuto {
-    margin-inline: auto;
-    aspect-ratio: 1;
-    min-height: 20rem;
+  margin-inline: auto;
+  aspect-ratio: 1;
+  min-height: 20rem;
 
-    .wrapper-cerchio {
-        height: calc(100% - var(--dim-logo));
-        width: calc(100% - var(--dim-logo));
-        position: relative;
-        margin: calc(var(--dim-logo) / 2);
+  .wrapper-cerchio {
+    height: calc(100% - var(--dim-logo));
+    width: calc(100% - var(--dim-logo));
+    position: relative;
+    margin: calc(var(--dim-logo) / 2);
 
-        &>.cerchio {
-            --spessore: 2px;
-            --tempo-rotazione: 90s;
+    & > .cerchio {
+      --spessore: 2px;
+      --tempo-rotazione: 90s;
 
-            position: relative;
-            display: grid;
-            place-items: center;
-            aspect-ratio: 1;
-            border-radius: 1000dvh;
-            border: var(--spessore) solid var(--colore-bordo);
-            animation: gira var(--tempo-rotazione) infinite linear;
+      position: relative;
+      display: grid;
+      place-items: center;
+      aspect-ratio: 1;
+      border-radius: 1000dvh;
+      border: var(--spessore) solid var(--colore-bordo);
+      animation: gira var(--tempo-rotazione) infinite linear;
 
-            &:has(.logo:not(.centro):hover) {
-                animation-play-state: paused;
+      &:has(.logo:not(.centro):hover) {
+        animation-play-state: paused;
 
-                img {
-                    animation-play-state: paused !important;
-                }
-            }
-
-            .logo {
-                position: absolute;
-                transform: translate(-50%, -50%);
-                display: grid;
-                place-content: center;
-                border-radius: 100dvh;
-                border: var(--spessore) solid var(--colore-bordo);
-                overflow: hidden;
-
-                img {
-                    padding: 1rem;
-                    animation: gira var(--tempo-rotazione) infinite reverse linear,
-                        alterna var(--tempo-animazione-loghi) infinite linear;
-
-                    transform-origin: center;
-                    grid-area: 1 / 1;
-                    will-change: transform, opacity;
-                    -webkit-font-smoothing: subpixel-antialiased;
-                    transform: translateZ(0);
-                    backface-visibility: hidden;
-                    -webkit-transform: translateZ(0);
-                    -webkit-backface-visibility: hidden;
-
-                    &[offset] {
-                        transform: translateY(.1rem);
-                    }
-                }
-
-                /* WebKit (Chrome/Safari) */
-                @supports (-webkit-optimize-contrast: auto) {
-                    img {
-                        image-rendering: -webkit-optimize-contrast;
-                    }
-                }
-
-                /* Firefox */
-                @supports (image-rendering: crisp-edges) {
-                    img {
-                        image-rendering: crisp-edges;
-                    }
-                }
-
-                @supports (image-rendering: high-quality) {
-                    img {
-                        image-rendering: high-quality;
-                    }
-                }
-
-                img:nth-child(2) {
-                    animation-direction: reverse;
-                }
-
-                &.centro {
-                    --dim-logo: 7rem;
-                    position: initial;
-                    transform: none;
-                    background-color: #0000;
-                    border-color: #0000;
-                }
-
-                @keyframes alterna {
-
-                    0%,
-                    50%,
-                    100% {
-                        opacity: 0;
-                        filter: blur(5px);
-                        z-index: 1;
-                    }
-
-                    2.5%,
-                    47.5% {
-                        opacity: 1;
-                        filter: blur(0);
-                        z-index: 2;
-                    }
-                }
-            }
-
-            @keyframes gira {
-                from {
-                    rotate: 0
-                }
-
-                to {
-                    rotate: 1turn
-                }
-            }
+        img {
+          animation-play-state: paused !important;
         }
-    }
-}
+      }
 
-@media screen and (width < 500px) {
-    .contenuto {
-        --tempo-animazione: 55s;
-        position: relative;
+      .logo {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        display: grid;
+        place-content: center;
+        border-radius: 100dvh;
+        border: var(--spessore) solid var(--colore-bordo);
+        overflow: hidden;
 
-        .logo {
-            position: relative;
-            width: 80%;
-            aspect-ratio: 1 / 1;
-            border: 2px solid var(--colore-bordo);
-            padding: .5rem;
-            z-index: 2;
+        img {
+          padding: 1rem;
+          animation: gira var(--tempo-rotazione) infinite reverse linear,
+            alterna var(--tempo-animazione-loghi) infinite linear;
 
-            &:hover {
-                border-color: #FFFA;
+          transform-origin: center;
+          grid-area: 1 / 1;
+          will-change: transform, opacity;
+          -webkit-font-smoothing: subpixel-antialiased;
+          transform: translateZ(0);
+          backface-visibility: hidden;
+          -webkit-transform: translateZ(0);
+          -webkit-backface-visibility: hidden;
 
-                img:nth-child(odd) {
-                    filter: brightness(1.5);
-                }
-            }
-
-            img {
-                position: absolute;
-                inset: 0;
-                margin: auto;
-                width: 65%;
-                height: 65%;
-                object-fit: contain;
-                transform: translate(-50%, -50%);
-                transform-origin: 50% 50%;
-                animation: gira var(--tempo-animazione) infinite linear, alterna var(--tempo-animazione) infinite steps(1);
-                will-change: transform, opacity;
-            }
-
-            img:nth-child(2) {
-                /* reverse rotation for the second logo */
-                animation-direction: reverse, normal;
-            }
+          &[offset] {
+            transform: translateY(0.1rem);
+          }
         }
 
-        @keyframes gira {
-            from {
-                rotate: 0deg;
-            }
+        /* WebKit (Chrome/Safari) */
+        @supports (-webkit-optimize-contrast: auto) {
+          img {
+            image-rendering: -webkit-optimize-contrast;
+          }
+        }
 
-            to {
-                rotate: -360deg;
-            }
+        /* Firefox */
+        @supports (image-rendering: crisp-edges) {
+          img {
+            image-rendering: crisp-edges;
+          }
+        }
+
+        @supports (image-rendering: high-quality) {
+          img {
+            image-rendering: high-quality;
+          }
+        }
+
+        img:nth-child(2) {
+          animation-direction: reverse;
+        }
+
+        &.centro {
+          --dim-logo: 7rem;
+          position: initial;
+          transform: none;
+          background-color: #0000;
+          border-color: #0000;
         }
 
         @keyframes alterna {
-            12.5% {
-                z-index: -1;
-                opacity: 0;
-                filter: blur(.25rem);
-            }
+          0%,
+          50%,
+          100% {
+            opacity: 0;
+            filter: blur(5px);
+            z-index: 1;
+          }
 
-            25% {
-                z-index: 1;
-                opacity: 1;
-                filter: blur(0rem);
-            }
-
-            37.5% {
-                z-index: -1;
-                opacity: 0;
-                filter: blur(.25rem);
-            }
-
-            50% {
-                z-index: 1;
-                opacity: 1;
-                filter: blur(0rem);
-            }
-
-            62.5% {
-                z-index: -1;
-                opacity: 0;
-                filter: blur(.25rem);
-            }
-
-            75% {
-                z-index: 1;
-                opacity: 1;
-                filter: blur(0rem);
-            }
-
-            87.5% {
-                z-index: -1;
-                opacity: 0;
-                filter: blur(.25rem);
-            }
-
-            100% {
-                z-index: 1;
-                opacity: 1;
-                filter: blur(0rem);
-            }
+          2.5%,
+          47.5% {
+            opacity: 1;
+            filter: blur(0);
+            z-index: 2;
+          }
         }
+      }
+
+      @keyframes gira {
+        from {
+          rotate: 0;
+        }
+
+        to {
+          rotate: 1turn;
+        }
+      }
     }
+  }
+}
+
+@media screen and (width < 500px) {
+  .contenuto {
+    --tempo-animazione: 55s;
+    position: relative;
+
+    .wrapper-cerchio > .cerchio .logo {
+      padding: 0.1rem;
+    }
+
+    .logo {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      border: 2px solid var(--colore-bordo);
+      padding: 0.5rem;
+      z-index: 2;
+
+      &:hover {
+        border-color: #fffa;
+
+        img:nth-child(odd) {
+          filter: brightness(1.5);
+        }
+      }
+
+      img {
+        margin: auto;
+        width: 65%;
+        height: 65%;
+        object-fit: contain;
+        transform: translate(-50%, -50%);
+        transform-origin: 50% 50%;
+        animation: gira var(--tempo-animazione) infinite linear,
+          alterna var(--tempo-animazione) infinite steps(1);
+        will-change: transform, opacity;
+      }
+
+      img:nth-child(2) {
+        /* reverse rotation for the second logo */
+        animation-direction: reverse, normal;
+      }
+    }
+
+    @keyframes gira {
+      from {
+        rotate: 0deg;
+      }
+
+      to {
+        rotate: -360deg;
+      }
+    }
+
+    @keyframes alterna {
+      12.5% {
+        z-index: -1;
+        opacity: 0;
+        filter: blur(0.25rem);
+      }
+
+      25% {
+        z-index: 1;
+        opacity: 1;
+        filter: blur(0rem);
+      }
+
+      37.5% {
+        z-index: -1;
+        opacity: 0;
+        filter: blur(0.25rem);
+      }
+
+      50% {
+        z-index: 1;
+        opacity: 1;
+        filter: blur(0rem);
+      }
+
+      62.5% {
+        z-index: -1;
+        opacity: 0;
+        filter: blur(0.25rem);
+      }
+
+      75% {
+        z-index: 1;
+        opacity: 1;
+        filter: blur(0rem);
+      }
+
+      87.5% {
+        z-index: -1;
+        opacity: 0;
+        filter: blur(0.25rem);
+      }
+
+      100% {
+        z-index: 1;
+        opacity: 1;
+        filter: blur(0rem);
+      }
+    }
+  }
 }

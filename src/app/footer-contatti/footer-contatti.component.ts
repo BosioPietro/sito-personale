@@ -28,7 +28,6 @@ export class FooterContattiComponent implements AfterViewInit, OnDestroy {
         const entry = entries[0];
         const ratio = entry?.intersectionRatio ?? 0;
         const intersects = entry?.isIntersecting ?? false;
-        console.log({ ratio, intersects });
 
         // entra a 0.1, esce solo quando non interseca più (ratio = 0)
         if (!this.mostrato && ratio >= 0.1) {

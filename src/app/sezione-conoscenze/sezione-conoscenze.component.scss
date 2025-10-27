@@ -1,171 +1,182 @@
 :host {
-    content-visibility: auto;
-    contain-intrinsic-size: 1100px;
-    position: relative;
-    backdrop-filter: blur(1.2rem);
-    background-color: #000E;
-    padding-block: 5rem 2.5rem;
-    display: flex;
-    flex-direction: column;
+  content-visibility: auto;
+  contain-intrinsic-size: 1100px;
+  position: relative;
+  backdrop-filter: blur(1.2rem);
+  background-color: #000e;
+  padding-block: 5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
 
-    &>*:not(hr) {
-        z-index: 1;
-    }
+  & > *:not(hr) {
+    z-index: 1;
+  }
 }
 
-.wrapper{
-    width: clamp(0px, 100%, var(--w-contenuto-pagina));
-    margin-inline: auto;
-    gap: 2rem;
-    flex-grow: 1;
+.wrapper {
+  width: clamp(0px, 100%, var(--w-contenuto-pagina));
+  margin-inline: auto;
+  gap: 2rem;
+  flex-grow: 1;
 }
 
 h1,
 .sottotitolo {
-    margin-inline: auto;
+  margin-inline: auto;
 }
 
 h1 {
-    width: fit-content;
-    text-align: center;
+  width: fit-content;
+  text-align: center;
 }
 
-.sottotitolo{
-    max-width: 50ch;
-    text-align: center;
-    padding-inline: 1rem;
+.sottotitolo {
+  max-width: 50ch;
+  text-align: center;
+  padding-inline: 1rem;
+}
+
+hr.linea-luce {
+  top: 0;
 }
 
 .griglia {
-    --bordo: 2px;
-    --gap: 2rem;
+  --bordo: 2px;
+  --gap: 2rem;
+  position: relative;
+  margin-inline: var(--gap);
+  flex-grow: 1;
+  gap: var(--gap);
+  padding: 0 var(--gap) var(--gap) var(--gap);
+  border-radius: 1rem;
+  border: var(--bordo) solid #fff2;
+
+  hr {
+    background-color: #0000;
+    top: calc(var(--bordo) * -1);
+    transform: rotate(180deg);
+  }
+
+  hr::after {
+    display: none;
+    opacity: 0.5;
+    filter: brightness(0.5);
+  }
+
+  hr::before {
+    --width: min(30rem, 100%);
+    filter: brightness(1.5);
+  }
+
+  .sfondo {
+    position: absolute;
+    inset: 0;
+    background-color: var(--nero-h1);
+  }
+
+  .wrapper-griglia,
+  .contenuto-griglia {
     position: relative;
-    margin-inline: var(--gap);
+    z-index: 1;
+  }
+
+  .wrapper-griglia {
     flex-grow: 1;
-    gap: var(--gap);
-    padding: 0 var(--gap) var(--gap) var(--gap);
-    border-radius: 1rem;
-    border: var(--bordo) solid #FFF2;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    align-items: stretch;
+  }
 
-    hr {
-        background-color: #0000;
-        top: calc(var(--bordo) * -1);
-        transform: rotate(180deg);
+  .contenuto-griglia {
+    transition: 0.5s var(--easing);
+    transition-property: opacity, filter;
+    position: relative;
+
+    &:not(.visibile) {
+      min-height: 0;
+      inset: 0;
+      position: absolute;
+
+      animation: absolute 0.5s var(--easing);
+      @keyframes absolute {
+        0%,
+        100% {
+          position: static;
+        }
+      }
     }
 
-    hr::after {
-        display: none;
-        opacity: .5;
-        filter: brightness(.5);
-
+    &.visibile {
+      opacity: 1;
+      z-index: 2;
+      filter: blur(0rem);
     }
+  }
 
-    hr::before {
-        --width: min(30rem, 100%);
-        filter: brightness(1.5);
-    }
+  .controlli {
+    display: grid;
+    grid-template-columns: auto minmax(auto, max-content) auto;
 
-    .sfondo {
+    .cella {
+      --numero-alto: calc(pow(10, 10) * 1%);
+      clip-path: polygon(
+        0% 0%,
+        100% 0%,
+        100% var(--numero-alto),
+        0% var(--numero-alto)
+      );
+
+      Switch {
+        transform: translateX(-1px);
+        margin-top: var(--gap);
+      }
+
+      .sfondo-trattini {
         position: absolute;
         inset: 0;
-        background-color: var(--nero-h1);
-    }
+        z-index: -1;
+        animation: mostra-trattini 1ms var(--easing);
+        animation-timeline: view();
+      }
 
-    .wrapper-griglia,
-    .contenuto-griglia {
-        position: relative;
-        z-index: 1;
-    }
-    
-    .wrapper-griglia{
-        flex-grow: 1;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr;
-        align-items: stretch;
-    }
-
-    .contenuto-griglia{
-        transition: .5s var(--easing);
-        transition-property: opacity, filter;
-        position: relative;
-
-        &:not(.visibile){
-            min-height: 0;
-            inset: 0;
-            position: absolute;
-
-            animation: absolute .5s var(--easing);
-            @keyframes absolute {
-                0%, 100% { position: static; }
-            }
+      @keyframes mostra-trattini {
+        0%,
+        100% {
+          opacity: 0;
         }
-
-        &.visibile{
-            opacity: 1;
-            z-index: 2;
-            filter: blur(0rem);
+        50% {
+          opacity: 1;
         }
+      }
     }
-
-    .controlli {
-        display: grid;
-        grid-template-columns: auto minmax(auto, max-content) auto;
-
-        .cella {
-            --numero-alto: calc(pow(10, 10) * 1%);
-            clip-path: polygon(0% 0%, 100% 0%, 100% var(--numero-alto), 0% var(--numero-alto));
-
-
-            Switch {
-                transform: translateX(-1px);
-                margin-top: var(--gap);
-            }
-
-            .sfondo-trattini {
-                position: absolute;
-                inset: 0;
-                z-index: -1;
-                animation: mostra-trattini 1ms var(--easing);
-                animation-timeline: view();
-
-            }
-
-            @keyframes mostra-trattini {
-                0%,100% {
-                    opacity: 0;
-                }
-                50% {
-                    opacity: 1;}
-            }
-        }
-    }
+  }
 }
 
-@media screen and (width < 1150px){
-    .wrapper-griglia{
-        align-items: flex-start !important;
-    }
+@media screen and (width < 1150px) {
+  .wrapper-griglia {
+    align-items: flex-start !important;
+  }
 }
 
 @media screen and (width < 700px) {
-    :host{
-        padding-block: 3rem; 
-    }
+  :host {
+    padding-block: 3rem;
+  }
 }
 
 @media screen and (width < 550px) {
-    .griglia{
-        margin-inline: calc(var(--gap) / 2);
-        padding: calc(var(--gap) / 2);
-        gap: calc(var(--gap) / 2);
+  .griglia {
+    margin-inline: calc(var(--gap) / 2);
+    padding: calc(var(--gap) / 2);
+    gap: calc(var(--gap) / 2);
+  }
+
+  .controlli {
+    .cella:not(:has(Switch)) {
+      display: none !important;
     }
 
-    .controlli{
-        .cella:not(:has(Switch)){
-            display: none !important;
-        }
-
-        grid-template-columns: 1fr !important;
-    }
+    grid-template-columns: 1fr !important;
+  }
 }

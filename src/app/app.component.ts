@@ -4,7 +4,9 @@ import {
   ElementRef,
   OnDestroy,
   OnInit,
+  signal,
   ViewChild,
+  WritableSignal,
 } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { SezionePrincipaleComponent } from './sezione-principale/sezione-principale.component';
@@ -14,22 +16,22 @@ import { FooterContattiComponent } from './footer-contatti/footer-contatti.compo
 import { Subscription } from 'rxjs';
 
 @Component({
-    selector: 'body',
-    imports: [
-        HeaderComponent,
-        SezionePrincipaleComponent,
-        SezioneConoscenzeComponent,
-        SezioneProgettiComponent,
-        FooterContattiComponent,
-    ],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss'
+  selector: 'body',
+  imports: [
+    HeaderComponent,
+    SezionePrincipaleComponent,
+    SezioneConoscenzeComponent,
+    SezioneProgettiComponent,
+    FooterContattiComponent,
+  ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
   title = 'Progetto';
 
   sezioni?: HTMLElement[];
-  sezioneCorrente?: string;
+  sezioneCorrente: WritableSignal<string | undefined> = signal(undefined);
 
   eventoScroll?: Subscription;
   observer?: IntersectionObserver;
@@ -68,7 +70,7 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
         const visibili = entries.filter((e) => e.isIntersecting);
         if (!visibili.length) return;
         visibili.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        this.sezioneCorrente = (visibili[0].target as HTMLElement).id;
+        this.sezioneCorrente.set((visibili[0].target as HTMLElement).id);
       },
       { threshold: [0, 0.25, 0.5, 0.75, 1] }
     );
@@ -100,6 +102,6 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
       })
       .sort((a, b) => a['distanza'] - b['distanza']);
 
-    this.sezioneCorrente = distanze[0].el.id;
+    this.sezioneCorrente.set(distanze[0].el.id);
   }
 }

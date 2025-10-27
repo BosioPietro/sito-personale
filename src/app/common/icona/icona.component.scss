@@ -1,10 +1,10 @@
 :host {
-    width: 1em;
-    height: 1em;
-    aspect-ratio: 1 / 1;
+  width: 1em;
+  height: 1em;
+  aspect-ratio: 1 / 1;
+  color: inherit;
 }
 
-svg {
-
-    color: inherit;
+span {
+  display: contents;
 }
