@@ -6,7 +6,7 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { IconaResult, IconaService } from './icona.service';
 
 @Component({
   selector: 'ion-icon',
@@ -16,20 +16,13 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class IconaComponent implements OnInit {
   @Input({ required: true }) name!: string;
 
-  protected svg: WritableSignal<SafeHtml | undefined | null> =
-    signal(undefined);
-  private readonly sanitizer = inject(DomSanitizer);
+  private readonly iconeService: IconaService = inject(IconaService);
+  protected svg: WritableSignal<IconaResult | undefined> = signal(undefined);
   protected isOutline: true | null = null;
 
-  ngOnInit(): void {
-    this.isOutline = this.name.includes('outline') ? true : null;
-    fetch(`./assets/icone/${this.name}.svg`)
-      .then((res) => res.text())
-      .then((svg) => {
-        this.svg.set(this.sanitizer.bypassSecurityTrustHtml(svg));
-      })
-      .catch(() => {
-        this.svg.set(null);
-      });
+  async ngOnInit(): Promise<void> {
+    const icona = this.iconeService.FetchIcona(this.name);
+
+    this.svg.set(await icona);
   }
 }
