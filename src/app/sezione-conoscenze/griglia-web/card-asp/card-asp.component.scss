@@ -1,79 +1,71 @@
 .contenuto {
-    --dim-logo: 6rem;
-    --tempo-animazione: 30s;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
+  --dim-logo: 6rem;
+  --tempo-animazione: 30s;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  container-type: inline-size;
 
-    .logo {
-        border: 2px solid var(--colore-bordo);
-        padding: .5rem;
-        z-index: 2;
+  .logo {
+    border: 2px solid var(--colore-bordo);
+    padding: 0.5rem;
+    z-index: 2;
+    // display: none;
 
-        &:hover {
-            border-color: #FFFA;
-        }
+    &:hover {
+      border-color: #fffa;
+    }
+  }
+
+  .linea {
+    width: calc(100% - var(--dim-logo));
+    border-top: 2px dashed var(--colore-bordo);
+  }
+
+  ion-icon {
+    font-size: var(--testo-l);
+    color: var(--grigio-9);
+  }
+
+  [avanti] {
+    position: absolute;
+    top: calc(50% - var(--dim-logo) / 4);
+    left: calc(var(--dim-logo) / 2);
+
+    &:is(ion-icon) {
+      translate: 0 -50%;
+      will-change: transform;
+      animation: muovi var(--tempo-animazione) linear infinite;
+    }
+  }
+
+  [indietro] {
+    position: absolute;
+    bottom: calc(50% - var(--dim-logo) / 4);
+    right: calc(var(--dim-logo) / 2);
+
+    &:is(ion-icon) {
+      right: auto;
+      left: calc(var(--dim-logo) / 2);
+      translate: 0 50%;
+      will-change: transform;
+      animation: muovi var(--tempo-animazione) linear reverse infinite;
+    }
+  }
+
+  @keyframes muovi {
+    0% {
+      transform: translateX(var(--dim-logo) / 2);
     }
 
-    .linea {
-        width: calc(100% - var(--dim-logo));
-        border-top: 2px dashed var(--colore-bordo);
+    100% {
+      transform: translateX(calc(100cqw - var(--dim-logo) * 1.5));
     }
-
-    ion-icon {
-        font-size: var(--testo-l);
-        color: var(--grigio-9);
-    }
-
-    [avanti] {
-        position: absolute;
-        top: calc(50% - var(--dim-logo) / 4);
-        left: calc(var(--dim-logo) / 2);
-
-        &:is(ion-icon) {
-            transform: translate(-50%, -50%) translateX(0);
-            will-change: transform;
-            animation: muovi-avanti var(--tempo-animazione) linear infinite;
-        }
-    }
-
-    [indietro] {
-        position: absolute;
-        bottom: calc(50% - var(--dim-logo) / 4);
-        right: calc(var(--dim-logo) / 2);
-
-        &:is(ion-icon) {
-            right: auto;
-            left: calc(var(--dim-logo) / 2);
-            transform: translate(-50%, 50%) translateX(0);
-            will-change: transform;
-            animation: muovi-indietro var(--tempo-animazione) linear infinite reverse;
-        }
-    }
-
-    @keyframes muovi-avanti {
-        0% {
-            transform: translate(-50%, -50%) translateX(0);
-        }
-
-        100% {
-            transform: translate(-50%, -50%) translateX(calc(100% - var(--dim-logo)));
-        }
-    }
-
-    @keyframes muovi-indietro {
-        0% {
-            transform: translate(-50%, 50%) translateX(0);
-        }
-
-        100% {
-            transform: translate(-50%, 50%) translateX(calc(100% - var(--dim-logo)));
-        }
-    }
+  }
 }
 
 @media screen and (width < 500px) {
-    .contenuto {
-        --dim-logo: 3rem !important;
-    }
+  .contenuto {
+    --dim-logo: 3rem !important;
+  }
 }
