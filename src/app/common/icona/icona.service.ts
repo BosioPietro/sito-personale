@@ -25,6 +25,7 @@ export class IconaService {
       fetch(`./assets/icone/${nome}.svg`)
         .then((res) => res.text())
         .then((svg) => {
+          if (svg.includes('Cannot')) throw new Error('Icon not found');
           resolve(this.sanitizer.bypassSecurityTrustHtml(svg));
         })
         .catch(() => {

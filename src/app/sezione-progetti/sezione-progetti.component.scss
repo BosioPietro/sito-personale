@@ -62,6 +62,7 @@ hr.linea-luce {
   animation-timeline: scroll(y root);
 
   @keyframes entra-progetto {
+
     0%,
     55% {
       --progresso-progetti: 0;
@@ -116,6 +117,7 @@ hr.linea-luce {
           }
 
           .link {
+            margin-top: .5rem;
             text-align: center;
             gap: calc(var(--gap) / 4);
             margin-inline: calc(var(--gap) / 4);
@@ -123,6 +125,10 @@ hr.linea-luce {
 
             ion-icon {
               font-size: var(--testo-l);
+            }
+
+            &:hover ion-icon {
+              filter: drop-shadow(0 0 1rem #FFF), brightness(2);
             }
           }
         }

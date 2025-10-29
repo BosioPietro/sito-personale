@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  inject,
   Input,
   ViewChild,
 } from '@angular/core';
@@ -15,8 +16,6 @@ import { IconaComponent } from '../../common/icona/icona.component';
   styleUrl: './immagini.component.scss',
 })
 export class ImmaginiComponent implements AfterViewInit {
-  constructor(protected img: ImmaginiService) {}
-
   @Input('immagini-correnti')
   immaginiCorrenti!: string[];
 
@@ -29,7 +28,16 @@ export class ImmaginiComponent implements AfterViewInit {
   @ViewChild('modale')
   modaleImmagine!: ElementRef<HTMLDialogElement>;
 
-  immagineVisualizzata?: string;
+  protected readonly img: ImmaginiService = inject(ImmaginiService);
+  protected isFirstLoad: boolean = true;
+
+  protected immagineVisualizzata?: string;
+
+  ngAfterViewInit(): void {
+    this.isFirstLoad = false;
+    const img = this.modaleImmagine.nativeElement.querySelector('img')!;
+    this.ZoomImagine(2, img);
+  }
 
   SelezionaImmagine(e: Event) {
     if (e.target === e.currentTarget) return;
@@ -56,11 +64,6 @@ export class ImmaginiComponent implements AfterViewInit {
     modale.close();
   }
 
-  ngAfterViewInit(): void {
-    const img = this.modaleImmagine.nativeElement.querySelector('img')!;
-    this.ZoomImagine(2, img);
-  }
-
   ZoomImagine(zoom: number, img: HTMLImageElement) {
     img.addEventListener('load', CaricaImmagine);
 
@@ -68,10 +71,6 @@ export class ImmaginiComponent implements AfterViewInit {
     const bw = 3;
     const w = lente.offsetWidth / 2;
     const h = lente.offsetHeight / 2;
-
-    const stiliCella = getComputedStyle(lente);
-    const widthCella = parseFloat(stiliCella.width) - 2;
-    const heightCella = parseFloat(stiliCella.height) - 2;
 
     let rafId = 0;
     let pendingEvt: MouseEvent | null = null;
@@ -88,7 +87,6 @@ export class ImmaginiComponent implements AfterViewInit {
       }
     };
 
-    // Rimuovo listener su lente (ha pointer-events: none) e uso solo img
     img.addEventListener('pointermove', IniziaMovimento, { passive: true });
 
     img.addEventListener('pointerdown', (e) => {
@@ -106,7 +104,6 @@ export class ImmaginiComponent implements AfterViewInit {
         } catch {}
       };
 
-      // Chiusura robusta in ogni scenario
       img.addEventListener('pointerup', Rimuovi, { passive: true, once: true });
       img.addEventListener('pointercancel', Rimuovi, {
         passive: true,
@@ -137,21 +134,16 @@ export class ImmaginiComponent implements AfterViewInit {
       // Posizione del cursore relativa all'immagine
       let { x, y } = PosizioneCursore(e);
 
-      // Clamp dentro i limiti dell'immagine (coordinate relative all'immagine)
+      // Clamp dentro i limiti dell'immagine
       x = Math.max(w / zoom, Math.min(x, imgRect.width - w / zoom));
       y = Math.max(h / zoom, Math.min(y, imgRect.height - h / zoom));
 
-      // Offset dell'immagine dentro il contenitore .cont-img
       const offsetX = imgRect.left - contRect.left;
       const offsetY = imgRect.top - contRect.top;
 
-      // Posizionamento: metto left/top sul cursore (centro via CSS translate)
+      // left/top sul cursore
       lente.style.left = `${offsetX + x}px`;
       lente.style.top = `${offsetY + y}px`;
-      // Non impostare transform inline: lo gestisce la classe CSS .visibile
-
-      // Background calcolato nel sistema di coordinate dell'immagine
-      // Centro lo sfondo sul punto (x, y) della foto
 
       lente.style.backgroundPosition = `-${x * zoom - w}px -${y * zoom - h}px`;
     }

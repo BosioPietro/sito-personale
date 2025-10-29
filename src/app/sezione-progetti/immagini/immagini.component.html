@@ -8,8 +8,6 @@
   <img
     [src]="immaginiCorrenti[img.immagineSelezionata]"
     [attr.alt]="img.immagineSelezionata"
-    decoding="async"
-    loading="lazy"
   />
   <button
     class="icona"
@@ -48,8 +46,6 @@
     <img
       [src]="immaginiPrecendenti[img.immaginePrecedente]"
       [attr.alt]="img.immaginePrecedente"
-      decoding="async"
-      loading="lazy"
     />
   </div>
   <div class="wrapper-selettore">
@@ -75,7 +71,7 @@
     <div class="cont-img">
       <img [src]="immagineVisualizzata" />
       <!-- L’immagine nel dialog è fuori viewport finché chiuso: safe per async -->
-      
+
       <div class="lente"></div>
     </div>
     <div class="flex-row info">
