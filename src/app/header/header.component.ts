@@ -7,11 +7,16 @@ import {
   ViewChild,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  inject,
+  DOCUMENT,
+  OnInit,
+  PLATFORM_ID,
 } from '@angular/core';
 import { Sezioni } from '../sezione-conoscenze/switch/switch.component';
 import { SwitchService } from '../sezione-conoscenze/switch/switch.service';
 import { ProgettiService } from '../sezione-progetti/selettore-progetti/progetti.service';
 import { IconaComponent } from '../common/icona/icona.component';
+import { isPlatformBrowser } from '@angular/common';
 
 declare global {
   interface ViewTransitionUpdateCallback {
@@ -43,11 +48,11 @@ declare global {
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   @Input('sezione-corrente')
   set sezioneCorrente(s: string | undefined) {
     this.sezione = s;
-    this.scheduleCalcoloOffset();
+    this.ScheduleCalcoloOffset();
   }
   sezione?: string;
 
@@ -60,17 +65,22 @@ export class HeaderComponent {
   @Output()
   onNaviga = new EventEmitter<string>();
 
-  modalitaVisualizzazione: 'chiaro' | 'scuro';
-  html = document.firstElementChild! as HTMLElement;
+  private readonly valore_switch = inject(SwitchService);
+  private readonly valore_progetto = inject(ProgettiService);
+  private readonly cdr = inject(ChangeDetectorRef);
+  private readonly document = inject(DOCUMENT);
+  private readonly platform: Object = inject(PLATFORM_ID);
+  private readonly isBrowser = isPlatformBrowser(this.platform);
+
+  modalitaVisualizzazione: 'chiaro' | 'scuro' = 'scuro';
+  html = this.document.firstElementChild! as HTMLElement;
 
   headerAperto: boolean = false;
   sezioneMenu?: 'progetti' | 'conoscenze' = undefined;
 
-  constructor(
-    private valore_switch: SwitchService,
-    private valore_progetto: ProgettiService,
-    private cdr: ChangeDetectorRef
-  ) {
+  ngOnInit() {
+    if (!this.isBrowser) return;
+
     const modalita = localStorage.getItem('modalita-visualizzazione');
 
     if (modalita === 'chiaro' || modalita === 'scuro') {
@@ -99,11 +109,12 @@ export class HeaderComponent {
 
   SezioneCorrente(sezione: string | undefined) {
     this.sezione = sezione;
-    this.scheduleCalcoloOffset();
+    this.ScheduleCalcoloOffset();
     return this.offsetX;
   }
 
-  private scheduleCalcoloOffset() {
+  private ScheduleCalcoloOffset() {
+    if (!this.isBrowser) return;
     if (this.rafId) return;
     this.rafId = requestAnimationFrame(() => {
       this.rafId = undefined;

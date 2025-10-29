@@ -22,7 +22,8 @@ export class IconaService {
 
   RichiediIcona(nome: string): Promise<IconaResult> {
     return new Promise<IconaResult>((resolve) => {
-      fetch(`./assets/icone/${nome}.svg`)
+      const url = new URL(`assets/icone/${nome}.svg`, document.baseURI).href;
+      fetch(url)
         .then((res) => res.text())
         .then((svg) => {
           if (svg.includes('Cannot')) throw new Error('Icon not found');

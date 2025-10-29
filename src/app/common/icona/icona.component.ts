@@ -7,6 +7,8 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { IconaResult, IconaService } from './icona.service';
 
 @Component({
@@ -18,6 +20,8 @@ export class IconaComponent implements OnInit, OnChanges {
   @Input({ required: true }) name!: string;
 
   private readonly iconeService: IconaService = inject(IconaService);
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly isBrowser = isPlatformBrowser(this.platformId);
   protected svg: WritableSignal<IconaResult | undefined> = signal(undefined);
   protected isOutline: true | null = null;
 
@@ -30,6 +34,7 @@ export class IconaComponent implements OnInit, OnChanges {
   }
 
   async RichiediIcona(): Promise<void> {
+    if (!this.isBrowser) return;
     const icona = this.iconeService.FetchIcona(this.name);
 
     this.svg.set(await icona);

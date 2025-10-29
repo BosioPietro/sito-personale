@@ -1,9 +1,12 @@
 import {
   AfterViewInit,
   Component,
+  DOCUMENT,
   ElementRef,
+  inject,
   OnDestroy,
   OnInit,
+  PLATFORM_ID,
   signal,
   ViewChild,
   WritableSignal,
@@ -14,9 +17,10 @@ import { SezioneConoscenzeComponent } from './sezione-conoscenze/sezione-conosce
 import { SezioneProgettiComponent } from './sezione-progetti/sezione-progetti.component';
 import { FooterContattiComponent } from './footer-contatti/footer-contatti.component';
 import { Subscription } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
-  selector: 'body',
+  selector: 'app-root',
   imports: [
     HeaderComponent,
     SezionePrincipaleComponent,
@@ -39,7 +43,12 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('interno')
   rettangoloInterno!: ElementRef<HTMLElement>;
 
+  private readonly platform: Object = inject(PLATFORM_ID);
+  private readonly isBrowser = isPlatformBrowser(this.platform);
+
   ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
+
     // forse è un bug con i <rect> svg, quando
     // faccio il resize della pagina la width
     // che collegata a --bordo non si aggiorna
@@ -57,6 +66,8 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
 
   // gestione sezione corrente
   ngOnInit(): void {
+    if (!this.isBrowser) return;
+
     const sezioni = document.querySelectorAll('body > [id]');
     this.sezioni = Array.from(sezioni) as HTMLElement[];
 
@@ -80,7 +91,9 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.eventoScroll?.unsubscribe();
-    this.observer?.disconnect();
+    if (this.isBrowser) {
+      this.observer?.disconnect();
+    }
   }
 
   SezionePagina() {

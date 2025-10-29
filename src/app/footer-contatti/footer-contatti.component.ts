@@ -4,9 +4,12 @@ import {
   ElementRef,
   AfterViewInit,
   OnDestroy,
+  inject,
+  PLATFORM_ID,
 } from '@angular/core';
 import { SfondoComponent } from './sfondo/sfondo.component';
 import { IconaComponent } from '../common/icona/icona.component';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'FooterContatti',
@@ -17,11 +20,15 @@ import { IconaComponent } from '../common/icona/icona.component';
 })
 export class FooterContattiComponent implements AfterViewInit, OnDestroy {
   private observer?: IntersectionObserver;
-  private mostrato = false; // stato per isteresi: mostra finché è almeno parzialmente visibile
+  private mostrato = false;
 
-  constructor(private el: ElementRef<HTMLElement>) {}
+  private readonly el = inject(ElementRef<HTMLElement>);
+  private readonly platform = inject(PLATFORM_ID);
+  private readonly isBrowser = isPlatformBrowser(this.platform);
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
+
     const host = this.el.nativeElement;
     this.observer = new IntersectionObserver(
       (entries) => {
@@ -48,6 +55,8 @@ export class FooterContattiComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.observer?.disconnect();
+    if (this.isBrowser) {
+      this.observer?.disconnect();
+    }
   }
 }

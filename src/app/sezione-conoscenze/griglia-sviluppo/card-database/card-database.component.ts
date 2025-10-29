@@ -1,3 +1,4 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -5,13 +6,15 @@ import {
   ViewChild,
   OnDestroy,
   NgZone,
+  inject,
+  PLATFORM_ID,
 } from '@angular/core';
 
 @Component({
-    selector: 'CardDatabase',
-    imports: [],
-    templateUrl: './card-database.component.html',
-    styleUrl: './card-database.component.scss'
+  selector: 'CardDatabase',
+  imports: [],
+  templateUrl: './card-database.component.html',
+  styleUrl: './card-database.component.scss',
 })
 export class CardDatabaseComponent implements AfterViewInit, OnDestroy {
   div = new Array(5);
@@ -21,9 +24,13 @@ export class CardDatabaseComponent implements AfterViewInit, OnDestroy {
 
   private intervalId: number | undefined;
 
-  constructor(private zone: NgZone) {}
+  private readonly zone = inject(NgZone);
+  private readonly platform = inject(PLATFORM_ID);
+  private readonly isBrowser = isPlatformBrowser(this.platform);
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
+
     const NOME_CLASSE = 'hl';
     const cont = this.tbody.nativeElement;
     const celle = Array.from(cont.querySelectorAll('td'));
