@@ -180,3 +180,8 @@ hr.linea-luce {
     grid-template-columns: 1fr !important;
   }
 }
+:host {
+  /* Timeline di vista per pilotare l'indicatore dell'header */
+  view-timeline-name: --conoscenze;
+  view-timeline-axis: block;
+}

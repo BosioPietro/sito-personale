@@ -1,16 +1,14 @@
 import {
   Component,
-  ElementRef,
   EventEmitter,
   Input,
   Output,
-  ViewChild,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   inject,
   DOCUMENT,
   OnInit,
   PLATFORM_ID,
+  HostBinding,
 } from '@angular/core';
 import { Sezioni } from '../sezione-conoscenze/switch/switch.component';
 import { SwitchService } from '../sezione-conoscenze/switch/switch.service';
@@ -52,22 +50,15 @@ export class HeaderComponent implements OnInit {
   @Input('sezione-corrente')
   set sezioneCorrente(s: string | undefined) {
     this.sezione = s;
-    this.ScheduleCalcoloOffset();
+    this.indicatoreAncora = this.mappaSezioneAAncora(s);
   }
   sezione?: string;
-
-  @ViewChild('wrapper')
-  wrapper!: ElementRef<HTMLElement>;
-
-  @ViewChild('cella')
-  cella!: ElementRef<HTMLElement>;
 
   @Output()
   onNaviga = new EventEmitter<string>();
 
   private readonly valore_switch = inject(SwitchService);
   private readonly valore_progetto = inject(ProgettiService);
-  private readonly cdr = inject(ChangeDetectorRef);
   private readonly document = inject(DOCUMENT);
   private readonly platform: Object = inject(PLATFORM_ID);
   private readonly isBrowser = isPlatformBrowser(this.platform);
@@ -77,6 +68,26 @@ export class HeaderComponent implements OnInit {
 
   headerAperto: boolean = false;
   sezioneMenu?: 'progetti' | 'conoscenze' = undefined;
+
+  @HostBinding('style.--indicatore-ancora')
+  indicatoreAncora: string = '--ancora-principale';
+
+  private mappaSezioneAAncora(s?: string): string {
+    switch (s) {
+      case 'principale':
+        return '--ancora-principale';
+      case 'conoscenze':
+        return '--ancora-conoscenze';
+      case 'progetti':
+        return '--ancora-progetti';
+      case 'contatti':
+        return '--ancora-contatti';
+      default:
+        return '--ancora-principale';
+    }
+  }
+
+  protected readonly sezioni = Sezioni;
 
   ngOnInit() {
     if (!this.isBrowser) return;
@@ -90,74 +101,10 @@ export class HeaderComponent implements OnInit {
     this.html.classList.add(this.modalitaVisualizzazione);
   }
 
-  sezioni = Sezioni;
-  ultimo: {
-    sezione?: string;
-    valore?: string;
-  } = {};
-
-  timeoutTransizione: any;
-  animando: boolean = false;
-  offsetX: string = '0px';
-  private rafId?: number;
-
   Scrolla(s: string) {
     const el = document.getElementById(s)!;
     this.onNaviga.emit(s);
     el.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  SezioneCorrente(sezione: string | undefined) {
-    this.sezione = sezione;
-    this.ScheduleCalcoloOffset();
-    return this.offsetX;
-  }
-
-  private ScheduleCalcoloOffset() {
-    if (!this.isBrowser) return;
-    if (this.rafId) return;
-    this.rafId = requestAnimationFrame(() => {
-      this.rafId = undefined;
-      const sezione = this.sezione;
-      if (!sezione) {
-        this.offsetX = '0px';
-        this.cdr.markForCheck();
-        return;
-      }
-
-      const wrapper = this.wrapper?.nativeElement;
-      const header = wrapper?.parentElement as HTMLElement | null;
-      const opzione = wrapper?.querySelector(
-        `[sezione="${sezione}"]`
-      ) as HTMLElement | null;
-      const bottone = opzione?.querySelector('button') as HTMLElement | null;
-      const cellaGlobale = this.cella?.nativeElement as HTMLElement | undefined;
-
-      if (!wrapper || !header || !bottone) {
-        this.offsetX = '0px';
-        this.cdr.markForCheck();
-        return;
-      }
-
-      const { left, width } = bottone.getBoundingClientRect();
-      const headerLeft = header.getBoundingClientRect().left;
-      const larghezzaCella = cellaGlobale?.offsetWidth ?? 32; // fallback 2rem ≈ 32px
-      const targetLeft = left - headerLeft + (width - larghezzaCella) / 2;
-      const valore = `${Math.max(0, Math.round(targetLeft))}px`;
-
-      if (this.ultimo.sezione === sezione && this.ultimo.valore === valore)
-        return;
-
-      this.offsetX = valore;
-      this.ultimo = { sezione, valore };
-      this.animando = true;
-      clearTimeout(this.timeoutTransizione);
-      this.timeoutTransizione = setTimeout(() => {
-        this.animando = false;
-        this.cdr.markForCheck();
-      }, 300);
-      this.cdr.markForCheck();
-    });
   }
 
   async CambiaModalitaVisualizzazione(e: Event) {

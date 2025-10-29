@@ -3,6 +3,10 @@
     contain-intrinsic-size: 700px;
     background-color: rgba(0, 0, 0, 0.3);
 
+    /* Timeline di vista per pilotare l'indicatore dell'header */
+    view-timeline-name: --contatti;
+    view-timeline-axis: block;
+
     .wrapper {
         position: relative;
         width: 100%;

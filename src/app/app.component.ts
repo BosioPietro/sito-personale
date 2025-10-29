@@ -16,7 +16,7 @@ import { SezionePrincipaleComponent } from './sezione-principale/sezione-princip
 import { SezioneConoscenzeComponent } from './sezione-conoscenze/sezione-conoscenze.component';
 import { SezioneProgettiComponent } from './sezione-progetti/sezione-progetti.component';
 import { FooterContattiComponent } from './footer-contatti/footer-contatti.component';
-import { Subscription } from 'rxjs';
+import { Subscription, fromEvent, auditTime } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -62,13 +62,22 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
 
       setTimeout(() => (r.style.width = ''));
     });
+
+    // Aggiorna la sezione corrente in modo stabile usando il centro del viewport
+    this.eventoScroll = fromEvent(window, 'scroll')
+      .pipe(auditTime(120))
+      .subscribe(() => this.SezionePagina());
+
+    // Prima rilevazione iniziale
+    this.SezionePagina();
   }
 
   // gestione sezione corrente
   ngOnInit(): void {
     if (!this.isBrowser) return;
 
-    const sezioni = document.querySelectorAll('body > [id]');
+    const radice = document.querySelector('app-root');
+    const sezioni = radice?.querySelectorAll(':scope > [id]') ?? [];
     this.sezioni = Array.from(sezioni) as HTMLElement[];
 
     this.observer = new IntersectionObserver(
@@ -77,11 +86,6 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
           const el = entry.target as HTMLElement;
           el.classList.toggle('visibile', entry.intersectionRatio >= 0.33);
         });
-
-        const visibili = entries.filter((e) => e.isIntersecting);
-        if (!visibili.length) return;
-        visibili.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        this.sezioneCorrente.set((visibili[0].target as HTMLElement).id);
       },
       { threshold: [0, 0.25, 0.5, 0.75, 1] }
     );
@@ -97,24 +101,83 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   SezionePagina() {
-    if (!this.sezioni) {
-      const sezioni = document.body.querySelectorAll('& > [id]');
+    // Sezioni dirette figli di app-root
+    if (!this.sezioni || !this.sezioni.length) {
+      const radice = document.querySelector('app-root');
+      const sezioni = radice?.querySelectorAll(':scope > [id]') ?? [];
       this.sezioni = Array.from(sezioni) as HTMLElement[];
     }
 
-    const distanze = this.sezioni
-      .map((s) => {
-        const ris = { el: s, distanza: NaN };
+    if (!this.sezioni || !this.sezioni.length) return;
 
-        if (s.id === 'contatti') {
-          const b = s.getBoundingClientRect().bottom;
-          ris['distanza'] = Math.abs(window.innerHeight - b);
-        } else ris['distanza'] = Math.abs(s.getBoundingClientRect().top);
+    const centerY = window.innerHeight / 2;
 
-        return ris;
-      })
-      .sort((a, b) => a['distanza'] - b['distanza']);
+    // 1) Preferisci la sezione che contiene il centro del viewport
+    const contenentiCentro = this.sezioni.filter((s) => {
+      const r = s.getBoundingClientRect();
+      return r.top <= centerY && r.bottom >= centerY;
+    });
 
-    this.sezioneCorrente.set(distanze[0].el.id);
+    let corrente: string | undefined;
+    if (contenentiCentro.length) {
+      // Se più sezioni contengono il centro, scegli quella più centrata
+      contenentiCentro.sort((a, b) => {
+        const ca = Math.abs(
+          (a.getBoundingClientRect().top + a.getBoundingClientRect().bottom) /
+            2 -
+            centerY
+        );
+        const cb = Math.abs(
+          (b.getBoundingClientRect().top + b.getBoundingClientRect().bottom) /
+            2 -
+            centerY
+        );
+        return ca - cb;
+      });
+      corrente = contenentiCentro[0].id;
+    } else {
+      // 2) Altrimenti scegli la sezione col centro più vicino al centro viewport
+      const ordinate = this.sezioni
+        .map((s) => {
+          const r = s.getBoundingClientRect();
+          const centroSez = (r.top + r.bottom) / 2;
+          return { id: s.id, dist: Math.abs(centroSez - centerY) };
+        })
+        .sort((a, b) => a.dist - b.dist);
+      corrente = ordinate[0]?.id;
+    }
+
+    // Regola speciale per il footer "contatti":
+    // se il fondo del viewport entra nel footer e almeno una porzione
+    // significativa è visibile, attiva "contatti" anche se il centro viewport
+    // resta sopra.
+    const contattiEl = this.sezioni.find((s) => s.id === 'contatti');
+    if (contattiEl) {
+      const r = contattiEl.getBoundingClientRect();
+      const viewportTop = 0;
+      const viewportBottom = window.innerHeight;
+
+      const intersection = Math.max(
+        0,
+        Math.min(r.bottom, viewportBottom) - Math.max(r.top, viewportTop)
+      );
+      const visRatio = intersection / Math.max(r.height, 1);
+      const bottomInside =
+        r.top <= viewportBottom && r.bottom >= viewportBottom;
+      const nearBottom =
+        window.scrollY + window.innerHeight >=
+        (document.documentElement.scrollHeight || document.body.scrollHeight) -
+          2;
+
+      // Attiva contatti se il fondo è dentro al footer con >=25% visibile
+      // oppure se siamo praticamente a fine pagina.
+      if ((bottomInside && visRatio >= 0.33) || nearBottom) {
+        corrente = 'contatti';
+      }
+    }
+
+    if (corrente && corrente !== this.sezioneCorrente()) {
+      this.sezioneCorrente.set(corrente);
+    }
   }
 }

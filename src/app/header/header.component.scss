@@ -27,12 +27,19 @@
   animation-timeline: scroll(block nearest);
 
   @keyframes mostra-header {
+
     30%,
     100% {
       transform: translateY(0);
       filter: blur(0);
     }
   }
+}
+
+@property --indicatore-ancora {
+  syntax: '<custom-ident>';
+  inherits: true;
+  initial-value: --ancora-principale;
 }
 
 img {
@@ -72,6 +79,22 @@ button[menu] {
     color: var(--grigio-a);
     transition: color var(--tempo-animazione) var(--easing);
 
+    &[sezione="principale"]>button {
+      anchor-name: --ancora-principale;
+    }
+
+    &[sezione="conoscenze"]>button {
+      anchor-name: --ancora-conoscenze;
+    }
+
+    &[sezione="progetti"]>button {
+      anchor-name: --ancora-progetti;
+    }
+
+    &[sezione="contatti"]>button {
+      anchor-name: --ancora-contatti;
+    }
+
     &:hover,
     &.corrente {
       color: #fff;
@@ -101,50 +124,28 @@ button[menu] {
         }
       }
     }
-
-    .wrapper-cella {
-      position: absolute;
-      inset: auto 0 0 0;
-
-      .cella {
-        position: static;
-        margin-inline: auto;
-        height: 0.25rem;
-        width: 2rem;
-        border-radius: 100dvw 100dvw 0 0;
-        background-color: var(--colore-bordo);
-        transform: none;
-        transition: 0.5s var(--easing);
-        transition-property: translate, scale;
-        display: none;
-      }
-    }
-
-    &.corrente .cella {
-      animation: mostra var(--tempo-animazione);
-      opacity: 1;
-
-      @keyframes mostra {
-        0%,
-        100% {
-          opacity: 0;
-        }
-      }
-    }
   }
 }
 
 .cella {
-  --sinistra: 0;
   position: absolute;
   height: 0.25rem;
   width: 2rem;
   inset: auto auto 0 0;
   border-radius: 100dvw 100dvw 0 0;
   background-color: var(--colore-bordo);
-  transform: translateX(var(--sinistra));
-  transition: transform var(--tempo-animazione) var(--easing);
   opacity: 1;
+  transition: left .3s var(--easing);
+  position-anchor: var(--indicatore-ancora);
+  left: anchor(center);
+  bottom: anchor(bottom);
+  transform: translateX(-50%);
+}
+
+@supports not (position-anchor: --fallback) {
+  .cella {
+    display: none;
+  }
 }
 
 .sotto-sezioni {
@@ -345,6 +346,7 @@ button[menu] {
   }
 
   @keyframes mostra-header-mobile {
+
     20%,
     100% {
       transform: translateY(0);

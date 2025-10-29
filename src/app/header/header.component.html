@@ -1,9 +1,14 @@
 <div class="flex-row">
-  <img src="https://bosio.zip/assets/img/logo.webp" alt="B" />
+  <img
+    src="https://bosio.zip/assets/img/logo.webp"
+    alt="B"
+    height="64px"
+    width="48px"
+  />
   <button menu (click)="headerAperto = !headerAperto" aria-label="Menu">
     <ion-icon name="menu"></ion-icon>
   </button>
-  <div class="flex-row wrapper" #wrapper>
+  <div class="flex-row wrapper">
     <div
       class="flex-row opzione"
       [class.corrente]="sezione == 'principale'"
@@ -17,9 +22,7 @@
         <ion-icon name="home" />
         Home
       </button>
-      <div class="wrapper-cella">
-        <div class="cella"></div>
-      </div>
+      
     </div>
     <div
       class="flex-row opzione competenze"
@@ -36,9 +39,7 @@
         Competenze
         <ion-icon name="chevron-down"></ion-icon>
       </button>
-      <div class="wrapper-cella">
-        <div class="cella"></div>
-      </div>
+      
     </div>
     <div
       class="flex-row opzione progetti"
@@ -55,9 +56,7 @@
         Progetti
         <ion-icon name="chevron-down"></ion-icon>
       </button>
-      <div class="wrapper-cella">
-        <div class="cella"></div>
-      </div>
+      
     </div>
     <div
       class="flex-row opzione"
@@ -72,9 +71,7 @@
         <ion-icon name="chatbubble" />
         Contatti
       </button>
-      <div class="wrapper-cella">
-        <div class="cella"></div>
-      </div>
+      
     </div>
   </div>
   <button
@@ -88,7 +85,7 @@
     <ion-icon [name]="modalitaVisualizzazione === 'scuro' ? 'sunny' : 'moon'" />
   </button>
 
-  <div #cella class="cella" [style.--sinistra]="offsetX"></div>
+  <div class="cella"></div>
 </div>
 
 <div class="flex-col menu-header" [class.aperto]="headerAperto">

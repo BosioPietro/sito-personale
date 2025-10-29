@@ -85,10 +85,10 @@ section {
         }
     }
 
-    button,
-    h2 {
-        margin-block: 1rem;
-    }
+        button,
+        h2 {
+            margin-block: 1rem;
+        }
 
     [anima] {
         animation: alza-elemento .5s var(--easing) var(--delay) forwards;
@@ -160,4 +160,9 @@ section {
             }
         }
     }
+}
+:host {
+    /* Timeline di vista per pilotare l'indicatore dell'header */
+    view-timeline-name: --principale;
+    view-timeline-axis: block;
 }

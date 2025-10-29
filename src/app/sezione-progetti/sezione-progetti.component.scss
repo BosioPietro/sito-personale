@@ -10,6 +10,10 @@
   background-image: linear-gradient(#000, #0009);
   scroll-margin: 4rem;
 
+  /* Timeline di vista per pilotare l'indicatore dell'header */
+  view-timeline-name: --progetti;
+  view-timeline-axis: block;
+
   h1,
   .sottotitolo {
     margin-inline: auto;
