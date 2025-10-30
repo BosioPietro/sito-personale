@@ -22,7 +22,7 @@
     class="flex-row selettore scrollbar-stile"
     (click)="SelezionaImmagine($event)"
   >
-    @for (i of immaginiCorrenti; track $index) {
+    @for (i of previewCorrenti; track $index) {
     <img
       [src]="i"
       [class.selezionata]="$index === img.immagineSelezionata"
@@ -50,7 +50,7 @@
   </div>
   <div class="wrapper-selettore">
     <div class="flex-row selettore scrollbar-stile">
-      @for (i of immaginiPrecendenti; track $index) {
+      @for (i of previewPrecedenti; track $index) {
       <img
         [src]="i"
         [class.selezionata]="$index === img.immaginePrecedente"

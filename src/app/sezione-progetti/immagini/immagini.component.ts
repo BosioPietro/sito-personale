@@ -4,6 +4,8 @@ import {
   ElementRef,
   inject,
   Input,
+  OnChanges,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { ImmaginiService } from './immagini.service';
@@ -15,7 +17,7 @@ import { IconaComponent } from '../../common/icona/icona.component';
   templateUrl: './immagini.component.html',
   styleUrl: './immagini.component.scss',
 })
-export class ImmaginiComponent implements AfterViewInit {
+export class ImmaginiComponent implements AfterViewInit, OnChanges {
   @Input('immagini-correnti')
   immaginiCorrenti!: string[];
 
@@ -33,10 +35,35 @@ export class ImmaginiComponent implements AfterViewInit {
 
   protected immagineVisualizzata?: string;
 
+  protected previewCorrenti: string[] = [];
+  protected previewPrecedenti: string[] | undefined = undefined;
+
   ngAfterViewInit(): void {
     this.isFirstLoad = false;
     const img = this.modaleImmagine.nativeElement.querySelector('img')!;
     this.ZoomImagine(2, img);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['immaginiCorrenti'] || changes['immaginiPrecendenti']) {
+      this.CaricaAnteprime();
+    }
+  }
+
+  CaricaAnteprime() {
+    this.previewCorrenti = this.immaginiCorrenti.map((img) => {
+      const parti = img.split('/');
+      const ultima = parti.pop();
+      return [...parti, 'preview', ultima].join('/');
+    });
+
+    if (this.immaginiPrecendenti) {
+      this.previewPrecedenti = this.immaginiPrecendenti.map((img) => {
+        const parti = img.split('/');
+        const ultima = parti.pop();
+        return [...parti, 'preview', ultima].join('/');
+      });
+    }
   }
 
   SelezionaImmagine(e: Event) {
