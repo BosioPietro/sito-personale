@@ -102,7 +102,7 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
 
   SezionePagina() {
     // Sezioni dirette figli di app-root
-    if (!this.sezioni || !this.sezioni.length) {
+    if (!this.sezioni || this.sezioni.length < 4) {
       const radice = document.querySelector('app-root');
       const sezioni = radice?.querySelectorAll(':scope > [id]') ?? [];
       this.sezioni = Array.from(sezioni) as HTMLElement[];

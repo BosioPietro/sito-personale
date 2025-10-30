@@ -3,12 +3,13 @@
   (onNaviga)="sezioneCorrente.set($event)"
   class="flex-col"
 ></Header>
-
 <SezionePrincipale id="principale" class="flex-col espandi" />
+
+@defer (on immediate) {
 <SezioneConoscenze id="conoscenze" class="espandi" />
 <SezioneProgetti id="progetti" class="flex-col espandi" />
 <FooterContatti id="contatti" />
-
+}
 <svg xmlns="http://www.w3.org/2000/svg">
   <mask id="maschera-cornice">
     <rect x="0" y="0" width="100%" height="100%" fill="#FFF" />
