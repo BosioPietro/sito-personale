@@ -1,52 +1,62 @@
 <h3 class="testo-gradient">Applicazioni Mobile</h3>
 <div class="flex-row">
-    <div class="flex-col">
-        <p>
-            Sviluppo di un'applicazione mobile per 
-            <span class="testo-gradient">Android</span> e 
-            <span class="testo-gradient">iOS</span>
-            a partire da un unico codice sorgente, semplificando così la gestione e la manutenzione.
-        </p>
-        <p>
-            Questo risultato grazie all'impiego di piattaforme come 
-            <span class="testo-gradient">Ionic</span>, 
-            combinato con
-            <span class="testo-gradient">Capacitor</span> 
-            per accedere alle API native del dispostivo, e 
-            <span class="testo-gradient">Cordova</span>.
-        </p>
+  <div class="flex-col">
+    <p>
+      Sviluppo di un'applicazione mobile per
+      <span class="testo-gradient">Android</span> e
+      <span class="testo-gradient">iOS</span>
+      a partire da un unico codice sorgente, semplificando così la gestione e la
+      manutenzione.
+    </p>
+    <p>
+      Questo risultato grazie all'impiego di piattaforme come
+      <span class="testo-gradient">Ionic</span>, combinato con
+      <span class="testo-gradient">Capacitor</span>
+      per accedere alle API native del dispostivo, e
+      <span class="testo-gradient">Cordova</span>.
+    </p>
+  </div>
+  <hr />
+  <div class="flex-row contenuto">
+    <div class="telefono" android>
+      <img
+        src="https://bosio.zip/assets/img/loghi/android.svg"
+        alt="A"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
-    <hr>
-    <div class="contenuto flex-row">
-        <div class="telefono" android>
-            <img src="https://bosio.zip/assets/img/loghi/android.webp" alt="A" loading="lazy" decoding="async">
-        </div>
-        <div class="telefono" ios>
-            <img src="https://bosio.zip/assets/img/loghi/apple.webp" alt="A" loading="lazy" decoding="async">
-        </div>
-        <div class="cont-capacitor flex-row">
-            <span>
-                <div class="cella"></div>
-                <div class="cella"></div>
-                <div class="logo">
-                    <img 
-                        [class.nascosto]="logoCordova"
-                        src="https://bosio.zip/assets/img/loghi/capacitor.webp" 
-                        alt="C" 
-                        title="Capacitor"
-                        loading="lazy"
-                        decoding="async"
-                    >
-                    <img 
-                        [class.nascosto]="!logoCordova"
-                        src="https://bosio.zip/assets/img/loghi/cordova.webp" 
-                        alt="C" 
-                        title="Cordova"
-                        loading="lazy"
-                        decoding="async"
-                    >
-                </div>
-            </span>
-        </div>
+    <div class="telefono" ios>
+      <img
+        src="https://bosio.zip/assets/img/loghi/apple.svg"
+        alt="A"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
+    <div class="flex-row cont-capacitor">
+      <span>
+        <div class="cella"></div>
+        <div class="cella"></div>
+        <div class="logo">
+          <img
+            [class.nascosto]="logoCordova"
+            src="https://bosio.zip/assets/img/loghi/capacitor.svg"
+            alt="C"
+            title="Capacitor"
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            [class.nascosto]="!logoCordova"
+            src="https://bosio.zip/assets/img/loghi/cordova.svg"
+            alt="C"
+            title="Cordova"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </span>
+    </div>
+  </div>
 </div>
