@@ -32,9 +32,17 @@
             "styles": ["src/styles.scss"],
             "scripts": [],
             "prerender": true,
+            "ssr": false,
             "server": "src/main.server.ts",
-            "ssr": {
-              "entry": "src/server.ts"
+            "optimization": {
+              "scripts": true,
+              "styles": {
+                "minify": true,
+                "inlineCritical": true
+              },
+              "fonts": {
+                "inline": true
+              }
             }
           },
           "configurations": {
@@ -45,6 +53,7 @@
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
+              "inlineStyleLanguage": "css",
               "budgets": [
                 {
                   "type": "initial",
