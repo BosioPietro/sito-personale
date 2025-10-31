@@ -14,6 +14,11 @@
   view-timeline-name: --progetti;
   view-timeline-axis: block;
 
+  // GATING ANIMAZIONI
+  &:not(.puo-animare) * {
+    animation-play-state: paused !important;
+  }
+
   h1,
   .sottotitolo {
     margin-inline: auto;

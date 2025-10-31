@@ -4,7 +4,13 @@ import {
   ViewChild,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  AfterViewInit,
+  HostBinding,
+  inject,
 } from '@angular/core';
+import { signal, WritableSignal } from '@angular/core';
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { progetti, Progetto } from './dati';
 import { TecnologieComponent } from './tecnologie/tecnologie.component';
 import { DescrizioneComponent } from './descrizione/descrizione.component';
@@ -26,7 +32,7 @@ import { IconaComponent } from '../common/icona/icona.component';
   styleUrl: './sezione-progetti.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SezioneProgettiComponent {
+export class SezioneProgettiComponent implements AfterViewInit {
   constructor(private img: ImmaginiService, private cdr: ChangeDetectorRef) {}
 
   @ViewChild('descrizione')
@@ -37,6 +43,10 @@ export class SezioneProgettiComponent {
   progettoPrecedente?: Progetto;
 
   espandiMenu: boolean = false;
+
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly isBrowser = isPlatformBrowser(this.platformId);
+  private readonly hostRef = inject(ElementRef<HTMLElement>);
 
   ApriLink(link: string) {
     window.open(link, '_blank');
@@ -74,5 +84,20 @@ export class SezioneProgettiComponent {
       this.puoCambiare = true;
       this.cdr.markForCheck();
     }, 500);
+  }
+
+  ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
+    const el = this.hostRef.nativeElement;
+    const obs = new IntersectionObserver(
+      ([e, ..._], observer) => {
+        if (e.isIntersecting) {
+          this.hostRef.nativeElement.classList.add('puo-animare');
+          observer.disconnect();
+        }
+      },
+      { root: null, threshold: 0.0 }
+    );
+    obs.observe(el);
   }
 }
