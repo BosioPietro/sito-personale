@@ -16,8 +16,8 @@ export class GrigliaCertificazioniComponent {
     descrizione:
       'Corso di 12 ore Programmazione Python: dai rudimenti agli oggetti. Laboratorio Von Neumann (piano terra) 14 e 16 giugno dalle 9 alle 16.',
     link: 'https://laurea.informatica.unito.it/do/avvisi.pl/Show?_id=mqak',
-    url_img: 'https://cdn.unito.it/unito-loghi/favicon/favicon.png',
-    favicon: 'https://cdn.unito.it/unito-loghi/favicon/favicon.png',
+    url_img: 'https://bosio.zip/assets/img/certificazioni/unito.webp',
+    favicon: 'https://bosio.zip/assets/img/certificazioni/unito.webp',
   };
 
   infoLinkCambridge: InfoLink = {
@@ -34,8 +34,7 @@ export class GrigliaCertificazioniComponent {
     descrizione:
       'Validate your skills in installing, configuring, and troubleshooting Cisco networks. Earn the globally recognized Cisco CCNA certification.',
     link: 'https://www.cisco.com/site/us/en/learn/training-certifications/certifications/enterprise/ccna/index.html',
-    url_img:
-      'https://www.netacad.com/sites/default/files/home-hero-25th-800.png',
+    url_img: 'https://bosio.zip/assets/img/certificazioni/cisco_bg.webp',
     favicon: 'https://bosio.zip/assets/img/certificazioni/cisco_icon.webp',
   };
 }
