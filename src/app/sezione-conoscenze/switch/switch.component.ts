@@ -1,12 +1,10 @@
 import {
-  AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
+  inject,
   Output,
-  ViewChild,
 } from '@angular/core';
-import { SwitchService } from './switch.service';
 import { IconaComponent } from '../../common/icona/icona.component';
 
 @Component({
@@ -15,71 +13,29 @@ import { IconaComponent } from '../../common/icona/icona.component';
   templateUrl: './switch.component.html',
   styleUrl: './switch.component.scss',
 })
-export class SwitchComponent implements AfterViewInit {
-  @ViewChild('web')
-  opzione_web!: ElementRef<HTMLElement>;
-
-  @ViewChild('sviluppo')
-  opzione_sviluppo!: ElementRef<HTMLElement>;
-
-  @ViewChild('certificazioni')
-  opzione_certificazioni!: ElementRef<HTMLElement>;
-
-  @ViewChild('cella')
-  cella!: ElementRef<HTMLElement>;
-
+export class SwitchComponent {
   @Output()
   onChange = new EventEmitter<Sezioni>();
 
-  constructor(private valore_switch: SwitchService) {}
+  protected readonly sezioni = Sezioni;
+  protected sezioneCorrente: Sezioni = Sezioni.Web;
+  private readonly ref: ElementRef<HTMLElement> = inject(
+    ElementRef<HTMLElement>
+  );
 
-  sezioni = Sezioni;
-  sezioneCorrente?: Sezioni;
+  constructor() {
+    this.ref.nativeElement.setAttribute(
+      'sezione-corrente',
+      this.sezioneCorrente.toString()
+    );
+  }
 
-  async Seleziona(e: Event | HTMLElement, sezione: Sezioni) {
-    const el = e instanceof Event ? (e.currentTarget! as HTMLElement) : e;
-    const cella = this.cella.nativeElement;
-
-    // Tiene conto della width iniziale della cella
-    this.ImpostaWidthCella(cella);
-    Object.assign(cella, { bottone: el });
-
-    const w = getComputedStyle(el).width;
-    const sinistra = el.offsetLeft;
-
-    cella.style.width = w;
-    cella.style.left = `${sinistra}px`;
-
-    el.parentNode!.childNodes.forEach((b) => {
-      (b as HTMLElement).classList.remove('selezionato', 'anima');
-    });
-
-    el.classList.add('selezionato', 'anima');
-
+  Seleziona(sezione: Sezioni) {
     if (this.sezioneCorrente === sezione) return;
 
+    this.ref.nativeElement.setAttribute('sezione-corrente', sezione.toString());
     this.sezioneCorrente = sezione;
     this.onChange.emit(sezione);
-  }
-
-  ImpostaWidthCella(cella: any) {
-    const bottone =
-      (cella.bottone as HTMLElement) || this.opzione_web.nativeElement;
-    const w = getComputedStyle(bottone).width;
-    const sinistra = bottone.offsetLeft;
-
-    cella.classList.add('no-transizione');
-    cella.style.width = w;
-    cella.style.left = `${sinistra}px`;
-    cella.classList.remove('no-transizione');
-  }
-
-  ngAfterViewInit(): void {
-    this.valore_switch.bottoni = {
-      [Sezioni.Web]: this.opzione_web.nativeElement,
-      [Sezioni.Sviluppo]: this.opzione_sviluppo.nativeElement,
-      [Sezioni.Certificazioni]: this.opzione_certificazioni.nativeElement,
-    };
   }
 }
 
