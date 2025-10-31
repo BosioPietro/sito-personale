@@ -1,8 +1,10 @@
+@defer (on immediate) {
 <Header
   [sezione-corrente]="sezioneCorrente()"
   (onNaviga)="sezioneCorrente.set($event)"
   class="flex-col"
 ></Header>
+}
 <SezionePrincipale id="principale" class="flex-col espandi" />
 
 @defer (on immediate) {
