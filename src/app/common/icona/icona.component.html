@@ -1,9 +1,3 @@
-@if(svg()){
-<span
-  class="icona"
-  [innerHTML]="svg()"
-  [attr.filled]="isOutline ? null : true"
-></span>
-} @else if(svg() === null){
-<span>X</span>
-}
+<svg class="ionicon" viewBox="0 0 512 512">
+  <use [attr.href]="'/assets/icone.svg#' + name" />
+</svg>
