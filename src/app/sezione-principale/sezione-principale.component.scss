@@ -1,6 +1,6 @@
 :host {
     content-visibility: auto;
-    contain-intrinsic-size: 1000px;
+    contain-intrinsic-size: 100dvw 100dvh;
     grid-area: 1 / 1 / 1 / 2;
     position: relative;
     max-width: none !important;
@@ -31,8 +31,11 @@ section {
     padding-inline: 2rem;
     color: var(--grigio-a);
 
+    &:nth-of-type(2) {
+        min-height: 255px;
+    }
+
     h1.xl {
-        width: min-content;
         line-height: 90%;
     }
 
@@ -85,10 +88,10 @@ section {
         }
     }
 
-        button,
-        h2 {
-            margin-block: 1rem;
-        }
+    button,
+    h2 {
+        margin-block: 1rem;
+    }
 
     [anima] {
         animation: alza-elemento .5s var(--easing) var(--delay) forwards;
@@ -143,10 +146,6 @@ section {
             padding-block: 0;
             width: 100%;
 
-            h1 {
-                width: fit-content;
-            }
-
             h2 {
                 margin-block: 1rem .25rem;
             }
@@ -161,6 +160,7 @@ section {
         }
     }
 }
+
 :host {
     /* Timeline di vista per pilotare l'indicatore dell'header */
     view-timeline-name: --principale;
