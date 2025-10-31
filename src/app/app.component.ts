@@ -32,16 +32,20 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
-  title = 'Progetto';
+  private sezioni?: HTMLElement[];
+  protected sezioneCorrente: WritableSignal<string | undefined> =
+    signal(undefined);
 
-  sezioni?: HTMLElement[];
-  sezioneCorrente: WritableSignal<string | undefined> = signal(undefined);
-
-  eventoScroll?: Subscription;
-  observer?: IntersectionObserver;
+  private eventoScroll?: Subscription;
+  private observer?: IntersectionObserver;
+  private observerCentro?: IntersectionObserver;
+  private centroSezioni = new Map<string, IntersectionObserverEntry>();
+  private puoAggiornareCentro = false;
+  private mutazione?: MutationObserver;
+  private eventoResize?: Subscription;
 
   @ViewChild('interno')
-  rettangoloInterno!: ElementRef<HTMLElement>;
+  private readonly rettangoloInterno!: ElementRef<HTMLElement>;
 
   private readonly platform: Object = inject(PLATFORM_ID);
   private readonly isBrowser = isPlatformBrowser(this.platform);
@@ -62,17 +66,9 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
 
       setTimeout(() => (r.style.width = ''));
     });
-
-    // Aggiorna la sezione corrente in modo stabile usando il centro del viewport
-    this.eventoScroll = fromEvent(window, 'scroll')
-      .pipe(auditTime(120))
-      .subscribe(() => this.SezionePagina());
-
-    // Prima rilevazione iniziale
-    this.SezionePagina();
   }
 
-  // gestione sezione corrente
+  // Gestione sezione corrente
   ngOnInit(): void {
     if (!this.isBrowser) return;
 
@@ -91,93 +87,135 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
     );
 
     this.sezioni.forEach((s) => this.observer!.observe(s));
+
+    this.observerCentro = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const el = entry.target as HTMLElement;
+          this.centroSezioni.set(el.id, entry);
+        });
+
+        if (!this.puoAggiornareCentro) {
+          this.puoAggiornareCentro = true;
+          requestAnimationFrame(() => {
+            this.puoAggiornareCentro = false;
+            this.AggiornaSezioneCentrale();
+          });
+        }
+      },
+      {
+        threshold: [0, 0.5, 1],
+        rootMargin: '-40% 0px -40% 0px',
+      }
+    );
+
+    this.sezioni.forEach((s) => this.observerCentro!.observe(s));
+
+    this.eventoScroll = fromEvent(window, 'scroll')
+      .pipe(auditTime(120))
+      .subscribe(() => {
+        if (!this.puoAggiornareCentro) {
+          this.puoAggiornareCentro = true;
+          requestAnimationFrame(() => {
+            this.puoAggiornareCentro = false;
+            this.AggiornaSezioneCentrale();
+          });
+        }
+      });
+
+    // Aggiorna sezioni osservate quando cambia il DOM (es. @defer, lazy components)
+    if (radice) {
+      this.mutazione = new MutationObserver(() => {
+        this.AggiornaSezioni(radice!);
+      });
+      this.mutazione.observe(radice, { childList: true });
+    }
+
+    // Aggiorna su resize (layout cambia dimensioni, ma non forza misure qui)
+    this.eventoResize = fromEvent(window, 'resize')
+      .pipe(auditTime(200))
+      .subscribe(() => {
+        if (radice) this.AggiornaSezioni(radice);
+        this.AggiornaSezioneCentrale();
+      });
+
+    // Prima selezione
+    this.AggiornaSezioneCentrale();
   }
 
   ngOnDestroy(): void {
     this.eventoScroll?.unsubscribe();
+    this.eventoResize?.unsubscribe();
     if (this.isBrowser) {
       this.observer?.disconnect();
+      this.observerCentro?.disconnect();
+      this.mutazione?.disconnect();
     }
   }
 
-  SezionePagina() {
-    // Sezioni dirette figli di app-root
-    if (!this.sezioni || this.sezioni.length < 4) {
-      const radice = document.querySelector('app-root');
-      const sezioni = radice?.querySelectorAll(':scope > [id]') ?? [];
-      this.sezioni = Array.from(sezioni) as HTMLElement[];
-    }
-
+  private AggiornaSezioneCentrale() {
     if (!this.sezioni || !this.sezioni.length) return;
 
-    const centerY = window.innerHeight / 2;
+    const migliore = {
+      id: '',
+      score: -1,
+    };
 
-    // 1) Preferisci la sezione che contiene il centro del viewport
-    const contenentiCentro = this.sezioni.filter((s) => {
-      const r = s.getBoundingClientRect();
-      return r.top <= centerY && r.bottom >= centerY;
+    this.centroSezioni.forEach((entry, id) => {
+      if (entry.isIntersecting) {
+        const score = entry.intersectionRect?.height ?? 0;
+        if (score > migliore.score) {
+          migliore.score = score;
+          migliore.id = id;
+        }
+      }
     });
 
-    let corrente: string | undefined;
-    if (contenentiCentro.length) {
-      // Se più sezioni contengono il centro, scegli quella più centrata
-      contenentiCentro.sort((a, b) => {
-        const ca = Math.abs(
-          (a.getBoundingClientRect().top + a.getBoundingClientRect().bottom) /
-            2 -
-            centerY
-        );
-        const cb = Math.abs(
-          (b.getBoundingClientRect().top + b.getBoundingClientRect().bottom) /
-            2 -
-            centerY
-        );
-        return ca - cb;
-      });
-      corrente = contenentiCentro[0].id;
-    } else {
-      // 2) Altrimenti scegli la sezione col centro più vicino al centro viewport
-      const ordinate = this.sezioni
-        .map((s) => {
-          const r = s.getBoundingClientRect();
-          const centroSez = (r.top + r.bottom) / 2;
-          return { id: s.id, dist: Math.abs(centroSez - centerY) };
-        })
-        .sort((a, b) => a.dist - b.dist);
-      corrente = ordinate[0]?.id;
-    }
-
-    // Regola speciale per il footer "contatti":
-    // se il fondo del viewport entra nel footer e almeno una porzione
-    // significativa è visibile, attiva "contatti" anche se il centro viewport
-    // resta sopra.
-    const contattiEl = this.sezioni.find((s) => s.id === 'contatti');
-    if (contattiEl) {
-      const r = contattiEl.getBoundingClientRect();
-      const viewportTop = 0;
-      const viewportBottom = window.innerHeight;
-
-      const intersection = Math.max(
-        0,
-        Math.min(r.bottom, viewportBottom) - Math.max(r.top, viewportTop)
-      );
-      const visRatio = intersection / Math.max(r.height, 1);
-      const bottomInside =
-        r.top <= viewportBottom && r.bottom >= viewportBottom;
+    const contattiEntry = this.centroSezioni.get('contatti');
+    if (contattiEntry && contattiEntry.rootBounds) {
+      const rb = contattiEntry.rootBounds;
+      const br = contattiEntry.boundingClientRect;
+      const bottomInside = br.top <= rb.bottom && br.bottom >= rb.bottom;
+      const visRatio = contattiEntry.intersectionRatio;
       const nearBottom =
         window.scrollY + window.innerHeight >=
         (document.documentElement.scrollHeight || document.body.scrollHeight) -
           2;
 
-      // Attiva contatti se il fondo è dentro al footer con >=25% visibile
-      // oppure se siamo praticamente a fine pagina.
       if ((bottomInside && visRatio >= 0.33) || nearBottom) {
-        corrente = 'contatti';
+        migliore.id = 'contatti';
       }
     }
 
-    if (corrente && corrente !== this.sezioneCorrente()) {
-      this.sezioneCorrente.set(corrente);
+    if (migliore.id && migliore.id !== this.sezioneCorrente()) {
+      this.sezioneCorrente.set(migliore.id);
     }
+  }
+
+  private AggiornaSezioni(radice: Element) {
+    const nuove = Array.from(
+      radice.querySelectorAll(':scope > [id]')
+    ) as HTMLElement[];
+    const vecchie = new Set(this.sezioni);
+    const nuoveSet = new Set(nuove);
+
+    // Osserva nuovi elementi
+    nuove.forEach((el) => {
+      if (!vecchie.has(el)) {
+        this.observer?.observe(el);
+        this.observerCentro?.observe(el);
+      }
+    });
+
+    // Smetti di osservare elementi rimossi
+    (this.sezioni ?? []).forEach((el) => {
+      if (!nuoveSet.has(el)) {
+        this.observer?.unobserve(el);
+        this.observerCentro?.unobserve(el);
+      }
+    });
+
+    this.sezioni = nuove;
+    this.AggiornaSezioneCentrale();
   }
 }

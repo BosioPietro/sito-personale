@@ -1,0 +1,17 @@
+<dialog #dialog>
+  <div class="flex-col wrapper">
+    <div class="cont-img">
+      <img #img [src]="src()" />
+
+      <div class="lente"></div>
+    </div>
+    <div class="flex-row info">
+      <ion-icon name="information-circle" />
+      Tieni premuto e usa la rotella per ingrandire
+    </div>
+
+    <button class="brilla" (click)="Chiudi()" aria-label="Chiudi">
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </div>
+</dialog>
