@@ -8,8 +8,13 @@
   display: flex;
   flex-direction: column;
 
-  & > *:not(hr) {
+  &>*:not(hr) {
     z-index: 1;
+  }
+
+  // GATING ANIMAZIONI
+  &:not(.puo-animare) * {
+    animation-play-state: paused !important;
   }
 }
 
@@ -99,7 +104,9 @@ hr.linea-luce {
       position: absolute;
 
       animation: absolute 0.5s var(--easing);
+
       @keyframes absolute {
+
         0%,
         100% {
           position: static;
@@ -120,12 +127,10 @@ hr.linea-luce {
 
     .cella {
       --numero-alto: calc(pow(10, 10) * 1%);
-      clip-path: polygon(
-        0% 0%,
-        100% 0%,
-        100% var(--numero-alto),
-        0% var(--numero-alto)
-      );
+      clip-path: polygon(0% 0%,
+          100% 0%,
+          100% var(--numero-alto),
+          0% var(--numero-alto));
 
       Switch {
         transform: translateX(-1px);
@@ -141,10 +146,12 @@ hr.linea-luce {
       }
 
       @keyframes mostra-trattini {
+
         0%,
         100% {
           opacity: 0;
         }
+
         50% {
           opacity: 1;
         }
@@ -180,6 +187,7 @@ hr.linea-luce {
     grid-template-columns: 1fr !important;
   }
 }
+
 :host {
   /* Timeline di vista per pilotare l'indicatore dell'header */
   view-timeline-name: --conoscenze;

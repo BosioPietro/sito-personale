@@ -1,8 +1,7 @@
-:host{
+:host {
     --padding: .25rem;
     display: flex;
     position: relative;
-    // margin-inline: auto;
     width: fit-content;
     height: fit-content;
     border-radius: 100dvh;
@@ -10,9 +9,22 @@
     padding: var(--padding);
     backdrop-filter: blur(.1rem);
     background-color: #0b0b0b50;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: var(--padding) auto var(--padding) auto;
+        z-index: 0;
+        border-radius: 100dvh;
+        background-color: #ededed;
+        transition: all .3s var(--easing);
+
+        left: anchor(left);
+        width: anchor-size(width);
+    }
 }
 
-.opzione{
+.opzione {
     position: relative;
     padding: .75rem 1.25rem;
     align-items: center;
@@ -25,61 +37,75 @@
     border-radius: 100dvh;
     background-color: #0000;
     color: #ededed;
-    transition: color .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: color .3s var(--easing), background-color .3s var(--easing);
 
-    ion-icon{
+    ion-icon {
         font-size: var(--testo-m);
     }
 
-    &.selezionato{
+    &:nth-child(1) {
+        anchor-name: --switch-sviluppo;
+    }
+
+    &:nth-child(2) {
+        anchor-name: --switch-web;
+    }
+
+    &:nth-child(3) {
+        anchor-name: --switch-certificazioni;
+    }
+
+    &.selezionato {
         color: #000;
+    }
+}
+
+/* Browser supportati */
+@supports (anchor-name: --test) {
+    :host[sezione-corrente="0"]::before {
+        position-anchor: --switch-web;
+    }
+
+    :host[sezione-corrente="1"]::before {
+        position-anchor: --switch-certificazioni;
+    }
+
+    :host[sezione-corrente="2"]::before {
+        position-anchor: --switch-sviluppo;
+    }
+}
+
+/* Fade per browser non supportati (Firefox) */
+@supports not (anchor-name: --test) {
+    :host::before {
+        display: none;
+    }
+
+    .opzione.selezionato {
         background-color: #ededed;
-
-        &.anima{
-            animation: seleziona .5s;
-        }
-    }
-
-    @keyframes seleziona {
-        0%, 99.9999%{
-            background-color: #0000;
-        }
-        100%{
-            background-color: #ededed;
-        }
     }
 }
 
-.cella{
-    position: absolute;
-    inset: var(--padding) auto var(--padding) auto;
-    z-index: 0;
-    border-radius: 100dvh;
-    transition: .5s var(--easing);
-    transition-property: left, width;
-    background-color: #ededed;
-}
 
-
-@media screen and (width < 500px){
-    :host{
+@media screen and (width < 500px) {
+    :host {
         width: 100%;
         margin-top: 0 !important;
     }
 
-    button{
+    button {
         padding: .75rem !important;
         font-size: .875rem !important; // media
 
-        &:first-child{
+        &:first-child {
             padding-right: .375rem !important;
         }
 
-        &:nth-child(2){
+        &:nth-child(2) {
             padding-inline: .375rem !important;
         }
 
-        &:last-child{
+        &:last-child {
             padding-left: .375rem !important; // media
         }
     }

@@ -11,7 +11,7 @@ import {
   HostBinding,
 } from '@angular/core';
 import { Sezioni } from '../sezione-conoscenze/switch/switch.component';
-import { SwitchService } from '../sezione-conoscenze/switch/switch.service';
+import { ConoscenzeService } from '../sezione-conoscenze/conoscenze.service';
 import { ProgettiService } from '../sezione-progetti/selettore-progetti/progetti.service';
 import { IconaComponent } from '../common/icona/icona.component';
 import { isPlatformBrowser } from '@angular/common';
@@ -57,7 +57,7 @@ export class HeaderComponent implements OnInit {
   @Output()
   onNaviga = new EventEmitter<string>();
 
-  private readonly valore_switch = inject(SwitchService);
+  private readonly conoscenzeService = inject(ConoscenzeService);
   private readonly valore_progetto = inject(ProgettiService);
   private readonly document = inject(DOCUMENT);
   private readonly platform: Object = inject(PLATFORM_ID);
@@ -155,7 +155,7 @@ export class HeaderComponent implements OnInit {
   }
 
   SelezionaCompetenza(competenza: Sezioni) {
-    this.valore_switch.bottoni[competenza]?.click();
+    this.conoscenzeService.cambiaSezione(competenza);
     this.Scrolla('conoscenze');
     this.headerAperto = false;
     this.sezioneMenu = undefined;
