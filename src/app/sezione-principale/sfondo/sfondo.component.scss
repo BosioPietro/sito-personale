@@ -1,13 +1,16 @@
-:host{
+:host {
     background-color: var(--nero-h1);
     z-index: -1;
     position: absolute;
-    inset: 0;
+    left: 0;
+    top: 0;
+    width: 100dvw;
+    height: 100dvh;
     display: grid;
     place-items: center;
 }
 
-.filtro{
+.filtro {
     backdrop-filter: blur(1.5rem);
     background-color: #0b0b0bDA;
     position: absolute;
@@ -16,24 +19,29 @@
     transform-origin: center;
 }
 
-svg{
+svg {
     pointer-events: none;
     position: absolute;
     z-index: 0;
     overflow: visible;
-    width: min(100vw, 100vh);
-    
-    circle{
-        fill:#FFF0;
-        stroke:#FFFE;
+    width: 100dvw;
+    height: 100dvh;
+
+    circle {
+        fill: #FFF0;
+        stroke: #FFFE;
         animation: scompari 4s infinite;
     }
-    
+
     @keyframes scompari {
-        0%, 50%, 100%{
+
+        0%,
+        50%,
+        100% {
             opacity: 1;
         }
-        25%{
+
+        25% {
             opacity: var(--opacita);
         }
     }

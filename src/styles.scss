@@ -27,6 +27,11 @@
   --easing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
+@font-face {
+  font-family: DM Sans;
+  src: url("/assets/font/DMSans.woff2") format("woff2");
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
