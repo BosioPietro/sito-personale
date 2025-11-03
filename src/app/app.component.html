@@ -1,16 +1,32 @@
-@defer (on immediate) {
 <Header
   [sezione-corrente]="sezioneCorrente()"
   (onNaviga)="sezioneCorrente.set($event)"
   class="flex-col"
 ></Header>
-}
 <SezionePrincipale id="principale" class="flex-col espandi" />
 
-@defer (on immediate) {
+@defer (on viewport; prefetch on idle) {
 <SezioneConoscenze id="conoscenze" class="espandi" />
+} @placeholder {
+<section id="conoscenze" class="espandi placeholder-sezione" aria-hidden="true">
+  <span class="placeholder-scheletro" aria-hidden="true"></span>
+</section>
+} @defer (on viewport; prefetch on idle) {
 <SezioneProgetti id="progetti" class="flex-col espandi" />
+} @placeholder {
+<section
+  id="progetti"
+  class="flex-col espandi placeholder-sezione"
+  aria-hidden="true"
+>
+  <span class="placeholder-scheletro" aria-hidden="true"></span>
+</section>
+} @defer (on idle) {
 <FooterContatti id="contatti" />
+} @placeholder {
+<section id="contatti" class="placeholder-footer" aria-hidden="true">
+  <span class="placeholder-scheletro" aria-hidden="true"></span>
+</section>
 }
 <svg xmlns="http://www.w3.org/2000/svg">
   <mask id="maschera-cornice">
