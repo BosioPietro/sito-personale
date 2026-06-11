@@ -9,8 +9,7 @@ import {
   PLATFORM_ID,
   signal,
   ViewChild,
-  WritableSignal,
-  ChangeDetectionStrategy
+  WritableSignal
 } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { SezionePrincipaleComponent } from './sezione-principale/sezione-principale.component';
@@ -30,7 +29,6 @@ import { isPlatformBrowser } from '@angular/common';
     FooterContattiComponent,
   ],
   templateUrl: './app.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements AfterViewInit, OnInit, OnDestroy {

@@ -1,6 +1,5 @@
 import {
   Component,
-  ChangeDetectionStrategy,
   ElementRef,
   AfterViewInit,
   OnDestroy,
@@ -16,7 +15,6 @@ import { isPlatformBrowser } from '@angular/common';
   imports: [SfondoComponent, IconaComponent],
   templateUrl: './footer-contatti.component.html',
   styleUrl: './footer-contatti.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterContattiComponent implements AfterViewInit, OnDestroy {
   private observer?: IntersectionObserver;

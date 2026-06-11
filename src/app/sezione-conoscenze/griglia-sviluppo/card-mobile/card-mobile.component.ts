@@ -1,10 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'CardMobile',
     imports: [],
     templateUrl: './card-mobile.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './card-mobile.component.scss'
 })
 export class CardMobileComponent implements OnInit{

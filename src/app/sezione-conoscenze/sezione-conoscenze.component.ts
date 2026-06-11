@@ -1,6 +1,5 @@
 import {
   Component,
-  ChangeDetectionStrategy,
   AfterViewInit,
   HostBinding,
   inject,
@@ -27,7 +26,6 @@ import { ConoscenzeService } from './conoscenze.service';
   ],
   templateUrl: './sezione-conoscenze.component.html',
   styleUrl: './sezione-conoscenze.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SezioneConoscenzeComponent implements AfterViewInit {
   EffettoMouse = EffettoMouse;

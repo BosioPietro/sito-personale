@@ -2,7 +2,6 @@ import {
   Component,
   ElementRef,
   ViewChild,
-  ChangeDetectionStrategy,
   AfterViewInit,
   HostBinding,
   inject,
@@ -32,7 +31,6 @@ import { ProgettiService } from './selettore-progetti/progetti.service';
   ],
   templateUrl: './sezione-progetti.component.html',
   styleUrl: './sezione-progetti.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SezioneProgettiComponent implements AfterViewInit {
   @ViewChild('descrizione')

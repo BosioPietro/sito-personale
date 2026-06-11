@@ -5,7 +5,6 @@ import {
   inject,
   signal,
   WritableSignal,
-  ChangeDetectionStrategy,
   input,
 } from '@angular/core';
 import { ImmaginiService } from './immagini.service';
@@ -16,7 +15,6 @@ import { ModaleImmagineComponent } from './modale-immagine/modale-immagine.compo
   selector: 'Immagini',
   imports: [IconaComponent, ModaleImmagineComponent],
   templateUrl: './immagini.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './immagini.component.scss',
 })
 export class ImmaginiComponent implements AfterViewInit {

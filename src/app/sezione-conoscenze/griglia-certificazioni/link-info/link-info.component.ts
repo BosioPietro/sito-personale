@@ -1,10 +1,9 @@
-import { Component, input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'LinkInfo',
   imports: [],
   templateUrl: './link-info.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './link-info.component.scss',
 })
 export class LinkInfoComponent {

@@ -1,6 +1,5 @@
 import {
   Component,
-  ChangeDetectionStrategy,
   HostBinding,
   input,
   output,
@@ -11,7 +10,6 @@ import { IconaComponent } from '../../common/icona/icona.component';
   selector: 'Switch',
   imports: [IconaComponent],
   templateUrl: './switch.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './switch.component.scss',
 })
 export class SwitchComponent {

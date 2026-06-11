@@ -1,6 +1,5 @@
 import {
   Component,
-  ChangeDetectionStrategy,
   inject,
   DOCUMENT,
   OnInit,
@@ -43,7 +42,6 @@ declare global {
   imports: [IconaComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit {
   readonly sezioneCorrente = input<string | undefined>(undefined, {

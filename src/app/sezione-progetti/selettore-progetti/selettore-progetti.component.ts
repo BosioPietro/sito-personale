@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Progetto } from '../dati';
 import { IconaComponent } from '../../common/icona/icona.component';
 
@@ -6,7 +6,6 @@ import { IconaComponent } from '../../common/icona/icona.component';
   selector: 'SelettoreProgetti',
   imports: [IconaComponent],
   templateUrl: './selettore-progetti.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './selettore-progetti.component.scss',
 })
 export class SelettoreProgettiComponent {

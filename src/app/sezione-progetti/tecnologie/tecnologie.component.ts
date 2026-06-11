@@ -1,11 +1,10 @@
-import { Component, input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Progetto } from '../dati';
 
 @Component({
     selector: 'Tecnologie',
     imports: [],
     templateUrl: './tecnologie.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './tecnologie.component.scss'
 })
 export class TecnologieComponent {

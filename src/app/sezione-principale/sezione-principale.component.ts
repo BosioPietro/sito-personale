@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { SfondoComponent } from './sfondo/sfondo.component';
 import { IconaComponent } from '../common/icona/icona.component';
 
@@ -7,7 +7,6 @@ import { IconaComponent } from '../common/icona/icona.component';
   imports: [SfondoComponent, IconaComponent],
   templateUrl: './sezione-principale.component.html',
   styleUrl: './sezione-principale.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SezionePrincipaleComponent {
   Scrolla() {

@@ -1,11 +1,10 @@
-import { Component, input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Progetto } from '../dati';
 
 @Component({
     selector: 'Descrizione',
     imports: [],
     templateUrl: './descrizione.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './descrizione.component.scss'
 })
 export class DescrizioneComponent {

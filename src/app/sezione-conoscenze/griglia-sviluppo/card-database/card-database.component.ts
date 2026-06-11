@@ -6,15 +6,13 @@ import {
   ViewChild,
   OnDestroy,
   inject,
-  PLATFORM_ID,
-  ChangeDetectionStrategy
+  PLATFORM_ID
 } from '@angular/core';
 
 @Component({
   selector: 'CardDatabase',
   imports: [],
   templateUrl: './card-database.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './card-database.component.scss',
 })
 export class CardDatabaseComponent implements AfterViewInit, OnDestroy {
