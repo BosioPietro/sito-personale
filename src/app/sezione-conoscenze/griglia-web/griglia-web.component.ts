@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { EffettoMouse } from '../sezione-conoscenze.component';
 import { CardASPComponent } from './card-asp/card-asp.component';
 import { CardBackendComponent } from "./card-backend/card-backend.component";

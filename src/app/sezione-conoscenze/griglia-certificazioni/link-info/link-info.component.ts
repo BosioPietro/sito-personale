@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'LinkInfo',
@@ -8,8 +8,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
   styleUrl: './link-info.component.scss',
 })
 export class LinkInfoComponent {
-  @Input()
-  info!: InfoLink;
+  readonly info = input.required<InfoLink>();
 
   ApriLink(link: string) {
     window.open(link, '_blank');

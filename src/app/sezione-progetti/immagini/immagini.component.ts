@@ -1,14 +1,12 @@
 import {
   AfterViewInit,
   Component,
+  computed,
   inject,
-  Input,
-  OnChanges,
   signal,
-  SimpleChanges,
-  ViewChild,
   WritableSignal,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import { ImmaginiService } from './immagini.service';
 import { IconaComponent } from '../../common/icona/icona.component';
@@ -21,15 +19,16 @@ import { ModaleImmagineComponent } from './modale-immagine/modale-immagine.compo
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './immagini.component.scss',
 })
-export class ImmaginiComponent implements AfterViewInit, OnChanges {
-  @Input('immagini-correnti')
-  immaginiCorrenti!: string[];
+export class ImmaginiComponent implements AfterViewInit {
+  readonly immaginiCorrenti = input.required<string[]>({
+    alias: 'immagini-correnti',
+  });
 
-  @Input('immagini-precedenti')
-  immaginiPrecendenti?: string[];
+  readonly immaginiPrecendenti = input<string[] | undefined>(undefined, {
+    alias: 'immagini-precedenti',
+  });
 
-  @Input('resetta-for')
-  resettaFor!: boolean;
+  readonly resettaFor = input.required<boolean>({ alias: 'resetta-for' });
 
   protected readonly img: ImmaginiService = inject(ImmaginiService);
   protected isFirstLoad: boolean = true;
@@ -37,33 +36,25 @@ export class ImmaginiComponent implements AfterViewInit, OnChanges {
   protected immagineVisualizzata: WritableSignal<string | undefined> =
     signal(undefined);
 
-  protected previewCorrenti: string[] = [];
-  protected previewPrecedenti: string[] | undefined = undefined;
+  protected readonly previewCorrenti = computed(() =>
+    this.CaricaAnteprime(this.immaginiCorrenti())
+  );
+
+  protected readonly previewPrecedenti = computed(() => {
+    const immagini = this.immaginiPrecendenti();
+    return immagini ? this.CaricaAnteprime(immagini) : undefined;
+  });
 
   ngAfterViewInit(): void {
     this.isFirstLoad = false;
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['immaginiCorrenti'] || changes['immaginiPrecendenti']) {
-      this.CaricaAnteprime();
-    }
-  }
-
-  CaricaAnteprime() {
-    this.previewCorrenti = this.immaginiCorrenti.map((img) => {
+  CaricaAnteprime(immagini: string[]) {
+    return immagini.map((img) => {
       const parti = img.split('/');
       const ultima = parti.pop();
       return [...parti, 'preview', ultima].join('/');
     });
-
-    if (this.immaginiPrecendenti) {
-      this.previewPrecedenti = this.immaginiPrecendenti.map((img) => {
-        const parti = img.split('/');
-        const ultima = parti.pop();
-        return [...parti, 'preview', ultima].join('/');
-      });
-    }
   }
 
   SelezionaImmagine(e: Event) {
@@ -80,6 +71,6 @@ export class ImmaginiComponent implements AfterViewInit, OnChanges {
   }
 
   ApriModaleImmagine(img: number) {
-    this.immagineVisualizzata.set(this.immaginiCorrenti[img]);
+    this.immagineVisualizzata.set(this.immaginiCorrenti()[img]);
   }
 }

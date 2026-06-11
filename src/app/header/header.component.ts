@@ -1,14 +1,13 @@
 import {
   Component,
-  EventEmitter,
-  Input,
-  Output,
   ChangeDetectionStrategy,
   inject,
   DOCUMENT,
   OnInit,
   PLATFORM_ID,
   HostBinding,
+  input,
+  output,
 } from '@angular/core';
 import { Sezioni } from '../sezione-conoscenze/switch/switch.component';
 import { ConoscenzeService } from '../sezione-conoscenze/conoscenze.service';
@@ -47,15 +46,11 @@ declare global {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit {
-  @Input('sezione-corrente')
-  set sezioneCorrente(s: string | undefined) {
-    this.sezione = s;
-    this.indicatoreAncora = this.mappaSezioneAAncora(s);
-  }
-  sezione?: string;
+  readonly sezioneCorrente = input<string | undefined>(undefined, {
+    alias: 'sezione-corrente',
+  });
 
-  @Output()
-  onNaviga = new EventEmitter<string>();
+  readonly naviga = output<string>();
 
   private readonly conoscenzeService = inject(ConoscenzeService);
   private readonly valore_progetto = inject(ProgettiService);
@@ -70,7 +65,9 @@ export class HeaderComponent implements OnInit {
   sezioneMenu?: 'progetti' | 'conoscenze' = undefined;
 
   @HostBinding('style.--indicatore-ancora')
-  indicatoreAncora: string = '--ancora-principale';
+  get indicatoreAncora(): string {
+    return this.mappaSezioneAAncora(this.sezioneCorrente());
+  }
 
   private mappaSezioneAAncora(s?: string): string {
     switch (s) {
@@ -103,7 +100,7 @@ export class HeaderComponent implements OnInit {
 
   Scrolla(s: string) {
     const el = document.getElementById(s)!;
-    this.onNaviga.emit(s);
+    this.naviga.emit(s);
     el.scrollIntoView({ behavior: 'smooth' });
   }
 

@@ -2,13 +2,10 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  QueryList,
   ViewChild,
-  ViewChildren,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  input,
+  output,
 } from '@angular/core';
 import { Progetto } from '../dati';
 import { ProgettiService } from './progetti.service';
@@ -27,17 +24,15 @@ export class SelettoreProgettiComponent implements AfterViewInit {
   @ViewChild('selettore')
   selettore!: ElementRef<HTMLElement>;
 
-  @Input('progetti')
-  progetti!: Progetto[];
+  readonly progetti = input.required<Progetto[]>({ alias: 'progetti' });
 
-  @Input('progetto-selezionato')
-  progettoSelezionato!: Progetto;
+  readonly progettoSelezionato = input.required<Progetto>({
+    alias: 'progetto-selezionato',
+  });
 
-  @Input('puo-cambiare')
-  puoCambiare!: boolean;
+  readonly puoCambiare = input.required<boolean>({ alias: 'puo-cambiare' });
 
-  @Output()
-  onSelect = new EventEmitter<Progetto>();
+  readonly selected = output<Progetto>();
 
   ngAfterViewInit(): void {
     const cont = this.selettore.nativeElement.parentElement!;
@@ -49,7 +44,7 @@ export class SelettoreProgettiComponent implements AfterViewInit {
   }
 
   Seleziona(p: Progetto) {
-    if (this.progettoSelezionato === p || !this.puoCambiare) return;
-    this.onSelect.emit(p);
+    if (this.progettoSelezionato() === p || !this.puoCambiare()) return;
+    this.selected.emit(p);
   }
 }

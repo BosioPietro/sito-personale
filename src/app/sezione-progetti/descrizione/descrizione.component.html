@@ -1,14 +1,14 @@
 <div class="testo flex-col">
-    @if(resettaFor){
+    @if(resettaFor()){
         <article>
             <h2 class="testo-gradient" style="--delay: 0">Descrizione</h2>
-            @for (p of progettoSelezionato.introduzione; track $index) {
+            @for (p of progettoSelezionato().introduzione; track $index) {
                 <p [innerHTML]="TraduciHtml(p)" style="--delay: 0"></p>
             }
         </article>
         <article>
             <h2 class="testo-gradient" style="--delay: .1">Funzionalità</h2>
-            @for (f of progettoSelezionato.funzionalita; track $index; let i = $index) {
+            @for (f of progettoSelezionato().funzionalita; track $index; let i = $index) {
                 <h4 class="testo-gradient" [style]="{'--delay': (i + 1) / 10}">
                     {{ f.titolo }}
                 </h4>
@@ -20,16 +20,16 @@
     }
 </div>
 <div class="testo flex-col transizione">
-    @if(progettoPrecedente){
+    @if(progettoPrecedente(); as progetto){
         <article>
             <h2 class="testo-gradient" style="--delay: 0">Descrizione</h2>
-            @for (p of progettoPrecedente.introduzione; track $index) {
+            @for (p of progetto.introduzione; track $index) {
                 <p [innerHTML]="TraduciHtml(p)" style="--delay: 0"></p>
             }
         </article>
         <article>
             <h2 class="testo-gradient" style="--delay: .1">Funzionalità</h2>
-            @for (f of progettoPrecedente.funzionalita; track $index; let i = $index) {
+            @for (f of progetto.funzionalita; track $index; let i = $index) {
                 <h4 class="testo-gradient" [style]="{'--delay': (i + 1) / 10}">
                     {{ f.titolo }}
                 </h4>

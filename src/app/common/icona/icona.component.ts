@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'ion-icon',
@@ -6,12 +6,6 @@ import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './icona.component.scss',
 })
-export class IconaComponent implements OnInit {
-  @Input({ required: true }) name!: string;
-
-  protected isOutline: true | null = null;
-
-  ngOnInit(): void {
-    this.isOutline = this.name.endsWith('-outline') ? true : null;
-  }
+export class IconaComponent {
+  readonly name = input.required<string>();
 }

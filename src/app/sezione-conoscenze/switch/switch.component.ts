@@ -1,10 +1,9 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
   inject,
-  Output,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  output,
 } from '@angular/core';
 import { IconaComponent } from '../../common/icona/icona.component';
 
@@ -16,8 +15,7 @@ import { IconaComponent } from '../../common/icona/icona.component';
   styleUrl: './switch.component.scss',
 })
 export class SwitchComponent {
-  @Output()
-  onChange = new EventEmitter<Sezioni>();
+  readonly changed = output<Sezioni>();
 
   protected readonly sezioni = Sezioni;
   protected sezioneCorrente: Sezioni = Sezioni.Web;
@@ -37,7 +35,7 @@ export class SwitchComponent {
 
     this.ref.nativeElement.setAttribute('sezione-corrente', sezione.toString());
     this.sezioneCorrente = sezione;
-    this.onChange.emit(sezione);
+    this.changed.emit(sezione);
   }
 }
 

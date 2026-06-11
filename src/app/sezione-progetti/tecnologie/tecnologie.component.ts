@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { Progetto } from '../dati';
 
 @Component({
@@ -10,14 +10,15 @@ import { Progetto } from '../dati';
 })
 export class TecnologieComponent {
 
-  @Input("progetto-selezionato")
-  progettoSelezionato!: Progetto;
+  readonly progettoSelezionato = input.required<Progetto>({
+    alias: 'progetto-selezionato',
+  });
 
-  @Input("progetto-precedente")
-  progettoPrecedente?: Progetto;
+  readonly progettoPrecedente = input<Progetto | undefined>(undefined, {
+    alias: 'progetto-precedente',
+  });
 
-  @Input("resetta-for")
-  resettaFor!: boolean;
+  readonly resettaFor = input.required<boolean>({ alias: 'resetta-for' });
 
   ApriLink(link: string){
     window.open(link, "_blank");

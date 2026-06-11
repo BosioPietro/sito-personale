@@ -1,12 +1,12 @@
-@if(resettaFor){
+@if(resettaFor()){
 <div
   class="wrapper-img immagine"
   [style]="{
-    '--img': 'url(' + immaginiCorrenti[img.immagineSelezionata] + ')'
+    '--img': 'url(' + immaginiCorrenti()[img.immagineSelezionata] + ')'
   }"
 >
   <img
-    [src]="immaginiCorrenti[img.immagineSelezionata]"
+    [src]="immaginiCorrenti()[img.immagineSelezionata]"
     [attr.alt]="img.immagineSelezionata"
   />
   <button
@@ -22,7 +22,7 @@
     class="flex-row selettore scrollbar-stile"
     (click)="SelezionaImmagine($event)"
   >
-    @for (i of previewCorrenti; track $index) {
+    @for (i of previewCorrenti(); track $index) {
     <img
       [src]="i"
       [class.selezionata]="$index === img.immagineSelezionata"
@@ -35,22 +35,24 @@
     }
   </div>
 </div>
-} @if(immaginiPrecendenti && img.immaginePrecedente !== undefined) {
+} @if(immaginiPrecendenti(); as immaginiPrecedenti) {
+@if(img.immaginePrecedente !== undefined) {
 <div class="flex-col transizione">
   <div
     class="wrapper-img immagine"
     [style]="{
-      '--img': 'url(' + immaginiPrecendenti[img.immaginePrecedente] + ')'
+      '--img': 'url(' + immaginiPrecedenti[img.immaginePrecedente] + ')'
     }"
   >
     <img
-      [src]="immaginiPrecendenti[img.immaginePrecedente]"
+      [src]="immaginiPrecedenti[img.immaginePrecedente]"
       [attr.alt]="img.immaginePrecedente"
     />
   </div>
   <div class="wrapper-selettore">
     <div class="flex-row selettore scrollbar-stile">
-      @for (i of previewPrecedenti; track $index) {
+      @if (previewPrecedenti(); as preview) {
+      @for (i of preview; track $index) {
       <img
         [src]="i"
         [class.selezionata]="$index === img.immaginePrecedente"
@@ -61,9 +63,11 @@
         decoding="async"
       />
       }
+      }
     </div>
   </div>
 </div>
+}
 }
 
 <ModaleImmagine [(src)]="immagineVisualizzata" />

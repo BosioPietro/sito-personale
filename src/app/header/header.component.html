@@ -11,7 +11,7 @@
   <div class="flex-row wrapper">
     <div
       class="flex-row opzione"
-      [class.corrente]="sezione == 'principale'"
+      [class.corrente]="sezioneCorrente() == 'principale'"
       sezione="principale"
     >
       <button
@@ -26,7 +26,7 @@
     <div
       class="flex-row opzione competenze"
       espandi
-      [class.corrente]="sezione == 'conoscenze'"
+      [class.corrente]="sezioneCorrente() == 'conoscenze'"
       sezione="conoscenze"
     >
       <button
@@ -42,7 +42,7 @@
     <div
       class="flex-row opzione progetti"
       espandi
-      [class.corrente]="sezione == 'progetti'"
+      [class.corrente]="sezioneCorrente() == 'progetti'"
       sezione="progetti"
     >
       <button
@@ -57,7 +57,7 @@
     </div>
     <div
       class="flex-row opzione"
-      [class.corrente]="sezione == 'contatti'"
+      [class.corrente]="sezioneCorrente() == 'contatti'"
       sezione="contatti"
     >
       <button
@@ -85,14 +85,14 @@
 </div>
 
 <div class="flex-col menu-header" [class.aperto]="headerAperto">
-  <div class="opzione-menu" [class.corrente]="sezione == 'principale'">
+  <div class="opzione-menu" [class.corrente]="sezioneCorrente() == 'principale'">
     <button (click)="Scrolla('principale')" aria-label="Sezione principale">
       <ion-icon name="home" />
       <h2>Home</h2>
     </button>
   </div>
 
-  <div class="opzione-menu" [class.corrente]="sezione == 'conoscenze'">
+  <div class="opzione-menu" [class.corrente]="sezioneCorrente() == 'conoscenze'">
     <button
       (click)="CambiaSezione('conoscenze')"
       aria-label="Sezione conoscenze"
@@ -130,7 +130,7 @@
     </div>
   </div>
 
-  <div class="opzione-menu" [class.corrente]="sezione == 'progetti'">
+  <div class="opzione-menu" [class.corrente]="sezioneCorrente() == 'progetti'">
     <button (click)="CambiaSezione('progetti')" aria-label="Sezione progetti">
       <ion-icon name="layers" />
       <h2>Progetti</h2>
@@ -185,7 +185,7 @@
       </button>
     </div>
   </div>
-  <div class="opzione-menu" [class.corrente]="sezione == 'contatti'">
+  <div class="opzione-menu" [class.corrente]="sezioneCorrente() == 'contatti'">
     <button (click)="Scrolla('contatti')" aria-label="Sezione contatti">
       <ion-icon name="chatbubble" />
       <h2>Contatti</h2>

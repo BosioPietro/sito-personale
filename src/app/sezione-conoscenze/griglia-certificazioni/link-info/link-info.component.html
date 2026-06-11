@@ -1,20 +1,20 @@
-<div class="flex-row wrapper" (click)="ApriLink(info.link)">
+<div class="flex-row wrapper" (click)="ApriLink(info().link)">
   <div class="testo">
     <h5>
-      {{ info.titolo }}
+      {{ info().titolo }}
     </h5>
     <p>
-      {{ info.descrizione }}
+      {{ info().descrizione }}
     </p>
     <div class="flex-row link">
-      <img [src]="info.favicon" [alt]="info.titolo[0]" />
+      <img [src]="info().favicon" [alt]="info().titolo[0]" />
       <h6>
-        {{ info.link }}
+        {{ info().link }}
       </h6>
     </div>
   </div>
   <div
     class="immagine"
-    [style]="{ '--img': 'url(' + info.url_img + ')' }"
+    [style]="{ '--img': 'url(' + info().url_img + ')' }"
   ></div>
 </div>
