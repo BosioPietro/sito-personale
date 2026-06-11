@@ -53,17 +53,8 @@ export class ImmaginiComponent implements AfterViewInit {
     });
   }
 
-  SelezionaImmagine(e: Event) {
-    if (e.target === e.currentTarget) return;
-
-    const img = e.target as HTMLImageElement;
-    const cont = e.currentTarget as HTMLElement;
-
-    cont.querySelectorAll('img').forEach((i) => {
-      i.classList.toggle('selezionata', i === img);
-    });
-
-    this.img.selezionaImmagine(parseInt(img.src.split('/').at(-1)!));
+  SelezionaImmagine(indice: number) {
+    this.img.selezionaImmagine(indice);
   }
 
   ApriModaleImmagine(img: number) {

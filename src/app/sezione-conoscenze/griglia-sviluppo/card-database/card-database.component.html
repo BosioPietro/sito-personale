@@ -31,11 +31,11 @@
   <hr />
   <div class="flex-col schema" logico>
     <table class="tabella">
-      <tbody #tbody>
-        @for (_ of [0,0,0,0,0]; track $index) {
+      <tbody>
+        @for (_ of righe; track $index; let riga = $index) {
         <tr>
-          @for (_ of [0,0,0,0,0]; track $index) {
-          <td></td>
+          @for (_ of colonne; track $index; let colonna = $index) {
+          <td [class.hl]="celleEvidenziate().has(riga * colonne.length + colonna)"></td>
           }
         </tr>
         }

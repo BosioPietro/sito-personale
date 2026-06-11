@@ -2,11 +2,10 @@ import { isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
   Component,
-  ElementRef,
-  OnDestroy,
+  DestroyRef,
   inject,
   PLATFORM_ID,
-  viewChild,
+  signal,
 } from '@angular/core';
 
 @Component({
@@ -15,42 +14,59 @@ import {
   templateUrl: './card-database.component.html',
   styleUrl: './card-database.component.scss',
 })
-export class CardDatabaseComponent implements AfterViewInit, OnDestroy {
-  private readonly tbody = viewChild.required<ElementRef<HTMLElement>>('tbody');
-
+export class CardDatabaseComponent implements AfterViewInit {
   private intervalId: number | undefined;
+  private readonly timeoutIds: number[] = [];
 
   private readonly platform = inject(PLATFORM_ID);
   private readonly isBrowser = isPlatformBrowser(this.platform);
+  private readonly destroyRef = inject(DestroyRef);
+
+  protected readonly righe = Array.from({ length: 5 });
+  protected readonly colonne = Array.from({ length: 5 });
+  protected readonly celleEvidenziate = signal<ReadonlySet<number>>(new Set());
 
   ngAfterViewInit(): void {
     if (!this.isBrowser) return;
 
-    const NOME_CLASSE = 'hl';
-    const cont = this.tbody().nativeElement;
-    const celle = Array.from(cont.querySelectorAll('td'));
+    const numeroCelle = this.righe.length * this.colonne.length;
 
     this.intervalId = window.setInterval(() => {
-      const numeri = new Array(Math.floor(Math.random() * (celle.length / 4)))
+      const numeri = new Array(Math.floor(Math.random() * (numeroCelle / 4)))
         .fill(0)
-        .map(() => Math.floor(Math.random() * celle.length));
+        .map(() => Math.floor(Math.random() * numeroCelle));
 
       numeri.forEach((numero, i) => {
-        const td = celle[numero];
-        if (td.classList.contains(NOME_CLASSE)) return;
+        if (this.celleEvidenziate().has(numero)) return;
 
         const delay = i * 200;
-        td.classList.add(NOME_CLASSE);
-        window.setTimeout(() => td.classList.add(NOME_CLASSE), delay);
-        window.setTimeout(() => td.classList.remove(NOME_CLASSE), 500 + delay);
+        this.timeoutIds.push(
+          window.setTimeout(() => {
+            this.celleEvidenziate.update((celle) => new Set(celle).add(numero));
+          }, delay)
+        );
+        this.timeoutIds.push(
+          window.setTimeout(() => {
+            this.celleEvidenziate.update((celle) => {
+              const prossime = new Set(celle);
+              prossime.delete(numero);
+              return prossime;
+            });
+          }, 500 + delay)
+        );
       });
     }, 750);
+
+    this.destroyRef.onDestroy(() => this.pulisciTimer());
   }
 
-  ngOnDestroy(): void {
+  private pulisciTimer(): void {
     if (this.intervalId !== undefined) {
       clearInterval(this.intervalId);
       this.intervalId = undefined;
     }
+
+    this.timeoutIds.forEach((id) => window.clearTimeout(id));
+    this.timeoutIds.length = 0;
   }
 }

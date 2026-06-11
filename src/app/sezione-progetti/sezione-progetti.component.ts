@@ -31,6 +31,9 @@ import { ProgettiService } from './selettore-progetti/progetti.service';
   ],
   templateUrl: './sezione-progetti.component.html',
   styleUrl: './sezione-progetti.component.scss',
+  host: {
+    '[class.puo-animare]': 'puoAnimare()',
+  },
 })
 export class SezioneProgettiComponent implements AfterViewInit {
   private readonly descrizione =
@@ -52,6 +55,7 @@ export class SezioneProgettiComponent implements AfterViewInit {
   private readonly hostRef = inject(ElementRef<HTMLElement>);
   private readonly destroyRef = inject(DestroyRef);
   private readonly vistaPronta = signal(false);
+  protected readonly puoAnimare = signal(false);
 
   private readonly richiestaProgettoEffect = effect(() => {
     const richiesta = this.progettiService.progettoRichiesto();
@@ -98,7 +102,7 @@ export class SezioneProgettiComponent implements AfterViewInit {
     const obs = new IntersectionObserver(
       ([e, ..._], observer) => {
         if (e.isIntersecting) {
-          this.hostRef.nativeElement.classList.add('puo-animare');
+          this.puoAnimare.set(true);
           observer.disconnect();
         }
       },
