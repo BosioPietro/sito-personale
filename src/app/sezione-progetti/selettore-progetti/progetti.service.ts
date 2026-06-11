@@ -1,8 +1,6 @@
-import { Injectable, signal } from '@angular/core';
+import { Service, signal } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class ProgettiService {
   private richiestaId = 0;
   private readonly richiestaProgetto = signal<RichiestaProgetto | undefined>(
