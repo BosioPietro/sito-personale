@@ -40,7 +40,7 @@
         <div class="cella"></div>
         <div class="logo">
           <img
-            [class.nascosto]="logoCordova"
+            [class.nascosto]="logoCordova()"
             src="https://bosio.zip/assets/img/loghi/capacitor.svg"
             alt="C"
             title="Capacitor"
@@ -48,7 +48,7 @@
             decoding="async"
           />
           <img
-            [class.nascosto]="!logoCordova"
+            [class.nascosto]="!logoCordova()"
             src="https://bosio.zip/assets/img/loghi/cordova.svg"
             alt="C"
             title="Cordova"

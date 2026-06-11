@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   DOCUMENT,
+  DestroyRef,
   ElementRef,
   inject,
   OnDestroy,
@@ -49,6 +50,7 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
 
   private readonly platform: Object = inject(PLATFORM_ID);
   private readonly isBrowser = isPlatformBrowser(this.platform);
+  private readonly destroyRef = inject(DestroyRef);
 
   ngAfterViewInit(): void {
     if (!this.isBrowser) return;
@@ -58,13 +60,21 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
     // che collegata a --bordo non si aggiorna
     // quindi l'aggiorno manualmente
     const r = this.rettangoloInterno().nativeElement;
-    window.addEventListener('resize', () => {
+    let resetWidthId: number | undefined;
+    const correggiLarghezzaCornice = () => {
       r.setAttribute(
         'style',
         'width: calc(100% - var(--bordo) * 1.5) !important'
       );
 
-      setTimeout(() => (r.style.width = ''));
+      if (resetWidthId !== undefined) window.clearTimeout(resetWidthId);
+      resetWidthId = window.setTimeout(() => (r.style.width = ''));
+    };
+
+    window.addEventListener('resize', correggiLarghezzaCornice);
+    this.destroyRef.onDestroy(() => {
+      window.removeEventListener('resize', correggiLarghezzaCornice);
+      if (resetWidthId !== undefined) window.clearTimeout(resetWidthId);
     });
   }
 

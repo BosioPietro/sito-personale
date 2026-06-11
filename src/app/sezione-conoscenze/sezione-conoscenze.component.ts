@@ -1,6 +1,7 @@
 import {
   Component,
   AfterViewInit,
+  DestroyRef,
   inject,
   signal,
 } from '@angular/core';
@@ -40,6 +41,7 @@ export class SezioneConoscenzeComponent implements AfterViewInit {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly isBrowser = isPlatformBrowser(this.platformId);
   private readonly hostRef = inject(ElementRef<HTMLElement>);
+  private readonly destroyRef = inject(DestroyRef);
   protected readonly puoAnimare = signal(false);
 
   CambiaSezione(s: Sezioni) {
@@ -61,6 +63,7 @@ export class SezioneConoscenzeComponent implements AfterViewInit {
       { root: null, threshold: 0.1 }
     );
     obs.observe(el);
+    this.destroyRef.onDestroy(() => obs.disconnect());
   }
 }
 

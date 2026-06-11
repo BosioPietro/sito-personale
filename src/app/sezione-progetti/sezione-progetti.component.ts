@@ -1,5 +1,6 @@
 import {
   Component,
+  DestroyRef,
   ElementRef,
   AfterViewInit,
   inject,
@@ -50,6 +51,7 @@ export class SezioneProgettiComponent implements AfterViewInit {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly isBrowser = isPlatformBrowser(this.platformId);
   private readonly hostRef = inject(ElementRef<HTMLElement>);
+  private readonly destroyRef = inject(DestroyRef);
   private readonly vistaPronta = signal(false);
 
   private readonly richiestaProgettoEffect = effect(() => {
@@ -113,5 +115,6 @@ export class SezioneProgettiComponent implements AfterViewInit {
       { root: null, threshold: 0.0 }
     );
     obs.observe(el);
+    this.destroyRef.onDestroy(() => obs.disconnect());
   }
 }

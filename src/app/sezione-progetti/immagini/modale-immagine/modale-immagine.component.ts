@@ -1,7 +1,9 @@
 import {
   AfterViewInit,
   Component,
+  DestroyRef,
   ElementRef,
+  inject,
   model,
   OnChanges,
   SimpleChanges,
@@ -21,6 +23,8 @@ export class ModaleImmagineComponent implements AfterViewInit, OnChanges {
   private readonly dialogRef = viewChild<ElementRef<HTMLDialogElement>>('dialog');
 
   private readonly imgRef = viewChild<ElementRef<HTMLImageElement>>('img');
+  private readonly destroyRef = inject(DestroyRef);
+  private chiusuraId: number | undefined;
 
   Apri(): void {
     this.dialogRef()?.nativeElement.showModal();
@@ -28,7 +32,8 @@ export class ModaleImmagineComponent implements AfterViewInit, OnChanges {
 
   Chiudi(): void {
     this.dialogRef()?.nativeElement.close();
-    setTimeout(() => {
+    if (this.chiusuraId !== undefined) window.clearTimeout(this.chiusuraId);
+    this.chiusuraId = window.setTimeout(() => {
       this.src.set(undefined);
     }, 200);
   }
@@ -93,5 +98,13 @@ export class ModaleImmagineComponent implements AfterViewInit, OnChanges {
     img.addEventListener('pointerenter', IniziaMovimento, { passive: true });
     img.addEventListener('pointermove', MuoviLente, { passive: true });
     img.addEventListener('pointerleave', FermaMovimento, { passive: true });
+
+    this.destroyRef.onDestroy(() => {
+      if (this.chiusuraId !== undefined) window.clearTimeout(this.chiusuraId);
+      img.removeEventListener('load', CaricaImmagine);
+      img.removeEventListener('pointerenter', IniziaMovimento);
+      img.removeEventListener('pointermove', MuoviLente);
+      img.removeEventListener('pointerleave', FermaMovimento);
+    });
   }
 }

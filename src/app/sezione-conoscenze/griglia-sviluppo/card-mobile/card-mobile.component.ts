@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, DestroyRef, inject, PLATFORM_ID, signal } from '@angular/core';
 
 @Component({
     selector: 'CardMobile',
@@ -6,13 +7,20 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: './card-mobile.component.html',
     styleUrl: './card-mobile.component.scss'
 })
-export class CardMobileComponent implements OnInit{
+export class CardMobileComponent {
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly isBrowser = isPlatformBrowser(this.platformId);
   
-  logoCordova: boolean = false;
+  protected readonly logoCordova = signal(false);
 
-  ngOnInit(): void {
-    setInterval(() => {
-      this.logoCordova = !this.logoCordova;
-    }, 1E4)
+  constructor() {
+    if (!this.isBrowser) return;
+
+    const intervalloId = window.setInterval(() => {
+      this.logoCordova.update((visibile) => !visibile);
+    }, 1E4);
+
+    this.destroyRef.onDestroy(() => window.clearInterval(intervalloId));
   }
 }
