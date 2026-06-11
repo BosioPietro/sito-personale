@@ -18,11 +18,11 @@ import { ModaleImmagineComponent } from './modale-immagine/modale-immagine.compo
   styleUrl: './immagini.component.scss',
 })
 export class ImmaginiComponent implements AfterViewInit {
-  readonly immaginiCorrenti = input.required<string[]>({
+  readonly immaginiCorrenti = input.required<readonly string[]>({
     alias: 'immagini-correnti',
   });
 
-  readonly immaginiPrecendenti = input<string[] | undefined>(undefined, {
+  readonly immaginiPrecendenti = input<readonly string[] | undefined>(undefined, {
     alias: 'immagini-precedenti',
   });
 
@@ -45,7 +45,7 @@ export class ImmaginiComponent implements AfterViewInit {
     this.isFirstLoad = false;
   }
 
-  CaricaAnteprime(immagini: string[]) {
+  CaricaAnteprime(immagini: readonly string[]) {
     return immagini.map((img) => {
       const parti = img.split('/');
       const ultima = parti.pop();

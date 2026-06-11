@@ -1,23 +1,23 @@
-export type Tecnologia = {
+export type Tecnologia = Readonly<{
   nome: string;
   immagine: string;
   link: string;
-};
+}>;
 
-export type Progetto = {
+export type Progetto = Readonly<{
   nome: string;
-  tecnologie: Tecnologia[];
+  tecnologie: readonly Tecnologia[];
   icona: string;
-  introduzione: string[];
-  funzionalita: {
+  introduzione: readonly string[];
+  funzionalita: readonly Readonly<{
     titolo: string;
-    testo: string[];
-  }[];
+    testo: readonly string[];
+  }>[];
   link: string;
-  immagini: string[];
-};
+  immagini: readonly string[];
+}>;
 
-const tecnologie: Tecnologia[] = [
+const tecnologie: readonly Tecnologia[] = [
   {
     nome: 'Angular',
     immagine: 'https://bosio.zip/assets/img/loghi/angular.svg',
@@ -132,7 +132,7 @@ const tecnologie: Tecnologia[] = [
 
 // non uso filter in tecnologie perchè
 // non mantiene l'ordine dell'array
-export const progetti: Progetto[] = [
+export const progetti: readonly Progetto[] = [
   // | testo-gradient
   // # codice
   // § link

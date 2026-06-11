@@ -9,7 +9,7 @@ import { IconaComponent } from '../../common/icona/icona.component';
   styleUrl: './selettore-progetti.component.scss',
 })
 export class SelettoreProgettiComponent {
-  readonly progetti = input.required<Progetto[]>({ alias: 'progetti' });
+  readonly progetti = input.required<readonly Progetto[]>({ alias: 'progetti' });
 
   readonly progettoSelezionato = input.required<Progetto>({
     alias: 'progetto-selezionato',
