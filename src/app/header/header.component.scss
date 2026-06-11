@@ -149,7 +149,6 @@ button[menu] {
 }
 
 .sotto-sezioni {
-  justify-content: center;
   padding-inline: 1rem;
   overflow: clip;
   display: grid;
@@ -200,46 +199,25 @@ button[menu] {
   }
 }
 
-:host:has(.competenze:hover) {
-  .competenze:not(.opzione) {
-    padding-bottom: 1rem;
-    opacity: 1;
-    filter: blur(0rem);
-    z-index: 1;
-    gap: 1rem;
+:host:has(.competenze:hover) .competenze:not(.opzione),
+:host:has(.progetti:hover) .progetti:not(.opzione) {
+  padding-bottom: 1rem;
+  opacity: 1;
+  filter: blur(0rem);
+  z-index: 1;
+  gap: 1rem;
 
-    button {
-      height: 3rem !important;
-      border: 2px solid var(--colore-bordo);
-      background-color: #00000033;
-    }
-  }
-
-  .cella {
-    translate: 0 5rem;
-    opacity: 0;
+  button {
+    height: 3rem !important;
+    border: 2px solid var(--colore-bordo);
+    background-color: #00000033;
   }
 }
 
-:host:has(.progetti:hover) {
-  .progetti:not(.opzione) {
-    padding-bottom: 1rem;
-    opacity: 1;
-    filter: blur(0rem);
-    z-index: 1;
-    gap: 1rem;
-
-    button {
-      height: 3rem !important;
-      border: 2px solid var(--colore-bordo);
-      background-color: #00000033;
-    }
-  }
-
-  .cella {
-    translate: 0 5rem;
-    opacity: 0;
-  }
+:host:has(.competenze:hover) .cella,
+:host:has(.progetti:hover) .cella {
+  translate: 0 5rem;
+  opacity: 0;
 }
 
 .bordo {
@@ -260,7 +238,6 @@ button[menu] {
   .opzione-menu {
     color: var(--grigio-a);
     transition: color 0.5s var(--easing);
-    color: var(--grigio-a);
 
     &.corrente {
       color: #fff;
