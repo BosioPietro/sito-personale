@@ -201,7 +201,7 @@ button {
 }
 
 .scrollbar-stile {
-  overscroll-behavior: contain;
+  // overscroll-behavior: contain;
 
   &::-webkit-scrollbar {
     width: 0.5rem;
