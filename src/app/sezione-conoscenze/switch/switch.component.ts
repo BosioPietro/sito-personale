@@ -1,6 +1,5 @@
 import {
   Component,
-  HostBinding,
   input,
   output,
 } from '@angular/core';
@@ -11,17 +10,15 @@ import { IconaComponent } from '../../common/icona/icona.component';
   imports: [IconaComponent],
   templateUrl: './switch.component.html',
   styleUrl: './switch.component.scss',
+  host: {
+    '[attr.sezione-corrente]': 'sezioneCorrente()',
+  },
 })
 export class SwitchComponent {
   readonly sezioneCorrente = input(Sezioni.Web, { alias: 'sezione-corrente' });
   readonly changed = output<Sezioni>();
 
   protected readonly sezioni = Sezioni;
-
-  @HostBinding('attr.sezione-corrente')
-  get sezioneCorrenteAttr(): string {
-    return this.sezioneCorrente().toString();
-  }
 
   Seleziona(sezione: Sezioni) {
     if (this.sezioneCorrente() === sezione) return;

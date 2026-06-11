@@ -1,7 +1,6 @@
 import {
   Component,
   AfterViewInit,
-  HostBinding,
   inject,
   signal,
 } from '@angular/core';
@@ -26,6 +25,9 @@ import { ConoscenzeService } from './conoscenze.service';
   ],
   templateUrl: './sezione-conoscenze.component.html',
   styleUrl: './sezione-conoscenze.component.scss',
+  host: {
+    '[class.puo-animare]': 'puoAnimare()',
+  },
 })
 export class SezioneConoscenzeComponent implements AfterViewInit {
   EffettoMouse = EffettoMouse;
@@ -35,15 +37,10 @@ export class SezioneConoscenzeComponent implements AfterViewInit {
   private readonly conoscenzeService = inject(ConoscenzeService);
   protected readonly sezioneCorrente = this.conoscenzeService.sezione;
 
-  @HostBinding('class.puo-animare')
-  get puoAnimareClass(): boolean {
-    return this.puoAnimare();
-  }
-
   private readonly platformId = inject(PLATFORM_ID);
   private readonly isBrowser = isPlatformBrowser(this.platformId);
   private readonly hostRef = inject(ElementRef<HTMLElement>);
-  private readonly puoAnimare = signal(false);
+  protected readonly puoAnimare = signal(false);
 
   CambiaSezione(s: Sezioni) {
     this.conoscenzeService.cambiaSezione(s);

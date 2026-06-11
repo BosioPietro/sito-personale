@@ -2,7 +2,6 @@ import {
   Component,
   ElementRef,
   AfterViewInit,
-  HostBinding,
   inject,
   effect,
   signal,

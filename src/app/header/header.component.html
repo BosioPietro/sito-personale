@@ -5,7 +5,11 @@
     height="64px"
     width="48px"
   />
-  <button menu (click)="headerAperto = !headerAperto" aria-label="Menu">
+  <button
+    menu
+    (click)="headerAperto.update((aperto) => !aperto)"
+    aria-label="Menu"
+  >
     <ion-icon name="menu"></ion-icon>
   </button>
   <div class="flex-row wrapper">
@@ -75,16 +79,16 @@
     (click)="CambiaModalitaVisualizzazione($event)"
     toggle
     [attr.aria-label]="
-      modalitaVisualizzazione === 'scuro' ? 'Modalità scura' : 'Modalità chiara'
+      modalitaVisualizzazione() === 'scuro' ? 'Modalità scura' : 'Modalità chiara'
     "
   >
-    <ion-icon [name]="modalitaVisualizzazione === 'scuro' ? 'sunny' : 'moon'" />
+    <ion-icon [name]="modalitaVisualizzazione() === 'scuro' ? 'sunny' : 'moon'" />
   </button>
 
   <div class="cella"></div>
 </div>
 
-<div class="flex-col menu-header" [class.aperto]="headerAperto">
+<div class="flex-col menu-header" [class.aperto]="headerAperto()">
   <div class="opzione-menu" [class.corrente]="sezioneCorrente() == 'principale'">
     <button (click)="Scrolla('principale')" aria-label="Sezione principale">
       <ion-icon name="home" />
@@ -103,7 +107,7 @@
     </button>
     <div
       class="sotto-menu"
-      [class.aperto]="sezioneMenu === 'conoscenze'"
+      [class.aperto]="sezioneMenu() === 'conoscenze'"
       style="--max-height: 11rem"
     >
       <button
@@ -138,7 +142,7 @@
     </button>
     <div
       class="sotto-menu"
-      [class.aperto]="sezioneMenu === 'progetti'"
+      [class.aperto]="sezioneMenu() === 'progetti'"
       style="--max-height: 25rem"
     >
       <button
@@ -196,10 +200,10 @@
     (click)="CambiaModalitaVisualizzazione($event)"
     toggle
     [attr.aria-label]="
-      modalitaVisualizzazione === 'scuro' ? 'Modalità scura' : 'Modalità chiara'
+      modalitaVisualizzazione() === 'scuro' ? 'Modalità scura' : 'Modalità chiara'
     "
   >
-    <ion-icon [name]="modalitaVisualizzazione === 'scuro' ? 'sunny' : 'moon'" />
+    <ion-icon [name]="modalitaVisualizzazione() === 'scuro' ? 'sunny' : 'moon'" />
   </button>
 </div>
 

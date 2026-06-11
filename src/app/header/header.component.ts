@@ -1,12 +1,13 @@
 import {
   Component,
+  computed,
   inject,
   DOCUMENT,
   OnInit,
   PLATFORM_ID,
-  HostBinding,
   input,
   output,
+  signal,
 } from '@angular/core';
 import { Sezioni } from '../sezione-conoscenze/switch/switch.component';
 import { ConoscenzeService } from '../sezione-conoscenze/conoscenze.service';
@@ -42,6 +43,9 @@ declare global {
   imports: [IconaComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
+  host: {
+    '[style.--indicatore-ancora]': 'indicatoreAncora()',
+  },
 })
 export class HeaderComponent implements OnInit {
   readonly sezioneCorrente = input<string | undefined>(undefined, {
@@ -56,16 +60,19 @@ export class HeaderComponent implements OnInit {
   private readonly platform: Object = inject(PLATFORM_ID);
   private readonly isBrowser = isPlatformBrowser(this.platform);
 
-  modalitaVisualizzazione: 'chiaro' | 'scuro' = 'scuro';
+  protected readonly modalitaVisualizzazione = signal<'chiaro' | 'scuro'>(
+    'scuro'
+  );
   html = this.document.firstElementChild! as HTMLElement;
 
-  headerAperto: boolean = false;
-  sezioneMenu?: 'progetti' | 'conoscenze' = undefined;
+  protected readonly headerAperto = signal(false);
+  protected readonly sezioneMenu = signal<'progetti' | 'conoscenze' | undefined>(
+    undefined
+  );
 
-  @HostBinding('style.--indicatore-ancora')
-  get indicatoreAncora(): string {
-    return this.mappaSezioneAAncora(this.sezioneCorrente());
-  }
+  protected readonly indicatoreAncora = computed(() =>
+    this.mappaSezioneAAncora(this.sezioneCorrente())
+  );
 
   private mappaSezioneAAncora(s?: string): string {
     switch (s) {
@@ -90,10 +97,10 @@ export class HeaderComponent implements OnInit {
     const modalita = localStorage.getItem('modalita-visualizzazione');
 
     if (modalita === 'chiaro' || modalita === 'scuro') {
-      this.modalitaVisualizzazione = modalita;
-    } else this.modalitaVisualizzazione = 'scuro';
+      this.modalitaVisualizzazione.set(modalita);
+    } else this.modalitaVisualizzazione.set('scuro');
 
-    this.html.classList.add(this.modalitaVisualizzazione);
+    this.html.classList.add(this.modalitaVisualizzazione());
   }
 
   Scrolla(s: string) {
@@ -103,21 +110,22 @@ export class HeaderComponent implements OnInit {
   }
 
   async CambiaModalitaVisualizzazione(e: Event) {
-    this.modalitaVisualizzazione =
-      this.modalitaVisualizzazione === 'scuro' ? 'chiaro' : 'scuro';
+    this.modalitaVisualizzazione.update((modalita) =>
+      modalita === 'scuro' ? 'chiaro' : 'scuro'
+    );
     localStorage.setItem(
       'modalita-visualizzazione',
-      this.modalitaVisualizzazione
+      this.modalitaVisualizzazione()
     );
 
     const Imposta = () => {
       this.html.classList.toggle(
         'scuro',
-        this.modalitaVisualizzazione === 'scuro'
+        this.modalitaVisualizzazione() === 'scuro'
       );
       this.html.classList.toggle(
         'chiaro',
-        this.modalitaVisualizzazione === 'chiaro'
+        this.modalitaVisualizzazione() === 'chiaro'
       );
     };
 
@@ -152,20 +160,18 @@ export class HeaderComponent implements OnInit {
   SelezionaCompetenza(competenza: Sezioni) {
     this.conoscenzeService.cambiaSezione(competenza);
     this.Scrolla('conoscenze');
-    this.headerAperto = false;
-    this.sezioneMenu = undefined;
+    this.headerAperto.set(false);
+    this.sezioneMenu.set(undefined);
   }
 
   SelezionaProgetto(progetto: string) {
     this.valore_progetto.richiediProgetto(progetto);
     this.Scrolla('progetti');
-    this.headerAperto = false;
-    this.sezioneMenu = undefined;
+    this.headerAperto.set(false);
+    this.sezioneMenu.set(undefined);
   }
 
   CambiaSezione(s: 'conoscenze' | 'progetti') {
-    if (this.sezioneMenu === s) {
-      this.sezioneMenu = undefined;
-    } else this.sezioneMenu = s;
+    this.sezioneMenu.update((sezione) => (sezione === s ? undefined : s));
   }
 }
