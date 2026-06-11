@@ -17,8 +17,6 @@ export class TecnologieComponent {
     alias: 'progetto-precedente',
   });
 
-  readonly resettaFor = input.required<boolean>({ alias: 'resetta-for' });
-
   ApriLink(link: string){
     window.open(link, "_blank");
   }

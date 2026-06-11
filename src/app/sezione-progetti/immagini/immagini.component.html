@@ -1,4 +1,3 @@
-@if(resettaFor()){
 <div
   class="wrapper-img immagine"
   [style]="{
@@ -22,7 +21,7 @@
     class="flex-row selettore scrollbar-stile"
     (click)="SelezionaImmagine($event)"
   >
-    @for (i of previewCorrenti(); track $index) {
+    @for (i of previewCorrenti(); track i) {
     <img
       [src]="i"
       [class.selezionata]="$index === img.immagineSelezionata()"
@@ -35,7 +34,7 @@
     }
   </div>
 </div>
-} @if(immaginiPrecendenti(); as immaginiPrecedenti) {
+@if(immaginiPrecendenti(); as immaginiPrecedenti) {
 @if(img.immaginePrecedente() !== undefined) {
 <div class="flex-col transizione">
   <div
@@ -52,7 +51,7 @@
   <div class="wrapper-selettore">
     <div class="flex-row selettore scrollbar-stile">
       @if (previewPrecedenti(); as preview) {
-      @for (i of preview; track $index) {
+      @for (i of preview; track i) {
       <img
         [src]="i"
         [class.selezionata]="$index === img.immaginePrecedente()"

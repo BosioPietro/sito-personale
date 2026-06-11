@@ -17,8 +17,6 @@ export class DescrizioneComponent {
     alias: 'progetto-precedente',
   });
 
-  readonly resettaFor = input.required<boolean>({ alias: 'resetta-for' });
-
   // | testo-gradient
   // # codice
   // § link

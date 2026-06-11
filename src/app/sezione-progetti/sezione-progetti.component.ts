@@ -43,7 +43,6 @@ export class SezioneProgettiComponent implements AfterViewInit {
   );
 
   protected readonly espandiMenu = signal(false);
-  protected readonly resettaFor = signal(true);
   protected readonly puoCambiare = signal(true);
 
   private readonly img = inject(ImmaginiService);
@@ -68,15 +67,10 @@ export class SezioneProgettiComponent implements AfterViewInit {
     window.open(link, '_blank');
   }
 
-  // Quando si cambia progetto il @for non
-  // re-renderizza i div che erano già presenti
-  // anche se il loro contenuto cambia
-  // uso quindi questa variable per forzarlo
   SelezionaProgetto(p: Progetto) {
     if (this.progettoSelezionato() === p || !this.puoCambiare()) return;
 
     this.progettoPrecedente.set(this.progettoSelezionato());
-    this.resettaFor.set(false);
     this.progettoSelezionato.set(p);
     this.puoCambiare.set(false);
 
@@ -88,10 +82,6 @@ export class SezioneProgettiComponent implements AfterViewInit {
       top: 0,
       behavior: 'smooth',
     });
-
-    setTimeout(() => {
-      this.resettaFor.set(true);
-    }, 1);
 
     setTimeout(() => {
       this.progettoPrecedente.set(undefined);

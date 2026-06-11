@@ -26,8 +26,6 @@ export class ImmaginiComponent implements AfterViewInit {
     alias: 'immagini-precedenti',
   });
 
-  readonly resettaFor = input.required<boolean>({ alias: 'resetta-for' });
-
   protected readonly img: ImmaginiService = inject(ImmaginiService);
   protected isFirstLoad: boolean = true;
 

@@ -1,4 +1,4 @@
-@for (p of progetti(); track $index) {
+@for (p of progetti(); track p.nome) {
     <div class="progetto flex-col" [class.selezionato]="progettoSelezionato() === p" (click)="Seleziona(p)" [attr.nome]="p.nome">
         <div class="icona">
             <ion-icon [name]="p.icona" />
