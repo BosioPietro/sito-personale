@@ -1,13 +1,13 @@
 import {
   Component,
   ElementRef,
-  ViewChild,
   AfterViewInit,
   HostBinding,
   inject,
   effect,
   signal,
   untracked,
+  viewChild,
 } from '@angular/core';
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
@@ -33,8 +33,8 @@ import { ProgettiService } from './selettore-progetti/progetti.service';
   styleUrl: './sezione-progetti.component.scss',
 })
 export class SezioneProgettiComponent implements AfterViewInit {
-  @ViewChild('descrizione')
-  descrizione!: ElementRef<HTMLElement>;
+  private readonly descrizione =
+    viewChild.required<ElementRef<HTMLElement>>('descrizione');
 
   readonly progetti = progetti;
   protected readonly progettoSelezionato = signal(this.progetti[0]);
@@ -82,7 +82,7 @@ export class SezioneProgettiComponent implements AfterViewInit {
     this.img.conservaImmagineCorrenteComePrecedente();
     this.img.selezionaImmagine(0);
 
-    const desc = this.descrizione.nativeElement.querySelector('descrizione')!;
+    const desc = this.descrizione().nativeElement.querySelector('descrizione')!;
     desc.scrollTo({
       top: 0,
       behavior: 'smooth',

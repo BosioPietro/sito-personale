@@ -5,7 +5,7 @@ import {
   model,
   OnChanges,
   SimpleChanges,
-  ViewChild
+  viewChild,
 } from '@angular/core';
 import { IconaComponent } from '../../../common/icona/icona.component';
 
@@ -18,18 +18,16 @@ import { IconaComponent } from '../../../common/icona/icona.component';
 export class ModaleImmagineComponent implements AfterViewInit, OnChanges {
   public src = model<string | undefined>();
 
-  @ViewChild('dialog')
-  dialogRef!: ElementRef<HTMLDialogElement>;
+  private readonly dialogRef = viewChild<ElementRef<HTMLDialogElement>>('dialog');
 
-  @ViewChild('img')
-  imgRef!: ElementRef<HTMLImageElement>;
+  private readonly imgRef = viewChild<ElementRef<HTMLImageElement>>('img');
 
   Apri(): void {
-    this.dialogRef?.nativeElement.showModal();
+    this.dialogRef()?.nativeElement.showModal();
   }
 
   Chiudi(): void {
-    this.dialogRef?.nativeElement.close();
+    this.dialogRef()?.nativeElement.close();
     setTimeout(() => {
       this.src.set(undefined);
     }, 200);
@@ -43,7 +41,7 @@ export class ModaleImmagineComponent implements AfterViewInit, OnChanges {
 
   ngAfterViewInit(): void {
     // Inizializza zoom e lente sull'immagine del modale
-    const img = this.imgRef?.nativeElement;
+    const img = this.imgRef()?.nativeElement;
     if (img) {
       this.ZoomImagine(2, img);
     }

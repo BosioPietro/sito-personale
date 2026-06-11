@@ -8,7 +8,7 @@ import {
   OnInit,
   PLATFORM_ID,
   signal,
-  ViewChild,
+  viewChild,
   WritableSignal
 } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
@@ -44,8 +44,8 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
   private mutazione?: MutationObserver;
   private eventoResize?: Subscription;
 
-  @ViewChild('interno')
-  private readonly rettangoloInterno!: ElementRef<HTMLElement>;
+  private readonly rettangoloInterno =
+    viewChild.required<ElementRef<SVGRectElement>>('interno');
 
   private readonly platform: Object = inject(PLATFORM_ID);
   private readonly isBrowser = isPlatformBrowser(this.platform);
@@ -57,7 +57,7 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
     // faccio il resize della pagina la width
     // che collegata a --bordo non si aggiorna
     // quindi l'aggiorno manualmente
-    const r = this.rettangoloInterno.nativeElement;
+    const r = this.rettangoloInterno().nativeElement;
     window.addEventListener('resize', () => {
       r.setAttribute(
         'style',

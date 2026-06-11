@@ -3,10 +3,10 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  ViewChild,
   OnDestroy,
   inject,
-  PLATFORM_ID
+  PLATFORM_ID,
+  viewChild,
 } from '@angular/core';
 
 @Component({
@@ -16,8 +16,7 @@ import {
   styleUrl: './card-database.component.scss',
 })
 export class CardDatabaseComponent implements AfterViewInit, OnDestroy {
-  @ViewChild('tbody')
-  private readonly tbody!: ElementRef<HTMLElement>;
+  private readonly tbody = viewChild.required<ElementRef<HTMLElement>>('tbody');
 
   private intervalId: number | undefined;
 
@@ -28,7 +27,7 @@ export class CardDatabaseComponent implements AfterViewInit, OnDestroy {
     if (!this.isBrowser) return;
 
     const NOME_CLASSE = 'hl';
-    const cont = this.tbody.nativeElement;
+    const cont = this.tbody().nativeElement;
     const celle = Array.from(cont.querySelectorAll('td'));
 
     this.intervalId = window.setInterval(() => {
