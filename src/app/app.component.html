@@ -1,30 +1,49 @@
 <Header
   [sezione-corrente]="sezioneCorrente()"
-  (naviga)="sezioneCorrente.set($event)"
+  (naviga)="sezioniPagina.impostaSezioneCorrente($event)"
   class="flex-col"
 ></Header>
-<SezionePrincipale id="principale" class="flex-col espandi" />
+<SezionePrincipale
+  id="principale"
+  appSezionePagina="principale"
+  class="flex-col espandi"
+/>
 
 @defer (on viewport; hydrate on viewport; prefetch on idle) {
-<SezioneConoscenze id="conoscenze" class="espandi" />
+<SezioneConoscenze id="conoscenze" appSezionePagina="conoscenze" class="espandi" />
 } @placeholder {
-<section id="conoscenze" class="espandi placeholder-sezione" aria-hidden="true">
+<section
+  id="conoscenze"
+  appSezionePagina="conoscenze"
+  class="espandi placeholder-sezione"
+  aria-hidden="true"
+>
   <span class="placeholder-scheletro" aria-hidden="true"></span>
 </section>
 } @defer (on viewport; hydrate on viewport; prefetch on idle) {
-<SezioneProgetti id="progetti" class="flex-col espandi" />
+<SezioneProgetti
+  id="progetti"
+  appSezionePagina="progetti"
+  class="flex-col espandi"
+/>
 } @placeholder {
 <section
   id="progetti"
+  appSezionePagina="progetti"
   class="flex-col espandi placeholder-sezione"
   aria-hidden="true"
 >
   <span class="placeholder-scheletro" aria-hidden="true"></span>
 </section>
 } @defer (on idle; hydrate on idle) {
-<FooterContatti id="contatti" />
+<FooterContatti id="contatti" appSezionePagina="contatti" />
 } @placeholder {
-<section id="contatti" class="placeholder-footer" aria-hidden="true">
+<section
+  id="contatti"
+  appSezionePagina="contatti"
+  class="placeholder-footer"
+  aria-hidden="true"
+>
   <span class="placeholder-scheletro" aria-hidden="true"></span>
 </section>
 }
