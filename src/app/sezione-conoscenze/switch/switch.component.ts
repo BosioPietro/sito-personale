@@ -4,6 +4,7 @@ import {
   EventEmitter,
   inject,
   Output,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { IconaComponent } from '../../common/icona/icona.component';
 
@@ -11,6 +12,7 @@ import { IconaComponent } from '../../common/icona/icona.component';
   selector: 'Switch',
   imports: [IconaComponent],
   templateUrl: './switch.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './switch.component.scss',
 })
 export class SwitchComponent {

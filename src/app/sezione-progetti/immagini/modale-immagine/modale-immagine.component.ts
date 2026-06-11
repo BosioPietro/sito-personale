@@ -6,6 +6,7 @@ import {
   OnChanges,
   SimpleChanges,
   ViewChild,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { IconaComponent } from '../../../common/icona/icona.component';
 
@@ -13,6 +14,7 @@ import { IconaComponent } from '../../../common/icona/icona.component';
   selector: 'ModaleImmagine',
   templateUrl: './modale-immagine.component.html',
   styleUrls: ['./modale-immagine.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [IconaComponent],
 })
 export class ModaleImmagineComponent implements AfterViewInit, OnChanges {

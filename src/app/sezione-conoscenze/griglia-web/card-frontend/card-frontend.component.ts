@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'CardFrontend',
     imports: [],
     templateUrl: './card-frontend.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './card-frontend.component.scss'
 })
 export class CardFrontendComponent {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { EffettoMouse } from '../sezione-conoscenze.component';
 import { CardASPComponent } from './card-asp/card-asp.component';
 import { CardBackendComponent } from "./card-backend/card-backend.component";
@@ -9,6 +9,7 @@ import { CardPhpComponent } from "./card-php/card-php.component";
     selector: 'GrigliaWeb',
     imports: [CardFrontendComponent, CardBackendComponent, CardPhpComponent, CardASPComponent],
     templateUrl: './griglia-web.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['../stile-griglie.scss', './griglia-web.component.scss']
 })
 export class GrigliaWebComponent{

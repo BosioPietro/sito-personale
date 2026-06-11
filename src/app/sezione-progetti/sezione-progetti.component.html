@@ -55,7 +55,7 @@
         </div>
         <Immagini
           [immagini-correnti]="progettoSelezionato.immagini"
-          [immagini-precedenti]="progettoPrecedente?.immagini"
+          [immagini-precedenti]="$safeNavigationMigration(progettoPrecedente?.immagini)"
           [resetta-for]="resettaFor"
           class="flex-col"
         />
