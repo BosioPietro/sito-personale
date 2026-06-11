@@ -1,7 +1,7 @@
 <button
   class="flex-row opzione"
   (click)="Seleziona(sezioni.Sviluppo)"
-  [class.selezionato]="sezioneCorrente === sezioni.Sviluppo"
+  [class.selezionato]="sezioneCorrente() === sezioni.Sviluppo"
   aria-label="Sviluppo"
 >
   <ion-icon name="hardware-chip-outline"></ion-icon>
@@ -10,7 +10,7 @@
 <button
   class="flex-row opzione"
   (click)="Seleziona(sezioni.Web)"
-  [class.selezionato]="sezioneCorrente === sezioni.Web"
+  [class.selezionato]="sezioneCorrente() === sezioni.Web"
   aria-label="Web"
 >
   <ion-icon name="globe-outline"></ion-icon>
@@ -19,7 +19,7 @@
 <button
   class="flex-row opzione"
   (click)="Seleziona(sezioni.Certificazioni)"
-  [class.selezionato]="sezioneCorrente === sezioni.Certificazioni"
+  [class.selezionato]="sezioneCorrente() === sezioni.Certificazioni"
   aria-label="Certificazioni"
 >
   <ion-icon name="ribbon-outline"></ion-icon>

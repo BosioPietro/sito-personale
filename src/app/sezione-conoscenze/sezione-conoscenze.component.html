@@ -11,7 +11,7 @@
             <div class="cella"></div>
             <div class="cella">
                 <div class="sfondo-trattini"></div>
-                <Switch (changed)="CambiaSezione($event)"/>
+                <Switch [sezione-corrente]="sezioneCorrente()" (changed)="CambiaSezione($event)"/>
             </div>
             <div class="cella"></div>
         </div>
@@ -21,15 +21,15 @@
             <!-- in overflow (tipo mobile) il wrapper shifterebbe -->
             <GrigliaSviluppo
                 class="flex-col contenuto-griglia"
-                [class.visibile]="sezioneCorrente === Sezioni.Sviluppo"
+                [class.visibile]="sezioneCorrente() === Sezioni.Sviluppo"
             />
             <GrigliaWeb 
                 class="flex-col contenuto-griglia"
-                [class.visibile]="sezioneCorrente === Sezioni.Web"
+                [class.visibile]="sezioneCorrente() === Sezioni.Web"
             />
             <GrigliaCertificazioni 
                 class="flex-row contenuto-griglia"  
-                [class.visibile]="sezioneCorrente === Sezioni.Certificazioni"
+                [class.visibile]="sezioneCorrente() === Sezioni.Certificazioni"
                 (mousemove)="EffettoMouse($event)"
             />
         </div>

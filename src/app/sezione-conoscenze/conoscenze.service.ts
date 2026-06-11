@@ -1,16 +1,15 @@
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 import { Sezioni } from './switch/switch.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConoscenzeService {
-  private sezioneSubject = new Subject<Sezioni>();
-  
-  sezione$ = this.sezioneSubject.asObservable();
+  private readonly sezioneCorrente = signal(Sezioni.Web);
+
+  readonly sezione = this.sezioneCorrente.asReadonly();
   
   cambiaSezione(sezione: Sezioni) {
-    this.sezioneSubject.next(sezione);
+    this.sezioneCorrente.set(sezione);
   }
 }

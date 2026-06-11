@@ -1,8 +1,8 @@
 import {
   Component,
-  ElementRef,
-  inject,
   ChangeDetectionStrategy,
+  HostBinding,
+  input,
   output,
 } from '@angular/core';
 import { IconaComponent } from '../../common/icona/icona.component';
@@ -15,26 +15,19 @@ import { IconaComponent } from '../../common/icona/icona.component';
   styleUrl: './switch.component.scss',
 })
 export class SwitchComponent {
+  readonly sezioneCorrente = input(Sezioni.Web, { alias: 'sezione-corrente' });
   readonly changed = output<Sezioni>();
 
   protected readonly sezioni = Sezioni;
-  protected sezioneCorrente: Sezioni = Sezioni.Web;
-  private readonly ref: ElementRef<HTMLElement> = inject(
-    ElementRef<HTMLElement>
-  );
 
-  constructor() {
-    this.ref.nativeElement.setAttribute(
-      'sezione-corrente',
-      this.sezioneCorrente.toString()
-    );
+  @HostBinding('attr.sezione-corrente')
+  get sezioneCorrenteAttr(): string {
+    return this.sezioneCorrente().toString();
   }
 
   Seleziona(sezione: Sezioni) {
-    if (this.sezioneCorrente === sezione) return;
+    if (this.sezioneCorrente() === sezione) return;
 
-    this.ref.nativeElement.setAttribute('sezione-corrente', sezione.toString());
-    this.sezioneCorrente = sezione;
     this.changed.emit(sezione);
   }
 }

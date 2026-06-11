@@ -64,8 +64,8 @@ export class SezioneProgettiComponent implements AfterViewInit {
     this.progettoSelezionato = p;
     this.puoCambiare = false;
 
-    this.img.immaginePrecedente = this.img.immagineSelezionata;
-    this.img.immagineSelezionata = 0;
+    this.img.conservaImmagineCorrenteComePrecedente();
+    this.img.selezionaImmagine(0);
 
     const desc = this.descrizione.nativeElement.querySelector('descrizione')!;
     desc.scrollTo({
@@ -80,7 +80,7 @@ export class SezioneProgettiComponent implements AfterViewInit {
 
     setTimeout(() => {
       this.progettoPrecedente = undefined;
-      this.img.immaginePrecedente = undefined;
+      this.img.resettaImmaginePrecedente();
       this.puoCambiare = true;
       this.cdr.markForCheck();
     }, 500);

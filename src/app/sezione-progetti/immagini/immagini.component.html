@@ -2,16 +2,16 @@
 <div
   class="wrapper-img immagine"
   [style]="{
-    '--img': 'url(' + immaginiCorrenti()[img.immagineSelezionata] + ')'
+    '--img': 'url(' + immaginiCorrenti()[img.immagineSelezionata()] + ')'
   }"
 >
   <img
-    [src]="immaginiCorrenti()[img.immagineSelezionata]"
-    [attr.alt]="img.immagineSelezionata"
+    [src]="immaginiCorrenti()[img.immagineSelezionata()]"
+    [attr.alt]="img.immagineSelezionata()"
   />
   <button
     class="icona"
-    (click)="ApriModaleImmagine(img.immagineSelezionata)"
+    (click)="ApriModaleImmagine(img.immagineSelezionata())"
     aria-label="Visualizza immagine"
   >
     <ion-icon name="scan"></ion-icon>
@@ -25,7 +25,7 @@
     @for (i of previewCorrenti(); track $index) {
     <img
       [src]="i"
-      [class.selezionata]="$index === img.immagineSelezionata"
+      [class.selezionata]="$index === img.immagineSelezionata()"
       [style]="{ '--delay': ($index + 1) / 20 }"
       [attr.alt]="i"
       class="immagine"
@@ -36,17 +36,17 @@
   </div>
 </div>
 } @if(immaginiPrecendenti(); as immaginiPrecedenti) {
-@if(img.immaginePrecedente !== undefined) {
+@if(img.immaginePrecedente() !== undefined) {
 <div class="flex-col transizione">
   <div
     class="wrapper-img immagine"
     [style]="{
-      '--img': 'url(' + immaginiPrecedenti[img.immaginePrecedente] + ')'
+      '--img': 'url(' + immaginiPrecedenti[img.immaginePrecedente()!] + ')'
     }"
   >
     <img
-      [src]="immaginiPrecedenti[img.immaginePrecedente]"
-      [attr.alt]="img.immaginePrecedente"
+      [src]="immaginiPrecedenti[img.immaginePrecedente()!]"
+      [attr.alt]="img.immaginePrecedente()"
     />
   </div>
   <div class="wrapper-selettore">
@@ -55,7 +55,7 @@
       @for (i of preview; track $index) {
       <img
         [src]="i"
-        [class.selezionata]="$index === img.immaginePrecedente"
+        [class.selezionata]="$index === img.immaginePrecedente()"
         [style]="{ '--delay': ($index + 1) / 50 }"
         [attr.alt]="i"
         class="immagine"

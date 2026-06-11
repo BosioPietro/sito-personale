@@ -67,7 +67,7 @@ export class ImmaginiComponent implements AfterViewInit {
       i.classList.toggle('selezionata', i === img);
     });
 
-    this.img.immagineSelezionata = parseInt(img.src.split('/').at(-1)!);
+    this.img.selezionaImmagine(parseInt(img.src.split('/').at(-1)!));
   }
 
   ApriModaleImmagine(img: number) {
