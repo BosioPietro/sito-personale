@@ -1,28 +1,79 @@
 <div class="testo flex-col">
         <article>
             <h2 class="testo-gradient" style="--delay: 0">Descrizione</h2>
-            @for (p of progettoSelezionato().introduzione; track p) {
-                <p [innerHTML]="TraduciHtml(p)" style="--delay: 0"></p>
+            @for (p of descrizioneCorrente().introduzione; track p) {
+                <p style="--delay: 0">
+                    @for (segmento of p; track $index) {
+                        @switch (segmento.tipo) {
+                            @case ('gradient') {
+                                <span class="testo-gradient">{{ segmento.valore }}</span>
+                            }
+                            @case ('codice') {
+                                <code>{{ segmento.valore }}</code>
+                            }
+                            @case ('link') {
+                                <a [href]="segmento.href">{{ segmento.valore }}</a>
+                            }
+                            @default {
+                                {{ segmento.valore }}
+                            }
+                        }
+                    }
+                </p>
             }
         </article>
         <article>
             <h2 class="testo-gradient" style="--delay: .1">Funzionalità</h2>
-            @for (f of progettoSelezionato().funzionalita; track f.titolo; let i = $index) {
+            @for (f of descrizioneCorrente().funzionalita; track f.titolo; let i = $index) {
                 <h4 class="testo-gradient" [style]="{'--delay': (i + 1) / 10}">
                     {{ f.titolo }}
                 </h4>
                 @for (p of f.testo; track p) {
-                    <p [innerHTML]="TraduciHtml(p)" [style]="{'--delay': (i + 1) / 10}"></p>
+                    <p [style]="{'--delay': (i + 1) / 10}">
+                        @for (segmento of p; track $index) {
+                            @switch (segmento.tipo) {
+                                @case ('gradient') {
+                                    <span class="testo-gradient">{{ segmento.valore }}</span>
+                                }
+                                @case ('codice') {
+                                    <code>{{ segmento.valore }}</code>
+                                }
+                                @case ('link') {
+                                    <a [href]="segmento.href">{{ segmento.valore }}</a>
+                                }
+                                @default {
+                                    {{ segmento.valore }}
+                                }
+                            }
+                        }
+                    </p>
                 }
             }
         </article>
 </div>
 <div class="testo flex-col transizione">
-    @if(progettoPrecedente(); as progetto){
+    @if(descrizionePrecedente(); as progetto){
         <article>
             <h2 class="testo-gradient" style="--delay: 0">Descrizione</h2>
             @for (p of progetto.introduzione; track p) {
-                <p [innerHTML]="TraduciHtml(p)" style="--delay: 0"></p>
+                <p style="--delay: 0">
+                    @for (segmento of p; track $index) {
+                        @switch (segmento.tipo) {
+                            @case ('gradient') {
+                                <span class="testo-gradient">{{ segmento.valore }}</span>
+                            }
+                            @case ('codice') {
+                                <code>{{ segmento.valore }}</code>
+                            }
+                            @case ('link') {
+                                <a [href]="segmento.href">{{ segmento.valore }}</a>
+                            }
+                            @default {
+                                {{ segmento.valore }}
+                            }
+                        }
+                    }
+                </p>
             }
         </article>
         <article>
@@ -32,7 +83,24 @@
                     {{ f.titolo }}
                 </h4>
                 @for (p of f.testo; track p) {
-                    <p [innerHTML]="TraduciHtml(p)" [style]="{'--delay': (i + 1) / 10}"></p>
+                    <p [style]="{'--delay': (i + 1) / 10}">
+                        @for (segmento of p; track $index) {
+                            @switch (segmento.tipo) {
+                                @case ('gradient') {
+                                    <span class="testo-gradient">{{ segmento.valore }}</span>
+                                }
+                                @case ('codice') {
+                                    <code>{{ segmento.valore }}</code>
+                                }
+                                @case ('link') {
+                                    <a [href]="segmento.href">{{ segmento.valore }}</a>
+                                }
+                                @default {
+                                    {{ segmento.valore }}
+                                }
+                            }
+                        }
+                    </p>
                 }
             }
         </article>
