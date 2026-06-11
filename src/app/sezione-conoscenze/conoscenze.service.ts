@@ -1,9 +1,7 @@
-import { Injectable, signal } from '@angular/core';
+import { Service, signal } from '@angular/core';
 import { Sezioni } from './switch/switch.component';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class ConoscenzeService {
   private readonly sezioneCorrente = signal(Sezioni.Web);
 
