@@ -84,10 +84,7 @@
             "testing": {
               "aot": false,
               "optimization": false,
-              "extractLicenses": false,
-              "polyfills": [
-                "zone.js/testing"
-              ]
+              "extractLicenses": false
             }
           },
           "defaultConfiguration": "production"
