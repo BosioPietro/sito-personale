@@ -31,7 +31,6 @@ import { ConoscenzeService } from './conoscenze.service';
   },
 })
 export class SezioneConoscenzeComponent implements AfterViewInit {
-  EffettoMouse = EffettoMouse;
   // per portare l'enum nel componente
   Sezioni = Sezioni;
 
@@ -66,18 +65,3 @@ export class SezioneConoscenzeComponent implements AfterViewInit {
     this.destroyRef.onDestroy(() => obs.disconnect());
   }
 }
-
-// funzione per l'effetto delle singole carte
-export const EffettoMouse = (e: MouseEvent) => {
-  const cont = e.currentTarget as HTMLElement;
-  const celle = Array.from<HTMLElement>(cont.querySelectorAll('.card'));
-
-  const { clientX, clientY } = e;
-
-  for (const cella of celle) {
-    const { left, top } = cella.getBoundingClientRect();
-
-    cella.style.setProperty('--mouse-x', `${clientX - left}px`);
-    cella.style.setProperty('--mouse-y', `${clientY - top}px`);
-  }
-};

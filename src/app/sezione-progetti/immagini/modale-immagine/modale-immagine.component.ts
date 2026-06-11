@@ -1,12 +1,10 @@
 import {
-  AfterViewInit,
   Component,
-  DestroyRef,
   ElementRef,
-  inject,
   model,
   OnChanges,
   SimpleChanges,
+  signal,
   viewChild,
 } from '@angular/core';
 import { IconaComponent } from '../../../common/icona/icona.component';
@@ -17,13 +15,19 @@ import { IconaComponent } from '../../../common/icona/icona.component';
   styleUrls: ['./modale-immagine.component.scss'],
   imports: [IconaComponent],
 })
-export class ModaleImmagineComponent implements AfterViewInit, OnChanges {
+export class ModaleImmagineComponent implements OnChanges {
   public src = model<string | undefined>();
 
   private readonly dialogRef = viewChild<ElementRef<HTMLDialogElement>>('dialog');
 
-  private readonly imgRef = viewChild<ElementRef<HTMLImageElement>>('img');
-  private readonly destroyRef = inject(DestroyRef);
+  protected readonly lenteVisibile = signal(false);
+  protected readonly lenteBackgroundImage = signal('');
+  protected readonly lenteBackgroundSize = signal('');
+  protected readonly lenteBackgroundPosition = signal('');
+  protected readonly lenteX = signal(0);
+  protected readonly lenteY = signal(0);
+
+  private readonly zoomLevel = 2;
   private chiusuraId: number | undefined;
 
   Apri(): void {
@@ -44,67 +48,32 @@ export class ModaleImmagineComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  ngAfterViewInit(): void {
-    // Inizializza zoom e lente sull'immagine del modale
-    const img = this.imgRef()?.nativeElement;
-    if (img) {
-      this.ZoomImagine(2, img);
-    }
+  caricaImmagine(img: HTMLImageElement): void {
+    this.lenteBackgroundImage.set(`url('${img.src}')`);
+    this.lenteBackgroundSize.set(
+      `${img.width * this.zoomLevel}px ${img.height * this.zoomLevel}px`
+    );
   }
 
-  // --- Logica Zoom/Lente spostata qui dal componente Immagini ---
-  private ZoomImagine(zoomLevel: number, img: HTMLImageElement): void {
-    const contImg = img.parentElement as HTMLDivElement;
-    const lente = contImg.querySelector('.lente') as HTMLDivElement;
+  iniziaMovimento(e: PointerEvent, img: HTMLImageElement): void {
+    this.lenteVisibile.set(true);
+    this.muoviLente(e, img);
+  }
 
-    const CaricaImmagine = () => {
-      lente.style.backgroundImage = `url('${img.src}')`;
-      lente.style.backgroundRepeat = 'no-repeat';
-      lente.style.backgroundSize = `${img.width * zoomLevel}px ${
-        img.height * zoomLevel
-      }px`;
-    };
+  muoviLente(e: PointerEvent, img: HTMLImageElement): void {
+    const rect = img.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const lenteSize = 320;
+    const backgroundX = x * this.zoomLevel - lenteSize / 2;
+    const backgroundY = y * this.zoomLevel - lenteSize / 2;
 
-    const PosizioneCursore = (e: PointerEvent) => {
-      const rect = img.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      return { x, y };
-    };
+    this.lenteX.set(x);
+    this.lenteY.set(y);
+    this.lenteBackgroundPosition.set(`-${backgroundX}px -${backgroundY}px`);
+  }
 
-    const Zoom = (pos: { x: number; y: number }) => {
-      const x = pos.x * zoomLevel - lente.offsetWidth / 2;
-      const y = pos.y * zoomLevel - lente.offsetHeight / 2;
-      lente.style.backgroundPosition = `-${x}px -${y}px`;
-    };
-
-    const MuoviLente = (e: PointerEvent) => {
-      const pos = PosizioneCursore(e);
-      lente.style.left = `${pos.x - lente.offsetWidth / 2}px`;
-      lente.style.top = `${pos.y - lente.offsetHeight / 2}px`;
-      Zoom(pos);
-    };
-
-    const IniziaMovimento = (e: PointerEvent) => {
-      lente.style.display = 'block';
-      MuoviLente(e);
-    };
-
-    const FermaMovimento = () => {
-      lente.style.display = 'none';
-    };
-
-    img.addEventListener('load', CaricaImmagine);
-    img.addEventListener('pointerenter', IniziaMovimento, { passive: true });
-    img.addEventListener('pointermove', MuoviLente, { passive: true });
-    img.addEventListener('pointerleave', FermaMovimento, { passive: true });
-
-    this.destroyRef.onDestroy(() => {
-      if (this.chiusuraId !== undefined) window.clearTimeout(this.chiusuraId);
-      img.removeEventListener('load', CaricaImmagine);
-      img.removeEventListener('pointerenter', IniziaMovimento);
-      img.removeEventListener('pointermove', MuoviLente);
-      img.removeEventListener('pointerleave', FermaMovimento);
-    });
+  fermaMovimento(): void {
+    this.lenteVisibile.set(false);
   }
 }

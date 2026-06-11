@@ -38,6 +38,8 @@ import { ProgettiService } from './selettore-progetti/progetti.service';
 export class SezioneProgettiComponent implements AfterViewInit {
   private readonly descrizione =
     viewChild.required<ElementRef<HTMLElement>>('descrizione');
+  private readonly descrizioneTesto =
+    viewChild.required<DescrizioneComponent>('descrizioneTesto');
 
   readonly progetti = progetti;
   protected readonly progettoSelezionato = signal(this.progetti[0]);
@@ -81,11 +83,7 @@ export class SezioneProgettiComponent implements AfterViewInit {
     this.img.conservaImmagineCorrenteComePrecedente();
     this.img.selezionaImmagine(0);
 
-    const desc = this.descrizione().nativeElement.querySelector('descrizione')!;
-    desc.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    this.descrizioneTesto().scorriInAlto();
 
     setTimeout(() => {
       this.progettoPrecedente.set(undefined);

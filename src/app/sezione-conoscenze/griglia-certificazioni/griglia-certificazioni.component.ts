@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { EffettoMouseCartaDirective } from '../effetto-mouse-carta.directive';
 import { InfoLink, LinkInfoComponent } from './link-info/link-info.component';
 
 @Component({
   selector: 'GrigliaCertificazioni',
-  imports: [LinkInfoComponent],
+  imports: [LinkInfoComponent, EffettoMouseCartaDirective],
   templateUrl: './griglia-certificazioni.component.html',
   styleUrls: [
     '../stile-griglie.scss',

@@ -15,6 +15,8 @@ import { FooterContattiComponent } from './footer-contatti/footer-contatti.compo
 import { isPlatformBrowser } from '@angular/common';
 import { SezionePaginaDirective } from './sezione-pagina.directive';
 import { SezioniPaginaService } from './sezioni-pagina.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -59,9 +61,11 @@ export class AppComponent implements AfterViewInit {
       resetWidthId = window.setTimeout(() => (r.style.width = ''));
     };
 
-    window.addEventListener('resize', correggiLarghezzaCornice);
+    fromEvent(window, 'resize')
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => correggiLarghezzaCornice());
+
     this.destroyRef.onDestroy(() => {
-      window.removeEventListener('resize', correggiLarghezzaCornice);
       if (resetWidthId !== undefined) window.clearTimeout(resetWidthId);
     });
   }

@@ -1,9 +1,25 @@
 <dialog #dialog>
   <div class="flex-col wrapper">
     <div class="cont-img">
-      <img #img [src]="src()" />
+      <img
+        #img
+        [src]="src()"
+        (load)="caricaImmagine(img)"
+        (pointerenter)="iniziaMovimento($event, img)"
+        (pointermove)="muoviLente($event, img)"
+        (pointerleave)="fermaMovimento()"
+      />
 
-      <div class="lente"></div>
+      <div
+        class="lente"
+        [class.visibile]="lenteVisibile()"
+        [style.background-image]="lenteBackgroundImage()"
+        [style.background-repeat]="'no-repeat'"
+        [style.background-size]="lenteBackgroundSize()"
+        [style.background-position]="lenteBackgroundPosition()"
+        [style.left.px]="lenteX()"
+        [style.top.px]="lenteY()"
+      ></div>
     </div>
     <div class="flex-row info">
       <ion-icon name="information-circle" />

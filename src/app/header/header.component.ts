@@ -1,6 +1,7 @@
 import {
   Component,
   computed,
+  effect,
   inject,
   DOCUMENT,
   linkedSignal,
@@ -9,6 +10,7 @@ import {
   input,
   output,
   signal,
+  Renderer2,
 } from '@angular/core';
 import { Sezioni } from '../sezione-conoscenze/switch/switch.component';
 import { ConoscenzeService } from '../sezione-conoscenze/conoscenze.service';
@@ -58,13 +60,19 @@ export class HeaderComponent implements OnInit {
   private readonly conoscenzeService = inject(ConoscenzeService);
   private readonly valore_progetto = inject(ProgettiService);
   private readonly document = inject(DOCUMENT);
+  private readonly renderer = inject(Renderer2);
   private readonly platform: Object = inject(PLATFORM_ID);
   private readonly isBrowser = isPlatformBrowser(this.platform);
 
   protected readonly modalitaVisualizzazione = signal<'chiaro' | 'scuro'>(
     'scuro'
   );
-  html = this.document.firstElementChild! as HTMLElement;
+  private readonly html = this.document.firstElementChild! as HTMLElement;
+  private readonly temaEffect = effect(() => {
+    if (!this.isBrowser) return;
+
+    this.applicaTema(this.modalitaVisualizzazione());
+  });
 
   protected readonly headerAperto = linkedSignal<string | undefined, boolean>({
     source: this.sezioneCorrente,
@@ -111,7 +119,7 @@ export class HeaderComponent implements OnInit {
       this.modalitaVisualizzazione.set(modalita);
     } else this.modalitaVisualizzazione.set('scuro');
 
-    this.html.classList.add(this.modalitaVisualizzazione());
+    this.applicaTema(this.modalitaVisualizzazione());
   }
 
   Scrolla(s: string) {
@@ -121,36 +129,24 @@ export class HeaderComponent implements OnInit {
   }
 
   async CambiaModalitaVisualizzazione(e: Event) {
-    this.modalitaVisualizzazione.update((modalita) =>
-      modalita === 'scuro' ? 'chiaro' : 'scuro'
-    );
-    localStorage.setItem(
-      'modalita-visualizzazione',
-      this.modalitaVisualizzazione()
-    );
-
-    const Imposta = () => {
-      this.html.classList.toggle(
-        'scuro',
-        this.modalitaVisualizzazione() === 'scuro'
-      );
-      this.html.classList.toggle(
-        'chiaro',
-        this.modalitaVisualizzazione() === 'chiaro'
-      );
+    const prossimaModalita =
+      this.modalitaVisualizzazione() === 'scuro' ? 'chiaro' : 'scuro';
+    const imposta = () => {
+      this.modalitaVisualizzazione.set(prossimaModalita);
+      this.applicaTema(prossimaModalita);
     };
 
-    if (document.startViewTransition) {
+    if (this.document.startViewTransition) {
       const bottone = e.currentTarget as HTMLElement;
 
-      await document.startViewTransition(() => Imposta()).ready;
+      await this.document.startViewTransition(() => imposta()).ready;
       const { top, left, width, height } = bottone.getBoundingClientRect();
 
       const destra = window.innerWidth - left;
       const sotto = window.innerHeight - top;
       const raggio = Math.hypot(Math.max(left, destra), Math.max(top, sotto));
 
-      document.documentElement.animate(
+      this.document.documentElement.animate(
         {
           clipPath: [
             `circle(0 at ${left + width / 2}px ${top + height / 2}px)`,
@@ -165,7 +161,9 @@ export class HeaderComponent implements OnInit {
           pseudoElement: '::view-transition-new(root)',
         }
       );
-    } else Imposta();
+    } else imposta();
+
+    localStorage.setItem('modalita-visualizzazione', prossimaModalita);
   }
 
   SelezionaCompetenza(competenza: Sezioni) {
@@ -184,5 +182,16 @@ export class HeaderComponent implements OnInit {
 
   CambiaSezione(s: 'conoscenze' | 'progetti') {
     this.sezioneMenu.update((sezione) => (sezione === s ? undefined : s));
+  }
+
+  private applicaTema(modalita: 'chiaro' | 'scuro'): void {
+    if (modalita === 'scuro') {
+      this.renderer.addClass(this.html, 'scuro');
+      this.renderer.removeClass(this.html, 'chiaro');
+      return;
+    }
+
+    this.renderer.addClass(this.html, 'chiaro');
+    this.renderer.removeClass(this.html, 'scuro');
   }
 }

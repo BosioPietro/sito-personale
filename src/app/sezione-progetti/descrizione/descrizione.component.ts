@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, ElementRef, computed, inject, input } from '@angular/core';
 import { Progetto } from '../dati';
 
 @Component({
@@ -8,6 +8,7 @@ import { Progetto } from '../dati';
     styleUrl: './descrizione.component.scss'
 })
 export class DescrizioneComponent {
+  private readonly hostRef = inject(ElementRef<HTMLElement>);
 
   readonly progettoSelezionato = input.required<Progetto>({
     alias: 'progetto-selezionato',
@@ -25,6 +26,13 @@ export class DescrizioneComponent {
     const progetto = this.progettoPrecedente();
     return progetto ? creaDescrizione(progetto) : undefined;
   });
+
+  scorriInAlto(): void {
+    this.hostRef.nativeElement.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
 }
 
 type SegmentoTesto =
