@@ -3,7 +3,6 @@ import {
   computed,
   effect,
   inject,
-  DOCUMENT,
   linkedSignal,
   OnInit,
   PLATFORM_ID,
@@ -12,11 +11,11 @@ import {
   signal,
   Renderer2,
 } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Sezioni } from '../sezione-conoscenze/switch/switch.component';
 import { ConoscenzeService } from '../sezione-conoscenze/conoscenze.service';
 import { ProgettiService } from '../sezione-progetti/selettore-progetti/progetti.service';
 import { IconaComponent } from '../common/icona/icona.component';
-import { isPlatformBrowser } from '@angular/common';
 
 declare global {
   interface ViewTransitionUpdateCallback {
@@ -58,16 +57,17 @@ export class HeaderComponent implements OnInit {
   readonly naviga = output<string>();
 
   private readonly conoscenzeService = inject(ConoscenzeService);
-  private readonly valore_progetto = inject(ProgettiService);
+  private readonly valoreProgetto = inject(ProgettiService);
   private readonly document = inject(DOCUMENT);
+  private readonly platformId = inject(PLATFORM_ID);
   private readonly renderer = inject(Renderer2);
-  private readonly platform: Object = inject(PLATFORM_ID);
-  private readonly isBrowser = isPlatformBrowser(this.platform);
+  private readonly isBrowser = isPlatformBrowser(this.platformId);
+  private readonly window = this.document.defaultView;
+  private readonly html = this.document.documentElement;
 
   protected readonly modalitaVisualizzazione = signal<'chiaro' | 'scuro'>(
     'scuro'
   );
-  private readonly html = this.document.firstElementChild! as HTMLElement;
   private readonly temaEffect = effect(() => {
     if (!this.isBrowser) return;
 
@@ -111,9 +111,11 @@ export class HeaderComponent implements OnInit {
   protected readonly sezioni = Sezioni;
 
   ngOnInit() {
-    if (!this.isBrowser) return;
+    if (!this.isBrowser || !this.window) return;
 
-    const modalita = localStorage.getItem('modalita-visualizzazione');
+    const modalita = this.window.localStorage.getItem(
+      'modalita-visualizzazione'
+    );
 
     if (modalita === 'chiaro' || modalita === 'scuro') {
       this.modalitaVisualizzazione.set(modalita);
@@ -123,12 +125,16 @@ export class HeaderComponent implements OnInit {
   }
 
   Scrolla(s: string) {
-    const el = document.getElementById(s)!;
+    const el = this.document.getElementById(s);
+    if (!el) return;
+
     this.naviga.emit(s);
     el.scrollIntoView({ behavior: 'smooth' });
   }
 
   async CambiaModalitaVisualizzazione(e: Event) {
+    if (!this.isBrowser || !this.window) return;
+
     const prossimaModalita =
       this.modalitaVisualizzazione() === 'scuro' ? 'chiaro' : 'scuro';
     const imposta = () => {
@@ -142,8 +148,8 @@ export class HeaderComponent implements OnInit {
       await this.document.startViewTransition(() => imposta()).ready;
       const { top, left, width, height } = bottone.getBoundingClientRect();
 
-      const destra = window.innerWidth - left;
-      const sotto = window.innerHeight - top;
+      const destra = this.window.innerWidth - left;
+      const sotto = this.window.innerHeight - top;
       const raggio = Math.hypot(Math.max(left, destra), Math.max(top, sotto));
 
       this.document.documentElement.animate(
@@ -163,7 +169,10 @@ export class HeaderComponent implements OnInit {
       );
     } else imposta();
 
-    localStorage.setItem('modalita-visualizzazione', prossimaModalita);
+    this.window.localStorage.setItem(
+      'modalita-visualizzazione',
+      prossimaModalita
+    );
   }
 
   SelezionaCompetenza(competenza: Sezioni) {
@@ -174,7 +183,7 @@ export class HeaderComponent implements OnInit {
   }
 
   SelezionaProgetto(progetto: string) {
-    this.valore_progetto.richiediProgetto(progetto);
+    this.valoreProgetto.richiediProgetto(progetto);
     this.Scrolla('progetti');
     this.headerAperto.set(false);
     this.sezioneMenu.set(undefined);

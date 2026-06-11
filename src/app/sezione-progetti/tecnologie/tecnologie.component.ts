@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, inject, input } from '@angular/core';
 import { Progetto } from '../dati';
 
 @Component({
@@ -8,6 +9,7 @@ import { Progetto } from '../dati';
     styleUrl: './tecnologie.component.scss'
 })
 export class TecnologieComponent {
+  private readonly window = inject(DOCUMENT).defaultView;
 
   readonly progettoSelezionato = input.required<Progetto>({
     alias: 'progetto-selezionato',
@@ -17,7 +19,7 @@ export class TecnologieComponent {
     alias: 'progetto-precedente',
   });
 
-  ApriLink(link: string){
-    window.open(link, "_blank");
+  ApriLink(link: string) {
+    this.window?.open(link, '_blank');
   }
 }

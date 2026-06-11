@@ -1,6 +1,8 @@
+import { DOCUMENT } from '@angular/common';
 import {
   Component,
   ElementRef,
+  inject,
   model,
   OnChanges,
   SimpleChanges,
@@ -18,6 +20,7 @@ import { IconaComponent } from '../../../common/icona/icona.component';
 export class ModaleImmagineComponent implements OnChanges {
   public src = model<string | undefined>();
 
+  private readonly window = inject(DOCUMENT).defaultView;
   private readonly dialogRef = viewChild<ElementRef<HTMLDialogElement>>('dialog');
 
   protected readonly lenteVisibile = signal(false);
@@ -36,8 +39,13 @@ export class ModaleImmagineComponent implements OnChanges {
 
   Chiudi(): void {
     this.dialogRef()?.nativeElement.close();
-    if (this.chiusuraId !== undefined) window.clearTimeout(this.chiusuraId);
-    this.chiusuraId = window.setTimeout(() => {
+    if (!this.window) {
+      this.src.set(undefined);
+      return;
+    }
+
+    if (this.chiusuraId !== undefined) this.window.clearTimeout(this.chiusuraId);
+    this.chiusuraId = this.window.setTimeout(() => {
       this.src.set(undefined);
     }, 200);
   }

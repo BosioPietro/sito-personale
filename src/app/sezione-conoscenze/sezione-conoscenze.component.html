@@ -21,15 +21,15 @@
             <!-- in overflow (tipo mobile) il wrapper shifterebbe -->
             <GrigliaSviluppo
                 class="flex-col contenuto-griglia"
-                [class.visibile]="sezioneCorrente() === Sezioni.Sviluppo"
+                [class.visibile]="sezioneCorrente() === sezioni.Sviluppo"
             />
             <GrigliaWeb 
                 class="flex-col contenuto-griglia"
-                [class.visibile]="sezioneCorrente() === Sezioni.Web"
+                [class.visibile]="sezioneCorrente() === sezioni.Web"
             />
             <GrigliaCertificazioni 
                 class="flex-row contenuto-griglia"  
-                [class.visibile]="sezioneCorrente() === Sezioni.Certificazioni"
+                [class.visibile]="sezioneCorrente() === sezioni.Certificazioni"
             />
         </div>
     </div>    

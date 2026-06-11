@@ -11,6 +11,7 @@ export class SezioniPaginaService {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly destroyRef = inject(DestroyRef);
   private readonly isBrowser = isPlatformBrowser(this.platformId);
+  private readonly window = this.document.defaultView;
 
   private readonly sezioneCorrenteInterna = signal<string | undefined>(undefined);
   private readonly sezioni = new Map<string, HTMLElement>();
@@ -22,9 +23,10 @@ export class SezioniPaginaService {
   readonly sezioneCorrente = this.sezioneCorrenteInterna.asReadonly();
 
   constructor() {
-    if (!this.isBrowser) return;
+    const window = this.window;
+    if (!this.isBrowser || !window) return;
 
-    this.visibilitaObserver = new IntersectionObserver(
+    this.visibilitaObserver = new window.IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const el = entry.target as HTMLElement & {
@@ -37,7 +39,7 @@ export class SezioniPaginaService {
       { threshold: [0, 0.25, 0.5, 0.75, 1] }
     );
 
-    this.centroObserver = new IntersectionObserver(
+    this.centroObserver = new window.IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const el = entry.target as HTMLElement;
@@ -66,7 +68,7 @@ export class SezioniPaginaService {
     elemento: HTMLElement,
     aggiornaVisibilita: AggiornaVisibilita
   ): void {
-    if (!this.isBrowser || !id) return;
+    if (!this.isBrowser || !this.window || !id) return;
 
     (elemento as HTMLElement & { aggiornaVisibilita?: AggiornaVisibilita })
       .aggiornaVisibilita = aggiornaVisibilita;
@@ -78,7 +80,7 @@ export class SezioniPaginaService {
   }
 
   rimuoviSezione(id: string, elemento: HTMLElement): void {
-    if (!this.isBrowser || !id) return;
+    if (!this.isBrowser || !this.window || !id) return;
 
     this.visibilitaObserver?.unobserve(elemento);
     this.centroObserver?.unobserve(elemento);
@@ -97,7 +99,7 @@ export class SezioniPaginaService {
     if (this.aggiornamentoPianificato) return;
 
     this.aggiornamentoPianificato = true;
-    requestAnimationFrame(() => {
+    this.window?.requestAnimationFrame(() => {
       this.aggiornamentoPianificato = false;
       this.aggiornaSezioneCentrale();
     });
@@ -122,7 +124,8 @@ export class SezioniPaginaService {
     });
 
     const contattiEntry = this.centroSezioni.get('contatti');
-    if (contattiEntry?.rootBounds) {
+    const window = this.window;
+    if (window && contattiEntry?.rootBounds) {
       const rootBounds = contattiEntry.rootBounds;
       const rect = contattiEntry.boundingClientRect;
       const fondoDentroViewport =

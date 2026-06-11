@@ -1,4 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Component, DestroyRef, inject, PLATFORM_ID, signal } from '@angular/core';
 
 @Component({
@@ -11,16 +11,17 @@ export class CardMobileComponent {
   private readonly destroyRef = inject(DestroyRef);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly isBrowser = isPlatformBrowser(this.platformId);
+  private readonly window = inject(DOCUMENT).defaultView;
   
   protected readonly logoCordova = signal(false);
 
   constructor() {
-    if (!this.isBrowser) return;
+    if (!this.isBrowser || !this.window) return;
 
-    const intervalloId = window.setInterval(() => {
+    const intervalloId = this.window.setInterval(() => {
       this.logoCordova.update((visibile) => !visibile);
     }, 1E4);
 
-    this.destroyRef.onDestroy(() => window.clearInterval(intervalloId));
+    this.destroyRef.onDestroy(() => this.window?.clearInterval(intervalloId));
   }
 }

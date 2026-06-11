@@ -7,10 +7,10 @@ import {
   effect,
   signal,
   untracked,
+  PLATFORM_ID,
   viewChild,
 } from '@angular/core';
-import { PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { progetti, Progetto } from './dati';
 import { TecnologieComponent } from './tecnologie/tecnologie.component';
 import { DescrizioneComponent } from './descrizione/descrizione.component';
@@ -54,6 +54,7 @@ export class SezioneProgettiComponent implements AfterViewInit {
   private readonly progettiService = inject(ProgettiService);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly isBrowser = isPlatformBrowser(this.platformId);
+  private readonly window = inject(DOCUMENT).defaultView;
   private readonly hostRef = inject(ElementRef<HTMLElement>);
   private readonly destroyRef = inject(DestroyRef);
   private readonly vistaPronta = signal(false);
@@ -70,7 +71,7 @@ export class SezioneProgettiComponent implements AfterViewInit {
   });
 
   ApriLink(link: string) {
-    window.open(link, '_blank');
+    this.window?.open(link, '_blank');
   }
 
   SelezionaProgetto(p: Progetto) {
@@ -85,19 +86,23 @@ export class SezioneProgettiComponent implements AfterViewInit {
 
     this.descrizioneTesto().scorriInAlto();
 
-    setTimeout(() => {
+    const terminaTransizione = () => {
       this.progettoPrecedente.set(undefined);
       this.img.resettaImmaginePrecedente();
       this.puoCambiare.set(true);
-    }, 500);
+    };
+
+    this.window
+      ? this.window.setTimeout(terminaTransizione, 500)
+      : terminaTransizione();
   }
 
   ngAfterViewInit(): void {
     this.vistaPronta.set(true);
 
-    if (!this.isBrowser) return;
+    if (!this.isBrowser || !this.window) return;
     const el = this.hostRef.nativeElement;
-    const obs = new IntersectionObserver(
+    const obs = new this.window.IntersectionObserver(
       ([e, ..._], observer) => {
         if (e.isIntersecting) {
           this.puoAnimare.set(true);

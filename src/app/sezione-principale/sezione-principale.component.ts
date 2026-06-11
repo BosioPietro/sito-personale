@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { inject } from '@angular/core';
 import { SfondoComponent } from './sfondo/sfondo.component';
 import { IconaComponent } from '../common/icona/icona.component';
 
@@ -9,8 +11,12 @@ import { IconaComponent } from '../common/icona/icona.component';
   styleUrl: './sezione-principale.component.scss',
 })
 export class SezionePrincipaleComponent {
+  private readonly document = inject(DOCUMENT);
+
   Scrolla() {
-    const cont = document.getElementById('conoscenze')!;
+    const cont = this.document.getElementById('conoscenze');
+    if (!cont) return;
+
     cont.scrollIntoView({ behavior: 'smooth' });
   }
 }

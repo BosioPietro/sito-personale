@@ -1,4 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -18,8 +18,9 @@ export class CardDatabaseComponent implements AfterViewInit {
   private intervalId: number | undefined;
   private readonly timeoutIds: number[] = [];
 
-  private readonly platform = inject(PLATFORM_ID);
-  private readonly isBrowser = isPlatformBrowser(this.platform);
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly isBrowser = isPlatformBrowser(this.platformId);
+  private readonly window = inject(DOCUMENT).defaultView;
   private readonly destroyRef = inject(DestroyRef);
 
   protected readonly righe = Array.from({ length: 5 });
@@ -27,7 +28,8 @@ export class CardDatabaseComponent implements AfterViewInit {
   protected readonly celleEvidenziate = signal<ReadonlySet<number>>(new Set());
 
   ngAfterViewInit(): void {
-    if (!this.isBrowser) return;
+    const window = this.window;
+    if (!this.isBrowser || !window) return;
 
     const numeroCelle = this.righe.length * this.colonne.length;
 
@@ -62,11 +64,11 @@ export class CardDatabaseComponent implements AfterViewInit {
 
   private pulisciTimer(): void {
     if (this.intervalId !== undefined) {
-      clearInterval(this.intervalId);
+      this.window?.clearInterval(this.intervalId);
       this.intervalId = undefined;
     }
 
-    this.timeoutIds.forEach((id) => window.clearTimeout(id));
+    this.timeoutIds.forEach((id) => this.window?.clearTimeout(id));
     this.timeoutIds.length = 0;
   }
 }
