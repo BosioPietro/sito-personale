@@ -3,6 +3,7 @@ import {
   computed,
   inject,
   DOCUMENT,
+  linkedSignal,
   OnInit,
   PLATFORM_ID,
   input,
@@ -65,10 +66,20 @@ export class HeaderComponent implements OnInit {
   );
   html = this.document.firstElementChild! as HTMLElement;
 
-  protected readonly headerAperto = signal(false);
-  protected readonly sezioneMenu = signal<'progetti' | 'conoscenze' | undefined>(
-    undefined
-  );
+  protected readonly headerAperto = linkedSignal<string | undefined, boolean>({
+    source: this.sezioneCorrente,
+    computation: (sezione, precedente) =>
+      precedente && sezione === precedente.source ? precedente.value : false,
+  });
+
+  protected readonly sezioneMenu = linkedSignal<
+    string | undefined,
+    'progetti' | 'conoscenze' | undefined
+  >({
+    source: this.sezioneCorrente,
+    computation: (sezione, precedente) =>
+      precedente && sezione === precedente.source ? precedente.value : undefined,
+  });
 
   protected readonly indicatoreAncora = computed(() =>
     this.mappaSezioneAAncora(this.sezioneCorrente())
