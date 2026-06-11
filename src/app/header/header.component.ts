@@ -159,7 +159,7 @@ export class HeaderComponent implements OnInit {
   }
 
   SelezionaProgetto(progetto: string) {
-    this.valore_progetto.bottoni[progetto]?.click();
+    this.valore_progetto.richiediProgetto(progetto);
     this.Scrolla('progetti');
     this.headerAperto = false;
     this.sezioneMenu = undefined;

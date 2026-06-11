@@ -3,12 +3,13 @@ import {
   ElementRef,
   ViewChild,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   AfterViewInit,
   HostBinding,
   inject,
+  effect,
+  signal,
+  untracked,
 } from '@angular/core';
-import { signal, WritableSignal } from '@angular/core';
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { progetti, Progetto } from './dati';
@@ -18,6 +19,7 @@ import { SelettoreProgettiComponent } from './selettore-progetti/selettore-proge
 import { ImmaginiComponent } from './immagini/immagini.component';
 import { ImmaginiService } from './immagini/immagini.service';
 import { IconaComponent } from '../common/icona/icona.component';
+import { ProgettiService } from './selettore-progetti/progetti.service';
 
 @Component({
   selector: 'SezioneProgetti',
@@ -33,20 +35,35 @@ import { IconaComponent } from '../common/icona/icona.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SezioneProgettiComponent implements AfterViewInit {
-  constructor(private img: ImmaginiService, private cdr: ChangeDetectorRef) {}
-
   @ViewChild('descrizione')
   descrizione!: ElementRef<HTMLElement>;
 
-  progetti = progetti;
-  progettoSelezionato = this.progetti[0];
-  progettoPrecedente?: Progetto;
+  readonly progetti = progetti;
+  protected readonly progettoSelezionato = signal(this.progetti[0]);
+  protected readonly progettoPrecedente = signal<Progetto | undefined>(
+    undefined
+  );
 
-  espandiMenu: boolean = false;
+  protected readonly espandiMenu = signal(false);
+  protected readonly resettaFor = signal(true);
+  protected readonly puoCambiare = signal(true);
 
+  private readonly img = inject(ImmaginiService);
+  private readonly progettiService = inject(ProgettiService);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly isBrowser = isPlatformBrowser(this.platformId);
   private readonly hostRef = inject(ElementRef<HTMLElement>);
+  private readonly vistaPronta = signal(false);
+
+  private readonly richiestaProgettoEffect = effect(() => {
+    const richiesta = this.progettiService.progettoRichiesto();
+    if (!richiesta || !this.vistaPronta()) return;
+
+    const progetto = this.progetti.find((p) => p.nome === richiesta.nome);
+    if (progetto) {
+      untracked(() => this.SelezionaProgetto(progetto));
+    }
+  });
 
   ApriLink(link: string) {
     window.open(link, '_blank');
@@ -56,13 +73,13 @@ export class SezioneProgettiComponent implements AfterViewInit {
   // re-renderizza i div che erano già presenti
   // anche se il loro contenuto cambia
   // uso quindi questa variable per forzarlo
-  resettaFor = true;
-  puoCambiare = true;
   SelezionaProgetto(p: Progetto) {
-    this.progettoPrecedente = this.progettoSelezionato;
-    this.resettaFor = false;
-    this.progettoSelezionato = p;
-    this.puoCambiare = false;
+    if (this.progettoSelezionato() === p || !this.puoCambiare()) return;
+
+    this.progettoPrecedente.set(this.progettoSelezionato());
+    this.resettaFor.set(false);
+    this.progettoSelezionato.set(p);
+    this.puoCambiare.set(false);
 
     this.img.conservaImmagineCorrenteComePrecedente();
     this.img.selezionaImmagine(0);
@@ -74,19 +91,19 @@ export class SezioneProgettiComponent implements AfterViewInit {
     });
 
     setTimeout(() => {
-      this.resettaFor = true;
-      this.cdr.markForCheck();
+      this.resettaFor.set(true);
     }, 1);
 
     setTimeout(() => {
-      this.progettoPrecedente = undefined;
+      this.progettoPrecedente.set(undefined);
       this.img.resettaImmaginePrecedente();
-      this.puoCambiare = true;
-      this.cdr.markForCheck();
+      this.puoCambiare.set(true);
     }, 500);
   }
 
   ngAfterViewInit(): void {
+    this.vistaPronta.set(true);
+
     if (!this.isBrowser) return;
     const el = this.hostRef.nativeElement;
     const obs = new IntersectionObserver(
